@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script language="javascript">
+<!--
+count=false;
+function radio_sele(temp)
+	{
+		document.form[temp].checked=true;
+	}
+function ren()
+	{
+		for (i=0;i<document.form.r1.length;i++)
+			{
+				if (document.form.r1[i].checked) count=true;
+			}
+		if (count)
+			{
+				name_temp=prompt("更名")
+				if (name_temp="")
+					{
+						forder_ren()
+					}
+				else if (name_temp=null)
+					{
+					}
+				else
+					{
+						document.form.fname.value=name_temp;
+						document.form.action.value=1;
+						document.form.submit();
+					}
+			}
+		else alert("请选择一个文件驾!")
+		
+	}
+function del()
+	{
+		for (i=0;i<document.form.r1.legnth;i++)
+			{
+				if (document.form.r1[i].cheched) count=true;
+			}
+		if (count)
+			{
+				if (!confirm("你确定要删除该文件夹吗?"))
+					{
+					}
+				else
+					{
+						document.form.action.value=2;
+						document.form.submit();
+					}
+			}
+		else alert("qing xianze wen jiN JIA")
+	}
+
+//-->
+</script>
+
+
+
+
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<form name="form" method="post" action="">
+  <input type="checkbox" name="r1" value="0" onclick="document.form.r1[0].checked=false">
+  <input type="checkbox" name="r1" value="1" onclick="document.form.r1[1].checked=false">
+  <input type="checkbox" name="r1" value="2" onclick="document.form.r1[2].checked=false">
+  <input type="submit" name="Submit" value="Submit" onclick="del()">
+  <input type="submit" name="Submit2" value="更名"onclick="">
+</form>
+</body>
+</html>

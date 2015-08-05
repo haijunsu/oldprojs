@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<bean id="com.application.context"
+		class="org.springframework.context.support.ClassPathXmlApplicationContext">
+		<constructor-arg>
+			<list>
+				<value>context/applicationContext.xml</value>
+				<value>context/servicesContext.xml</value>
+				<value>context/daosContext.xml</value>
+				<value>context/securityContext.xml</value>
+			</list>
+		</constructor-arg>
+	</bean>
+
+</beans>

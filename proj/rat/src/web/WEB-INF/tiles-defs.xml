@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+       "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+
+
+<tiles-definitions>
+	<!-- Default top layout begin -->
+	<definition name=".defaultTopLayout"
+		path="/common/layouts/topLayout.jsp">
+		<put name="titlePage" value="/common/blank.jsp" />
+	</definition>
+	<!-- Default top layout end -->
+
+	<!-- Default layout begin -->
+	<definition name=".defaultLayout"
+		path="/common/layouts/defaultLayout.jsp">
+		<put name="top" value="/common/blank.jsp" />
+		<put name="left" value="/menu.do" />
+		<put name="body" value="/common/blank.jsp" />
+		<put name="copyright" value="/common/copyright.jsp" />
+	</definition>
+	<!-- Default layout end -->
+
+	<!-- Message begin-->
+	<definition name="loginDef" extends=".defaultLayout">
+		<put name="left" value="/common/blank.jsp" />
+		<put name="body" value="/login.jsp" />
+	</definition>
+
+	<definition name="errorDef" extends=".defaultLayout">
+		<put name="body" value="/common/errors/error.jsp" />
+	</definition>
+
+	<definition name="warnDef" extends=".defaultLayout">
+		<put name="body" value="/common/errors/warning.jsp" />
+	</definition>
+
+	<definition name="successDef" extends=".defaultLayout">
+		<put name="body" value="/common/success/success.jsp" />
+	</definition>
+
+	<definition name="welcomeDef" extends=".defaultLayout">
+		<put name="left" value="/common/blank.jsp" />
+		<put name="body" value="/welcome.jsp" />
+	</definition>
+	<!-- Message end -->
+
+
+	<!-- sysCfg begin -->
+	<definition name="sysCfgDef" extends=".defaultLayout">
+		<put name="body" value="/conf/syscfg.jsp" />
+	</definition>
+	<!-- sysCfg end -->
+</tiles-definitions>

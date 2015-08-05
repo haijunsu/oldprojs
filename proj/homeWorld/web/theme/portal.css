@@ -1,0 +1,33 @@
+A:ACTIVE {
+	TEXT-DECORATION: none;font-family : serif,Arial,"Times New Roman",宋体;}
+A:hover {
+	COLOR: #cc0000; TEXT-DECORATION: none;font-family : serif,Arial,"Times New Roman",宋体
+;}
+A:link {
+	TEXT-DECORATION: none;font-family : serif,Arial,"Times New Roman",宋体
+;}
+A:visited {
+	TEXT-DECORATION: none;font-family : serif,Arial,"Times New Roman",宋体
+;}
+.p9 {
+	FONT-SIZE: 9pt; TEXT-DECORATION: none;font-family : serif,Arial,"Times New Roman",宋体
+;}
+.p11 {
+	font-size : 11pt; TEXT-DECORATION: none;font-family : serif,Arial,"Times New Roman",宋体
+;}
+.p13 {
+	FONT-SIZE: 13pt; TEXT-DECORATION: none;font-family : serif,Arial,"Times New Roman",宋体
+;}
+.input {
+	BACKGROUND: #f0d9d9;  FONT-SIZE: 9pt;font-family : serif,Arial,"Times New Roman",宋体
+;padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;border-style : solid solid solid solid;float : right;clear : both;position : normal;visibility : visible;cursor : auto;page-break-before : avoid;page-break-after : avoid;
+}
+TABLE {
+	FONT-SIZE: 10pt; TEXT-DECORATION: none; font-family : serif,Arial,"Times New Roman",宋体
+;}
+TD {
+	FONT-SIZE: 10pt; TEXT-DECORATION: none; font-family : serif,Arial,"Times New Roman",宋体
+;}
+BODY {
+	FONT-SIZE: 10pt; TEXT-DECORATION: none; font-family : serif,Arial,"Times New Roman",宋体
+;}

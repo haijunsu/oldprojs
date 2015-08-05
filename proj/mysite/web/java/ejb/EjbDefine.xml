@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+   <!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+   <isindexall>false</isindexall>
+   <indexfile>indexall.xml</indexfile>
+
+   <!-- 定义文档位置 -->
+   <topic>java</topic>
+   <catalog>ejb</catalog>
+
+   <!-- 文档显示内容 -->
+    <title>EJB的一些基本概念</title>
+    <pagename>EJB的一些基本概念</pagename>
+   <content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+<h3>选择接口类型</h3>
+    业务逻辑层使用远程会话Bean，实体和无状态会话Bean使用本地接口
+
+<h3>主接口</h3>
+    主接口负责控制Bean的生成、删除和寻找Bean
+    主接口从EJBHome接口或EJBLocalHome接口扩展
+
+<h3>组件接口</h3>
+    Bean提供者用组件接口定义Bean向客户提供的业务方法
+   组件接口从EJBObject接口或EJBLocalObject接口扩展
+
+<h3>Bean实现类</h3>
+    业务逻辑的所有实现的细节
+   实现类从SessionBean接口或EntityBean接口或MessageDrivenBean接口扩展
+
+<h3>部署描述项</h3>
+    XML文件，包含部署指令、部署组件的资源要求和应用程序的安全角色
+
+       ]]> </content>
+
+</doc>
+

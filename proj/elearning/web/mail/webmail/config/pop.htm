@@ -1,0 +1,240 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<STYLE type=text/css>A:link {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: black; TEXT-DECORATION: none
+}
+TD {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+TH {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+INPUT {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+SELECT {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+.menuStyle {
+	FONT-FAMILY: Arial,Geneva,Verdana,Helvetica; FONT-SIZE: 9pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.form1 {
+	BACKGROUND-COLOR: #ffffff; BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid;FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;
+}
+.form2 {
+	BACKGROUND-COLOR: #E3E3E3; BORDER-BOTTOM: #ffffff 2px solid; BORDER-LEFT: #ffffff 2px solid; BORDER-RIGHT: #ffffff 2px solid; BORDER-TOP: #ffffff 2px solid;FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;height:80pt;
+		}
+.form3 {
+	BACKGROUND-COLOR: #E3E3E3; BORDER-BOTTOM: #007777 2px solid; BORDER-LEFT: #007777 2px solid; BORDER-RIGHT: #007777 2px solid; BORDER-TOP: #007777 2px solid; FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;height:16px
+}
+.form4 {
+	BACKGROUND-COLOR: #cccccc; BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid;FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;
+}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+//设置位置
+function place2() {
+    parent.parent.top1.form1.textfield2.value="电子邮件\-\>邮件设置\-\>POP3邮件帐号";
+}
+
+
+//跑马灯的函数；
+
+  var scrtxt="您可以在这里设置您自己的POP3邮件帐号！";
+  var lentxt=scrtxt.length;
+  var width=100;
+  var pos=1-width;
+  
+  function scroll() {
+  pos++;
+  
+  var scroller="";
+  if (pos==lentxt) {
+    pos=1-width;
+  }
+  if (pos<0) {
+    for (var i=1; i<=Math.abs(pos); i++) {
+      scroller=scroller+" ";}
+    scroller=scroller+scrtxt.substring(0,width-i+1);
+  }
+  else {
+    scroller=scroller+scrtxt.substring(pos,width+pos);
+  }
+  window.status = scroller;
+  setTimeout("scroll()",150);
+  }
+
+//检查是否有非法的输入
+function re()
+{
+	//window.alert("hello！");
+	var servername=form1.textfield22.value;
+	var username=form1.textfield32.value;
+	var userpass=form1.textfield42.value;
+	var timeout=form1.textfield52.value;
+	var port=form1.textfield62.value;
+	//window.alert(servername);
+	if (form1.checkbox22.checked)
+	{
+		if (servername=="")
+		{
+			window.alert("服务器名不能为空！");
+			return false;
+		}
+		else
+		{
+			if (username=="")
+			{
+				window.alert("用户名不能为空！");
+				return false;
+			}
+			else
+			{
+				if (timeout=="")
+				{
+					window.alert("服务器超时设置不能为空！");
+					return false;
+				}
+				else
+				{
+					if (port=="")
+					{
+						window.alert("端口号不能为空！");
+						return false;
+					}
+					else
+					{
+						return true;
+					}
+				}
+			}
+		}
+	}
+	else
+	{
+		return true;
+	}
+}
+
+//-->
+</SCRIPT>
+</head>
+
+<body bgcolor="#F6F6F6" text="#000000"  onLoad="place2();scroll();return true;" leftmargin="0" topmargin="0" >
+<table bgcolor=#ECEAE6 border=1 bordercolordark=#808080 
+      bordercolorlight=#ffffff cellpadding=0 cellspacing=0 width="100%" height="20">
+  <tbody> 
+  <tr bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6> 
+    <td noWrap width="5"> 
+      <table border=0 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22>
+        <tbody> 
+        <tr> 
+          <td align=middle bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><img height=22 
+                  src="../../image/toolbar1.gif" width=5></td>
+        </tr>
+        </tbody> 
+      </table>
+    </td>
+    <td align=center noWrap width="150"> 
+      <table border=1 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22 width="100%">
+        <tbody> 
+        <tr> 
+          <td align=center bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center>设置POP邮件帐号……</td>
+        </tr>
+        </tbody> 
+      </table>
+    </td>
+    <td noWrap width="3"> 
+      <table border=0 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22>
+        <tbody> 
+        <tr> 
+          <td align=middle bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><img height=22 
+                  src="../../image/toolbar1.gif" width=5></td>
+        </tr>
+        </tbody> 
+      </table>
+    </td>
+    <td align=absmiddle noWrap>&nbsp; </td>
+  </tr>
+  </tbody> 
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <form name="form1" method="post" action="" onsubmit="return re()">
+   <tr> 
+    <td align="center" > 
+     
+        
+          
+        <table width="100%" border="0" cellspacing="0" align="center">
+          <tr> 
+            <td width="160" height="30" align="right">服务器名</td>
+            <td height="26"> 
+              <input type="text" name="textfield22" class="form1">
+            </td>
+          </tr>
+          <tr> 
+            <td width="160" height="27" align="right">用户名</td>
+            <td height="27"> 
+              <input type="text" name="textfield32"  class="form1">
+            </td>
+          </tr>
+          <tr> 
+            <td width="160" height="27" align="right">用户密码</td>
+            <td height="27"> 
+              <input type="password" name="textfield42"  class="form1">
+            </td>
+          </tr>
+          <tr> 
+            <td width="160" height="27" align="right">服务器在</td>
+            <td height="27"> 
+              <input type="text" name="textfield52" value="90" class="form1">
+              秒内未响应为超时 </td>
+          </tr>
+          <tr> 
+            <td width="160" height="27" align="right">端口号：</td>
+            <td height="27"> 
+              <input type="text" name="textfield62" value="110" class="form1">
+              (标准端口号为110) </td>
+          </tr>
+          <tr> 
+            <td colspan="2" height="31" style="padding-left:160px"> 
+              <input type="checkbox" name="checkbox3" value="checkbox">
+              在POP服务器上保留邮件</td>
+          </tr>
+          <tr> 
+            <td colspan="2" height="31" style="padding-left:160px"> 
+              <input type="checkbox" name="checkbox22" value="checkbox" >
+              POP帐号生效</td>
+          </tr>
+          <tr>
+            <td colspan="2" height="40" style="padding-left:180px"> 
+              <input type="Submit" name="submit" value="  确定  " class="form4" >
+              <input type="button" name="Submit22" value="  取消  " class="form4" onClick="javascript:history.back()">
+            </td>
+          </tr>
+        </table>
+        
+      </td>
+  </tr></form>
+</table>
+</body>
+</html>

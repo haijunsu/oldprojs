@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+   <!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+   <isindexall>false</isindexall>
+   <indexfile>indexall.xml</indexfile>
+
+   <!-- 定义文档位置 -->
+   <topic>java</topic>
+   <catalog>j2ee</catalog>
+
+   <!-- 文档显示内容 -->
+    <title>CSS 中设置字体</title>
+    <pagename>CSS 中设置字体</pagename>
+   <content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+字体属性共分五种：字族（font-family）、字体风格（font-style）、字体变形（font-variant）、字体加粗（font-weight）、字体大小（font-size），此外font属性是一个总体属性，可一一指定以上各种属性和属性值。它们的功能与属性值如下：&nbsp;<br><br>　　1、字族（font-family）　　&nbsp;<br>　　功能：通过font-family指定字体类型用于改变HTML标志或元素的字体，你可设置一个可用字体清单。浏览器由前向后选用字体。&nbsp;<br><br>　　其语法为：h1&nbsp;{font-family:&nbsp;字体类型，字体类型，字体类型}&nbsp;<br><br>　　2、字体风格（font-style)&nbsp;<br>　　功能：使文本显示为扁斜体或斜体等?属性值：normal-普通、italic-斜体、oblique-偏斜体&nbsp;<br><br>　　语法为：h1{font-style:属性值}&nbsp;<br><br>　　3、字体变形（font-variant）&nbsp;<br>　　功能：使文本中的小写字母显示为字体较小的大写字母，常用于设计特殊的标题。&nbsp;<br><br>　　属性值：normal（普通）和small-caps（小型大写字母）&nbsp;<br><br>　　语法为：h1{font-variant:属性值}&nbsp;<br><br>　　4、字体加粗（font-weight）&nbsp;<br>　　功能：用于设置字体笔划的粗细。&nbsp;<br><br>　　属性值：正常度&nbsp;-&nbsp;normal&nbsp;<br><br>　　相对度&nbsp;-&nbsp;bold,&nbsp;bolder,&nbsp;light,&nbsp;lighter&nbsp;<br><br>　　渐变度&nbsp;-&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400(相当于normal),&nbsp;500,&nbsp;600,&nbsp;700(相当于&nbsp;bold、&nbsp;lighter、&nbsp;bolder、以及数值100－900。&nbsp;<br><br>　　语法为：h1&nbsp;&lt;&nbsp;font-weight:&nbsp;属性值&gt;　&nbsp;<br><br>　　5、字体大小（font-size）&nbsp;<br>　　功能：改变字体大小。&nbsp;<br><br>　　属性值：长度&nbsp;-&nbsp;用毫米(mm)，厘米(cm)，英寸(in)，磅(pt)，象素(px)，pica(pc)，ex(小写字母x的高度)或em(字体高度)作为度量单位。&nbsp;<br><br>　　百分比&nbsp;-&nbsp;相对于其父元素字体大小的百分比。绝对尺寸分为xx-small,&nbsp;x-small,&nbsp;small,&nbsp;medium,&nbsp;large,&nbsp;x-large,&nbsp;xx-large七种，它们以各种字体的medium尺寸成比例缩放，每一级1.5倍。相对尺寸:有larger和smaller两种，根据字体原来的大小来决定缩放以后的大小。百分比：把字体设置成原来尺寸的百分比值，可以任意指定数值。&nbsp;<br><br>　　语法为：{font-size:属性值}&nbsp;<br><br>　　6、字体（font）&nbsp;<br>　　功能：简写属性，提供了对字体所有属性进行设置的快捷方法。&nbsp;<br><br>　　属性值：字体属性值为前面已列出的值，，内容的顺序为：font-style;&nbsp;font-variant;&nbsp;font-weight;&nbsp;font-size;&nbsp;line-height;&nbsp;font-family。可省略部分属性，属性值间用空格分开。&nbsp;<br><br>　　语法：{font:属性值1&nbsp;属性值2&nbsp;...属性值n}
+
+       ]]> </content>
+
+</doc>
+

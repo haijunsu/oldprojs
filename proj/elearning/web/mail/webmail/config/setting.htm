@@ -1,0 +1,213 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<STYLE type=text/css>A:link {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: black; TEXT-DECORATION: none
+}
+TD {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+TH {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+INPUT {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+SELECT {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+.menuStyle {
+	FONT-FAMILY: Arial,Geneva,Verdana,Helvetica; FONT-SIZE: 9pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.form1 {
+	BACKGROUND-COLOR: #cccccc; BORDER-BOTTOM: #ffffff 2px solid; BORDER-LEFT: #ffffff 2px solid; BORDER-RIGHT: #ffffff 2px solid; BORDER-TOP: #ffffff 2px solid;FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;
+}
+.form2 {
+	BACKGROUND-COLOR: #E3E3E3; BORDER-BOTTOM: #ffffff 2px solid; BORDER-LEFT: #ffffff 2px solid; BORDER-RIGHT: #ffffff 2px solid; BORDER-TOP: #ffffff 2px solid;FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;height:80pt;
+		}
+.form3 {
+	BACKGROUND-COLOR: #E3E3E3; BORDER-BOTTOM: #007777 2px solid; BORDER-LEFT: #007777 2px solid; BORDER-RIGHT: #007777 2px solid; BORDER-TOP: #007777 2px solid; FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;height:16px
+}
+.form4 {
+	BACKGROUND-COLOR: #cccccc; BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid;FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;
+}
+</STYLE>
+<script language="javascript">
+<!-- Begin validation script
+
+//设置位置
+function place2() {
+    parent.parent.top1.form1.textfield2.value="电子邮件\-\>邮件设置\-\>参数设置";
+}
+
+//跑马灯的函数；
+
+  var scrtxt="您可以在这里设置您自己的个人参数！";
+  var lentxt=scrtxt.length;
+  var width=100;
+  var pos=1-width;
+  
+  function scroll() {
+  pos++;
+  
+  var scroller="";
+  if (pos==lentxt) {
+    pos=1-width;
+  }
+  if (pos<0) {
+    for (var i=1; i<=Math.abs(pos); i++) {
+      scroller=scroller+" ";}
+    scroller=scroller+scrtxt.substring(0,width-i+1);
+  }
+  else {
+    scroller=scroller+scrtxt.substring(pos,width+pos);
+  }
+  window.status = scroller;
+  setTimeout("scroll()",150);
+  }
+
+//----------------------------------------
+// End of validation script -->
+
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onLoad="place2();scroll();return true;" leftmargin="0" topmargin="0" >
+<table bgcolor=#ECEAE6 border=1 bordercolordark=#808080 
+      bordercolorlight=#ffffff cellpadding=0 cellspacing=0 width="100%" height="20">
+  <tbody> 
+  <tr bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6> 
+    <td noWrap width="5"> 
+      <table border=0 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22>
+        <tbody> 
+        <tr> 
+          <td align=middle bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><img height=22 
+                  src="../../image/toolbar1.gif" width=5></td>
+        </tr>
+        </tbody> 
+      </table>
+    </td>
+    <td align=center noWrap width="150"> 
+      <table border=1 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22 width="100%">
+        <tbody> 
+        <tr> 
+          <td align=center bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center>个人参数设置 ……</td>
+        </tr>
+        </tbody> 
+      </table>
+    </td>
+    <td noWrap width="3"> 
+      <table border=0 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22>
+        <tbody> 
+        <tr> 
+          <td align=middle bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><img height=22 
+                  src="../../image/toolbar1.gif" width=5></td>
+        </tr>
+        </tbody> 
+      </table>
+    </td>
+    <td align=absmiddle noWrap>&nbsp; </td>
+  </tr>
+  </tbody> 
+</table>
+<table width="100%" border="0" cellspacing="2" cellpadding="0" align="center">
+  <tr> 
+    <td height="75" align="center" > 
+      <form name="form1" method="post" action="">
+        <p>&nbsp;</p>
+        <table width="90%" border="0" cellspacing="0" align="center">
+          <tr> 
+            <td colspan="17" height="26">每页显示 
+              <select name="select" class="form3">
+                <option>5个</option>
+                <option>1个</option>
+                <option>3个</option>
+                <option>10个</option>
+              </select>
+              邮件</td>
+          </tr>
+          <tr> 
+            <td width="35%" height="27">回复邮件时是否包括原邮件内容</td>
+            <td width="3%" height="27"> 
+              <input type="radio" name="radiobutton1" value="radiobutton" checked>
+            </td>
+            <td width="12%" height="27">包含</td>
+            <td width="3%" height="27"> 
+              <input type="radio" name="radiobutton1" value="radiobutton">
+            </td>
+            <td width="47%" height="27">不包含</td>
+          </tr>
+          <tr> 
+            <td width="35%" height="27">回复邮件的收件人地址自动加入地址本</td>
+            <td width="3%" height="27"> 
+              <input type="radio" name="radiobutton2" value="radiobutton" checked>
+            </td>
+            <td width="12%" height="27">加入</td>
+            <td width="3%" height="27"> 
+              <input type="radio" name="radiobutton2" value="radiobutton">
+            </td>
+            <td width="47%" height="27">不加入</td>
+          </tr>
+          <tr> 
+            <td width="35%" height="27">回复信头显示</td>
+            <td width="3%" height="27"> 
+              <input type="radio" name="radiobutton3" value="radiobutton" checked>
+            </td>
+            <td width="12%" height="27">&gt;</td>
+            <td width="3%" height="27">&nbsp;</td>
+            <td width="47%" height="27">&nbsp;</td>
+          </tr>
+          <tr> 
+            <td width="35%" height="27">&nbsp;</td>
+            <td width="3%" height="27"> 
+              <input type="radio" name="radiobutton3" value="radiobutton">
+            </td>
+            <td width="12%" height="27">Re:</td>
+            <td width="3%" height="27">&nbsp;</td>
+            <td width="47%" height="27">&nbsp;</td>
+          </tr>
+          <tr> 
+            <td width="35%" height="27">&nbsp;</td>
+            <td width="3%" height="27"> 
+              <input type="radio" name="radiobutton3" value="radiobutton">
+            </td>
+            <td width="12%" height="27">回复：</td>
+            <td width="3%" height="27">&nbsp;</td>
+            <td width="47%" height="27">&nbsp;</td>
+          </tr>
+          <tr> 
+            <td width="35%" height="27">发信时显示发信人姓名规则</td>
+            <td width="3%" height="27"> 
+              <input type="radio" name="radiobutton4" value="radiobutton" checked>
+            </td>
+            <td width="12%" height="27">显示</td>
+            <td width="3%" height="27"> 
+              <input type="radio" name="radiobutton4" value="radiobutton">
+            </td>
+            <td width="47%" height="27">不显示</td>
+          </tr>
+        </table>
+        <p>&nbsp;</p>
+        <pre>    	<input type="submit" name="Submit" value="  确定  " class="form4">   <input type="button" name="Submit2" value="  取消  " class="form4" onClick="javascript:history.back()" >   <input type="reset" name="Submit3" class="form4" value="  恢复默认值  "> </pre>
+      </form>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

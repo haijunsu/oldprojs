@@ -1,0 +1,456 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<STYLE type=text/css>A:link {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: black; TEXT-DECORATION: none
+}
+TD {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+TH {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+INPUT {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+SELECT {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+.menuStyle {
+	FONT-FAMILY: Arial,Geneva,Verdana,Helvetica; FONT-SIZE: 9pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.form1 {
+	BACKGROUND-COLOR: #D0E8E8; BORDER-BOTTOM: #ffffff 2px solid; BORDER-LEFT: #ffffff 2px solid; BORDER-RIGHT: #ffffff 2px solid; BORDER-TOP: #ffffff 2px solid; COLOR: #006666; FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;
+}
+.form2 {
+	BACKGROUND-COLOR: #D0E8E8; BORDER-BOTTOM: #ffffff 2px solid; BORDER-LEFT: #ffffff 2px solid; BORDER-RIGHT: #ffffff 2px solid; BORDER-TOP: #ffffff 2px solid; COLOR: #006666; FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;
+}
+.form3 {
+	BACKGROUND-COLOR: #99cccc; BORDER-BOTTOM: #007777 2px solid; BORDER-LEFT: #007777 2px solid; BORDER-RIGHT: #007777 2px solid; BORDER-TOP: #007777 2px solid; COLOR: #ffffff; FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;height:16px
+}
+</STYLE>
+<script language="javascript">
+<!--
+<!-- Begin validation script
+
+//设置位置
+function place2() {
+    parent.parent.top1.form1.textfield2.value="电子邮件\-\>邮件设置\-\>屏蔽垃圾邮件";
+}
+
+
+//跑马灯的函数；
+
+  var scrtxt="您可以在这里设置您要屏蔽的垃圾邮件！";
+  var lentxt=scrtxt.length;
+  var width=100;
+  var pos=1-width;
+  
+  function scroll() {
+  pos++;
+  
+  var scroller="";
+  if (pos==lentxt) {
+    pos=1-width;
+  }
+  if (pos<0) {
+    for (var i=1; i<=Math.abs(pos); i++) {
+      scroller=scroller+" ";}
+    scroller=scroller+scrtxt.substring(0,width-i+1);
+  }
+  else {
+    scroller=scroller+scrtxt.substring(pos,width+pos);
+  }
+  window.status = scroller;
+  setTimeout("scroll()",150);
+  }
+
+
+function re() {
+         confirm("您真的要删除这条邮件过滤规则吗？");
+        }
+
+//----------------------------------------
+// End of validation script -->
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" onLoad="place2();scroll();return true;MM_preloadImages('../../image/back2.gif','../../image/backward2.gif','../../image/forward2.gif','../../image/front2.gif')" leftmargin="0" topmargin="0" >
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="25">
+  <tr> 
+    <td> 
+      <table bgcolor=#ECEAE6 border=1 bordercolordark=#808080 
+      bordercolorlight=#ffffff cellpadding=0 cellspacing=0 width="100%" height="20">
+        <tbody> 
+        <tr bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6> 
+          <td noWrap width="5"> 
+            <table border=0 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22>
+              <tbody> 
+              <tr> 
+                <td align=middle bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><img height=22 
+                  src="../../image/toolbar1.gif" width=5></td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td align=absmiddle noWrap width="50"> 
+            <table border=1 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22 
+			onClick="window.location.href='maskrules.htm'"
+            onMouseDown="javascript:this.borderColorDark='#ffffff';this.borderColorLight='#808080'" 
+            onMouseOut="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6';" 
+            onMouseOver="javascript:this.borderColorDark='#808080';this.borderColorLight='#ffffff';" 
+            onMouseUp="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6'" 
+            style="CURSOR: hand" width="100%">
+              <tbody> 
+              <tr> 
+                <td align=center bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center>新建规则</td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td noWrap width="4"> 
+            <table border=0 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22>
+              <tbody> 
+              <tr> 
+                <td align=middle bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><img height=22 
+                  src="../../image/toolbar2.gif" width=4></td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td align=absmiddle noWrap width="50"> 
+            <table border=1 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22 
+			onClick="window.location.href='maskrules1.htm'"
+            onMouseDown="javascript:this.borderColorDark='#ffffff';this.borderColorLight='#808080'" 
+            onMouseOut="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6';" 
+            onMouseOver="javascript:this.borderColorDark='#808080';this.borderColorLight='#ffffff';" 
+            onMouseUp="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6'" 
+            style="CURSOR: hand" width="100%">
+              <tbody> 
+              <tr> 
+                <td align=center bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center>修改规则</td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td align=absmiddle noWrap width="5"><img height=22 
+                  src="../../image/toolbar2.gif" width=4></td>
+          <td align=absmiddle noWrap width="50"> 
+            <table border=1 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22 
+			onClick="window.location.href='masklist.htm'"
+            onMouseDown="javascript:this.borderColorDark='#ffffff';this.borderColorLight='#808080'" 
+            onMouseOut="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6';" 
+            onMouseOver="javascript:this.borderColorDark='#808080';this.borderColorLight='#ffffff';" 
+            onMouseUp="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6'" 
+            style="CURSOR: hand" width="100%">
+              <tbody> 
+              <tr> 
+                <td align=center bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center onClick="re()" >删除规则</td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td align=absmiddle noWrap width="5"><img height=22 
+                  src="../../image/toolbar2.gif" width=4></td>
+          <td align=absmiddle noWrap width="50"> 
+            <table border=1 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22 
+            onMouseDown="javascript:this.borderColorDark='#ffffff';this.borderColorLight='#808080'" 
+            onMouseOut="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6';" 
+            onMouseOver="javascript:this.borderColorDark='#808080';this.borderColorLight='#ffffff';" 
+            onMouseUp="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6'" 
+            style="CURSOR: hand" width="100%">
+              <tbody> 
+              <tr> 
+                <td align=center bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center>允许规则</td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td align=absmiddle noWrap width="5"><img height=22 
+                  src="../../image/toolbar2.gif" width=4></td>
+          <td align=absmiddle noWrap width="50"> 
+            <table border=1 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22 
+            onMouseDown="javascript:this.borderColorDark='#ffffff';this.borderColorLight='#808080'" 
+            onMouseOut="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6';" 
+            onMouseOver="javascript:this.borderColorDark='#808080';this.borderColorLight='#ffffff';" 
+            onMouseUp="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6'" 
+            style="CURSOR: hand" width="100%">
+              <tbody> 
+              <tr> 
+                <td align=center bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center>禁用规则</td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td noWrap width="5"> 
+            <table border=0 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22>
+              <tbody> 
+              <tr> 
+                <td align=middle bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><img height=22 
+                  src="../../image/toolbar1.gif" width=5></td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td align=absmiddle noWrap>&nbsp; </td>
+          <td align=absmiddle noWrap width="9"> 
+            <table border=1 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22 
+            onMouseDown="javascript:this.borderColorDark='#ffffff';this.borderColorLight='#808080'" 
+            onMouseOut="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6';" 
+            onMouseOver="javascript:this.borderColorDark='#808080';this.borderColorLight='#ffffff';" 
+            onMouseUp="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6'" 
+            style="CURSOR: hand">
+              <tbody> 
+              <tr> 
+                <td align=middle bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center> 
+                  <table border=0 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22>
+                    <tbody> 
+                    <tr> 
+                      <td align=middle bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><img height=22 
+                  src="../../image/toolbar1.gif" width=5></td>
+                    </tr>
+                    </tbody> 
+                  </table>
+                </td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td align=absmiddle noWrap width="30"> 
+            <table border=1 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22 
+            onMouseDown="javascript:this.borderColorDark='#ffffff';this.borderColorLight='#808080'" 
+            onMouseOut="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6';" 
+            onMouseOver="javascript:this.borderColorDark='#808080';this.borderColorLight='#ffffff';" 
+            onMouseUp="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6'" 
+            style="CURSOR: hand" width="100%">
+              <tbody> 
+              <tr> 
+                <td align=center bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image15','','../../image/back2.gif',1)"><img name="Image15" border="0" src="../../image/back1.gif" width="20" height="15" alt="首页"></a></td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td align=absmiddle noWrap width="30"> 
+            <table border=1 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22 
+            onMouseDown="javascript:this.borderColorDark='#ffffff';this.borderColorLight='#808080'" 
+            onMouseOut="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6';" 
+            onMouseOver="javascript:this.borderColorDark='#808080';this.borderColorLight='#ffffff';" 
+            onMouseUp="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6'" 
+            style="CURSOR: hand" width="100%">
+              <tbody> 
+              <tr> 
+                <td align=center bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image16','','../../image/backward2.gif',1)"><img name="Image16" border="0" src="../../image/backward1.gif" width="20" height="15" alt="上一页"></a></td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td align=absmiddle noWrap width="30"> 
+            <table border=1 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22 
+            onMouseDown="javascript:this.borderColorDark='#ffffff';this.borderColorLight='#808080'" 
+            onMouseOut="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6';" 
+            onMouseOver="javascript:this.borderColorDark='#808080';this.borderColorLight='#ffffff';" 
+            onMouseUp="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6'" 
+            style="CURSOR: hand" width="100%">
+              <tbody> 
+              <tr> 
+                <td align=center bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image17','','../../image/forward2.gif',1)"><img name="Image17" border="0" src="../../image/forward1.gif" width="20" height="15" alt="下一页"></a></td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td align=absmiddle noWrap width="30"> 
+            <table border=1 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22 
+            onMouseDown="javascript:this.borderColorDark='#ffffff';this.borderColorLight='#808080'" 
+            onMouseOut="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6';" 
+            onMouseOver="javascript:this.borderColorDark='#808080';this.borderColorLight='#ffffff';" 
+            onMouseUp="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6'" 
+            style="CURSOR: hand" width="100%">
+              <tbody> 
+              <tr> 
+                <td align=center bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image18','','../../image/front2.gif',1)"><img name="Image18" border="0" src="../../image/front1.gif" width="20" height="15" alt="尾页"></a></td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td align=absmiddle noWrap width="5"> 
+            <table border=0 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22>
+              <tbody> 
+              <tr> 
+                <td align=middle bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><img height=22 
+                  src="../../image/toolbar1.gif" width=5></td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+        </tr>
+        </tbody> 
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td height="22"bgcolor="#e6e6e6">
+      <table bgcolor=#ECEAE6 border=1 bordercolordark=#808080 
+      bordercolorlight=#ffffff cellpadding=0 cellspacing=0 height=20  width="100%">
+        <tbody> 
+        <tr> 
+          <td bgcolor=#ECEAE6 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+          noWrap>已有的屏蔽规则列表：</td>
+        </tr>
+        </tbody> 
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td height="75" align="center" > 
+      <table bgcolor=#e6e6e6 border=0 bordercolordark=#808080 bordercolorlight=#ffffff 
+cellpadding=0 cellspacing=1 height=20 width="100%">
+        <tbody> 
+        <tr bgcolor="#FFFFFF"> 
+          <td noWrap width="30"> 
+            <table bgcolor=#ECEAE6 border=1 bordercolordark=#808080 
+      bordercolorlight=#ffffff cellpadding=0 cellspacing=0 height=20 width="100%">
+              <tbody> 
+              <tr> 
+                <td bgcolor=#ECEAE6 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+          noWrap align="center">选项</td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td noWrap bgcolor="#FFFFFF"> 
+            <table bgcolor=#ECEAE6 border=1 bordercolordark=#808080 
+      bordercolorlight=#ffffff cellpadding=0 cellspacing=0 height=20  width="100%">
+              <tbody> 
+              <tr> 
+                <td bgcolor=#ECEAE6 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+          noWrap align="center">规则内容</td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td noWrap width="100"> 
+            <table bgcolor=#ECEAE6 border=1 bordercolordark=#808080 
+      bordercolorlight=#ffffff cellpadding=0 cellspacing=0 height=20 width="100%">
+              <tbody> 
+              <tr> 
+                <td bgcolor=#ECEAE6 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+          noWrap align="center">状态</td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+        </tr>
+        <tr bgcolor="#FFFFFF"> 
+          <td noWrap align="center" height="20"> 
+            <input type="checkbox" name="checkbox3" value="checkbox">
+          </td>
+          <td noWrap align="center" height="20">当邮件域名包含263.net时，将邮件放入263邮件夹</td>
+          <td noWrap align="center" height="20">有效</td>
+        </tr>
+        <tr bgcolor="#FFFFFF"> 
+          <td noWrap align="center"> 
+            <input type="checkbox" name="checkbox22" value="checkbox">
+          </td>
+          <td noWrap align="center">当邮件域名包含163.net时，将邮件放入163邮件夹</td>
+          <td noWrap align="center">有效</td>
+        </tr>
+        <tr bgcolor="#FFFFFF"> 
+          <td noWrap align="center">&nbsp; </td>
+          <td noWrap align="center">&nbsp;</td>
+          <td noWrap align="center">&nbsp;</td>
+        </tr>
+        <tr bgcolor="#FFFFFF"> 
+          <td noWrap align="center">&nbsp;</td>
+          <td noWrap align="center">&nbsp;</td>
+          <td noWrap align="center">&nbsp;</td>
+        </tr>
+        <tr bgcolor="#FFFFFF"> 
+          <td noWrap align="center">&nbsp;</td>
+          <td noWrap align="center">&nbsp;</td>
+          <td noWrap align="center">&nbsp;</td>
+        </tr>
+        <tr bgcolor="#FFFFFF"> 
+          <td noWrap align="center">&nbsp;</td>
+          <td noWrap align="center">&nbsp;</td>
+          <td noWrap align="center">&nbsp;</td>
+        </tr>
+        <tr bgcolor="#FFFFFF"> 
+          <td noWrap align="center">&nbsp;</td>
+          <td noWrap align="center">&nbsp;</td>
+          <td noWrap align="center">&nbsp;</td>
+        </tr>
+        </tbody> 
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td style="padding-left:20px">&nbsp;</td>
+  </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,3 @@
+<%conn.close();
+stmt.close();
+%>

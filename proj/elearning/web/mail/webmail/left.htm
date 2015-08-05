@@ -1,0 +1,646 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<HTML>
+<HEAD>
+<SCRIPT language=JavaScript src="/elearning/mail/image/dynlayer.js">
+</SCRIPT>
+<SCRIPT language=JavaScript>
+<!--
+
+var menubarheight = 0;
+var menubarsum = 0;
+var menuspeed = 10;
+var menuinc = 100;
+var scrollspeed = 100;
+var scrollinc = 60;
+var menuchoose = 0;
+var iconX = new Array(menubarsum);
+var menuIconWidth = new Array(menubarsum);
+var menuIconHeight = new Array(menubarsum);
+var menuscroll = 0;
+var iconareaheight = 0;
+var iconrightpos = 0;
+var maxscroll = 0;
+var scrolling = false;
+var scrollTimerID = 0;
+
+function init(mnum, mheight) {
+	menubarheight = mnum
+	menubarsum = mheight
+	menulayer = new Array(menubarsum)
+	iconlayer = new Array(menubarsum)
+	barlayer = new Array(menubarsum)
+	uplayer = new Array(menubarsum)
+	downlayer = new Array(menubarsum)
+	for (var i=0; i<menubarsum; i++) {
+		menulayer[i] = new DynLayer("menulayer" + i + "Div")
+		menulayer[i].slideInit()
+
+		iconlayer[i] = new DynLayer("iconlayer" + i + "Div", "menulayer" + i + "Div")
+		iconlayer[i].slideInit()
+		/*iconlayer[i].setWidth(document.body.clientWidth);*/
+
+		if (menuIconWidth[i] > document.body.clientWidth) {
+			iconlayer[i].setWidth(menuIconWidth[i])
+			iconX[i] = (document.body.clientWidth-menuIconWidth[i])/2
+		} else {
+			iconlayer[i].setWidth(document.body.clientWidth)
+			iconX[i] = 0
+		}
+		iconlayer[i].moveTo(iconX[i], menubarheight)
+
+		barlayer[i] = new DynLayer("barlayer" + i + "Div", "menulayer" + i + "Div")
+		barlayer[i].slideInit()
+
+		uplayer[i] = new DynLayer("uplayer" + i + "Div", "menulayer" + i + "Div")
+		uplayer[i].slideInit()
+
+		downlayer[i] = new DynLayer("downlayer" + i + "Div", "menulayer" + i + "Div")
+		downlayer[i].slideInit()
+		
+	}
+	menureload()
+	
+	
+}
+
+function menubarpush(num) {
+	if (num != menuchoose && num >= 0 && num < menubarsum) {
+	
+		iconlayer[menuchoose].moveTo(iconX[menuchoose],menubarheight)
+		menuscroll = 0
+		scrolling = false
+	
+		for (var i=0; i <=num; i++) {
+			menulayer[i].slideTo(0, i*menubarheight, menuinc, menuspeed)
+		}
+		nAdCornerOriginY = document.body.clientHeight;
+		nAdCornerOriginY += document.body.scrollTop;
+		for (var i=menubarsum-1; i>num; i--) {
+			nAdCornerOriginY -= menubarheight
+			menulayer[i].slideTo(0,nAdCornerOriginY, menuinc, menuspeed)
+		}
+		menuchoose = num
+		menuscrollbar()
+	}
+}
+
+
+function menureload() {
+	nAdCornerOriginY = document.body.clientHeight;
+	nAdCornerOriginY += document.body.scrollTop;
+	for (var i=menubarsum-1; i>menuchoose; i--) {
+		nAdCornerOriginY -= menubarheight
+		menulayer[i].moveTo(0, nAdCornerOriginY)
+	}
+	for (var i=0; i<menubarsum; i++) {
+		if (menuIconWidth[i] > document.body.clientWidth) {
+			iconlayer[i].setWidth(menuIconWidth[i])
+			iconX[i] = (document.body.clientWidth-menuIconWidth[i])/2
+		} else {
+			iconlayer[i].setWidth(document.body.clientWidth)
+			iconX[i] = 0
+		}
+		iconlayer[i].moveX(iconX[i], menubarheight)
+	}
+	
+	
+	menuscrollbar()
+}
+
+
+function menuscrollbar() {
+	iconareaheight = document.body.clientHeight-menubarheight*menubarsum;
+	iconrightpos = document.body.clientWidth-16-4;
+	maxscroll = menuIconHeight[menuchoose] - iconareaheight
+	
+	
+	
+	if (maxscroll > 0) {
+		if (menuscroll > 0) {
+			uplayer[menuchoose].moveTo(iconrightpos, menubarheight+4) 
+		} else {
+			uplayer[menuchoose].moveTo(-20, 0)
+		}
+		if (menuscroll < maxscroll) {
+			downlayer[menuchoose].moveTo(iconrightpos, iconareaheight+2)
+		} else {
+			downlayer[menuchoose].moveTo(-20, 0)
+		}
+	} else {
+		uplayer[menuchoose].moveTo(-20, 0)
+		downlayer[menuchoose].moveTo(-20, 0)
+	}
+}
+
+
+function menuscrollup() {
+	if (menuscroll > 0) {
+		scrolling = true
+		menuscroll -= scrollinc
+		iconlayer[menuchoose].moveTo(iconX[menuchoose], menubarheight-menuscroll)
+		
+		scrollTimerID = setTimeout("menuscrollup()", scrollspeed)
+	} else {
+		menuscrollstop()	
+	}
+	menuscrollbar()
+	
+}
+
+function menuscrolldown() {
+	if (menuscroll < maxscroll) {
+		scrolling = true
+		menuscroll += scrollinc
+		if (menuscroll < maxscroll) {
+			iconlayer[menuchoose].moveTo(iconX[menuchoose], menubarheight-menuscroll)
+		} else {
+			iconlayer[menuchoose].moveTo(iconX[menuchoose], menubarheight-maxscroll)
+		}
+		
+		scrollTimerID = setTimeout("menuscrolldown()", scrollspeed)
+	} else {
+		menuscrollstop()	
+	}
+
+	menuscrollbar()
+	
+}
+
+function menuscrollstop() {
+	scrolling = false
+	if (scrollTimerID) {
+		clearTimeout(scrollTimerID)
+		scrollTimerID = 0;
+	}
+	
+}
+
+//-->
+</SCRIPT>
+<SCRIPT id=clientEventHandlersJS language=javascript>
+<!--
+
+function window_onresize() {
+	menureload()
+}
+
+//-->
+</SCRIPT>
+<STYLE type=text/css>#menulayer0Div {
+	BACKGROUND-COLOR: #808080; CLIP: rect(0px 4000px 3000px 0px); HEIGHT: 3000px; LEFT: 0px; POSITION: absolute; TOP: 0px; layer-background-color: #808080
+}
+#iconlayer0Div {
+	BACKGROUND-COLOR: #808080; CLIP: rect(0px 4000px 3000px 0px); HEIGHT: 3000px; LEFT: 0px; POSITION: absolute; TOP: 22px; layer-background-color: #808080
+}
+#barlayer0Div {
+	BACKGROUND-COLOR: #808080; CLIP: rect(0px 4000px 22px 0px); HEIGHT: 22px; LEFT: 0px; POSITION: absolute; TOP: 0px; layer-background-color: #808080
+}
+#uplayer0Div {
+	BACKGROUND-COLOR: #808080; CLIP: rect(0px 16px 16px 0px); HEIGHT: 16px; LEFT: -20px; POSITION: absolute; TOP: 26px; WIDTH: 16px; layer-background-color: #808080
+}
+#downlayer0Div {
+	BACKGROUND-COLOR: #808080; CLIP: rect(0px 16px 16px 0px); HEIGHT: 16px; LEFT: -20px; POSITION: absolute; TOP: 42px; WIDTH: 16px; layer-background-color: #808080
+}
+#menulayer1Div {
+	BACKGROUND-COLOR: #808080; CLIP: rect(0px 4000px 3000px 0px); HEIGHT: 3000px; LEFT: 0px; POSITION: absolute; TOP: 3000px; layer-background-color: #808080
+}
+#iconlayer1Div {
+	BACKGROUND-COLOR: #808080; CLIP: rect(0px 4000px 3000px 0px); HEIGHT: 3000px; LEFT: 0px; POSITION: absolute; TOP: 22px; layer-background-color: #808080
+}
+#barlayer1Div {
+	BACKGROUND-COLOR: #808080; CLIP: rect(0px 4000px 22px 0px); HEIGHT: 22px; LEFT: 0px; POSITION: absolute; TOP: 0px; layer-background-color: #808080
+}
+#uplayer1Div {
+	BACKGROUND-COLOR: #808080; CLIP: rect(0px 16px 16px 0px); HEIGHT: 16px; LEFT: -20px; POSITION: absolute; TOP: 26px; WIDTH: 16px; layer-background-color: #808080
+}
+#downlayer1Div {
+	BACKGROUND-COLOR: #808080; CLIP: rect(0px 16px 16px 0px); HEIGHT: 16px; LEFT: -20px; POSITION: absolute; TOP: 42px; WIDTH: 16px; layer-background-color: #808080
+}
+#menulayer2Div {
+	BACKGROUND-COLOR: #808080; CLIP: rect(0px 4000px 3000px 0px); HEIGHT: 3000px; LEFT: 0px; POSITION: absolute; TOP: 3000px; layer-background-color: #808080
+}
+#iconlayer2Div {
+	BACKGROUND-COLOR: #808080; CLIP: rect(0px 4000px 3000px 0px); HEIGHT: 3000px; LEFT: 0px; POSITION: absolute; TOP: 22px; layer-background-color: #808080
+}
+#barlayer2Div {
+	BACKGROUND-COLOR: #808080; CLIP: rect(0px 4000px 22px 0px); HEIGHT: 22px; LEFT: 0px; POSITION: absolute; TOP: 0px; layer-background-color: #808080
+}
+#uplayer2Div {
+	BACKGROUND-COLOR: #808080; CLIP: rect(0px 16px 16px 0px); HEIGHT: 16px; LEFT: -20px; POSITION: absolute; TOP: 26px; WIDTH: 16px; layer-background-color: #808080
+}
+#downlayer2Div {
+	BACKGROUND-COLOR: #808080; CLIP: rect(0px 16px 16px 0px); HEIGHT: 16px; LEFT: -20px; POSITION: absolute; TOP: 42px; WIDTH: 16px; layer-background-color: #808080
+}
+</STYLE>
+<STYLE type=text/css>A:link {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+TD {
+FONT-FAMILY: "Verdana"; FONT-SIZE: 9pt
+}
+TH {
+	COLOR: white; FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+FONT {
+	FONT-FAMILY: "Verdana"; FONT-SIZE: 9pt; LINE-HEIGHT: 140%
+}
+.NET {
+	FONT-FAMILY: "Verdana"; FONT-SIZE: 9pt; LINE-HEIGHT: 140%
+}
+.NET2 {
+	FONT-FAMILY: "Verdana"; FONT-SIZE: 9pt; LINE-HEIGHT: 120%
+}
+</STYLE>
+<META content=zh-cn http-equiv=Content-Language>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR>
+</HEAD>
+<BODY onload=init(22,3) onresize="return window_onresize()" text="0" link="0">
+<DIV id=menulayer0Div>
+  <DIV id=iconlayer0Div style="background-color: #f6f6f6"> 
+    <TABLE align=center border=0 cellPadding=2 cellSpacing=2 width="100%">
+      <TBODY> 
+      <TR> 
+        <TD align=center> 
+          <TABLE bgColor=#f6f6f6 border=1 borderColorDark=#f6f6f6 
+      borderColorLight=#f6f6f6 cellPadding=0 cellSpacing=0 
+      onMouseDown="this.borderColorLight='#000000';this.borderColorDark='#ffffff'" 
+      onmouseout="this.borderColorLight='#f6f6f6';this.borderColorDark='#f6f6f6'" 
+      onMouseOver="this.borderColorLight='#ffffff';this.borderColorDark='#000000'" 
+      onmouseup="this.borderColorLight='#f6f6f6';this.borderColorDark='#f6f6f6'" width="32">
+            <TBODY> 
+            <TR bgcolor="#f6f6f6"> 
+              <TD borderColorDark=#f6f6f6 
+            borderColorLight=#f6f6f6><a href="folder/inbox.htm" target="right"><img src="/elearning/mail/image/receive.gif" width="32" height="32" border="0"></a></TD>
+            </TR>
+            </TBODY> 
+          </TABLE>
+        </TD>
+      </TR>
+      <TR> 
+        <TD align=center><a href="folder/inbox.htm" target="right">收件箱</a></TD>
+      </TR>
+      <TR> 
+        <TD align=center> 
+          <TABLE bgColor=#f6f6f6 border=1 borderColorDark=#f6f6f6 
+      borderColorLight=#f6f6f6 cellPadding=0 cellSpacing=0 
+      onMouseDown="this.borderColorLight='#000000';this.borderColorDark='#ffffff'" 
+      onmouseout="this.borderColorLight='#f6f6f6';this.borderColorDark='#f6f6f6'" 
+      onMouseOver="this.borderColorLight='#ffffff';this.borderColorDark='#000000'" 
+      onmouseup="this.borderColorLight='#f6f6f6';this.borderColorDark='#f6f6f6'" width="32" height="19">
+            <TBODY> 
+            <TR bgcolor="#f6f6f6"> 
+              <TD borderColorDark=#f6f6f6 
+            borderColorLight=#f6f6f6><a href="folder/outbox.htm" target="right"><img src="/elearning/mail/image/send.gif" width="32" height="32" border="0"></a></TD>
+            </TR>
+            </TBODY> 
+          </TABLE>
+        </TD>
+      </TR>
+      <TR> 
+        <TD align=center><a href="folder/outbox.htm" target="right">发件箱</a></TD>
+      </TR>
+      <TR> 
+        <TD align=center> 
+          <table bgcolor=#f6f6f6 border=1 bordercolordark=#f6f6f6 
+      bordercolorlight=#f6f6f6 cellpadding=0 cellspacing=0 
+      onMouseDown="this.borderColorLight='#000000';this.borderColorDark='#ffffff'" 
+      onMouseOut="this.borderColorLight='#f6f6f6';this.borderColorDark='#f6f6f6'" 
+      onMouseOver="this.borderColorLight='#ffffff';this.borderColorDark='#000000'" 
+      onMouseUp="this.borderColorLight='#f6f6f6';this.borderColorDark='#f6f6f6'" width="32">
+            <tbody> 
+            <tr> 
+              <td bgcolor=#f6f6f6 bordercolordark=#f6f6f6 
+            bordercolorlight=#f6f6f6><a href="folder/draft.htm" target="right"><img src="/elearning/mail/image/draft.gif" width="32" height="32" border="0"></a></td>
+            </tr>
+            </tbody> 
+          </table>
+        </TD>
+      </TR>
+      <TR> 
+        <TD align=center><a href="folder/draft.htm" target="right">草稿箱</a></TD>
+      </TR>
+       <TR> 
+        <TD align=center> 
+          <TABLE bgColor=#f6f6f6 border=1 borderColorDark=#f6f6f6 
+      borderColorLight=#f6f6f6 cellPadding=0 cellSpacing=0 
+      onMouseDown="this.borderColorLight='#000000';this.borderColorDark='#ffffff'" 
+      onmouseout="this.borderColorLight='#f6f6f6';this.borderColorDark='#f6f6f6'" 
+      onMouseOver="this.borderColorLight='#ffffff';this.borderColorDark='#000000'" 
+      onmouseup="this.borderColorLight='#f6f6f6';this.borderColorDark='#f6f6f6'" width="32">
+            <TBODY> 
+            <TR> 
+              <TD bgColor=#f6f6f6 borderColorDark=#f6f6f6 
+            borderColorLight=#f6f6f6><a href="folder/outmail.htm" target="right"><img src="/elearning/mail/image/outbox.gif" width="32" height="32" border="0"></a></TD>
+            </TR>
+            </TBODY> 
+          </TABLE>
+        </TD>
+      </TR>
+      <TR> 
+        <TD align=center><a href="folder/outmail.htm" target="right">已发送邮件</a></TD>
+      </TR>
+     <TR> 
+        <TD align=center> 
+          <TABLE bgColor=#808080 border=1 borderColorDark=#f6f6f6
+      borderColorLight=#f6f6f6 cellPadding=0 cellSpacing=0 
+      onMouseDown="this.borderColorLight='#000000';this.borderColorDark='#ffffff'" 
+      onmouseout="this.borderColorLight='#f6f6f6';this.borderColorDark='#f6f6f6'" 
+      onMouseOver="this.borderColorLight='#ffffff';this.borderColorDark='#000000'" 
+      onmouseup="this.borderColorLight='#f6f6f6';this.borderColorDark='#f6f6f6'" 
+      style="CURSOR: hand" width="32">
+            <TBODY> 
+            <TR bgcolor="#f6f6f6"> 
+              <TD borderColorDark=#f6f6f6 
+            borderColorLight=#f6f6f6><a href="folder/garbage.htm" target="right"><img src="/elearning/mail/image/trashbox.gif" width="32" height="32" border="0"></a></TD>
+            </TR>
+            </TBODY> 
+          </TABLE>
+        </TD>
+      </TR>
+      <TR> 
+        <TD align=center><a href="folder/garbage.htm" target="right">垃圾箱</a></TD>
+      </TR>
+      <TR> 
+        <TD align=center> 
+          <TABLE bgColor=#f6f6f6 border=1 borderColorDark=#f6f6f6 
+      borderColorLight=#f6f6f6 cellPadding=0 cellSpacing=0 
+      onMouseDown="this.borderColorLight='#000000';this.borderColorDark='#ffffff'" 
+      onmouseout="this.borderColorLight='#f6f6f6';this.borderColorDark='#f6f6f6'" 
+      onMouseOver="this.borderColorLight='#ffffff';this.borderColorDark='#000000'" 
+      onmouseup="this.borderColorLight='#f6f6f6';this.borderColorDark='#f6f6f6'" width="32">
+            <TBODY> 
+            <TR> 
+              <TD bgColor=#f6f6f6 borderColorDark=#f6f6f6 
+            borderColorLight=#f6f6f6><a href="/elearning/query?queryItem=address" target="right"><img src="/elearning/mail/image/address.gif" width="32" height="32" border="0"></a></TD>
+            </TR>
+            </TBODY> 
+          </TABLE>
+        </TD>
+      </TR>
+      <TR> 
+        <TD align=center><a href="/elearning/query?queryItem=address" target="right">地址本</a></TD>
+      </TR>
+      </TBODY> 
+    </TABLE>
+  </DIV>
+<DIV id=uplayer0Div><IMG height=16 
+onmousedown="javascript:this.src='/elearning/mail/image/scrollup2.gif';menuscrollup()" 
+onmouseout="javascript:this.src='/elearning/mail/image/scrollup.gif';menuscrollstop()" 
+onmouseup="javascript:this.src='/elearning/mail/image/scrollup.gif';menuscrollstop()" 
+src="/elearning/mail/image/scrollup.gif" width=16> </DIV>
+<DIV id=downlayer0Div><IMG height=16 
+onmousedown="javascript:this.src='/elearning/mail/image/scrolldown2.gif';menuscrolldown()" 
+onmouseout="javascript:this.src='/elearning/mail/image/scrolldown.gif';menuscrollstop()" 
+onmouseup="javascript:this.src='/elearning/mail/image/scrolldown.gif';menuscrollstop()" 
+src="/elearning/mail/image/scrolldown.gif" width=16> </DIV>
+  <DIV id=barlayer0Div style="left: 0px; top: 0px; background-color: #808080; layer-background-color: #808080; border: 1px none #000000; width: 110"> 
+    <TABLE bgColor=#ECEAE6 border=1 borderColorDark=#505050 borderColorLight=white 
+cellPadding=0 cellSpacing=0 height=22 onclick=javascript:menubarpush(0) 
+onmousedown="javascript:this.borderColorDark='White';this.borderColorLight='#505050'" 
+onmouseout="javascript:this.borderColorDark='#505050';this.borderColorLight='White'" 
+onmouseup="javascript:this.borderColorDark='#505050';this.borderColorLight='White'" 
+style="CURSOR: hand" width="100%">
+      <TBODY> 
+      <TR>
+        <TD align=middle borderColorDark=#f6f6f6 borderColorLight=#f6f6f6 colSpan=0 
+    noWrap rowSpan=0>邮件夹</TD>
+      </TR></TBODY></TABLE></DIV>
+<SCRIPT id=clientEventHandlersJS language=javascript>
+<!--
+menuIconWidth[0] = iconlayer0Div.scrollWidth + 0;
+menuIconHeight[0] = iconlayer0Div.scrollHeight + 0;
+//-->
+</SCRIPT>
+</DIV>
+<DIV id=menulayer1Div style="background-color: #808080"> 
+  <DIV id=iconlayer1Div style="clip: rect(0px 4000px 3000px 0px); background-color: #f6f6f6; layer-background-color: #f6f6f6; border: 1px none #000000"> 
+    <TABLE align=center border=0 cellPadding=2 cellSpacing=2 width="100%">
+      <TBODY> 
+      <TR> 
+        <TD align=middle><a href="config/back_duplicate.htm" target="right"><img src="/elearning/mail/image/found.gif" border="0"></a></TD>
+      </TR>
+      <TR> 
+        <TD align=middle><a href="config/back_duplicate.htm" target="right">选择备份复本</a></TD>
+      </TR>
+      </TBODY> 
+    </TABLE>
+  </DIV>
+<DIV id=uplayer1Div><IMG height=16 
+onmousedown="javascript:this.src='/elearning/mail/image/scrollup.gif';menuscrollup()" 
+onmouseout="javascript:this.src='/elearning/mail/image/scrollup.gif';menuscrollstop()" 
+onmouseup="javascript:this.src='/elearning/mail/image/scrollup.gif';menuscrollstop()" 
+src="/elearning/mail/image/scrollup.gif" width=16> </DIV>
+<DIV id=downlayer1Div><IMG height=16 
+onmousedown="javascript:this.src='/elearning/mail/image/scrolldown2.gif';menuscrolldown()" 
+onmouseout="javascript:this.src='/elearning/mail/image/scrolldown.gif';menuscrollstop()" 
+onmouseup="javascript:this.src='/elearning/mail/image/scrolldown.gif';menuscrollstop()" 
+src="/elearning/mail/image/scrolldown.gif" width=16> </DIV>
+  <DIV id=barlayer1Div style="width: 110"> 
+    <TABLE bgColor=#ECEAE6 border=1 borderColorDark=#505050 borderColorLight=white 
+cellPadding=0 cellSpacing=0 height=22 onclick=javascript:menubarpush(1) 
+onmousedown="javascript:this.borderColorDark='White';this.borderColorLight='#505050'" 
+onmouseout="javascript:this.borderColorDark='#505050';this.borderColorLight='White'" 
+onmouseup="javascript:this.borderColorDark='#505050';this.borderColorLight='White'" 
+style="CURSOR: hand" width="100%">
+      <TBODY> 
+      <TR>
+        <TD align=middle borderColorDark=#f6f6f6 borderColorLight=#f6f6f6 colSpan=0 
+    noWrap rowSpan=0>备份邮件夹</TD>
+      </TR></TBODY></TABLE></DIV>
+<SCRIPT id=clientEventHandlersJS language=javascript>
+<!--
+menuIconWidth[1] = iconlayer1Div.scrollWidth + 0;
+menuIconHeight[1] = iconlayer1Div.scrollHeight + 0;
+//-->
+</SCRIPT>
+</DIV>
+<DIV id=menulayer2Div> 
+  <div id=iconlayer2Div style="background-color: #f6f6f6"> 
+    <table align=center border=0 cellpadding=2 cellspacing=2 width="100%">
+      <tbody> 
+      <tr> 
+        <td align=middle> 
+          <table bgcolor=#f6f6f6 border=1 bordercolordark=#f6f6f6
+      bordercolorlight=#f6f6f6 cellpadding=0 cellspacing=0 
+      onMouseDown="this.borderColorLight='#000000';this.borderColorDark='#ffffff'" 
+      onMouseOut="this.borderColorLight='#f6f6f6';this.borderColorDark='#f6f6f6'" 
+      onMouseOver="this.borderColorLight='#ffffff';this.borderColorDark='#000000'" 
+      onMouseUp="this.borderColorLight='#f6f6f6';this.borderColorDark='#f6f6f6'" width="32">
+            <tbody> 
+            <tr> 
+              <td bgcolor=#f6f6f6 bordercolordark=#f6f6f6 
+            bordercolorlight=#f6f6f6><a href="config/backup.htm" target="right"><img src="/elearning/mail/image/stencil-plate.gif" width="32" height="32" border="0"></a></td>
+            </tr>
+            </tbody> 
+          </table>
+        </td>
+      </tr>
+      <tr> 
+        <td align=middle><a href="config/backup.htm" target="right"><font color="#000000">备份邮件</font></a></td>
+      </tr>
+      <tr> 
+        <td align=middle> 
+          <table bgcolor=#f6f6f6 border=1 bordercolordark=#f6f6f6
+      bordercolorlight=#f6f6f6 cellpadding=0 cellspacing=0 
+      onMouseDown="this.borderColorLight='#000000';this.borderColorDark='#ffffff'" 
+      onMouseOut="this.borderColorLight='#f6f6f6';this.borderColorDark='#f6f6f6'" 
+      onMouseOver="this.borderColorLight='#ffffff';this.borderColorDark='#000000'" 
+      onMouseUp="this.borderColorLight='#f6f6f6';this.borderColorDark='#f6f6f6'" width="32">
+            <tbody> 
+            <tr> 
+              <td bgcolor=#f6f6f6 bordercolordark=#f6f6f6 
+            bordercolorlight=#f6f6f6><a href="config/masklist.htm" target="right"><img src="/elearning/mail/image/trashbox_set.gif" width="32" height="32" border="0"></a></td>
+            </tr>
+            </tbody> 
+          </table>
+        </td>
+      </tr>
+      <tr> 
+        <td align=middle><a href="config/masklist.htm" target="right">屏蔽垃圾邮件</a></td>
+      </tr>
+      <tr> 
+        <td align=middle> 
+          <table bgcolor=#f6f6f6 border=1 bordercolordark=#f6f6f6
+      bordercolorlight=#f6f6f6 cellpadding=0 cellspacing=0 
+      onMouseDown="this.borderColorLight='#000000';this.borderColorDark='#ffffff'" 
+      onMouseOut="this.borderColorLight='#f6f6f6';this.borderColorDark='#f6f6f6'" 
+      onMouseOver="this.borderColorLight='#ffffff';this.borderColorDark='#000000'" 
+      onMouseUp="this.borderColorLight='#f6f6f6';this.borderColorDark='#f6f6f6'" width="32">
+            <tbody> 
+            <tr> 
+              <td bgcolor=#f6f6f6 bordercolordark=#f6f6f6 
+            bordercolorlight=#f6f6f6><a href="config/signature.htm" target="right"><img src="/elearning/mail/image/stencil-plate.gif" width="32" height="32" border="0"></a></td>
+            </tr>
+            </tbody> 
+          </table>
+        </td>
+      </tr>
+      <tr> 
+        <td align=middle><a href="config/signature.htm" target="right">签名</a></td>
+      </tr>
+      <tr> 
+        <td align=middle> 
+          <table bgcolor=#f6f6f6 border=1 bordercolordark=#f6f6f6
+      bordercolorlight=#f6f6f6 cellpadding=0 cellspacing=0 
+      onMouseDown="this.borderColorLight='#000000';this.borderColorDark='#ffffff'" 
+      onMouseOut="this.borderColorLight='#f6f6f6';this.borderColorDark='#f6f6f6'" 
+      onMouseOver="this.borderColorLight='#ffffff';this.borderColorDark='#000000'" 
+      onMouseUp="this.borderColorLight='#f6f6f6';this.borderColorDark='#f6f6f6'" width="32">
+            <tbody> 
+            <tr> 
+              <td bgcolor=#f6f6f6 bordercolordark=#f6f6f6 
+            bordercolorlight=#f6f6f6><a href="config/setting.htm" target="right"><img src="/elearning/mail/image/stencil-plate.gif" width="32" height="32" border="0"></a></td>
+            </tr>
+            </tbody> 
+          </table>
+        </td>
+      </tr>
+      <tr> 
+        <td align=middle><a href="config/setting.htm" target="right">参数设置</a></td>
+      </tr>
+      <tr> 
+        <td align=middle> 
+          <table bgcolor=#f6f6f6 border=1 bordercolordark=#f6f6f6 
+      bordercolorlight=#f6f6f6 cellpadding=0 cellspacing=0 
+      onMouseDown="this.borderColorLight='#000000';this.borderColorDark='#ffffff'" 
+      onMouseOut="this.borderColorLight='#f6f6f6';this.borderColorDark='#f6f6f6'" 
+      onMouseOver="this.borderColorLight='#ffffff';this.borderColorDark='#000000'" 
+      onMouseUp="this.borderColorLight='#f6f6f6';this.borderColorDark='#f6f6f6'" width="32">
+            <tbody> 
+            <tr> 
+              <td bgcolor=#f6f6f6 bordercolordark=#f6f6f6 
+            bordercolorlight=#f6f6f6><a href="config/filterlist.htm" target="right"><img src="/elearning/mail/image/filter.gif" width="32" height="32" border="0"></a></td>
+            </tr>
+            </tbody> 
+          </table>
+        </td>
+      </tr>
+      <tr> 
+        <td align=middle><a href="config/filterlist.htm" target="right">过滤器</a></td>
+      </tr>
+      <tr> 
+        <td align=middle> 
+          <table bgcolor=#f6f6f6 border=1 bordercolordark=#f6f6f6 
+      bordercolorlight=#f6f6f6 cellpadding=0 cellspacing=0 
+      onMouseDown="this.borderColorLight='#000000';this.borderColorDark='#ffffff'" 
+      onMouseOut="this.borderColorLight='#f6f6f6';this.borderColorDark='#f6f6f6'" 
+      onMouseOver="this.borderColorLight='#ffffff';this.borderColorDark='#000000'" 
+      onMouseUp="this.borderColorLight='#f6f6f6';this.borderColorDark='#f6f6f6'" width="32">
+            <tbody> 
+            <tr> 
+              <td bgcolor=#f6f6f6 bordercolordark=#f6f6f6 
+            bordercolorlight=#f6f6f6><a href="config/transfer.htm" target="right"><img src="/elearning/mail/image/filter.gif" width="32" height="32" border="0"></a></td>
+            </tr>
+            </tbody> 
+          </table>
+        </td>
+      </tr>
+      <tr> 
+        <td align=middle><a href="config/transfer.htm" target="right">自动转发规则</a></td>
+      </tr>
+      <tr> 
+        <td align=middle> 
+          <table bgcolor=#f6f6f6 border=1 bordercolordark=#f6f6f6 
+      bordercolorlight=#f6f6f6 cellpadding=0 cellspacing=0 
+      onMouseDown="this.borderColorLight='#000000';this.borderColorDark='#ffffff'" 
+      onMouseOut="this.borderColorLight='#f6f6f6';this.borderColorDark='#f6f6f6'" 
+      onMouseOver="this.borderColorLight='#ffffff';this.borderColorDark='#000000'" 
+      onMouseUp="this.borderColorLight='#f6f6f6';this.borderColorDark='#f6f6f6'" width="32">
+            <tbody> 
+            <tr> 
+              <td bgcolor=#f6f6f6 bordercolordark=#f6f6f6 
+            bordercolorlight=#f6f6f6><a href="config/pop.htm" target="right"><img src="/elearning/mail/image/filter.gif" width="32" height="32" border="0"></a></td>
+            </tr>
+            </tbody> 
+          </table>
+        </td>
+      </tr>
+      <tr> 
+        <td align=middle><a href="config/pop.htm" target="right">POP邮件帐号</a></td>
+      </tr>
+      <tr> 
+        <td>&nbsp;</td>
+      </tr>
+      </tbody> 
+    </table>
+  </div>
+  <DIV id=uplayer2Div><IMG height=16 
+onmousedown="javascript:this.src='/elearning/mail/image/scrollup2.gif';menuscrollup()" 
+onmouseout="javascript:this.src='/elearning/mail/image/scrollup.gif';menuscrollstop()" 
+onmouseup="javascript:this.src='/elearning/mail/image/scrollup.gif';menuscrollstop()" 
+src="/elearning/mail/image/scrollup.gif" width=16> </DIV>
+<DIV id=downlayer2Div><IMG height=16 
+onmousedown="javascript:this.src='/elearning/mail/image/scrolldown2.gif';menuscrolldown()" 
+onmouseout="javascript:this.src='/elearning/mail/image/scrolldown.gif';menuscrollstop()" 
+onmouseup="javascript:this.src='/elearning/mail/image/scrolldown.gif';menuscrollstop()" 
+src="/elearning/mail/image/scrolldown.gif" width=16> </DIV>
+  <DIV id=barlayer2Div style="width: 110"> 
+    <TABLE bgColor=#ECEAE6 border=1 borderColorDark=#505050 borderColorLight=white 
+cellPadding=0 cellSpacing=0 height=22 onclick=javascript:menubarpush(2) 
+onmousedown="javascript:this.borderColorDark='White';this.borderColorLight='#505050'" 
+onmouseout="javascript:this.borderColorDark='#505050';this.borderColorLight='White'" 
+onmouseup="javascript:this.borderColorDark='#505050';this.borderColorLight='White'" 
+style="CURSOR: hand" width="100%">
+      <TBODY> 
+      <TR>
+        <TD align=middle borderColorDark=#f6f6f6 borderColorLight=#f6f6f6 colSpan=0 
+    noWrap rowSpan=0>邮件设置 </TD>
+      </TR></TBODY></TABLE></DIV>
+<SCRIPT id=clientEventHandlersJS language=javascript>
+<!--
+menuIconWidth[2] = iconlayer2Div.scrollWidth + 0;
+menuIconHeight[2] = iconlayer2Div.scrollHeight + 0;
+//-->
+</SCRIPT>
+</DIV><IMG border=0 height=1 src="/elearning/mail/image/HG.gif" width=1> </BODY></HTML>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+	<!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+	<isindexall>false</isindexall>
+	<indexfile>indexall.xml</indexfile>
+
+	<!-- 定义文档位置 -->
+	<topic>java</topic>
+	<catalog>tips</catalog>
+
+	<!-- 文档显示内容 -->
+    <title>正则表达式应用 － java.util.regex</title>
+    <pagename>正则表达式应用 － java.util.regex</pagename>
+	<content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+<h3>简介</h3>
+java.util.regex是一个用正则表达式所订制的模式来对字符串进行匹配工作的类库包，
+该类直到JDK 1.4时才提供。它包括两个类：
+<div id="tableblock">
+<table cellSpacing="0">
+	<tr>
+		<td><b>Pattern</b></td>
+		<td>一个Pattern是一个正则表达式经编译后的表现模式。</td>
+	</tr>
+	<tr>
+		<td><b>Matcher</b></td>
+		<td>一个Matcher对象是一个状态机器，它依据Pattern对象做为匹配模式对字符串展开匹配检查。</td>
+	</tr>
+</table>
+</div>
+<h3>Pattern类</h3>
+Pattern类的方法：
+<div id="tableblock">
+<table cellSpacing="0">
+	<tr>
+		<th>返回值</th>
+		<th>方  法  描 述</th>
+	</tr>
+	<tr>
+		<td nowrap>static Pattern</td>
+		<td><b>compile</b>(String regex)<br>
+		将给定的正则表达式编译并赋予给Pattern类</td>
+	</tr>
+	<tr>
+		<td>static Pattern</td>
+		<td><b>compile</b>(String regex, int flags)<br>
+		同上，但增加flag参数的指定，可选的flag参数包括：CASE INSENSITIVE,MULTILINE,DOTALL,UNICODE 
+		CASE， CANON EQ</td>
+	</tr>
+	<tr>
+		<td>int</td>
+		<td><b>flags</b>()<br>
+		返回当前Pattern的匹配flag参数.</td>
+	</tr>
+	<tr>
+		<td>Matcher</td>
+		<td><b>matcher</b>(CharSequence input)<br>
+		生成一个给定命名的Matcher对象</td>
+	</tr>
+	<tr>
+		<td nowrap>static boolean</td>
+		<td><b>matches</b>(String regex, CharSequence input)<br>
+		编译给定的正则表达式并且对输入的字串以该正则表达式为模开展匹配,该方法适合于该正则表达式只会使用一次的情况，也就是只进行一次匹配工作，因为这种情况下并不需要生成一个Matcher实例。</td>
+	</tr>
+	<tr>
+		<td>String</td>
+		<td><b>pattern</b>()<br>
+		返回该Patter对象所编译的正则表达式。</td>
+	</tr>
+	<tr>
+		<td>String[]</td>
+		<td><b>split</b>(CharSequence input)<br>
+		将目标字符串按照Pattern里所包含的正则表达式为模进行分割。</td>
+	</tr>
+	<tr>
+		<td>String[]</td>
+		<td><b>split</b>(CharSequence input, int limit)<br>
+		作用同上，增加参数limit目的在于要指定分割的段数，如将limi设为2，那么目标字符串将根据正则表达式分为割为两段。</td>
+	</tr>
+</table>
+</div>
+一个正则表达式，也就是一串有特定意义的字符，必须首先要编译成为一个Pattern类的实例，
+这个Pattern对象将会使用 <i>matcher()</i> 方法来生成一个Matcher实例，
+接着便可以使用该 Matcher实例以编译的正则表达式为基础对目标字符串进行匹配工作，
+多个Matcher是可以共用一个Pattern对象的。<br><br>
+下面是利用<b>Pattern</b>的几个实例：<br><br>
+<i><b>分割字符串</b></i>
+<div id="codeblock"><pre>
+
+</pre></div>
+
+
+
+<p>       ]]> </content>
+
+</doc>
+

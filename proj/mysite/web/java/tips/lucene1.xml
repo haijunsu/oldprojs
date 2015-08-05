@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+	<!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+	<isindexall>false</isindexall>
+	<indexfile>indexall.xml</indexfile>
+
+	<!-- 定义文档位置 -->
+	<topic>java</topic>
+	<catalog>tips</catalog>
+
+	<!-- 文档显示内容 -->
+    <title>lucene建立搜索</title>
+    <pagename>lucene建立搜索</pagename>
+	<content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+
+
+使用lucene来完成全文搜索需要两个步骤：<br>
+1 建立索引<br>
+2 构建查询并运行他们<br>
+<br>
+lucene API可以和很容易的完成这个任务<br>
+<br>
+<br>下面我们来介绍索引的建立和搜索：
+<br>一：建立一个Cat实例的索引。
+<br>
+<br>1：需要一个lucene的IndexWriter类的实例，它是lucene索引能力的入口，同时它允许可查询数据被写到一个索引中。
+<div id='codeblock'>
+<code>
+public class CatSearcher{<br>
+<br>    String indexDir = "index"; // directory storing index files
+<br>
+<br>    private IndexWriter openIndexWriter() throws IOException {
+<br>         Analyzer analyzer = new StandardAnalyzer();
+<br>
+<br>         return new IndexWriter(indexDir, analyzer, false);
+<br>    }
+<br>}
+</code>
+</div>
+<br>2：构建索引后，建立包含Cat字段的文档，这个文件被索引。
+<div id='codeblock'>
+<code>
+<br>public class CatSearcher{
+<br>	//...
+<br>	private Document buildDocument(Cat contact) {
+<br>		Document document= new Document();
+<br>
+<br>		document.add(Field.Keyword("id",
+<br>		String.valueOf(contact.getId())));
+<br>
+<br>		document.add(Field.Text("Name", contact.getName()));
+<br>
+<br>		return document;
+<br>	}
+<br>}
+</code>
+</div>
+<br>在文件中有四种文件类型被引用：Field.Text, Field.UnIndexed, Field.Keyword, Field.UnStored,使用的类型取决于字段的内容。
+<br>
+<br>3.建立索引最后一步是向它添加文件
+<div id='codeblock'>
+<code>
+<br>public class CatSearcher{
+<br>	//...
+<br>	private void index(Cat contact) throws IOException {
+<br>	IndexWriter writer = openIndexWriter();
+<br>	Document document = buildDocument(contact);
+<br>
+<br>	writer.addDocument(document);
+<br>	writer.optimize();
+<br>	writer.close();
+<br>	}
+<br>}
+</code>
+</div>
+批量添加要搜索的Document的时候，在批量末尾调用optimize()更有效。
+<br>optimize()：优化磁盘中的索引以便进行更有效的检索。
+<br>
+<br>二：搜索文件
+<div id='codeblock'>
+<code>
+<br>public class CatSearcher{
+<br>	//...
+<br>	public Hits search(String fieldname, String criteria)
+<br>	throws ParseException, IOException {
+<br>		// open IndexSearcher
+<br>		IndexSearcher searcher = new IndexSearcher(indexDir);
+<br>
+<br>		try {
+<br>		Query query = buildQuery(fieldname, criteria);
+<br>		Hits hits = searcher.search(query);
+<br>		return hits;
+<br>		} finally {
+<br>		// searcher.close();
+<br>		}
+<br>	}
+<br>}
+</code>
+</div>
+其中Query对象由bulideQuery()生成
+<div id='codeblock'>
+<code>
+<br>public class CatSearcher{
+<br>	//...
+<br>	private Query buildQuery(String fieldName, String criteria)
+<br>	throws ParseException {
+<br>		Analyzer analyzer = new CustomAnalyzer();
+<br>		QueryParser parser = new QueryParser(fieldName, analyzer);
+<br>		return parser.parse(criteria);
+<br>	}
+<br>}
+</code>
+</div>
+说了这么多，还是让我们来看看如何使用这些类进行搜索：
+<div id='codeblock'>
+<code>
+<br>	CatSearcher searcher = new CatSearcher();
+<br>	//perform search
+<br>
+<br>	Hits hits = searcher.search("Name", "Bar or fred");
+<br>
+<br>	if (hits.length() == 0) {
+<br>
+<br>	// no results found
+<br>	System.out.println("No results found");
+<br>
+<br>	} else {
+<br>
+<br>	// iterate over results
+<br>	for(int i = 0; i < hits.length(); i++) {
+<br>	Document document = hits.doc(i);
+<br>	System.out.println("--- Result " + i);
+<br>	System.out.println("Name: " + document.get("Name"));
+<br>	System.out.println("ID : " + document.get("id"));
+<br>	System.out.println("Score : " + hits.score(i));
+<br>	}
+</code>
+</div>
+最后介绍一下如何生成自定义Analyzer 类以及如何使用TokenFilters还是举例说明：
+<div id='codeblock'>
+<code>
+<br>public class CustomAnalyzer extends Analyzer {
+<br>	/**
+<br>	* Processes the input by first converting it to
+<br>	* lower case, then by eliminating stop words, and
+<br>	* finally by performing Porter stemming on it.
+<br>	*
+<br>	* @param reader the Reader that provides access to the input text
+<br>	* @return an instance of TokenStream
+<br>	*/
+<br>	public TokenStream tokenStream(java.lang.String string, Reader reader) {
+<br>		LetterTokenizer tokenizer = new LetterTokenizer(reader);
+<br>		TokenStream result = null;
+<br>
+<br>		result = new LowerCaseFilter(tokenizer);
+<br>		result = new StopFilter(result, StopAnalyzer.ENGLISH_STOP_WORDS);
+<br>		result = new PorterStemFilter(result);
+<br>
+<br>		return result;
+<br>	}
+<br>}
+</code>
+</div>
+CustomAnalyZer扩展了Analyzer抽象基类，并且通过重新定义tokenstream()方法用自定义方式标识文本。使用了三中不同的TokenFilter类：
+LowerCaseFilterStopFilter PorterStemFilter 他们各自有不同的作用能够使得你的搜索更聪明。
+       ]]> </content>
+
+</doc>
+

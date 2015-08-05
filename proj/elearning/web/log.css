@@ -1,0 +1,10 @@
+table {
+	font-family: "宋体";
+	font-size: 9pt;
+	color: #FFFFFF;
+}
+.input1 {  font-size: 9pt; height: 18px; border: 1px #333333 solid; background-color: #ffffff; font-family: "宋体"; color: #000000; text-decoration: none}
+a:active {  font-family: "宋体"; font-size: 9pt; color: #000000; text-decoration: none}
+a:hover {  font-family: "宋体"; font-size: 9pt; color: #999999; text-decoration: underline}
+a:link {  font-size: 9pt; color: #000000; text-decoration: none}
+.fo {  font-family: "宋体"; font-size: 9pt; color: #000000; text-decoration: none}

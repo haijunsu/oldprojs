@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+	<!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+	<isindexall>false</isindexall>
+	<indexfile>indexall.xml</indexfile>
+
+	<!-- 定义文档位置 -->
+	<topic>design</topic>
+	<catalog>source</catalog>
+
+	<!-- 文档显示内容 -->
+    <title>CVSNT 安装技巧</title>
+    <pagename>CVSNT 安装技巧</pagename>
+	<content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+<div id="refer">
+<a href=http://www.cvsnt.org/wiki/InstallationTips>原始英文文档</a>
+</div>
+<br>
+<b>注意事项</b><br>
+<font color=Red>CVSNT的资源库只能在本地磁盘工作，即使使用Net Use命令把网络驱动器影射到本地盘符也不能正常工作。</font><br>
+<br>
+造成不能工作的原因是多方面的，其中一个原因就是：CVSNT是以SYSTEM帐户作为服务来运行，而这个帐户没有访问网络的权限，因此他不能访问远程服务器上的文件。事实上，即使文件在同一台机器上，使用UNC通过网络来访问他们也是没有用的，那个驱动器会被认为是SYSTEM帐户不能访问的网络驱动器。<br>
+<br>
+因此不要试图创建这样的配置！<br>
+<br>
+如果你担心如何资源库的备份，并且在CVSNT服务器没有一个备份系统，那么你可以使用已知的账户（比如你自己）运行“任务计划”来完成备份（把下面的代码存成BAT文件并在“任务计划”来运行）。<br>
+<div id="codeblock"><code>
+net stop cvs<br>
+xcopy c:\cvsrepo \\server\cvsbackup /Q /S /C /H /R /O /Y<br>
+net start cvs<br>
+</code></div>
+<br>
+如果安装了<a href=http://cygwin.com/>http://cygwin.com/</a>，你可以运行下面的代码：<br>
+<div id="codeblock"><code>
+net stop cvs<br>
+TODAY=`date +%Y-%m-%d`<br>
+tar c /cygdrive/c/cvsrepo | bzip2 -9 > /cygdrive/shared-drive-lettre/cvsbackup-${TODAY}.tar.bz2<br>
+net start cvs<br>
+</code></div>
+
+你的帐号必须有复制文件的权限<br>
+<br>
+<h3>文件系统</h3>
+
+为了保证安全性和文件的完整性，建议采用NTFS文件系统。FAT文件系统也可以正常的工作，但不是一好的选择。<br>
+再次强调一次，CVSNT服务器一定要使用本地驱动器！<br>
+
+<h3>下载CVSNT的最新版本</h3>
+从<a href=http://www.cvsnt.org/>http://www.cvsnt.org/</a>下载最新的CVSNT版本<br>
+
+<h3>创建CVS目录</h3>
+
+在机器上创建两目录：c:\cvsrepo和c:\cvstemp，如果你让CVS使用单独的磁盘分区，请更改路径，例如：<br>
+<div id="codeblock"><code>
+f:\cvsrepo<br>
+f:\cvstemp <br>
+</code></div>
+重要的一点是资源库所在磁盘的文件系统是NTFS，至于CVSNT的安装目录在哪里并不重要，无论是FAT32文件系统或NTFS文件系统，它都可以正常工作。<br>
+<br>
+在下面的讨论中，我们假设使用的是C盘。<br>
+<br>
+<h3>安装 CVSNT</h3>
+
+运行下载的 CVSNT 安装文件。<br>
+注意：CVSNT的最近修改了安装系统，因此你可能看到下面的屏幕与你的实际的安装屏幕有一点儿出入，我这里提供的屏幕仅供参考。<br>
+<br>
+开始屏幕：<br>
+<img src="http://www.cvsnt.org/files/InstallationTips/attachments/Setup-1.png?ts=1048954678" /> <br>
+<br>
+安装协议：<br>
+<img src="http://www.cvsnt.org/files/InstallationTips/attachments/Setup-2.png?ts=1048954688" /><br>
+<br>
+选择安装目录： <br>
+<img src="http://www.cvsnt.org/files/InstallationTips/attachments/Setup-3.png?ts=1048954692" /><br>
+<br>
+防病毒软件警告： <br>
+<img src="http://www.cvsnt.org/files/InstallationTips/attachments/Setup-4.png?ts=1048954696" /><br>
+<br>
+选择安装组件：<br>
+
+<img src="http://www.cvsnt.org/files/InstallationTips/attachments/Setup-5a.png?ts=1048954701" /><br>
+ <br>
+选择生成快捷方式：<br>
+ 
+<img src="http://www.cvsnt.org/files/InstallationTips/attachments/Setup-6.png?ts=1048954717" /><br>
+<br>
+任务选项：<br>
+
+<img src="http://www.cvsnt.org/files/InstallationTips/attachments/Setup-7.png?ts=1048954722" /><br>
+<br>
+准备好安装： <br>
+
+<img src="http://www.cvsnt.org/files/InstallationTips/attachments/Setup-8.png?ts=1048954727" /><br>
+<br>
+安装进程： <br>
+
+<img src="http://www.cvsnt.org/files/InstallationTips/attachments/Setup-9.png?ts=1048954732" /><br>
+<br>
+安装完成！ <br>
+
+<img src="http://www.cvsnt.org/files/InstallationTips/attachments/Setup-10.png?ts=1048954682" /><br>
+<br>
+确认路径中没有旧版的客户端程序cvs.exe，他可能不能识别sspi方法。<br>
+<br>
+<b>注意：</b>如果报genkey.exe的错误，此时你的安装已经完成，但ssl key没有生成，因此 :sserver 协议将不能正常工作。<br>
+
+<h3>重新启动</h3>
+第一次在NT/2000/XP上安装CVSNT，<b>必须重新启动</b>。如果不重新启动，当创建资源库时，就会报“Repository initialization failed”错误。<br>
+注意：如果是更新CVSNT，则没有必要重新启动。这个之所以需要，是因为在重新启动之前服务找不到更新的系统路径。<br>
+
+<h3>CVSNT 控制面板配置</h3>
+打开控制面板，可以看到VCSNT小程序（绿色的鱼）:<br>
+<img src="http://www.cvsnt.org/files/InstallationTips/attachments/Configure-1.png?ts=1048954623" /><br>
+<br>
+双击这个图标启动小程序：<br>
+<img src="http://www.cvsnt.org/files/InstallationTips/attachments/ControlPanelCVSNT.png?ts=1048954661" /><br>
+<br>
+注意：<br>
+如果不能够正常启动CVSNT控制面板，可能是一个或多个系统的dll文件找不到。CVSNT安装程序假定这些程序已经安装但有时可能会不存在，你可以从CVSNT站点下载“runtimes”程序包。<br>
+<br>
+下面是丢失文件的列表： <br>
+<div id="codeblock"><code>
+mfc71.dll<br>
+mfc71u.dll<br>
+msvcp71.dll<br>
+msvcr71.dll<br>
+msvci71.dll
+</code></div>
+把他们直接复制到C:\WINNT\System32 目录<br>
+现在可以打开CVSNT控制面板小程序进行下面的操作：<br>
+确认服务没有运行（“Start”按钮可用），如果正在运行则停止他。这是最初的屏幕：<br>
+<img src="http://www.cvsnt.org/files/InstallationTips/attachments/Configure-2.png?ts=1048954628" /><br>
+<br>
+转到“Repositories”标签，最初的屏幕如下：<br>
+<img src="http://www.cvsnt.org/files/InstallationTips/attachments/Configure-3a.png?ts=1048954633" /><br>
+ <br>
+选中前缀选择框，并点击省略号按钮选择“c:\cvsrepo ”目录。<br>
+<img src="http://www.cvsnt.org/files/InstallationTips/attachments/PrefixSelect.png?ts=1048954673" /><br>
+<br>
+当选择了“c:\cvsrepo ”，对话框会变成下面的样子：<br>
+<img src="http://www.cvsnt.org/files/InstallationTips/attachments/Configure-3b.png?ts=1048954637" /><br>
+<br>
+注意，当你选择根目录作为CVS资源库前缀，你将不能使用驱动器本身-你必须进入到至少一层目录树（如c:\cvsrepo ）。这是因为控制面标板GUI会给驱动器根目录的前缀添加一个不正确的外部斜线，导致前缀停止工作……因此，不要象下面的对话框那样就返回：<br>
+<img src="http://www.cvsnt.org/files/InstallationTips/attachments/CvsrepoOndiskRoot.png?ts=1048954665" /><br>
+ <br>
+使用“Add”按钮添加一个资源库，在显示在方框中的前缀后面输入“TEST”，按照提议建立资源库。你可以在同一对服务器上建立多个资源库，建立每一个资源库，你都要使用“Add”按钮一次。每次资源库列表就会包括进你在这里所新建的内容。<br>
+注意：如果你使用资源库前缀，并且拥有多个资源库，他们必须都位于同一个上级目录（=资源库前缀）。在CVSNT中对资源库前缀的设置只有这一处。下面显示你创建第一个资源库“test”：<br>
+<img src="http://www.cvsnt.org/files/InstallationTips/attachments/Configure-3c.png?ts=1048954642" /><br>
+<br>
+转到“Advanced”标签，察看选项框： <br>
+<img src="http://www.cvsnt.org/files/InstallationTips/attachments/Configure-4a.png?ts=1048954646" /><br>
+<br>
+
+这里有两个选项，你可以设置/清除（保留默认值，大部分用户都能正常工作）：<br>
+<i>Impersonation enabled. </i> 这个设置允许CVSNT伪装用户真实的操作，因此这个标志可以对用户来说可以使用文件系统权限。如果禁止这个选项将会引起安全问题，所以一般情况下应该保持其可用。<br>
+<i>Use local users instead of domain. </i> 如果你的机器是域中的一个成员，这个选项可以全CVSNT不使用域用户帐号来认证。<br>
+同样地用省略号按钮来设置临时目录，临时目录就位于c:\cvstemp。<br>
+<br>
+现在可以点击“Apply”按钮！这一步非常重要，在此之前所有的修改都没有生效！注意：如果你已经点了“Apply”按钮，它就会处于不可用状态。<br>
+<img src="http://www.cvsnt.org/files/InstallationTips/attachments/Configure-4c.png?ts=1048954653" /><br>
+
+<br>
+<h3>启动CVSNT</h3>
+回到第一个标签并点击“Start”按钮，等一会后那个“Stop”按钮会就会变亮。<br>
+<img src="http://www.cvsnt.org/files/InstallationTips/attachments/Configure-5.png?ts=1048954657" /> <br>
+现在CVSNT启动成功！<br>
+
+<h3>添加CVS用户</h3>
+这一步仅仅在你计划在 CVS 服务器上使用 pserver 或者 sserver 协议并且想要加入 NT 用户列表以外的用户名称才是需要的。如果你的所有用户都在Windows PC上，推荐使用 SSPI 协议，因为它与 Windows NT 实现了很好的整合。如果你决定使用 SSPI，那么你可以跳过如何添加和管理用户的章节的讨论，所有的 :sspi: 用户必须是有效的并且不能指定别名。<br>
+<br>
+打开 DOS 窗口并做下面的步骤（用系统的真实值代替 <text> 项）。<br>
+<br>
+<i>th - 删除关于添加你自己的名字章节 - 通过设置“SystemAuth=Yes”这样会更有把握（我想这个是默认的？）(th - removed a section about adding your own username - this would be better handled by setting SystemAuth=Yes (which I think is the default?))</i><br>
+<div id="codeblock"><code>
+set cvsroot=:sspi:<computername>:/TEST<br>
+cvs passwd -r <real account name> -a <new username><br>
+</code></div> 
+
+接下来会提示为这个用户输入口令，输入相同的口令两次，将创建 CVSROOT/passwd 文件并且你输入的用户将被加入到文件内。<br>
+<br>
+<i>重要提示：</i> <br>
+这样输入的用户必须是一个在本地系统存在的 NT 用户！CVS 不允许没有与真实帐户相边的用户登录。但是可以使用这条命令使“别名”按一个真实的用户进行 CVS 登录（仅仅在用户连接 pserver 时才能正常工作）（But you can "alias" a CVS login to a "real" user by this command (only works if users connect with pserver)）： <br>
+<div id="codeblock"><code>
+cvs passwd -a -r <real accountname> <cvs account name><br>
+</code></div>
+如果用户名中间有空格，则必须把名字用引号引起来，否则命令会失败：<br>
+<div id="codeblock"><code>
+cvs passwd -a -r "system admin" "new user"<br>
+</code></div>
+
+注意 2 （域用户）： <br>
+你可以使用下面的命令来添加域用户：<br>
+<div id="codeblock"><code>
+cvs passwd -a -D <domain name> <real account name>
+</code></div>
+这个操作添加一个用户（域中的真实的用户）到 passwd 文件，并告诉 CVSNT 对这个用户校验使用 pserver/sserver 口令而不是使用域用户口令。注意这台 CVS 服务器必须是那个域中的一个成员。<br>
+现在已经配置好了服务器，你可以按下面的步骤检查 pserver 功能：<br>
+<br>
+<h3>测试 CVS 联接</h3>
+打开另一个 DOS 窗口并输入：<br>
+<br>
+ pserver, sserver or ssh 联接<br>
+<div id="codeblock"><code> set cvsroot=:<protocol>:<user>@<computername>:/TEST</code></div>
+ 替换<user> 和 <computername> 为真实的值，例如： <br>
+<div id="codeblock"><code>
+ set cvsroot=:pserver:charlie@cvsserver:/TEST
+</code></div>
+然后：<br>
+<div id="codeblock"><code> cvs login(enter password on prompt)</code></div>
+ <br>
+sspi 联接<br>
+<div id="codeblock"><code>
+ set cvsroot=:sspi:<computername>:/TEST
+</code></div>
+ 替换<computername>为真实值，例如：<br>
+<div id="codeblock"><code>
+ set cvsroot=:sspi:cvsserver:/TEST
+ </code></div>
+
+现在你可以输入： <br>
+<div id="codeblock"><code>
+cvs ls -l -R
+</code></div>
+（这个操作应该返回 TEST/CVSROOT 资源库的文件列表）<br>
+<br>
+使用 WinCvs (ver 1.3): <br>
+这一步可以从另外的机器上通过设置 WinCvs 如管理/参数设置/常规的属性来使用 WinCvs 执行联接测试：<br>
+Authentication: sspi （修改为你想要的协议）<br>
+Path: /TEST<br>
+Host address: <computername of server><br>
+User name: <your username> <br>
+<img src="http://www.cvsnt.org/files/InstallationTips/attachments/WinCvsPreferences.png?ts=1048954737" /><br>
+然后（如果使用 pserver ）：<br>
+Admin/Login （输入这个用户的 CVS 口令）<br>
+然后在 DOS 窗口的 WinCvs 环境下：<br>
+<div id="codeblock"><code>cvs ls -l -R</code></div>
+应该给出与上面命令相同的结果：<br>
+<br>
+例如： <br>
+<div id="codeblock"><code>
+cvs -z9 login<br>
+ Logging in to :pserver:bosse@castor:2401/test<br>
+<br>
+*****CVS exited normally with code 0*****<br>
+cvs ls -l -R<br>
+<br>
+*****CVS exited normally with code 0*****<br>
+<br>
+Listing modules on server<br>
+<br>
+Directory CVSROOT<br>
+<br>
+checkoutlist                    1.1     Sat Mar 16 23:22:16 2002<br>
+commitinfo                      1.1     Sat Mar 16 23:22:16 2002<br>
+config                          1.1     Sat Mar 16 23:22:16 2002<br>
+cvswrappers                     1.1     Sat Mar 16 23:22:16 2002<br>
+editinfo                        1.1     Sat Mar 16 23:22:16 2002<br>
+loginfo                         1.1     Sat Mar 16 23:22:16 2002<br>
+modules                         1.1     Sat Mar 16 23:22:16 2002<br>
+notify                          1.1     Sat Mar 16 23:22:16 2002<br>
+rcsinfo                         1.1     Sat Mar 16 23:22:16 2002<br>
+taginfo                         1.1     Sat Mar 16 23:22:16 2002<br>
+verifymsg                       1.1     Sat Mar 16 23:22:16 2002<br>
+</code></div>
+
+<h3>管理资源库和用户的 admin 权限</h3>
+根据 SystemAuth 设置， CVS 管理员权限赋于 CVS 服务器上的所有拥有管理员权限的用户。然而，可以使用另一种途径来指定管理员权限来覆盖这个设置，使这个设置在你的特殊设置不起作用。它通过 CVSROOT/admin 文件来实现。<br>
+<br>
+下面给出如何操作：<br>
+在资源库的 CVSROOT 目录创建一个 admin （没有扩展名）的文本文件。<br>
+编辑这个文件，添加你想要赋于这台 CVS 服务器管理员权限的用户，每个用户单独一行。文件内容看上去象下面的格式：<br>
+<div id="codeblock"><code>
+charlie<br>
+jennifer<br>
+john<br>
+</code></div>
+现在这里的每一位用户都可以添加新用户、更改他们的口令和使用 CVS 管理命令。<br>
+
+<h3>禁止不想用的协议</h3>
+如果你的 CVSNT 服务器暴露在因特网上，你可能想要禁止 ":pserver:" 协议，因为它的安全级别很低（加密采用明文认证）。<br>
+在服务器上禁止某种协议通过的做法是从 CVSNT 程序目录删除相应的 xxx_protocol.dll 物理文件<br>
+这个案例将删除掉 pserver_protocol.dll. <br>
+在 CVSNT 控制面板设置“Require Encryption”可以有效地禁止 pserver，因为他不支持某些级别的加密。这也要确信客户端使用加密协议来成服务器通信。<i>th - 或许 Unix CVS 客户端需要注意，其支持加密协议是 gserver，这是我们就避免使用。</i><br>
+<br>
+<h3>管理 pserver 用户</h3>
+如果你计划有非常多的不同的用户使用 pserver ，你需要按下面的步骤进行操作：<br>
+<br>
+在 CVSNT 服务器上创建一个本地用户“ cvsuser ”<br>
+以管理员帐号登录到 cvs 服务器<br>
+使用下面的命令为 cvsuser 添加登录的别名：<br>
+<div id="codeblock"><code>
+cvs passwd -r cvsuser -a <login user name>
+</code></div>
+这条命令将提示两次输入登录口令，你可以添加你想要的多个用户。虽然他们的操作都是在 cvsuser 帐户的上下文环境下工作，但是他们都有单独的登录ID。邮件系统也可以很好的识别这些用户名（见下文）。<br>
+<br>
+<h3>使用 SSPI 协议访问 CVSNT 服务器</h3>
+SSPI协议是工作在TCP/IP协议之上，所以能够更容易穿透防火墙。:sspi: 协议不需要登录，代替登录的是你的工作站使用这个协议启动。<br>
+<br>
+使用 sspi 对用户访问的限制<br>
+当使用 sspi 将会接受所有系统（本地或域）认证的所有系统用户的连接。通常这不是我们真正想要的，我们想使用与 :pserver: 相同的机制来代替。这里 CVSROOT/passwd 文件定义了 CVSNT 接受登录使用的方法来限制用户登录。<br>
+<br>
+作用 :sspi: 协议，你仅仅需要在 passwd 文件里给出登录访问 CVS 资源的用户的列表，另外还需要在 CVSROOT/config 文件里设置参数：<br>
+<div id="codeblock"><code>SystemAuth = No</code></div>
+注意，这时不需要在 passwd 文件里输入用户的口令，SSPI 使用系统登录，passwd 文件仅仅给出了可以登录的用户的列表。当你以 CVS 管理员的身份登录，你就可以使用这样一个简单的命令进行工作：<br>
+<div id="codeblock"><code>
+cvs passwd -a newuser<br>
+(press enter twice to tell CVSNT that no password is used)<br>
+</code></div>
+
+<h3>优化 CVS 的用户访问</h3>
+
+使用 NTFS 文件系统的权限比使用 passwd 文件更细的粒度来优化对 CVS 资源库的访问，下面介绍其如何工作：<br>
+创建一组 NT 用户组，这些组成员很容易添加和删除。<br>
+不要设计使用别名进行访问，让每个用户都使用自己的帐号进行访问。<br>
+在资源库的模块级按 CVS 组来设置权限（读/写/修改、只读、禁止访问）。如果一个组有提交修改（提交文件）的权限，则赋予读/写/修改的权限，如果一个组没有提交的权限，则赋予只读权限。<br>
+给所有的用户赋予资源库目录下的 CVSROOT 目录的读取权限，仅仅管理员对这个目录有写/修改访问的权限，除了下面的两个文件外。<br>
+给所有组访问 CVSROOT/history 读/写的权限，这样每个人都可以看到谁正在做什么。<br>
+给所有有权创建分枝文件或目录的组访问 CVSROOT/val-tags 读/写的权限。<br>
+赋予所有组的在 CVSTEMP 目录的读/写/修改，如上面所描述的。<br>
+给 CVS 用户组的每个成员一个单独的 NT 帐号。<br>
+检出资源库 CVSROOT 目录并修改配置文件，使用包含下面一行：<br>
+<div id="codeblock"><code>
+LockServer=localhost:2402
+</code></div>
+提交修改，并在控制面板小程序上重新启动 CVSNT 服务。需要创建 LockServer 的原因是你不能够设置资源库为只读，因为无论资源库是否将要被更改，CVS都需要能够对资源库建立锁文件。这些锁文件一般存储在资源库本身，如果为只读，就会操作失败。<br>
+
+<h3>CVSNT 中的空格处理</h3>
+CVSNT 尽力处理好文件名和目录名中的空格，但还是有因为空格问题而使 CVS 的功能失败的案例。因为强烈建议进行如下操作：<br>
+将资源库放在没有空格的路径里。<br>
+如果你安装了附加软件如 PERL 或 RCS ，不要使用空格！<br>
+为了使用 CVS 更好的控制文件，通知你的用户不要在文件名中使用空格。<br>
+如果允许空格，当你将资源库移植到一个 *nix 系统（Unix, Linux 等）是不可能的。<br>
+因此最好在前期工作就禁止使用空格<br>
+<br>
+<h3>在 CVS 中添加新的模块</h3>
+在 CVS 资源库中有两添加新模块的方法：“ add ”和“ import ”方法，每一种方法都有如下的优缺点：<br>
+<br>
+cvs import ：<br>
+这个方法大部分 CVS 教程都会谈到并且在 WinCvs 按下面的方式工作：<br>
+<ul>
+	<li> 激活 Create/Import 菜单命令 
+	</li><li> 导航到硬盘上模块源文件所在的目录
+	</li><li> 检查文件列表是所有文件是“all type”并修改
+	</li><li> 指定 CVS 服务器上的模块名称、版本和提供者标识（导入设置标签）
+	</li><li> 在“ General ”标签指定模块应在的服务器和资源库
+	</li><li> 当你点击 OK，那些源文件将会导入 CVS 资源库
+	</li><li> 现在你可以检出模块到你的工作区（=沙箱）。你不能使用源文件目录做为检出目标目录，他必须是不存在的。
+	</li><li> 完成。</li>
+</ul>
+<br>	
+这种方法的优点就是一次把源文件和目录都导入进来，非常方便。<br>
+<br>
+cvs add :<br>
+<br>
+这种方法很少用在主模块的添加，因为这样会加大工作量……<br>
+<ul>
+	<li> 激活 Create/Import 菜单命令 
+	</li><li> 在“ CHeckout Setting ”标签中输入 “.”（句点）作为要检出模块的名字
+	</li><li> 浏览包括源文件的工作目录并且设置“ Local folder to check out to ”为这个目录的存储目录（上一级）
+	</li><li> 选中“ Do not recurse ”选择框，这一点很重要！
+	</li><li> 在 “General” 标签页确认服务器数据正确
+	</li><li> 当你点击 OK后，就会在你的工作区创建一个目录 (CVS)
+	</li><li> 现在在 WinCvs 里更改目录到包含你的源文件的目录，在父目录会有一个黑色的选择标记
+	</li><li> 在面板的右侧选择模块目录并点击“Add”按钮，将会显示一个选择标记
+	</li><li> 转移到这个目录并且选择要加入模块的所有的文本文件并点击“Add”按钮，他们就会变成红色
+	</li><li> 同样的方法添加二进制文件，不同是的要点击“Add binary”按钮
+	<li> 在面板的左侧选择模块目录并提交
+</li></ul>
+这就是使用 Add 方法添加模块目录和文件到 CVS 服务器的做法。这种方法的特点：<br>
+每一个目录和文件都必须单独选择和添加，但是如果有很多文件和子目录，这种做法就很烦人了。
+      
+       ]]> </content>
+
+</doc>
+

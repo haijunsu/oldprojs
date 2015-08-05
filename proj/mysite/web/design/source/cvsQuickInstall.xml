@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+	<!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+	<isindexall>false</isindexall>
+	<indexfile>indexall.xml</indexfile>
+
+	<!-- 定义文档位置 -->
+	<topic>design</topic>
+	<catalog>source</catalog>
+
+	<!-- 文档显示内容 -->
+    <title>CVSNT 快速安装</title>
+    <pagename>CVSNT 快速安装</pagename>
+	<content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+将安装好CVSNT目录备份。
+运行CVSNT目录中的cvsnt.cpl进行设置资源文件位置，并在“Compatibility”页面中选中“Emulate '-n checkout”<br>
+
+运行命令
+<div id="codeblock">
+<pre>
+	cvsservice -i
+	cvslock -i
+</pre>
+<div>
+启动相应的服务即可
+
+    ]]> </content>
+
+</doc>
+

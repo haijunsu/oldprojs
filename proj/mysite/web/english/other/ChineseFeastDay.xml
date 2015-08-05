@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+   <!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+   <isindexall>false</isindexall>
+   <indexfile>indexall.xml</indexfile>
+
+   <!-- 定义文档位置 -->
+   <topic>english</topic>
+   <catalog>other</catalog>
+
+   <!-- 文档显示内容 -->
+    <title>中国传统节日</title>
+    <pagename>中国传统节日</pagename>
+   <content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+过年 celebrate the spring festival <br>
+春联 spring festival couplets<br>
+剪纸 paper-cuts<br>
+年画 new year paintings<br>
+买年货 do shopping for the spring festival; do spring festival shopping<br>
+敬酒 propose a toast<br>
+灯笼 lantern <br>
+烟花 fireworks<br>
+爆竹 firecrackers (people scare off evil spirits and ghosts with the loud pop.)<br>
+利事 lucky money<br>
+利事封 red packets (cash wrapped up in red paper, symbolize fortune and wealth in the coming year.) <br>
+舞狮 lion dance (the lion is believed to be able to dispel evil and bring good luck.)<br>
+舞龙 dragon dance (to expect good weather and good harvests)<br>
+戏曲 traditional opera<br>
+杂耍 variety show <br>
+灯谜 riddles written on lanterns<br>
+灯会 lanterns　show<br>
+守岁 staying-up<br>
+拜年 pay new year's call; give new year's greetings; pay new year's visit<br>
+禁忌 taboo<br>
+去晦气 get rid of the ill- fortune<br>
+祭祖宗 offer sacrifices to one's ancestors<br>
+压岁钱 gift money; money given to children as a lunar new year gift <br>
+   <br><br>
+元旦<br>
+New Year' s Day Jan.1<br>
+<br>
+国际劳动妇女节International Working women' s Day<br>
+（wornen's Day)Mar.8<br>
+<br>
+国际劳动节nternatlonal Labor Day<br>
+（May. Day）May.1<br>
+<br>
+中国青年节Chinese Youth DayMay.4<br>
+<br>
+国际儿童节International Children's Day<br>
+（Children's Day）June .1<br>
+<br>
+中国共产党诞生纪念日<br>
+( 党的生日）Anniversary of the Foundlng of the ChineseCommunist Party<br>
+( the Party' s Birthday）July .1<br>
+<br>
+建军节Army DayAugust .1<br>
+<br>
+教师节Teachers ， Day Sept.1<br>
+<br>
+国庆节National Dey October.1<br>
+<br>
+中国传统节日春节<br>
+the Sprlng Festival （ New<br>
+Yearls Day of the Chinese lunar calendar）农历正月初一<br>
+<br>
+元宵节（灯节)the Lantern Festival农历正月十五<br>
+<br>
+清明节<br>
+the Qing Ming Festival四月五日前后<br>
+<br>
+端午节<br>
+the Dragon-Boat Festiva农历五月初五<br>
+<br>
+中秋节<br>
+the MidAutumn Festival<br>
+（the Moon Festival）农历八月十五<br>
+<br>
+重阳节<br>
+the Double Ninth Festival农历九月初九<br>
+
+       ]]> </content>
+
+</doc>
+

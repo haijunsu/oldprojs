@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+	<!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+	<isindexall>false</isindexall>
+	<indexfile>indexall.xml</indexfile>
+
+	<!-- 定义文档位置 -->
+	<topic>db</topic>
+	<catalog>mysql</catalog>
+
+	<!-- 文档显示内容 -->
+    <title>在Windows下快速安装/卸载MySQL</title>
+    <pagename>在Windows下快速安装/卸载MySQL</pagename>
+	<content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+<a href="http://dev.mysql.com/downloads/">从此处选择要下载的MySql版本</a>，
+选择“Without installer (unzip in C:\)”的版本，下载完成后解压到c:\。
+
+<h3>创建my.ini文件</h3>
+<div id="codeblock">
+<pre>
+[mysqld]
+# 设置MySql的安装目录，如c:/mysql/
+basedir=C:/mysql
+# 设置数据库的存储目录，如c:/mysql/data
+datadir=C:/mysql/data
+# 设置默认字符集为GB2312，使数据库支持中文
+default-character-set=gb2312
+
+[WinMySQLAdmin]
+Server=C:/mysql/bin/mysqld-nt.exe
+</pre>
+</div>
+<h3>创建安装文件install.bat</h3>
+<div id="codeblock">
+<pre>
+@echo off
+echo 安装MySQL到本机
+echo 正在复制my.ini到%windir% . . . . . .
+copy my.ini %windir%\my.ini /Y
+echo 正在注册服务 . . . . . .
+C:\mysql\bin\mysqld --install
+echo 正在启动服务 . . . . . .
+net start MySQL
+echo 安装完成！
+echo on
+</pre>
+</div>
+
+<h3>创建卸载文件uninstall.bat</h3>
+<div id="codeblock">
+<pre>
+@echo off
+echo 从本机移除MySQL
+echo 正在停止服务 . . . . . .
+net stop MySQL
+echo 正在删除服务 . . . . . .
+C:\mysql\bin\mysqld --remove
+echo 正在备份my.ini内容 . . . . . .
+copy %windir%\my.ini my.ini.bak /Y
+echo 正在从%windir%删除my.ini . . . . . .
+del %windir%\my.ini /Q
+echo 移除完成！
+echo on
+</pre>
+</div>
+
+       ]]> </content>
+
+</doc>
+

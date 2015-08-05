@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+<!--		 基本配置（Session Adapter和Transaction Manager）		-->
+  <bean id="sessionAdapter" class="groller.framework.session.HibernateSessionAdapter" singleton="true">
+  	<property name="packageNames">
+  		<value>testmodel.entity groller.application.entity</value>
+  	</property>
+  </bean>
+ 
+  <bean id="transactionManager" class="groller.framework.transaction.HibernateTxManager">
+  	<property name="session"><ref bean="sessionAdapter" /></property>
+  </bean>
+
+<!-- 		Interceptor配置 		-->
+  <bean id="transactionInterceptor" class="groller.framework.interceptor.TransactionInterceptor" />
+  <bean id="exceptionInterceptor" class="groller.framework.interceptor.ExceptionInterceptor" />
+
+<!-- 		DAO配置 		-->
+  <bean id="baseHibernateDAO" class="groller.framework.dao.hibernate.BaseHibernateDAO">
+  	<property name="entityType"><value>testmodel.entity.Entity</value></property>
+  </bean>
+  
+  <bean id="entityDAO" class="testmodel.dao.hibernate.HibernateEntityDAO">
+  	<property name="entityType"><value>testmodel.entity.Entity</value></property>
+  </bean>
+  
+  <bean id="userDAO" class="groller.application.dao.hibernate.HibernateUserDAO">
+  	<property name="entityType"><value>groller.application.entity.User</value></property>
+  </bean>
+  
+  <bean id="postDAO" class="groller.application.dao.hibernate.HibernatePostDAO">
+  	<property name="entityType"><value>groller.application.entity.Post</value></property>
+  	<property name="userDao"><ref bean="userDAO" /></property>
+  </bean>
+  
+  <bean id="replyDAO" class="groller.application.dao.hibernate.HibernateReplyDAO">
+  	<property name="entityType"><value>groller.application.entity.Reply</value></property>
+  	<property name="postDao"><ref bean="postDAO" /></property>
+  </bean>
+
+<!--		 Service配置 		-->
+  <bean id="entityService" class="testmodel.service.pojo.POJOEntityService" autowire="byType">
+	<property name="observers"><list>
+		<value>testmodel.observer.impl.MockObserver</value>
+	</list></property>
+	<property name="observedMethodNames"><list>
+		<value>createNewEntity</value>
+	</list></property>
+  </bean>
+  
+  <bean id="userService" class="groller.application.service.pojo.POJOUserService" autowire="byType" />
+  
+  <bean id="postService" class="groller.application.service.pojo.POJOPostService">
+  	<property name="txManager"><ref bean="transactionManager" /></property>
+  	<property name="postDao"><ref bean="postDAO" /></property>
+  	<property name="userDao"><ref bean="userDAO" /></property>
+  	<property name="replyDao"><ref bean="replyDAO" /></property>
+  </bean>
+  
+<!--		XML-RPC配置			-->
+	<bean id="blogger" class="groller.application.xmlrpc.impl.Blogger">
+		<property name="appKey"><value>B3B20DC9A0105A9F21CF56CFD55D9FAEE6FB27AA</value></property>
+	</bean>
+
+	<bean id="metaWeblog" class="groller.application.xmlrpc.impl.MetaWeblog">
+		<property name="appKey"><value>B3B20DC9A0105A9F21CF56CFD55D9FAEE6FB27AA</value></property>
+	</bean>
+	
+	<bean id="xml-rpc" class="groller.application.xmlrpc.XmlRpcFacade">
+		<property name="blogger"><ref bean="blogger" /></property>
+		<property name="metaWeblog"><ref bean="metaWeblog" /></property>
+	</bean>
+	
+</beans> 

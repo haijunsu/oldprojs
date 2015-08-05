@@ -1,0 +1,43 @@
+需要操作的表：
+T_Paper 文章表
+T_UserAccount 用户表，登录文章的作者
+T_Coauthor 合作者表，第一作者有可能在这张表里面
+T_Participant 人员注册表
+T_AccompanyPerson 陪同人员表
+T_Visa 签证表
+T_RelationBetweenParticipantAndPaper 注册人员与文章关系表
+T_RegistrationFeeParticipant 人员注册费用表
+T_PaperRegistration 文章注册费用表
+T_Hotel 旅馆预定表
+T_PaperOtherInformation 文章的其他附加信息
+T_Equipment 设备表
+T_PayMentMethod 交费方式表
+T_Country 国家代码表
+T_AffiliationType 单位从属类型表
+T_Division 文章分类表
+T_UserType 用户类型表
+
+
+
+
+功能模块：
+1、人员注册管理
+	操作表T_Participant，输入作者邮件时从T_UserAccount表和T_Coauthor表中查找已经注册的作者，
+如果作者已经注册过，则取出相应的作者信息，如果作者没有注册，则不提示。
+	人员注册信息修改
+2、陪同人员管理
+	操作表T_AccompanyPerson表，设计两个入口
+		a) 用户注册时提示有无陪同人员
+		b) 查找用户添加和修改陪同人员信息
+3、签证信息管理
+	操作表T_Visa，用户注册时，提示用户输入签证信息，也可以查找到用户时进行签证信息的更改
+4、文章管理
+	操作表T_RelationBetweenParticipantAndPaper表，用于管理作者和文章的关系，可以根据作者信息
+查找其对应的文章，也可以要据文章查找对应的作者，其信息来源于T_Paper、T_UserAccount和T_Coauthor表
+5、注册费用管理
+	操作T_RegistrationFeeParticipant表和T_PaperRegistration表
+7、旅馆预定管理
+	操作表T_Hotel，用户注册时需要进行旅馆预定
+8、文章其他要求
+	操作表T_PaperOtherInformation表，对于单篇文章输入其对应的要求
+

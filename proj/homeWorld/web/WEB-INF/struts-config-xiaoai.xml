@@ -1,0 +1,106 @@
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<!--
+     This is a blank Struts configuration file with an example
+     welcome action/page and other commented sample elements.
+
+     Tiles and the Struts Validator are configured using the factory defaults
+     and are ready-to-use.
+
+     NOTE: If you have a generator tool to create the corresponding Java classes
+     for you, you could include the details in the "form-bean" declarations.
+     Otherwise, you would only define the "form-bean" element itself, with the
+     corresponding "name" and "type" attributes, as shown here.
+--><struts-config>
+
+
+<!-- ======================================== Form Bean Definitions -->
+
+    <form-beans>
+    
+        <form-bean name="CreatetableForm" type="system.action.CreatetableForm">
+	    </form-bean>
+	    <form-bean name="FieldsForm" type="system.action.FieldsForm">
+	    </form-bean>
+    
+    
+    
+		<form-bean name="CommSearchForm" type="commsearch.CommSearchForm" />	
+	    <form-bean name="ChangePasswordForm" type="system.action.ChangePasswordForm" />
+		<form-bean name="SNSearchForm" type="erp.querys.SNSearchForm"/>
+		<form-bean name="CountSearchForm" type="erp.querys.CountSearchForm"/>
+		<form-bean name="BBSTopicForm" type="BBS.BBSTopicForm"/>
+		
+		
+		<form-bean name="SearchOrderForm" type="Ahomeworld.SearchOrderForm"/>
+		<form-bean name="SearchBBSForm" type="homeworld.bbs.SearchBBSForm"/>
+    </form-beans>
+
+
+<!-- =================================== Action Mapping Definitions -->
+
+	<action-mappings>
+
+	    <action path="/Createtable" type="system.action.CreatetableAction" name="CreatetableForm" scope="session" input="/system/Createtable.jsp">
+	      <exception key="expired.password" type="com.idn.user.ExpiredPasswordException" path="/index.jsp?body=/system/Createtable.jsp" />
+	 	  <forward name="failure" path="/index.jsp?body=/system/Createtable.jsp" />
+	 	  <forward name="success" path="/index.jsp?body=/system/Createtable.jsp" />
+	    </action>
+	    <action path="/Fields" type="system.action.FieldsAction" name="FieldsForm" scope="session" input="/system/Fields.jsp">
+	      <exception key="expired.password" type="com.idn.user.ExpiredPasswordException" path="/index.jsp?body=/system/Fields.jsp" />
+	 	  <forward name="failure" path="/index.jsp?body=/system/Fields.jsp" />
+	 	  <forward name="success" path="/index.jsp?body=/system/Fields.jsp" />
+	    </action>
+		<action path="/changepassword" type="system.action.ChangePasswordCtrl" validate="false" name="ChangePasswordForm">
+	        <forward redirect="false" name="failure" path="/index.jsp?body=/system/InputError.jsp" />
+	        <forward redirect="false" name="success" path="/index.jsp?body=/system/ChangePassword.jsp" />
+	    </action>
+	    <action path="/changepasswordsave" type="system.action.ChangePasswordSave" validate="false" name="ChangePasswordForm">
+	        <forward redirect="false" name="failure" path="/index.jsp?body=/system/InputError.jsp" />
+	        <forward redirect="false" name="success" path="/index.jsp?body=/system/InputError.jsp" />
+	    </action>
+
+
+
+		
+		<action path="/searchorder" type="Ahomeworld.SearchOrder" validate="false" scope="request" name="SearchOrderForm">
+	        <forward redirect="false" name="success" path="/index.jsp?body=/Ahomeworld/SearchOrder.jsp" />
+	        <forward redirect="false" name="failure" path="/index.jsp?body=/system/InputError.jsp" />
+	    </action>
+		<action path="/searchbbs" type="homeworld.bbs.SearchBBS" validate="false" scope="request" name="SearchBBSForm">
+	        <forward redirect="false" name="success" path="/index.jsp?body=/homeworld/bbs/SearchBBS.jsp" />
+	        <forward redirect="false" name="failure" path="/index.jsp?body=/system/InputError.jsp" />
+	    </action>
+		<action path="/searchbbsFirst" type="homeworld.bbs.SearchBBSFirst" validate="false" scope="request" name="SearchBBSForm">
+	        <forward redirect="false" name="success" path="/homeworld/bbs/SearchBBSFirst.jsp" />
+	        <forward redirect="false" name="failure" path="/index.jsp?body=/system/InputError.jsp" />
+	    </action>
+
+
+
+		<action path="/bbstopic" type="BBS.BBSTopic" validate="false" scope="request" name="BBSTopicForm">
+	        <forward redirect="false" name="success" path="/BBS/BBSTopic.jsp" />
+	        <forward redirect="false" name="failure" path="/system/InputError.jsp" />
+	    </action>
+
+		<action path="/countsearch" type="erp.querys.CountSearch" validate="false" scope="request" name="CountSearchForm">
+	        <forward redirect="false" name="success" path="/erp/querys/CountSearch.jsp" />
+	        <forward redirect="false" name="failure" path="/system/InputError.jsp" />
+	    </action>
+	    
+		<action path="/snsearch" type="erp.querys.SNSearch" validate="false" scope="request" name="SNSearchForm">
+	        <forward redirect="false" name="success" path="/erp/querys/SNSearch.jsp" />
+	        <forward redirect="false" name="failure" path="/system/InputError.jsp" />
+	    </action>
+		<action path="/commsearch" type="commsearch.CommSearch" validate="false" scope="request" name="CommSearchForm">
+	        <forward redirect="false" name="success" path="/commsearch/CommSearch.jsp" />
+	        <forward redirect="false" name="failure" path="/system/InputError.jsp" />
+	    </action>
+
+		<action path="/commsearchresult" type="commsearch.CommSearchResult" validate="false" scope="request" name="CommSearchForm">
+	        <forward redirect="false" name="success" path="/commsearch/CommSearchResult.jsp" />
+	        <forward redirect="false" name="failure" path="/system/InputError.jsp" />
+	    </action>
+	    		
+		
+	</action-mappings>
+</struts-config>

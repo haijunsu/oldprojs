@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+	<display-name>G-Roller</display-name>
+
+  <servlet>
+    <servlet-name>action</servlet-name>
+    <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+    <init-param>
+      <param-name>config</param-name>
+      <param-value>/WEB-INF/struts-config.xml</param-value>
+    </init-param>
+	<init-param>
+		<param-name>application</param-name>
+		<param-value>application</param-value>
+	</init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet>
+   	<servlet-name>XML_RPC</servlet-name>
+    <servlet-class>groller.application.xmlrpc.XmlRpcServlet</servlet-class>
+  </servlet>
+
+  <!-- Action Servlet Mapping -->
+  <servlet-mapping>
+    <servlet-name>action</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+  	<servlet-name>XML_RPC</servlet-name>
+  	<url-pattern>/xml-rpc</url-pattern>
+  </servlet-mapping>
+
+  <!-- Struts Tag Library Descriptors -->
+  <taglib>
+    <taglib-uri>/WEB-INF/taglib/struts-bean.tld</taglib-uri>
+    <taglib-location>/WEB-INF/taglib/struts-bean.tld</taglib-location>
+  </taglib>
+
+  <taglib>
+    <taglib-uri>/WEB-INF/taglib/struts-html.tld</taglib-uri>
+    <taglib-location>/WEB-INF/taglib/struts-html.tld</taglib-location>
+  </taglib>
+
+  <taglib>
+    <taglib-uri>/WEB-INF/taglib/struts-logic.tld</taglib-uri>
+    <taglib-location>/WEB-INF/taglib/struts-logic.tld</taglib-location>
+  </taglib>
+
+  <taglib>
+    <taglib-uri>/WEB-INF/taglib/struts-tiles.tld</taglib-uri>
+    <taglib-location>/WEB-INF/taglib/struts-tiles.tld</taglib-location>
+  </taglib>
+
+
+</web-app>

@@ -1,0 +1,21 @@
+<html>
+<head>
+<title>¡ƒÃÏ “</title>
+<script language=JavaScript>
+function writeTop(content)
+{
+	this.chatcontent.document.writeln(content);
+	this.chatcontent.document.writeln("<" + "script>self.self.scrollBy(0,100)</" + "script>");
+}
+function clearChatContent() //«Â∆¡
+{
+	this.chatcontent.document.close();
+	this.chatcontent.document.open();
+}
+</script>
+</head>
+<frameset rows="*,180">
+   <frame name="chatcontent" src="">
+   <frame name="input" src="2.html">
+</frameset>
+</html>

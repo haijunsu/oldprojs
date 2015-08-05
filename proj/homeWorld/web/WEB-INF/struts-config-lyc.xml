@@ -1,0 +1,443 @@
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<!--
+     This is a blank Struts configuration file with an example
+     welcome action/page and other commented sample elements.
+
+     Tiles and the Struts Validator are configured using the factory defaults
+     and are ready-to-use.
+
+     NOTE: If you have a generator tool to create the corresponding Java classes
+     for you, you could include the details in the "form-bean" declarations.
+     Otherwise, you would only define the "form-bean" element itself, with the
+     corresponding "name" and "type" attributes, as shown here.
+--><struts-config>
+
+
+<!-- ======================================== Form Bean Definitions -->
+
+    <form-beans>
+    <!--<form-bean name="CommSearchForm" type="commsearch.CommSearchForm" />	-->
+<!--LYC-->
+
+		<form-bean name="homeworldEpydtlForm" type="homeworld.fk.homeworldEpydtlForm" />
+		<form-bean name="homeworldEpyfeeForm" type="homeworld.fk.homeworldEpyfeeForm" />
+		<form-bean name="homeworldPrintEipdtlForm" type="homeworld.fk.homeworldPrintEipdtlForm" />
+		<form-bean name="homeworldEipdtlForm" type="homeworld.fk.homeworldEipdtlForm" />
+		
+		
+		<form-bean name="homeworldPrintEdcdsqForm" type="homeworld.edc.homeworldPrintEdcdsqForm" />
+		
+		
+		<form-bean name="homeworldPrintErjhdrForm" type="homeworld.rtv.homeworldPrintErjhdrForm" />
+		<form-bean name="homeworldErjhdrForm" type="homeworld.rtv.homeworldErjhdrForm" />
+		
+		
+		<form-bean name="homeworldPrintSendForm" type="homeworld.rtv.homeworldPrintSendForm" />
+		<form-bean name="homeworldPrintErvhdrForm" type="homeworld.rtv.homeworldPrintErvhdrForm" />
+		<form-bean name="homeworldErvhdrForm" type="homeworld.rtv.homeworldErvhdrForm" />
+		<form-bean name="homeworldPrintErthdrForm" type="homeworld.rtv.homeworldPrintErthdrForm" />
+		<form-bean name="homeworldErthdrForm" type="homeworld.rtv.homeworldErthdrForm" />
+
+		<form-bean name="homeworldOpenForm" type="homeworld.xml.homeworldOpenForm" />
+		<form-bean name="homeworldXmlForm" type="homeworld.xml.homeworldXmlForm" />
+		
+		
+		<form-bean name="homeworldUsersForm" type="homeworld.system.homeworldUsersForm" />
+		<form-bean name="homeworldResetForm" type="homeworld.system.homeworldResetForm" />
+		<form-bean name="homeworldUseridgNEWForm" type="homeworld.system.homeworldUseridgNEWForm" />
+		<form-bean name="homeworldUserLifeForm" type="homeworld.system.homeworldUserLifeForm" />
+		<form-bean name="homeworldUserGroupForm" type="homeworld.system.homeworldUserGroupForm" />
+		<form-bean name="homeworldPurviewNewForm" type="homeworld.system.homeworldPurviewNewForm" />
+		<form-bean name="homeworldPurviewForm" type="homeworld.system.homeworldPurviewForm" />
+		<form-bean name="homeworldFatherForm" type="homeworld.system.homeworldFatherForm" />
+		<form-bean name="homeworldUseridgForm" type="homeworld.system.homeworldUseridgForm" />
+		<form-bean name="homeworldGroupmaForm" type="homeworld.system.homeworldGroupmaForm" />
+		
+		
+		
+		<form-bean name="homeworldSelectForm" type="homeworld.bbs.homeworldSelectForm" />
+		<form-bean name="homeworldTestForm" type="homeworld.bbs.homeworldTestForm" />
+		<form-bean name="homeworldTopicLookForm" type="homeworld.bbs.homeworldTopicLookForm" />
+		<form-bean name="homeworldTopicForm" type="homeworld.bbs.homeworldTopicForm" />
+		
+		
+		
+		<form-bean name="homeworldPrintOrderNEWForm" type="homeworld.print.homeworldPrintOrderNEWForm" />
+		
+		<form-bean name="homeworldReturnOrderForm" type="homeworld.action.homeworldReturnOrderForm" />
+		<form-bean name="homeworldActionLogForm" type="homeworld.action.homeworldActionLogForm" />
+		<form-bean name="homeworldOrderForm" type="homeworld.action.homeworldOrderForm" />
+		
+
+
+				
+		<form-bean name="OrderOutForm" type="erp.order.OrderOutForm" />	
+
+		<form-bean name="IdnkhMXZForm" type="finance.IdnkhMXZForm" />
+		
+		<form-bean name="IdnkhHTSZForm" type="client.ht.IdnkhHTSZForm" />
+		
+		<form-bean name="IdnkhHTSBForm" type="client.ht.IdnkhHTSBForm" />
+		
+		<form-bean name="IdnkhHTForm" type="client.ht.IdnkhHTForm" />
+		
+		<form-bean name="IdnkhTelForm" type="erp.repair.IdnkhTelForm" />	
+		
+		<form-bean name="IdnkhMPForm" type="client.units.IdnkhMPForm" />
+
+		<form-bean name="IdnkhStockMoveForm" type="erp.stock.IdnkhStockMoveForm" />	
+		
+		<form-bean name="IdnkhRepairForm" type="erp.repair.IdnkhRepairForm" />	
+		
+		<form-bean name="IdnkhInstallForm" type="erp.install.IdnkhInstallForm" />	
+
+		<form-bean name="OrderPassForm" type="erp.order.OrderPassForm" />	
+		
+		<form-bean name="IdnkhDWForm" type="client.units.IdnkhDWForm" />
+		
+		<form-bean name="IdnkhProductForm" type="erp.product.IdnkhProductForm" />	
+		
+		<form-bean name="UserForm" type="systemmanager.UserForm" />
+
+		<form-bean name="OrderInForm" type="erp.order.OrderInForm" />	
+		
+		<form-bean name="SelectOneForm" type="system.action.SelectOneForm" />	
+		<form-bean name="SelectFieldForm" type="system.action.SelectFieldForm" />
+		
+		<form-bean name="IdnkhLxForm" type="client.cases.IdnkhLxForm" />
+
+		<form-bean name="CodesForm" type="systemmanager.CodesForm" />	
+		<form-bean name="UsersForm" type="systemmanager.UsersForm" />
+		<form-bean name="MenuAllForm" type="systemmanager.MenuAllForm" />
+		<form-bean name="ParametForm" type="systemmanager.ParametForm" />
+		<form-bean name="DeptViewForm" type="systemmanager.DeptViewForm" />		
+		
+		
+		<form-bean name="SalaryClothingForm" type="salaryuser.SalaryClothingForm" />
+		<form-bean name="SalaryEaForm" type="salaryuser.SalaryEaForm" />
+		<form-bean name="SalaryCardForm" type="salaryuser.SalaryCardForm" />
+		<form-bean name="data" type="lyc.data" />
+<!--/LYC-->
+    </form-beans>
+
+
+<!-- =================================== Action Mapping Definitions -->
+
+	<action-mappings>
+<!--LYC-->
+
+	    <action path="/homeworldEpyfee" type="homeworld.fk.homeworldEpyfeeAction" validate="false" scope="request" name="homeworldEpyfeeForm">
+	        <forward redirect="false" name="success" path="/homeworld/fk/homeworldEpyfee.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    <action path="/homeworldEpydtl" type="homeworld.fk.homeworldEpydtlAction" validate="false" scope="request" name="homeworldEpydtlForm">
+	        <forward redirect="false" name="success" path="/homeworld/fk/homeworldEpydtl.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    <action path="/homeworldPrintEipdtl" type="homeworld.fk.homeworldPrintEipdtlAction" validate="false" scope="request" name="homeworldPrintEipdtlForm">
+	        <forward redirect="false" name="success" path="/homeworld/fk/homeworldPrintEipdtl.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    <action path="/homeworldEipdtl" type="homeworld.fk.homeworldEipdtlAction" validate="false" scope="request" name="homeworldEipdtlForm">
+	        <forward redirect="false" name="success" path="/homeworld/fk/homeworldEipdtl.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    
+	    
+	    <action path="/homeworldPrintEdcdsq" type="homeworld.edc.homeworldPrintEdcdsqAction" validate="false" scope="request" name="homeworldPrintEdcdsqForm">
+	        <forward redirect="false" name="success" path="/homeworld/edc/homeworldPrintEdcdsq.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    
+	    
+	    <action path="/homeworldPrintErjhdr" type="homeworld.rtv.homeworldPrintErjhdrAction" validate="false" scope="request" name="homeworldPrintErjhdrForm">
+	        <forward redirect="false" name="success" path="/homeworld/rtv/homeworldPrintErjhdr.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    <action path="/homeworldErjhdr" type="homeworld.rtv.homeworldErjhdrAction" validate="false" scope="request" name="homeworldErjhdrForm">
+	        <forward redirect="false" name="success" path="/homeworld/rtv/homeworldErjhdr.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    <action path="/homeworldPrintSend" type="homeworld.rtv.homeworldPrintSendAction" validate="false" scope="request" name="homeworldPrintSendForm">
+	        <forward redirect="false" name="success" path="/homeworld/rtv/homeworldPrintSend.jsp" />
+	        <forward redirect="false" name="sendII" path="/homeworld/fk/homeworldPrintSendII.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    <action path="/homeworldPrintErvhdr" type="homeworld.rtv.homeworldPrintErvhdrAction" validate="false" scope="request" name="homeworldPrintErvhdrForm">
+	        <forward redirect="false" name="success" path="/homeworld/rtv/homeworldPrintErvhdr.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    <action path="/homeworldErvhdr" type="homeworld.rtv.homeworldErvhdrAction" validate="false" scope="request" name="homeworldErvhdrForm">
+	        <forward redirect="false" name="success" path="/index.jsp?body=/homeworld/rtv/homeworldErvhdr.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    <action path="/homeworldPrintErthdr" type="homeworld.rtv.homeworldPrintErthdrAction" validate="false" scope="request" name="homeworldPrintErthdrForm">
+	        <forward redirect="false" name="success" path="/homeworld/rtv/homeworldPrintErthdr.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    <action path="/homeworldErthdr" type="homeworld.rtv.homeworldErthdrAction" validate="false" scope="request" name="homeworldErthdrForm">
+	        <forward redirect="false" name="success" path="/index.jsp?body=/homeworld/rtv/homeworldErthdr.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    
+	    
+	    
+	    <action path="/homeworldOpen" type="homeworld.xml.homeworldOpenAction" validate="false" scope="request" name="homeworldOpenForm">
+	        <forward redirect="false" name="success" path="/index.jsp?body=/homeworld/xml/homeworldOpen.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    <action path="/homeworldXml" type="homeworld.xml.homeworldXmlAction" validate="false" scope="request" name="homeworldXmlForm">
+	        <forward redirect="false" name="success" path="/index.jsp?body=/homeworld/xml/homeworldXml.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    
+	    
+	    <action path="/homeworldUsers" type="homeworld.system.homeworldUsersAction" validate="false" scope="request" name="homeworldUsersForm">
+	        <forward redirect="false" name="success" path="/index.jsp?body=/homeworld/system/homeworldUsers.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    <action path="/homeworldReset" type="homeworld.system.homeworldResetAction" validate="false" scope="request" name="homeworldResetForm">
+	        <forward redirect="false" name="success" path="/index.jsp?body=/homeworld/system/homeworldReset.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    <action path="/homeworldUseridgNEW" type="homeworld.system.homeworldUseridgNEWAction" validate="false" scope="request" name="homeworldUseridgNEWForm">
+	        <forward redirect="false" name="success" path="/index.jsp?body=/homeworld/system/homeworldUseridgNEW.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    <action path="/homeworldUserLife" type="homeworld.system.homeworldUserLifeAction" validate="false" scope="request" name="homeworldUserLifeForm">
+	        <forward redirect="false" name="success" path="/index.jsp?body=/homeworld/system/homeworldUserLife.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    <action path="/homeworldUserGroup" type="homeworld.system.homeworldUserGroupAction" validate="false" scope="request" name="homeworldUserGroupForm">
+	        <forward redirect="false" name="success" path="/index.jsp?body=/homeworld/system/homeworldUserGroup.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    <action path="/homeworldPurviewNew" type="homeworld.system.homeworldPurviewNewAction" validate="false" scope="request" name="homeworldPurviewNewForm">
+	        <forward redirect="false" name="success" path="/index.jsp?body=/homeworld/system/homeworldPurviewNew.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    <action path="/homeworldFather" type="homeworld.system.homeworldFatherAction" validate="false" scope="request" name="homeworldFatherForm">
+	        <forward redirect="false" name="success" path="/index.jsp?body=/homeworld/system/homeworldFather.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    <action path="/homeworldUseridg" type="homeworld.system.homeworldUseridgAction" validate="false" scope="request" name="homeworldUseridgForm">
+	        <forward redirect="false" name="success" path="/index.jsp?body=/homeworld/system/homeworldUseridg.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+
+	    <action path="/homeworldPurview" type="homeworld.system.homeworldPurviewAction" validate="false" scope="request" name="homeworldPurviewForm">
+	        <forward redirect="false" name="success" path="/index.jsp?body=/homeworld/system/homeworldPurview.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    <action path="/homeworldGroupma" type="homeworld.system.homeworldGroupmaAction" validate="false" scope="request" name="homeworldGroupmaForm">
+	        <forward redirect="false" name="success" path="/index.jsp?body=/homeworld/system/homeworldGroupma.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    
+	    
+	    
+	    <action path="/homeworldSelect" type="homeworld.bbs.homeworldSelectAction" validate="false" scope="request" name="homeworldSelectForm">
+	        <forward redirect="false" name="success" path="/index.jsp?body=/homeworld/bbs/homeworldSelect.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    <action path="/homeworldTest" type="homeworld.bbs.homeworldTestAction" validate="false" scope="request" name="homeworldTestForm">
+	        <forward redirect="false" name="success" path="/index.jsp?body=/homeworld/bbs/homeworldTest.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    <action path="/homeworldTopicLook" type="homeworld.bbs.homeworldTopicLookAction" validate="false" scope="request" name="homeworldTopicLookForm">
+	        <forward redirect="false" name="success" path="/index.jsp?body=/homeworld/bbs/homeworldTopicLook.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    <action path="/homeworldTopic" type="homeworld.bbs.homeworldTopicAction" validate="false" scope="request" name="homeworldTopicForm">
+	        <forward redirect="false" name="success" path="/index.jsp?body=/homeworld/bbs/homeworldTopic.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    
+	    
+	    
+	    
+	    
+	    <action path="/homeworldPrintOrderNEW" type="homeworld.print.homeworldPrintOrderNEWAction" validate="false" scope="request" name="homeworldPrintOrderNEWForm">
+	        <forward redirect="false" name="success" path="/homeworld/print/homeworldPrintOrderNEW.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    <action path="/homeworldReturnOrder" type="homeworld.action.homeworldReturnOrderAction" validate="false" scope="request" name="homeworldReturnOrderForm">
+	        <forward redirect="false" name="success" path="/index.jsp?body=/homeworld/action/homeworldReturnOrder.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    
+	    <action path="/homeworldActionLog" type="homeworld.action.homeworldActionLogAction" validate="false" scope="request" name="homeworldActionLogForm">
+	        <forward redirect="false" name="success" path="/index.jsp?body=/homeworld/action/homeworldActionLog.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    <action path="/homeworldOrder" type="homeworld.action.homeworldOrderAction" validate="false" scope="request" name="homeworldOrderForm">
+	        <forward redirect="false" name="success" path="/homeworld/action/homeworldOrder.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    <action path="/homeworldPrintOrder" type="homeworld.print.homeworldPrintOrderAction" validate="false" scope="request" name="homeworldOrderForm">
+	        <forward redirect="false" name="success" path="/homeworld/print/homeworldPrintOrder.jsp" />
+	        <forward redirect="false" name="err" path="/homeworld/system/error.htm" />
+	    </action>
+	    
+	    
+	    
+	    <action path="/OrderOut" type="erp.order.OrderOutAction" validate="false" scope="request" name="OrderOutForm">
+	        <forward redirect="false" name="success" path="/erp/order/OrderOut.jsp" />
+	        <forward redirect="false" name="select" path="/commsearch.do?page=1&amp;queryid=DS_DDZB&amp;actiondo=OrderOut.do" />
+	    </action>
+	    
+	    <action path="/IdnkhMXZ" type="finance.IdnkhMXZAction" validate="false" scope="request" name="IdnkhMXZForm">
+	        <forward redirect="false" name="success" path="/finance/IdnkhMXZ.jsp" />
+	        <forward redirect="false" name="selectout" path="/commsearch.do?page=1&amp;queryid=MXZOUT&amp;actiondo=IdnkhMXZ.do" />
+	        <forward redirect="false" name="selectin" path="/commsearch.do?page=1&amp;queryid=MXZIN&amp;actiondo=IdnkhMXZ.do" />
+	    </action>
+	    
+	    <action path="/IdnkhHTSZ" type="client.ht.IdnkhHTSZAction" validate="false" scope="request" name="IdnkhHTSZForm">
+	        <forward redirect="false" name="success" path="/client/ht/IdnkhHTSZ.jsp" />
+	        <forward redirect="false" name="select" path="/commsearch.do?page=1&amp;queryid=HT&amp;actiondo=IdnkhHT.do" />
+	    </action>
+	    
+	    <action path="/IdnkhHTSB" type="client.ht.IdnkhHTSBAction" validate="false" scope="request" name="IdnkhHTSBForm">
+	        <forward redirect="false" name="success" path="/client/ht/IdnkhHTSB.jsp" />
+	        <forward redirect="false" name="select" path="/commsearch.do?page=1&amp;queryid=HT&amp;actiondo=IdnkhHT.do" />
+	    </action>
+	
+	    <action path="/IdnkhHT" type="client.ht.IdnkhHTAction" validate="false" scope="request" name="IdnkhHTForm">
+	        <forward redirect="false" name="success" path="/client/ht/IdnkhHT.jsp" />
+	        <forward redirect="false" name="select" path="/commsearch.do?page=1&amp;queryid=HT&amp;actiondo=IdnkhHT.do" />
+	    </action>
+	    
+	    <action path="/IdnkhTel" type="erp.repair.IdnkhTelAction" validate="false" scope="request" name="IdnkhTelForm">
+	        <forward redirect="false" name="success" path="/erp/repair/IdnkhTel.jsp" />
+	        <forward redirect="false" name="select" path="/commsearch.do?page=1&amp;queryid=DHJLB&amp;actiondo=IdnkhTel.do" />
+	    </action>
+	    
+	    <action path="/IdnkhMP" type="client.units.IdnkhMPAction" validate="false" scope="request" name="IdnkhMPForm">
+	        <forward redirect="false" name="success" path="/client/units/IdnkhMP.jsp" />
+	        <forward redirect="false" name="select" path="/commsearch.do?page=1&amp;queryid=MP&amp;actiondo=IdnkhMP.do" />
+	    </action>
+	    
+	    <action path="/IdnkhStockMove" type="erp.stock.IdnkhStockMoveAction" validate="false" scope="request" name="IdnkhStockMoveForm">
+	        <forward redirect="false" name="success" path="/erp/stock/IdnkhStockMove.jsp" />
+	        <forward redirect="false" name="select" path="/commsearch.do?page=1&amp;queryid=DS_YKZB&amp;actiondo=IdnkhStockMove.do" />
+	    </action>
+	
+	    <action path="/IdnkhRepair" type="erp.repair.IdnkhRepairAction" validate="false" scope="request" name="IdnkhRepairForm">
+	        <forward redirect="false" name="success" path="/erp/repair/IdnkhRepair.jsp" />
+	        <forward redirect="false" name="select" path="/commsearch.do?page=1&amp;queryid=DS_CRKZB07&amp;actiondo=IdnkhRepair.do" />
+	    </action>
+	    
+	    <action path="/IdnkhInstall" type="erp.install.IdnkhInstallAction" validate="false" scope="request" name="IdnkhInstallForm">
+	        <forward redirect="false" name="success" path="/erp/install/IdnkhInstall.jsp" />
+	        <forward redirect="false" name="select" path="/commsearch.do?page=1&amp;queryid=DS_ZJZB01&amp;actiondo=IdnkhInstall.do" />
+	    </action>
+	    
+	    <action path="/OrderPass" type="erp.order.OrderPassAction" validate="false" scope="request" name="OrderPassForm">
+	        <forward redirect="false" name="success" path="/erp/order/OrderPass.jsp" />
+	        <forward redirect="false" name="select" path="/commsearch.do?page=1&amp;queryid=MMCSHB&amp;actiondo=OrderPass.do" />
+	    </action>
+	    
+	    <action path="/IdnkhDW" type="client.units.IdnkhDWAction" validate="false" scope="request" name="IdnkhDWForm">
+	        <forward redirect="false" name="success" path="/client/units/IdnkhDW.jsp" />
+	        <forward redirect="false" name="select" path="/commsearch.do?page=1&amp;queryid=DW&amp;actiondo=IdnkhDW.do" />
+	    </action>
+
+	    <action path="/IdnkhProduct" type="erp.product.IdnkhProductAction" validate="false" scope="request" name="IdnkhProductForm">
+	        <forward redirect="false" name="success" path="/erp/product/IdnkhProduct.jsp" />
+	        <forward redirect="false" name="select" path="/commsearch.do?page=1&amp;queryid=CPSXB&amp;actiondo=IdnkhProduct.do" />
+	    </action>
+	    
+
+	    <action path="/User" type="systemmanager.UserAction" validate="false" scope="request" name="UserForm">
+	        <forward redirect="false" name="success" path="/systemmanager/User.jsp" />
+	    </action>
+	    
+	    <action path="/OrderIn" type="erp.order.OrderInAction" validate="false" scope="request" name="OrderInForm">
+	        <forward redirect="false" name="success" path="/erp/order/OrderIn.jsp" />
+	        <forward redirect="false" name="select" path="/commsearch.do?page=1&amp;queryid=DS_XGDJZB01&amp;actiondo=OrderIn.do" />
+	    </action>
+	    
+	    <action path="/SelectField" type="system.action.SelectFieldAction" validate="false" scope="request" name="SelectFieldForm">
+	        <forward redirect="false" name="success" path="/system/SelectField.jsp" />
+	    </action>
+	    <action path="/SelectOne" type="system.action.SelectOneAction" validate="false" scope="request" name="SelectOneForm">
+	        <forward redirect="false" name="success" path="/system/SelectOne.jsp" />
+	    </action>
+	    
+	    
+	    <action path="/IdnkhLx" type="client.cases.IdnkhLxAction" validate="false" scope="request" name="IdnkhLxForm">
+	        <forward redirect="false" name="success" path="/client/cases/IdnkhLx.jsp" />
+	        <forward redirect="false" name="select" path="/commsearch.do?page=1&amp;queryid=LX&amp;actiondo=IdnkhLx.do" />
+	    </action>
+	    
+	    
+	    <action path="/Users" type="systemmanager.UsersAction" validate="false" scope="request" name="UsersForm">
+	        <forward redirect="false" name="success" path="/systemmanager/Users.jsp" />
+	    </action>
+	    <action path="/MenuAll" type="systemmanager.MenuAllAction" validate="false" scope="request" name="MenuAllForm">
+	        <forward redirect="false" name="success" path="/index.jsp?body=/systemmanager/MenuAll.jsp" />
+	    </action>
+	    <action path="/Paramet" type="systemmanager.ParametAction" validate="false" scope="request" name="ParametForm">
+	        <forward redirect="false" name="success" path="/systemmanager/Paramet.jsp" />
+	    </action>
+    	<action path="/Codes" type="systemmanager.CodesAction"   validate="true" scope="request" name="CodesForm">
+	    	<forward redirect="false" name="ArrayForm" path="/index.jsp?body=/systemmanager/Codes.jsp" />
+	    </action>	
+	    <action path="/DeptView" type="systemmanager.DeptViewAction" validate="false" scope="request" name="DeptViewForm">
+	        <forward redirect="false" name="success" path="/systemmanager/DeptView.jsp" />
+	    </action>
+	    
+	    
+	    
+	    
+	    
+	    <action path="/SalaryClothing" type="salaryuser.SalaryClothingAction" validate="false" scope="request" name="SalaryClothingForm">
+	        <forward redirect="false" name="success" path="/salaryuser/SalaryClothing.jsp" />
+	    </action>
+	    <action path="/SalaryEa" type="salaryuser.SalaryEaAction" validate="false" scope="request" name="SalaryEaForm">
+	        <forward redirect="false" name="success" path="/salaryuser/SalaryEa.jsp" />
+	    </action>
+	    <action path="/salarycard" type="salaryuser.SalaryCardCtrl" validate="false" scope="request" name="SalaryCardForm">
+	        <forward redirect="false" name="failure" path="/salaryuser/SalaryCard.jsp" />
+	        <forward redirect="false" name="success" path="/salaryuser/SalaryCard.jsp" />
+	    </action>
+	    <action path="/salarycardsave" type="salaryuser.SalaryCardSave" validate="false" scope="request" name="SalaryCardForm">
+	        <forward redirect="false" name="failure" path="/salaryuser/SalaryCard.jsp" />
+	        <forward redirect="false" name="success" path="/salaryuser/SalaryCard.jsp" />
+	    </action>
+	    <action path="/lyc" type="lyc.Lyc" validate="false" scope="request" name="data">
+	        <forward redirect="false" name="success" path="/lyc.jsp" />
+	    </action>
+
+<!--/LYC-->
+	</action-mappings>
+</struts-config>

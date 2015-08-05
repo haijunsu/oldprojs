@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>theHomeWorld</TITLE>
+<META http-equiv=content-type content="text/html; charset=gb2312">
+<STYLE type=text/css>.point {
+   FONT-SIZE: 12px; CURSOR: hand; COLOR: #000000; FONT-FAMILY: Webdings; POSITION: absolute; BACKGROUND-COLOR: #eeeeee
+}
+</STYLE>
+
+<SCRIPT language=javascript>
+function changeWin(){
+   if(parent.main.cols!="0,10,*")
+   {
+      parent.main.cols="0,10,*";
+      document.all.menuSwitch.innerHTML="<font class=point>4</font>";
+      if (parent.right.maintable != null)
+      parent.right.maintable.style.width=761
+   }
+   else
+   {
+      parent.main.cols="180,10,*";
+      document.all.menuSwitch.innerHTML="<font class=point>3</font>";
+      if (parent.right.maintable != null)
+      parent.right.maintable.style.width=590
+   }
+}
+</SCRIPT>
+
+<BODY leftMargin=0 topMargin=0 marginwidth="0" marginheight="0">
+<TABLE height="100%" cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR bgColor=#eeeeee>
+          <TD id=menuSwitch onclick=changeWin() height="100%">
+          <FONT class=point>3</FONT>
+          </TD>
+  </TR>
+  </TBODY>
+</TABLE>
+</BODY>
+</HTML>

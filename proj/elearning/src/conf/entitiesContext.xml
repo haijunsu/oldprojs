@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<!-- setup entities properties -->
+	<bean id="entityUser" class="application.entity.User" />
+	<bean id="entityGroup" class="application.entity.Group" />
+	<bean id="entityMenu" class="application.entity.Menu" />
+</beans>

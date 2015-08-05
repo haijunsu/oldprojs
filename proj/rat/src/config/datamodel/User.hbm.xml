@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.navy.framework.web.entities">
+	<class name="User" table="user">
+		<id name="id" type="long">
+			<generator class="native"></generator>
+		</id>
+		<property name="username" type="string" length="128"
+			unique="true" not-null="true" />
+		<property name="userFullname" type="string" length="128"
+			unique="true"/>
+		<property name="password" type="string" length="128"
+			not-null="true" />
+		<property name="language" type="locale" length="10"></property>
+		<property name="mobile" type="string" length="128" />
+		<property name="tel" type="string" length="128" />
+		<property name="email" type="string" length="128" unique="true" />
+		<property name="perview" type="integer" />
+		<property name="registerDate" type="timestamp"></property>
+		<property name="lastAccessTime" type="timestamp"></property>
+		<property name="lastAccessFrom" type="string" length="128"></property>
+		<property name="state" type="integer"></property>
+	</class>
+	<class name="Address" table="address">
+		<id name="id" type="long">
+			<generator class="native"></generator>
+		</id>
+		<property name="province" type="string" length="128"
+			unique="false" not-null="true">
+		</property>
+		<property name="city" type="string" length="128" unique="false"
+			not-null="true">
+		</property>
+		<property name="district" type="string" length="128" />
+		<property name="street" type="string" length="128" />
+		<property name="zipCode" type="string" length="20" />
+
+		<many-to-one name="user" class="User" cascade="all"></many-to-one>
+	</class>
+	<class name="UserRole" table="userRole">
+		<id name="id" type="long">
+			<generator class="native"></generator>
+		</id>
+		<property name="roleCode" type="string" length="20"
+			unique="true" not-null="true">
+		</property>
+		<property name="roleName" type="string" length="128"
+			unique="false" not-null="true">
+		</property>
+	</class>
+	<class name="AccessLog" table="accessLog">
+		<id name="id" type="long">
+			<generator class="native"></generator>
+		</id>
+		<property name="username" type="string" length="30"
+			not-null="true">
+		</property>
+		<property name="userFullname" type="string" length="128"
+			not-null="true" />
+		<property name="ipAddress" type="string" length="128" />
+		<property name="actionType" type="integer" />
+		<property name="accessTime" type="timestamp" />
+
+	</class>
+</hibernate-mapping>

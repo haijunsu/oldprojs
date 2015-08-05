@@ -1,0 +1,299 @@
+
+BODY
+{
+    BACKGROUND-COLOR: #FFFFFF;
+    COLOR: #000000;
+    font-family: "Arial", "Helvetica", "sans-serif", "����宋体";
+    FONT-SIZE: 10px;
+}
+
+H1
+{
+    COLOR: #6666CC;
+    TEXT-TRANSFORM: capitalize
+}
+
+H2
+{
+    COLOR: #6666CC;
+    TEXT-TRANSFORM: capitalize
+}
+
+H3
+{
+    COLOR: #6666CC;
+    TEXT-TRANSFORM: capitalize
+}
+
+H4
+{
+    COLOR: #6666CC;
+    TEXT-TRANSFORM: capitalize
+}
+
+H5
+{
+    COLOR: #6666CC;
+    TEXT-TRANSFORM: capitalize
+}
+
+H6
+{
+    COLOR: #6666CC;
+    TEXT-TRANSFORM: capitalize
+}
+
+A:hover {
+	COLOR: #00bbff; 
+	TEXT-DECORATION: underline
+}
+
+A:active {
+	COLOR: #0000ff; TEXT-DECORATION: underline;
+}
+
+A:link
+{
+	COLOR: #0000ff; TEXT-DECORATION: underline;
+}
+
+A:visited
+{
+	COLOR: #0000ff; TEXT-DECORATION: underline;
+}
+
+.input1
+{
+	height: 18px;
+	border: 1px #333333 solid;
+	background-color: #FFFFFF;
+	color: #000000;
+	text-decoration: none
+}
+.input2
+{
+	height: 16px;
+	border: 1px #333333 solid;
+	background-color: #CCCCCC
+}
+
+.testarea1
+{
+	BORDER-RIGHT: rgb(51,51,51) 1px solid;
+	BORDER-TOP: rgb(51,51,51) 1px solid;
+	BORDER-LEFT: rgb(51,51,51) 1px solid;
+	BORDER-BOTTOM: rgb(51,51,51) 1px solid;
+}
+
+.table1
+{
+	border:#000000 dashed;
+	border-width:1 0 0 1
+}
+
+.td1
+{
+	border:#000000 dashed;
+	border-width:0 1 1 0
+}
+
+.table2
+{
+	border:#cc0000 solid;
+	border-width:1 0 0 1;
+	background:#ffffff
+}
+
+.td2
+{
+	border:#cc0000 solid;
+	border-width:0 1 1 0
+}
+
+.table3
+{
+	border:green dotted;
+	border-width:2 0 0 2
+}
+
+.td3
+{
+	border:green dotted;
+	border-width:0 2 2 0
+}
+
+.table4
+{
+	border:black solid;
+	border-width:2 1 1 2
+	position: absolute;
+}
+.table4HeaderStyle {
+	background-color: #CCCCCC;
+	text-align: center;
+	border:black solid;
+	border-width:0 1 1 0;
+	font-weight: bold;
+	text-transform: capitalize;
+}
+
+.td4
+{
+	border:black solid;
+	border-width:0 1 1 0;
+}
+
+.table4groupTdStyle
+{
+	border:black solid;
+	border-width:0 1 1 0;
+	background-color: #CCCC99;
+}
+.table5
+{
+	border:teal 4 double
+}
+
+.td5
+{
+	border:teal 1 solid
+}
+
+.table6
+{
+	border:3 outset
+}
+
+.td6
+{
+	border: 1 solid
+}
+
+.table7
+{
+	border:3 inset
+}
+
+.td7
+{
+	border:1 solid
+}
+
+.table8
+{
+	border:#ee0000 3 ridge
+}
+
+.td8
+{
+	border:1 solid
+}
+
+.table9
+{
+	border: 4 skyblue ridge
+}
+
+.td9
+{
+	border:1 navy groove;
+	background:#ffffff
+}
+
+.td10
+{
+	border:maroon 3 double
+}
+
+.table11
+{
+	border:purple 4;
+	border-style:dashed double
+}
+
+.td11
+{
+	border:1 solid
+}
+
+.out
+{
+	border-width:1;
+	border-style:solid;
+	border-color:#cccccc #333333 #333333 #cccccc
+}
+
+.in
+{
+	border-width:1;
+	border-style:solid;
+	border-color:#333333 #cccccc #cccccc #333333;
+	background:#ffcccc
+}
+
+.noBorder
+{
+	border-width:0 0 0 0
+}
+
+.borderPrint{
+	border-collapse: collapse;
+}
+
+.p8 {
+	font-size: 8px;
+}
+
+.p9 {
+	font-size: 9px;
+}
+
+.p10 {
+	font-size: 10px;
+}
+
+.p12 {
+	font-size: 12px;
+}
+
+.p14 {
+	font-size: 14px;
+}
+
+.p16 {
+	font-size: 16px;
+}
+.p18 {
+	font-size: 18px;
+}
+.p24 {
+	font-size: 24px;
+}
+
+.nright {
+	text-align: right;
+}
+.nleft {
+	text-align: left;
+}
+.ncenter {
+	text-align: center;
+}
+
+.errTitle {
+	FONT-WEIGHT: bold;
+	Color: red; 
+	font-size: 16px;
+}
+.errMsg {
+	Color: red;
+}
+
+.successTitle {
+	FONT-WEIGHT: bold;
+	Color: green; 
+	font-size: 16px;
+}
+.successMsg {
+	Color: green;
+}

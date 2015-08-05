@@ -1,0 +1,187 @@
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<link rel="stylesheet" type="text/css" href="../../../css/site.css">
+<script language="JavaScript1.2">
+NS4 = (document.layers) ? 1 : 0;
+IE4 = (document.all) ? 1 : 0;
+ver4 = (NS4 || IE4) ? 1 : 0;
+if (ver4) 
+{    
+	with (document) 
+	{        
+		write("<STYLE TYPE='text/css'>");
+		if (NS4) 
+		{            
+			write(".parent {position:absolute; visibility:visible}");            
+			write(".child {position:absolute; visibility:visible}");            
+			write(".regular {position:absolute; visibility:visible}") 
+			write(".four{position:absolute; visibility:visible}") 
+			write(".five{position:absolute; visibility:visible}")             
+		}        
+		else 
+		{            
+			write(".child {display:none}") 
+			write(".regular {display:none}") 
+			write(".four{display:none}") 
+			write(".five{display:none}")           
+		}        
+		write("</STYLE>");    
+	}
+}
+
+function swapimage(img_url)
+{
+	if (document.images) 
+	{
+		imgs=new image();
+		imgs.src=img_url
+	}
+}
+
+
+
+function initIt()
+{    
+	if (!ver4) return;    
+	if (NS4) 
+	{        
+		for (i=0; i<document.layers.length; i++) 
+		{            
+			whichEl = document.layers[i];            
+			if (whichEl.id.indexOf("Child") != -1||whichEl.id.indexOf("regular") != -1||whichEl.id.indexOf("four") != -1||whichEl.id.indexOf("five") != -1) whichEl.visibility = "hide";       
+		}        
+		arrange();    
+	}    
+	else 
+	{        
+		divColl = document.all.tags("DIV");        
+		for (i=0; i<divColl.length; i++) 
+		{            
+			whichEl = divColl(i);            
+			if (whichEl.className == "child"||whichEl.className == "regular"||whichEl.className == "four"||whichEl.className == "five") 
+				whichEl.style.display = "none";        
+		}    
+	}
+}
+plus = new Array ();
+plus[0] = new Image(); plus[0].src = "plus1.gif";
+plus[1] = new Image(); plus[1].src = "plus2.gif";
+plus[2] = new Image(); plus[2].src = "plus3.gif";
+plus[3] = new Image(); plus[3].src = "plus4.gif";
+plus[4] = new Image(); plus[4].src = "plus5.gif";
+minus = new Array ();
+minus[0] = new Image(); minus[0].src = "minus1.gif";
+minus[1] = new Image(); minus[1].src = "minus2.gif";
+minus[2] = new Image(); minus[2].src = "minus3.gif";
+minus[3] = new Image(); minus[3].src = "minus4.gif";
+minus[4] = new Image(); minus[4].src = "minus5.gif";
+function expandIt(name,order,serial,num) 
+{	
+	if (!ver4) return;    
+	if (IE4) 
+	{        
+
+		whichEl = eval([name] + [order]);		
+		if (whichEl.style.display == "none") 
+		{            
+			whichEl.style.display = "block"; 			
+		}        
+		else 
+		{            
+			whichEl.style.display = "none";        
+		}    
+		whichEl = eval([name] + [order]+ "_" +[serial]);					
+		if (whichEl.src.indexOf("plus") >= 0) {
+			
+			whichEl.src = minus[num].src
+			}
+		else {
+			whichEl.src = plus[num].src
+		}
+	}    
+	else 
+	{        
+		whichEl = eval("document." + [name] + [order]);		
+		     
+		if (whichEl.visibility == "hide") 
+		{            
+			whichEl.visibility = "show";        
+		}        
+		else 
+		{            
+			whichEl.visibility = "hide";        
+		}        
+		
+	}
+}
+onload = initIt;
+</script>
+</HEAD>
+<BODY bgColor=#ffffff leftMargin=0 topMargin=0 text="#000000" link="#000000" >
+<div id='KB1Parent' class='parent'>
+	<a href="qdgl/qdgl_fqgl.html" target="main" > <img id='KB1Child_1' src='plus1.gif' border=0 align="absmiddle" hspace="4" onClick="expandIt('KB1','Child',1,0); return false;">渠道管理</a>
+</div>
+<div id='KB1Child' class='child'>
+	<a href="qdgl/wlgl2.html" target="main" ><img id='KB1regular_1' src='plus2.gif' border=0 align="absmiddle" hspace="4" onClick="expandIt('KB1','regular',1,1); return false;">网络管理</a><br>
+	<div id='KB1regular' class='regular'>
+		<a href="qdgl/qdgl_fgsgl.html" target="main"><img id='KB1four_1'src='plus3.gif' border=0 hspace="4" align="absmiddle" onClick="expandIt('KB1','four',1,2); return false;">华北区</a><br>
+		<div id='KB1four' class='four'>
+			<a href="qdgl/qdgl_zmdgl.html" target="main"><img id='KB1five_1' src='plus4.gif' border=0 hspace="4" align="absmiddle" onClick="expandIt('KB1','five',1,3); return false;"  >北京市</a><br>
+			<div id='KB1five' class='five'>
+				<a href="qdgl/chaoyang.html" target="main"><img src='document4.gif' border=0 hspace="4" align="absmiddle" >朝阳区</a><br><a href="qdgl/haidian.html" target="main"><img src='document4.gif' border=0 hspace="4" align="absmiddle" >海淀区</a><br>
+			</div>
+			<a href="qdgl/tianjin.html" target="main"><img src='document3.gif'  border=0 hspace="4" align="absmiddle" >天津市</a><br>
+			<a href="qdgl/shijiazhuang.html" target="main"><img src='document3.gif'  border=0 hspace="4" align="absmiddle" >石家庄市</a><br>
+		</div>
+		<a href="qdgl/huanan.html" target="main" ><img src='document2.gif' border=0 align="absmiddle" hspace="4" >华南区</a><br>
+		<a href="qdgl/huadong.htm" target="main" ><img src='document2.gif' border=0 align="absmiddle" hspace="4" >华东区</a><br>
+		<a href="qdgl/xibei.html" target="main" ><img src='document2.gif' border=0 align="absmiddle" hspace="4" >西北区</a><br>
+	</div>
+	<a href="qdgl/wlgl.html" target="main" ><img src='document1.gif' border=0 align="absmiddle" hspace="4" >树状结构</a><br>
+</div>
+<div id='KB2Parent' class='parent'>
+	<a href="qdfz.html" target="main" ><img id='KB2Child_1' src='plus1.gif' border=0 align="absmiddle" hspace="4" onClick="expandIt('KB2','Child',1,0); return false;">客户管理</a>
+</div>
+<div id='KB2Child' class='child'>
+	<a href="qdfz/fybx_gzldy.html" target="main" ><img id='KB2_1regular_1' src='plus2.gif' border=0 align="absmiddle" hspace="4" onClick="expandIt('KB2_1','regular',1,1); return false;">类别设置</a><br>
+	<div id='KB2_1regular' class='regular'>
+		<a href="qdfz/zyzh.html" target="main" ><img src='document2.gif'  border=0 hspace="4" align="absmiddle" >直运直汇</a><br>
+		<a href="khgl/khxx_1.html" target="main" ><img  id='KB2_1_1four_1' src='plus3.gif' border=0 align="absmiddle" hspace="4" onClick="expandIt('KB2_1_1','four',1,2); return false;">经销商</a><br>
+		<div id='KB2_1_1four' class='four'>
+			<a href="khgl/khxx_2.html" target="main"  ><img src='document3.gif'  border=0 hspace="4" align="absmiddle" >二批商</a><br>
+			<a href="khgl/khxx_5.html" target="main"  ><img src='document3.gif'  border=0 hspace="4" align="absmiddle" >三批商</a><br>
+		</div>
+		<a href="khgl/cskh.html" target="main" ><img src='document2.gif'  border=0 hspace="4" align="absmiddle" >超市客户</a><br>
+		<a href="khgl/lsd.html" target="main" ><img src='document2.gif'  border=0 hspace="4" align="absmiddle" >零售点</a><br>
+		<a href="khgl/khxx_3.html" target="main" ><img src='document2.gif'  border=0 hspace="4" align="absmiddle" >集团客户</a><br>
+		<a href="khgl/khxx_4.html" target="main" ><img src='document2.gif'  border=0 hspace="4" align="absmiddle" >消费者</a><br>
+	</div>
+	<a href="qdfz/khxx.html" target="main" ><img src='document1.gif' border=0 align="absmiddle" hspace="4" >客户信息</a><br>
+	<a href="khgl/xygl_1.html" target="main" ><img src='document1.gif' border=0 align="absmiddle" hspace="4" >信用管理</a><br>
+</div>
+<div id='KB11Parent' class='parent'>
+	<a href="cpgl/cpzl.html" target="main" ><img id='KB11Child_1' src='plus1.gif' border=0 align="absmiddle" hspace="4" onClick="expandIt('KB11','Child',1,0); return false;">产品管理</a> 
+	<div id='KB11Child' class='child'>
+		<a href="cpgl/cpzl.html" target="main" ><img src='document1.gif'  border=0 hspace="4" align="absmiddle" >产品资料</a><br>
+		<a href="cpgl/lbzl.html" target="main" ><img src='document1.gif'  border=0 hspace="4" align="absmiddle" >类别资料</a><br>
+		<a href="cpgl/lbzl.html" target="main" ><img src='document1.gif'  border=0 hspace="4" align="absmiddle" >5555555</a><br>
+		<a href="cpgl/lbzl.html" target="main" ><img src='document1.gif'  border=0 hspace="4" align="absmiddle" >6666</a><br><a href="cpgl/lbzl.html" target="main" ><img src='document1.gif'  border=0 hspace="4" align="absmiddle" >7777777</a>
+	</div>
+</div>
+<div id='KB13Parent' class='parent'>
+	<img id='KB13Child_1' src='plus1.gif' border=0 align="absmiddle" hspace="4" onClick="expandIt('KB13','Child',1,0); return false;"><a href="cpgl/cpzl.html" target="main" >产品管理2</a> 
+	<div id='KB13Child' class='child'>
+		<a href="cpgl/cpzl.html" target="main" ><img src='document1.gif'  border=0 hspace="4" align="absmiddle" >产品资料</a><br>
+		<a href="cpgl/lbzl.html" target="main" ><img src='document1.gif'  border=0 hspace="4" align="absmiddle" >类别资料</a>
+	</div>
+</div>
+
+<div id="KB12Parent" class='parent'>
+	<img id='KB12Parent_1' src='document1.gif'  border=0 hspace="4" align="absmiddle" onclick="expandIt('KB12','Child',1,0);return false;">111111111111
+</div>
+<div id='KB12child' class='child'>
+		222222222<br>3333333
+
+</div>
+
+</BODY></HTML>

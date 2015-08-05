@@ -1,0 +1,13 @@
+! ** JCreator Workspace File (C)2000
+! ********** DO NOT EDIT *********
+
+VERSION := "1.00"
+LABEL := "elearning"
+
+! Start Project Structure
+#[BeginProject]SOURCE := "elearning.jcp" #[EndProject]
+
+! Start Last Document Structure
+
+! Start Breakpoint Structure
+

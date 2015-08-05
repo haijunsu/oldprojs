@@ -1,0 +1,692 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+	<!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+	<isindexall>false</isindexall>
+	<indexfile>indexall.xml</indexfile>
+
+	<!-- 定义文档位置 -->
+	<topic>java</topic>
+	<catalog>tips</catalog>
+
+	<!-- 文档显示内容 -->
+    <title>使用Google API来构建搜索引擎</title>
+    <pagename>使用Google API来构建搜索引擎</pagename>
+	<content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+<h3>获取Google API</h3>
+Google API 下载网址<a href="http://www.google.com/apis">http://www.google.com/apis</a>
+<br>
+在Google API网址注册一个搜索帐号，获取license key，每个license key每天最多搜索1000次，每页
+最多返回10条记录，每次最多可以查到1000条记录。
+<h3>创建搜索</h3>
+下面的代码是一段简单的搜索程序：
+<div id="codeblock">
+<pre>
+/*
+ * @(#)GoogleSearch.java  2004-5-19
+ * 
+ * Copyright (c) 技术日志. 2004 
+ * All rights reserved. 
+ */
+package test;
+
+import com.google.soap.search.GoogleSearch;
+import com.google.soap.search.GoogleSearchFault;
+import com.google.soap.search.GoogleSearchResult;
+
+/**
+ * &lt;P&gt;Google搜索测试&lt;/P&gt;
+ * 
+ * @version 0.1
+ * @author navy
+ */
+public class TestGoogleSearch {
+    /**
+     * 执行Google查询
+     * @param query 查询的条件
+     */
+    void search(String query) {
+        try {
+            //构造搜索
+            GoogleSearch search = new GoogleSearch();
+            //设置搜索属性
+            search.setKey("000000000000000000000000000000000000");
+            search.setQueryString(query);
+            //设置搜索范围
+            int startResult = 100;
+            search.setStartResult(startResult);
+            int maxResult = 5;
+            search.setMaxResults(maxResult);
+            //设置过滤
+            search.setRestrict("linux");
+            search.setRestrict("countryUK");
+            //设置语言过滤  
+            search.setLanguageRestricts("lang_fr");
+            //设置相关结果过滤
+            search.setFilter(true);
+            //设置成人内容过滤  
+            search.setSafeSearch(true);
+            //执行搜索
+            GoogleSearchResult result = search.doSearch();
+            //获取搜索结果集条数
+            int numResults = result.getEstimatedTotalResultsCount();
+            //是否得到精确的总数
+            if (result.getEstimateIsExact()) {
+                System.out.println("Number of results: " + numResults);
+            } else {
+                System.out.println("Estimated number of results:" + numResults);
+
+            }
+            GoogleSearchResultElement[] resultElements =
+                result.getResultElements();
+            //startIndex 和 endIndex 不仅要根据 startResult 进行调整，而且还要以 1 为单位进行调整
+            int startIndex = result.getStartIndex() - 1 - startResult;
+            int endIndex = result.getEndIndex() - 1 - startResult;
+            //输出结果集
+            for (int i = startIndex; i <= endIndex; i++) {
+
+                GoogleSearchResultElement resultElement = resultElements[(i)];
+
+                String title = resultElement.getTitle();
+                String url = resultElement.getURL();
+                //目录类别
+                GoogleSearchDirectoryCategory category =
+                    resultElement.getDirectoryCategory();
+                String categoryViewable = category.getFullViewableName();
+                String categoryString = category.toString();
+                //片断和上下文
+                String snippet = resultElement.getSnippet();
+                //Open Directory信息
+                String directoryTitle = resultElement.getDirectoryTitle();
+                String directorySummary = resultElement.getSummary();
+                //显示个别结果
+                System.out.println(categoryViewable + " " + categoryString);
+                System.out.println(title);
+                System.out.println(url);
+                System.out.println("   " + snippet);
+                System.out.println("Open Directory Information:");
+                System.out.println("    " + directoryTitle);
+                System.out.println("    " + directorySummary);
+                System.out.println("");
+            }
+        } catch (GoogleSearchFault gsf) {
+            System.out.println("Google Search Fault: " + gsf.getMessage());
+        }
+    }
+
+    /**
+     * 测试Google拼写建议功能
+     * @param spellingRequest 需要建议内容
+     */
+    void SpellingSuggest(String spellingRequest) {
+        try {
+
+            GoogleSearch search = new GoogleSearch();
+            search.setKey("000000000000000000000000000000000000");
+
+            String suggestion = search.doSpellingSuggestion(spellingRequest);
+
+            if (suggestion == null) {
+                System.out.println("There is no suggestion in the database.");
+            } else {
+                System.out.println(suggestion);
+            }
+
+        } catch (GoogleSearchFault gsf) {
+            System.out.println("Google Search Fault: " + gsf.getMessage());
+        }
+    }
+
+    /**
+     * 测试Google Cache内容
+     * @param url Google Cache的URL
+     */
+    void showCache(String url) {
+        try {
+            GoogleSearch search = new GoogleSearch();
+            search.setKey("000000000000000000000000000000000000");
+            byte[] pageText = search.doGetCachedPage(url);
+            System.out.println(new String(pageText));
+        } catch (GoogleSearchFault gsf) {
+            System.out.println("Google Search Fault: " + gsf.getMessage());
+        }
+    }
+
+    public static void main(String[] args) {
+        TestGoogleSearch tgs = new TestGoogleSearch();
+        tgs.search("\"science fiction\"");
+        tgs.SpellingSuggest("nayv");
+        tgs.showCache("http://www.dbonline.cn/index.htm");
+    }
+}
+
+</pre>
+</div>
+<b>GoogleSearch </b> 用于创建搜索，使用前需要设置其属性，比如示例中的setkey和setQueryString。<br>
+<i>注意：setkey是设置授权号，请用实际的授权号代替例子中的0。</i><br>
+doSearch() 方法依据设定的查询条件进行搜索，返回对象<b>GoogleSearchResult</b>，可以使用它携带的方法来访问数据。特别有用的一点信息是结果的个数以及该数字是否准确。
+<br>
+在向 Web 服务请求信息时，任何事情都可能出错，Google API 包括了<b>GoogleSearchFault</b>类，它充当可能出现的任何异常的包装器。<br>
+<h3>停止词和其它搜索修饰词</h3>
+停止词是指从查询中略去的常见词。它们包括 the、and、a、or 以及 how，等等。硬要在查询中包括停止词，请在前面冠以加号（+），如<br>
+<br>
+&quot;+the science +of fiction&quot; <br>
+<br>
+<i>注意，只是用引号把词组括住还不足以总能使常见词被包括在内。</i><br>
+同样，您可以使用减号（-）排除一些项，如<br>
+<br>
+science -fiction <br>
+<br>
+它将只返回有关科学方面的结果。<br>
+Google 还查询将确定在哪里寻找搜索项的许多不同修饰词。这些修饰词包括：<br>
+<br>
+intitle: <br>
+allintitle: <br>
+inurl: <br>
+allinurl: <br>
+allintext: <br>
+allinlinks: <br>
+filetype: <br>
+link: <br>
+daterange:<br>
+<br>
+这些修饰词可以与其它搜索词结合起来以筛选结果集。例如，查询<br>
+<br>
+&quot;science fiction&quot; daterange:2452365-2452395 <br>
+<br>
+在索引中找到时间在 2002 年 4 月 1 日到 2002 年 4 月 30 日
+之间的所有包含词组 &quot;science fiction&quot; 
+的页面。（请注意，可以在索引中搜索更老的信息。）<br>
+<h3>输出结果集</h3>
+getResultElements() 方法将返回一组 GoogleSearchResultElement 对象，
+每个对象占据整个结果集中的一个位置。它是以 1 开始的索引，因此，
+找到 1790000 个结果的搜索将返回一组 GoogleSearchResultElement 对象，
+索引号从 1 开始到 10 结束。（请记住，每条请求最多返回 10 个结果。）<br><br>
+GoogleSearchDirectoryCategory 对象中包含了 Google 类别名（表示为有格式的字符串）
+和 Open Directory Project 类别名（由 getFullViewableName() 返回）方面的信息。<br><br>
+Open Directory Project 是自愿发起为因特网上有价值的站点编制目录的工作。
+ODP不是自动的网上搜索程序生成的索引，而是人工编写的站点列表。
+ODP 数据库是免费使用的，Google 在其结果中利用这一信息。API 可以直接检索这一信息。<br><br>
+
+<h3>筛选结果集</h3>
+<b>设置筛选条件</b><br>
+可以根据很多因素来限制 Google 搜索。
+它们包括语言、内容、国家或地区和主题。
+您还可以控制输入和输出的编码。<br>
+
+例如，Google 列出了国家或地区代码，允许您根据来源国家或地区限制数据。虽然在分发文件 APIs_Reference.html 上有完整的清单，但是要将搜索限制在包含词组 "science fiction" 的来源为 United Kingdom 的页面上，请设置 restrict 参数：
+<div id="codeblock">
+<pre>
+search.setRestrict("countryUK");   
+</pre>
+</div>
+Google 还指定了信息的四组“特殊分类”：
+<ul>
+<li>
+U.S. Government (unclesam) 
+</li><li>Linux (linux) 
+</li><li>Macintosh (mac) 
+</li><li>FreeBSD (bsd) 
+</li></ul>
+因此，为了搜索归在 linux 分类的 "science fiction" 页面，请将限制条件设置成：
+<div id="codeblock">
+<pre>
+search.setRestrict("linux");   
+</pre>
+</div>
+请注意，主题域并不总是如您所愿的限制结果。例如，实际上在 linux 类中 "science fiction" 有 8710 个结果。
+<br>
+您还可以将限制条件组合在一起，如：
+<div id="codeblock">
+<pre>
+unclesam.countryUS 
+linux.(countryUS|countryUK) 
+max.(-countryUS)
+</pre>
+</div>
+<h3>选择语言</h3>
+API 还提供了特定的参数限制结果的语言。
+<div id="codeblock">
+<pre>
+search.setLanguageRestricts("lang_fr");   
+</pre>
+</div>
+Google 能识别以下的语言代码：
+<div id="codeblock">
+<pre>
+Arabic:  lang_ar   
+Chinese (S):  lang_zh-CN   
+Chinese (T):  lang_zh-TW   
+Czech:  lang_cs   
+Danish:  lang_da   
+Dutch:  lang_nl   
+English:  lang_en   
+Estonian:  lang_et   
+Finnish:  lang_fi   
+French:  lang_fr   
+German:  lang_de   
+Greek:  lang_el   
+Hebrew:  lang_iw   
+Hungarian:  lang_hu   
+Icelandic:  lang_is 
+Italian;  lang_it 
+Japanese:  lang_ja 
+Korean;  lang_ko  
+Latvian:  lang_lv 
+Lithuanian:  lang_lt 
+Norwegian:  lang_no 
+Portuguese:  lang_pt 
+Polish:  lang_pl 
+Romanian:  lang_ro 
+Russian:  lang_ru 
+Spanish:  lang_es
+Swedish:  lang_sv
+Turkish:  lang_tr
+</pre>
+</div>
+<h3>去除成人结果</h3>
+要去除搜索集中的成人结果，请选择安全搜索：
+<div id="codeblock">
+<pre>
+search.setSafeSearch(true);   
+</pre>
+</div>
+如果 setSafeSearch 被设成 true，Google 就会使用一个检查关键词和词组、URL 和 Open Directory 目录的过滤器。
+<h3>去除相关结果 </h3>
+在有许多相似结果的情况下，API 允许您只返回典型页面。例如，如果打开过滤功能，则对于标题和片断极为相似的一组结果，Google 将只返回其中的第一个，而同一 Web 主机上则只返回前两个结果。这样用户不但不会被同一个站点的结果困住，而且还能对那个站点上的可用内容有所了解。
+<br>
+API 允许您使用 setFilter() 方法将过滤功能关闭，但请注意代码样本下面的注意事项。
+<div id="codeblock">
+<pre>
+search.setFilter(true);   
+</pre>
+</div>
+注意，根据文档，当这个值设为 true 时，过滤功能打开，而当为 false 时则过滤功能关闭。不过，看上去，情况似乎刚好相反，当这个值被设为 true 时则返回相关结果，而当它设为 false 时则排除结果集。
+<h3>检索缓存结果</h3>
+作为 Google 创建索引过程的有机组成部分，Google 要检索被建立索引的页面副本，
+在搜索结果中为用户提供到缓存页面的链接。
+主要的缺点是用户看不到更新后的内容，但一些优点也是存在的。<br><br>
+
+检索缓存页面通常要比检索真实页面要快些，这归功于 Google 的带宽和处理能力，.
+而且如果出于某种原因没有实际的服务器，仍能检索缓存页面。
+可最重要的还是搜索项在缓存页面中突出显示，更容易看出页面的相关程度。<br><br>
+
+Google API 使您有可能检索缓存页面的文本（程序代码中的<i>showCache(String url)</i>）<br>
+
+程序中使用的不是 doSearch() 而是 doGetCachedPage()。
+结果为 byte 数组，您可以和其它任何 Java byte 数组一样使用。<br>
+<h3>拼写建议</h3>
+Google 搜索引擎意识到用户通常并不知道如何拼写要找的主题，所以内置一个拼写检查器，
+它可以分析查询、提出建议。不论什么样的搜索，都会有这样的拼写建议。<br>
+可以检查任何词或词组。如果没有拼写错误，或者如果引擎根本不认识某个单词，
+那么它将返回 null。不然的话，就会返回所建议的词或词组。如程序中的<i>SpellingSuggest(String spellingRequest)</i>，
+当输入SpellingSuggest("nayv")时，其返回值会为“navy”。
+<h3>Google Web 服务</h3>
+可以直接通过 SOAP 消息（在 http://api.google.com/search/beta2）使用Google Web 服务<br>
+SOAP 消息携带有关执行服务器端子程序的信息，参数在消息体内指定。
+服务器将发送一条 SOAP 消息作为响应，并在消息体内对信息进行编码。<br>
+
+然后，应用程序接收到响应，要么将其作为单独的信息处理，要么使用传统的 XML 方法对数据进行转换。<br>
+<br>
+<b>发送 SOAP 请求</b><br>
+下面是一个 JAXM 应用程序，它发送一条预先定义好的 SOAP 消息，并输出结果。
+<div id="codeblock">
+<pre>
+import javax.xml.soap.SOAPConnectionFactory; 
+import javax.xml.soap.SOAPConnection; 
+import javax.xml.soap.MessageFactory; 
+import javax.xml.soap.SOAPMessage; 
+import javax.xml.soap.SOAPPart; 
+import javax.xml.soap.SOAPEnvelope; 
+import javax.xml.soap.SOAPBody; 
+import javax.xml.soap.SOAPElement; 
+import java.io.FileInputStream; 
+import javax.xml.transform.stream.StreamSource; 
+import javax.xml.messaging.URLEndpoint; 
+import javax.xml.transform.TransformerFactory; 
+import javax.xml.transform.Transformer; 
+import javax.xml.transform.Source; 
+        
+import javax.xml.transform.stream.StreamResult; 
+        
+public class GoogleSOAP { 
+     
+   public static void main(String args[]) {
+         
+      try { 
+       
+        //First create the connection
+         SOAPConnectionFactory soapConnFactory = 
+                            SOAPConnectionFactory.newInstance();
+         SOAPConnection connection = 
+                             soapConnFactory.createConnection();
+          
+         //Next, create the actual message
+         MessageFactory messageFactory = MessageFactory.newInstance();
+         SOAPMessage message = messageFactory.createMessage();
+         //Create objects for the message parts           
+         SOAPPart soapPart =     message.getSOAPPart();
+        
+         //Populate the Message
+         StreamSource preppedMsgSrc = new StreamSource( 
+                  new FileInputStream("search.msg"));
+         soapPart.setContent(preppedMsgSrc);
+        
+         //Save the message
+         message.saveChanges();
+        
+         //SEND THE MESSAGE AND GET A REPLY
+             
+         //Set the destination
+         URLEndpoint destination = 
+               new URLEndpoint("http://api.google.com/search/beta2");
+         //Send the message
+         SOAPMessage reply = connection.call(message, destination);
+        
+         //SAVE THE OUTPUT
+        
+         //Create the transformer
+         TransformerFactory transformerFactory = 
+                            TransformerFactory.newInstance();
+         Transformer transformer = 
+                         transformerFactory.newTransformer();
+         //Extract the content of the reply
+         Source sourceContent = reply.getSOAPPart().getContent();
+        
+         //Set the output for the transformation
+         StreamResult result=new StreamResult("results.out");
+         transformer.transform(sourceContent, result);
+        
+         //Close the connection            
+         connection.close();
+             
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+        } 
+    } 
+}
+</pre>
+</div>
+这个应用程序首先创建了一个连接，然后是一个 SOAPMessage 对象。
+文件 search.msg 将填入消息的 SOAPPart，接着它会被发给 Google Web 服务。<br>
+
+以另外一条 SOAP 消息的形式，回复得以返回，它的相关信息在 SOAPPart 中。
+在这种情况下，实际上您并没有转换信息，而只是将 Transformer 用作序列化器
+把结果发给 results.out 文件。<br><br>
+<b>搜索请求</b><br>
+搜索请求 SOAP 消息包含的参数和以前 API 所设置的完全相同，不过，现在这些参数是 XML 元素：
+<div id="codeblock"><code>
+<?xml version='1.0' encoding='UTF-8'?> 
+&lt;?xml version='1.0' encoding='UTF-8'?&gt; <br>
+&lt;SOAP-ENV:Envelope&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xmlns:SOAP-ENV=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xmlns:xsi=&quot;http://www.w3.org/1999/XMLSchema-instance&quot;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xmlns:xsd=&quot;http://www.w3.org/1999/XMLSchema&quot;&gt;<br>
+&nbsp;&nbsp; &lt;SOAP-ENV:Body&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;ns1: <b>doGoogleSearch</b>&nbsp; xmlns:ns1=&quot;urn:GoogleSearch&quot;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SOAP-ENV:encodingStyle=&quot;http://schemas.xmlsoap.org/soap/encoding/&quot;&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>&lt;key xsi:type=&quot;xsd:string&quot;&gt;00000000000000000000000000000000&lt;/key&gt;&nbsp;
+</b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>&lt;q xsi:type=&quot;xsd:string&quot;&gt;&quot;science fiction&quot;&lt;/q&gt;</b>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;start xsi:type=&quot;xsd:int&quot;&gt;0&lt;/start&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;maxResults xsi:type=&quot;xsd:int&quot;&gt;10&lt;/maxResults&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;filter xsi:type=&quot;xsd:boolean&quot;&gt;true&lt;/filter&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;restrict xsi:type=&quot;xsd:string&quot;&gt;&lt;/restrict&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;safeSearch xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/safeSearch&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;lr xsi:type=&quot;xsd:string&quot;&gt;&lt;/lr&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;ie xsi:type=&quot;xsd:string&quot;&gt;latin1&lt;/ie&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;oe xsi:type=&quot;xsd:string&quot;&gt;latin1&lt;/oe&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/ns1: <b>doGoogleSearch</b> &gt; <br>
+&nbsp; &lt;/SOAP-ENV:Body&gt;<br>
+&lt;/SOAP-ENV:Envelope&gt;
+</code>
+</div>
+<i>请注意，doGoogleSearch 这个方法名是在消息内指定的，而且列出了每个参数，即使是空值的参数</i>。这与执行以下的方法是一样的：<br>
+<div id="codeblock"><pre>
+doGoogleSearch("", "\"science fiction\"", 0, 10, true, "", false, "", "latin1", "latin1")
+</pre></div>
+<br>
+<b>搜索结果</b><br>
+结果 XML 文件携带的信息和 API 所提取的一样。以下所示的部分结果添加了一些空格以增加其易读性。
+<div id="codeblock"><code>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;<br>
+&lt;SOAP-ENV:Envelope xmlns:SOAP-ENV=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;<br>
+&nbsp;&nbsp;&nbsp; xmlns:xsi=&quot;http://www.w3.org/1999/XMLSchema-instance&quot; <br>
+&nbsp;&nbsp;&nbsp; xmlns:xsd=&quot;http://www.w3.org/1999/XMLSchema&quot;&gt;<br>
+&lt;SOAP-ENV:Body&gt; <br>
+&lt;ns1:doGoogleSearchResponse&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp; xmlns:ns1=&quot;urn:GoogleSearch&quot; <br>
+&nbsp;&nbsp;&nbsp;&nbsp; SOAP-ENV:encodingStyle=&quot;http://schemas.xmlsoap.org/soap/encoding/&quot;&gt;
+<br>
+&nbsp;&nbsp; &lt;return xsi:type=&quot;ns1:GoogleSearchResult&quot;&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;documentFiltering xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/documentFiltering&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;estimatedTotalResultsCount xsi:type=&quot;xsd:int&quot;&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1500000&lt;/estimatedTotalResultsCount&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;directoryCategories <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+xmlns:ns2=&quot;http://schemas.xmlsoap.org/soap/encoding/&quot; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+xsi:type=&quot;ns2:Array&quot; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+ns2:arrayType=&quot;ns1:DirectoryCategory[0]&quot;&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/directoryCategories&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;searchTime xsi:type=&quot;xsd:double&quot;&gt;0.060022&lt;/searchTime&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;resultElements <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+xmlns:ns3=&quot;http://schemas.xmlsoap.org/soap/encoding/&quot; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+xsi:type=&quot;ns3:Array&quot; ns3:arrayType=&quot;ns1:ResultElement[10]&quot;&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;item xsi:type=&quot;ns1:ResultElement&quot;&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;cachedSize 
+xsi:type=&quot;xsd:string&quot;&gt;29k&lt;/cachedSize&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;hostName 
+xsi:type=&quot;xsd:string&quot;/&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;snippet 
+xsi:type=&quot;xsd:string&quot;&gt; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&amp;lt;b&amp;gt;...&amp;lt;/b&amp;gt; After a long career creating superior <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&amp;lt;b&amp;gt;science&amp;lt;/b&amp;gt;-&amp;lt;b&amp;gt;fiction&amp;lt;/b&amp;gt; TV, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+writer/producer David Kemper&amp;lt;br&amp;gt; reflects on the finale of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Farscape's current season and his startling &amp;lt;b&amp;gt;...&amp;lt;/b&amp;gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/snippet&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;directoryCategory 
+xsi:type=&quot;ns1:DirectoryCategory&quot;&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;specialEncoding xsi:type=&quot;xsd:string&quot;/&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;fullViewableName <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+xsi:type=&quot;xsd:string&quot;&gt;Top/Arts/Literature/Genres/Science_Fiction<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+/Magazines_and_E-zines&lt;/fullViewableName&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/directoryCategory&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;relatedInformationPresent 
+xsi:type=&quot;xsd:boolean&quot;&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+true<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/relatedInformationPresent&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;directoryTitle 
+xsi:type=&quot;xsd:string&quot;&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&amp;lt;b&amp;gt;Science&amp;lt;/b&amp;gt; &amp;lt;b&amp;gt;Fiction&amp;lt;/b&amp;gt; Weekly <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/directoryTitle&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;summary 
+xsi:type=&quot;xsd:string&quot;&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+The leading electronic publication covering the world of <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&amp;lt;b&amp;gt;Science&amp;lt;/b&amp;gt; &amp;lt;b&amp;gt;Fiction&amp;lt;/b&amp;gt;, with news,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+reviews, original... <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/summary&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;URL xsi:type=&quot;xsd:string&quot;&gt;http://www.scifi.com/sfw/&lt;/URL&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;title 
+xsi:type=&quot;xsd:string&quot;&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&amp;lt;b&amp;gt;Science&amp;lt;/b&amp;gt; &amp;lt;b&amp;gt;Fiction&amp;lt;/b&amp;gt; Weekly<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/title&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/item&gt;<br>
+... <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/resultElements&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;endIndex xsi:type=&quot;xsd:int&quot;&gt;10&lt;/endIndex&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;searchTips xsi:type=&quot;xsd:string&quot;/&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;searchComments xsi:type=&quot;xsd:string&quot;/&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;startIndex xsi:type=&quot;xsd:int&quot;&gt;1&lt;/startIndex&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;estimateIsExact xsi:type=&quot;xsd:boolean&quot;&gt;false&lt;/estimateIsExact&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;searchQuery xsi:type=&quot;xsd:string&quot;&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;amp;quot;science 
+fiction&amp;amp;quot;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/searchQuery&gt;<br>
+&nbsp;&nbsp; &lt;/return&gt;<br>
+&lt;/ns1:doGoogleSearchResponse&gt; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&lt;/SOAP-ENV:Body&gt; <br>
+&lt;/SOAP-ENV:Envelope&gt;
+</code></div>
+<i>请注意，API 检索到的每条信息都可以在 XML 元素中使用。</i><br><br>
+
+<b>转换结果</b><br>
+利用结果与为将结果转换为需要的格式而创建一个样式表都很简单。例如，简单的样式表能提取站点标题和 URL：
+<div id="codeblock"><pre>
+&lt;?xml version="1.0"?&gt;
+
+&lt;xsl:stylesheet  
+  version=&quot;1.0&quot; 
+  xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot;&gt;
+        
+&lt;xsl:output method=&quot;text&quot;/&gt; 
+        
+&lt;xsl:template match=&quot;/&quot;&gt; 
+&lt;xsl:apply-templates select=&quot;//item&quot;/&gt; 
+&lt;/xsl:template&gt; 
+        
+&lt;xsl:template match=&quot;item&quot;&gt; 
+  &lt;xsl:value-of select=&quot;title&quot;disable-output-escaping=&quot;yes&quot;/&gt;&lt;xsl:text&gt;
+  &lt;/xsl:text&gt;&lt;xsl:value-of select=&quot;URL&quot;/&gt;&lt;xsl:text&gt;
+       
+&lt;/xsl:text&gt; 
+&lt;/xsl:template&gt; 
+        
+&lt;/xsl:stylesheet&gt;</code>
+</pre></div>
+接下来应用程序将调用该样式表……
+<div id="codeblock">
+<pre>... 
+         //Create the transformer
+         TransformerFactory transformerFactory = 
+                            TransformerFactory.newInstance();
+ <b>         Source styleSheet = new StreamSource(&quot;translate.xsl&quot;);  </b> 
+         Transformer transformer = 
+                         transformerFactory.newTransformer( <b>styleSheet</b> );
+         //Extract the content of the reply
+         Source sourceContent = reply.getSOAPPart().getContent();
+        
+         //Set the output for the transformation
+         StreamResult result=new StreamResult(&quot;results.out&quot;);
+         transformer.transform(sourceContent, result);
+...
+</pre></div>
+		得到的是格式很规范的结果：
+<div id="codeblock"><pre>&lt;b&gt;Science&lt;/b&gt; &lt;b&gt;Fiction&lt;/b&gt; Weekly
+   http://www.scifi.com/sfw/
+        
+SCIFI.COM 
+   http://www.scifi.com/
+        
+&lt;b&gt;Science&lt;/b&gt; &lt;b&gt;Fiction&lt;/b&gt; and Fantasy Writers of America, Inc.
+   http://www.sfwa.org/
+        
+The Link ping &lt;b&gt;Science&lt;/b&gt; &lt;b&gt;Fiction&lt;/b&gt; &amp;amp; Fantasy Archive
+   http://www2.lysator.liu.se/sf_archive/
+</pre></div>
+<i>请注意这只是很简单的示例。您可以使用 XSLT 来提取，甚至处理数据以使其可以包括在数据库和其它系统中，并使其可以为其它应用程序所用。</i><br><br>
+<b>拼写请求</b><br>
+拼写建议的 SOAP 消息很直观。<br>
+请求：
+<div id="codeblock"><pre>
+&lt;?xml version='1.0' encoding='UTF-8'?&gt; 
+&lt;SOAP-ENV:Envelope  
+       xmlns:SOAP-ENV=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; 
+       xmlns:xsi=&quot;http://www.w3.org/1999/XMLSchema-instance&quot; 
+       xmlns:xsd=&quot;http://www.w3.org/1999/XMLSchema&quot;&gt;
+  &lt;SOAP-ENV:Body&gt; 
+    &lt;ns1:doSpellingSuggestion 
+        xmlns:ns1=&quot;urn:GoogleSearch&quot;
+        SOAP-ENV:encodingStyle=
+               &quot;http://schemas.xmlsoap.org/soap/encoding/&quot;&gt;
+      &lt;key xsi:type=&quot;xsd:string&quot;&gt;00000000000000000000000000000000&lt;/key&gt;
+      &lt;phrase xsi:type=&quot;xsd:string&quot;&gt;scince&lt;/phrase&gt; 
+    &lt;/ns1:doSpellingSuggestion&gt;
+  &lt;/SOAP-ENV:Body&gt;
+&lt;/SOAP-ENV:Envelope&gt;</pre></div>
+结果：
+<div id="codeblock"><pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;SOAP-ENV:Envelope xmlns:SOAP-ENV=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;
+xmlns:xsi=&quot;http://www.w3.org/1999/XMLSchema-instance&quot;xmlns:xsd=
+&quot;http://www.w3.org/1999/XMLSchema&quot;&gt;
+
+&lt;SOAP-ENV:Body&gt; 
+&lt;ns1:doSpellingSuggestionResponse xmlns:ns1=&quot;urn:GoogleSearch&quot; 
+         SOAP-ENV:encodingStyle=&quot;http://schemas.xmlsoap.org/soap/encoding/&quot;&gt;
+&lt;return xsi:type=&quot;xsd:string&quot;&gt;science&lt;/return&gt; 
+&lt;/ns1:doSpellingSuggestionResponse&gt; 
+        
+&lt;/SOAP-ENV:Body&gt; 
+&lt;/SOAP-ENV:Envelope&gt;
+</pre></div>
+<br>
+<b>缓存请求</b><br>
+由于响应是以 base64 返回的，所以缓存请求有点复杂。<br>
+请求：
+<div id="codeblock"><pre>
+&lt;?xml version='1.0' encoding='UTF-8'?&gt; 
+&lt;SOAP-ENV:Envelope xmlns:SOAP-ENV=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;
+xmlns:xsi=&quot;http://www.w3.org/1999/XMLSchema-instance&quot;xmlns:xsd=
+&quot;http://www.w3.org/1999/XMLSchema&quot;&gt;
+
+&lt;SOAP-ENV:Body&gt;
+    &lt;ns1:doGetCachedPage xmlns:ns1=&quot;urn:GoogleSearch&quot; 
+        SOAP-ENV:encodingStyle=&quot;http://schemas.xmlsoap.org/soap/encoding/&quot;&gt;
+      &lt;key xsi:type=&quot;xsd:string&quot;&gt;181gQtaOdlLD+83qvh6PnssQR5WlaB9d&lt;/key&gt;
+      &lt;url xsi:type=&quot;xsd:string&quot;&gt; 
+      	http://www-106.ibm.com/developerworks/xml/library/x-tiphdln.html
+      &lt;/url&gt; 
+    &lt;/ns1:doGetCachedPage&gt; 
+  &lt;/SOAP-ENV:Body&gt;
+&lt;/SOAP-ENV:Envelope&gt;
+</pre></div>
+生成结果：
+<div id="codeblock"><code>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;<br>
+&lt;SOAP-ENV:Envelope xmlns:SOAP-ENV=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;<br>
+xmlns:xsi=&quot;http://www.w3.org/1999/XMLSchema-instance&quot; <br>
+	xmlns:xsd=&quot;http://www.w3.org/1999/XMLSchema&quot;&gt;<br>
+&lt;SOAP-ENV:Body&gt; <br>
+&lt;ns1:doGetCachedPageResponse xmlns:ns1=&quot;urn:GoogleSearch&quot;<br>
+SOAP-ENV:encodingStyle=&quot;http://schemas.xmlsoap.org/soap/encoding/&quot;&gt;<br>
+&lt;return xmlns:ns2=&quot;http://schemas.xmlsoap.org/soap/encoding/&quot;<br>
+xsi:type=&quot;ns2:base64&quot;&gt;PG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250ZW50<br>
+PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9SVNPLTg4NTktMSI+CjxCQVNFIEhSRUY9Imh0dHA6Ly93d3ctMTA<br>
+2LmlibS5jb20vZGV2ZWxvcGVyd29ya3MveG1sL2xpYnJhcnkveC10aXBoZGxuLmh0bWwiPjx0YWJsZSBib<br>
+3JkZXI9MSB3aWR0aD0xMDAlPjx0cj48dGQ+PHRhYmxlIGJvcmRlcj0xIGJnY29sb3I9I2ZmZmZmZiBjZW<br>
+xscGFkZGluZz0xMCBjZWxsc3BhY2luZz0wIHdpZH...<br>
+ZT4NCjwhLS0gRU5EIElCTSBGT09URVIgLS0+PC9ib2R5Pgo8L2h0bWw+Cg==&lt;/return&gt; <br>
+&lt;/ns1:doGetCachedPageResponse&gt; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&lt;/SOAP-ENV:Body&gt; <br>
+&lt;/SOAP-ENV:Envelope&gt;
+</code></div>
+       ]]> </content>
+
+</doc>
+

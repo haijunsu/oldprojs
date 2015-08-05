@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+
+
+	<aop:config>
+		<aop:pointcut id="defaultServiceOperation"
+			expression="execution(* com.navy.app.rat.service.*Service.*(..))" />
+		<aop:advisor pointcut-ref="defaultServiceOperation"
+			advice-ref="defaultTxAdvice" />
+	</aop:config>
+	<aop:config>
+		<aop:pointcut id="jdbcServiceOperation"
+			expression="execution(* com.navy.app.rat.service.*Service.*(..))" />
+		<aop:advisor pointcut-ref="jdbcServiceOperation"
+			advice-ref="defaultTxAdvice" />
+	</aop:config>
+
+	<tx:advice id="defaultTxAdvice"
+		transaction-manager="appTxManager">
+		<tx:attributes>
+			<tx:method name="create*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="remove*" propagation="REQUIRED" />
+			<tx:method name="*" propagation="NOT_SUPPORTED" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- JDBC Service -->
+	<bean id="jdbcService"
+		class="com.navy.framework.service.impl.JdbcServiceImpl">
+		<property name="dataSource">
+			<ref bean="appDataSource" />
+		</property>
+	</bean>
+
+	<bean id="baseService" abstract="true">
+		<property name="generalDao">
+			<ref bean="generalDao" />
+		</property>
+	</bean>
+	<!-- user service -->
+	<bean id="userService"
+		class="com.navy.framework.service.impl.UserServiceImpl"
+		parent="baseService">
+		<property name="userDao">
+			<ref bean="userDao" />
+		</property>
+	</bean>
+
+
+</beans>

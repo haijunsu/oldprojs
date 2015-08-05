@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+   <!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+   <isindexall>false</isindexall>
+   <indexfile>indexall.xml</indexfile>
+
+   <!-- 定义文档位置 -->
+   <topic>os</topic>
+   <catalog>as400</catalog>
+
+   <!-- 文档显示内容 -->
+    <title>AS400 的一些常用命令</title>
+    <pagename>AS400 的一些常用命令</pagename>
+   <content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+<h3>命令缩写（动词）</h3>
+<br>
+ADD - Add&nbsp;<br>
+CFG - Configure&nbsp;<br>
+CHG - Change&nbsp;<br>
+CPY -&nbsp; Copy&nbsp;<br>
+CRT - Create&nbsp;<br>
+DLT - Delete&nbsp;<br>
+DSP - Display&nbsp;<br>
+GO - Go&nbsp;to&nbsp;a&nbsp;Menu&nbsp;<br>
+RMV - Remove&nbsp;<br>
+STR - Start&nbsp;<br>
+WRK - Work&nbsp;with<br>
+<br>
+　<h3>命令缩写（名词）</h3>
+<br>
+DEV - Device&nbsp;<br>
+DEVD - Device&nbsp;Description&nbsp;<br>
+F - Files&nbsp;<br>
+FLR - Folder&nbsp;<br>
+LIB - Library&nbsp;<br>
+OUTQ - Output&nbsp;Queue&nbsp;<br>
+MSG - Message<br>
+SPLF - Spool&nbsp;File&nbsp;<br>
+WTR - Writer&nbsp;(Printer)&nbsp;<br>
+<br>
+　<h3>常用命令</h3>
+<br>
+DSPLIBL &nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;显示完整的&nbsp;library&nbsp;列表<br>
+EDTLIBL &nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;修改&nbsp;library&nbsp;列表<br>
+EDTF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp; 修改文件<br>
+CHGCURLIB&nbsp;-&nbsp;&nbsp;&nbsp;更改当前的&nbsp;Library<br>
+WRKOBJ&nbsp; &nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;与DIR相同，工作于一个OBJECT对象<br>
+<br>
+DSPJOGLOG&nbsp;-&nbsp;&nbsp;显示控制台输出<br>
+WRKJOBQ&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;查看JOB队列<br>
+<br>
+CFGTCP&nbsp;&nbsp;-&nbsp;&nbsp;配置TCPIP<br>
+<br>
+CRTUSRPRF&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;生成用户配置文件<br>
+CHGUSRPRF&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;修改用户配置文件<br>
+DSPUSRPRF&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;查看用户配置文件
+       ]]> </content>
+
+</doc>
+

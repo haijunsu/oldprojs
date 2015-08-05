@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+	<!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+	<isindexall>false</isindexall>
+	<indexfile>indexall.xml</indexfile>
+
+	<!-- 定义文档位置 -->
+	<topic>java</topic>
+	<catalog>tips</catalog>
+
+	<!-- 文档显示内容 -->
+    <title>在ant中使用FTP任务</title>
+    <pagename>在ant中使用FTP任务</pagename>
+	<content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+Ant 1.5 需要 <i>NetComponents.jar</i> 支持，<a href="http://www.savarese.org/oro/">下载网页</a><br>
+Ant 1.6 需要 <i>commons-net.jar</i> 和 <i>Jakarta ORO JAR</i>支持，<a href="http://jakarta.apache.org/site/binindex.cgi">下载网页</a><br>
+<br>
+Ant FTP 任务提供如下功能：<br>
+<b>发送文件</b><br>
+传送文件到服务器，不指定action属性，则为send。如上传本地htdocs/manual目录下的html文件到
+服务器上的/pub/incoming目录：
+<div id="codeblock"><pre>
+&lt;ftp server="ftp.apache.org"
+       port="2121"
+       remotedir="/pub/incoming"
+       userid="coder"
+       password="java1"
+       depends="yes"
+       binary="no"
+ &gt;
+    &lt;fileset dir="htdocs/manual"&gt;
+      &lt;include name="**/*.html"/&gt;
+   &lt;/fileset&gt;
+ &lt;/ftp&gt;
+</pre></div>
+<b>获取文件</b><br>
+从服务器上获取文件，action属性为“get”。
+
+<div id="codeblock"><pre>  &lt;ftp action=&quot;get&quot;
+       server=&quot;ftp.apache.org&quot;
+       userid=&quot;anonymous&quot;
+       password=&quot;me@myorg.com&quot;&gt;
+    &lt;fileset dir=&quot;htdocs/manual&quot;&gt;
+      &lt;include name=&quot;**/*.html&quot;/&gt;
+    &lt;/fileset&gt;
+  &lt;/ftp&gt;
+</pre>
+</div>
+<b>删除文件</b><br>
+从服务器上删除文件，action属性为“del”。
+
+<div id="codeblock">
+<pre>  &lt;ftp action=&quot;del&quot;
+       server=&quot;ftp.apache.org&quot;
+       userid=&quot;anonymous&quot;
+       password=&quot;me@myorg.com&quot;&gt;
+    &lt;fileset&gt;
+      &lt;include name=&quot;**/*.tmp&quot;/&gt;
+    &lt;/fileset&gt;
+  &lt;/ftp&gt;
+</pre>
+</div>
+
+<b>获取服务器上文件列表</b><br>
+action属性为“list”。列表中不含目录，但包括子目录内的文件名。下面的代码把服务器上的文件列表保存到 <i>data/ftp.listing</i> 文件中
+
+<div id="codeblock">
+<pre>  &lt;ftp action=&quot;list&quot;
+       server=&quot;ftp.apache.org&quot;
+       userid=&quot;anonymous&quot;
+       password=&quot;me@myorg.com&quot; 
+       listing=&quot;data/ftp.listing&quot;&gt;
+    &lt;fileset&gt;
+      &lt;include name=&quot;**&quot;/&gt;
+    &lt;/fileset&gt;
+  &lt;/ftp&gt;
+</pre>
+
+</div>
+<b>创建目录</b><br>
+在服务器上创建新目录，action属性为“mkdir”。
+
+<div id="codeblock">
+<pre>  &lt;ftp action=&quot;mkdir&quot;
+       server=&quot;ftp.apache.org&quot;
+       userid=&quot;anonymous&quot;
+       password=&quot;me@myorg.com&quot; 
+       remotedir=&quot;some/remote/dir&quot;/&gt;
+</pre>
+
+</div>
+
+<b>删除目录</b><br>
+从服务器上删除指定的目录，action属性为“rmdir”。
+
+<div id="codeblock">
+<pre>  &lt;ftp action=&quot;rmdir&quot;
+       server=&quot;ftp.apache.org&quot;
+       userid=&quot;anonymous&quot;
+       password=&quot;me@myorg.com&quot; 
+       remotedir=&quot;/somedir&quot; &gt;
+    &lt;fileset&gt;
+      &lt;include name=&quot;dira&quot;/&gt;
+      &lt;include name=&quot;dirb/**&quot;/&gt;
+    &lt;/fileset&gt;
+  &lt;/ftp&gt;
+</pre>
+
+</div>
+<p>
+
+       ]]> </content>
+
+</doc>
+

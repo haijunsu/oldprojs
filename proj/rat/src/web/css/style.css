@@ -1,0 +1,403 @@
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	color: #000000;
+	margin: 0px;
+	padding: 0px;
+}
+
+.welcomeTitle {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	Color: #7F7F7F;
+}
+
+.welcomeBody {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	Color: #7F7F7F;
+}
+
+.errTitle {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	FONT-WEIGHT: bold;
+	Color: red;
+}
+.errMsg {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	Color: red;
+}
+
+.successTitle {
+	FONT-WEIGHT: bold;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	Color: green;
+}
+.successMsg {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	Color: green;
+}
+
+.CompanyName {
+	font-family: "Arial Black";
+	font-size: 20px;
+	color: #336ca1;
+}
+.BigIconTitle {
+	font-family: "Arial Black";
+	font-size: 16px;
+	color: #5292CC;
+	font-style: italic;
+}
+
+.Date {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #000000;
+}
+.UserName {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+.IconList {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+.IconList-S {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FF6600;
+}
+
+.Copyright {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #000000;
+	text-decoration: none;
+}
+
+.content {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000000;
+}
+
+.ContentTitle {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #666666;
+	font-style: normal;
+}
+a:visited {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+a:link {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+a:hover {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #0066FF;
+	text-decoration: underline;
+}
+a:active {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #0099CC;
+	text-decoration: underline;
+}
+
+/***********************************************/
+/* Layout Divs                                 */
+/***********************************************/
+
+#toppage{
+	margin: 0 0 0 0;
+	padding: 0px 0px 0px 0px;
+	width: 100%;
+}
+
+#menupage{
+	margin: 0 0 0 0;
+	padding: 0px 5px 0px 0px;
+	background-color: #8FBEE8
+}
+
+#mainpage{
+	margin: 0 0 0 0;
+	padding: 5px 0px 0px 0px;
+}
+#bottompage{
+	margin: 0 0 0 0;
+	padding: 0px 0px 0px 0px;
+	background-color: #336CA1
+}
+
+/***********************************************/
+/* Top page style                              */
+/***********************************************/
+#toppage a:visited {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #00CCFF;
+	text-decoration: none;
+}
+#toppage a:link {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: bold;
+	color: #00CCFF;
+	text-decoration: none;
+}
+#toppage a:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-style: italic;
+	font-weight: bold;
+	color: #FFFF66;
+}
+#toppage a:active {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #00CCFF;
+	text-decoration: underline;
+}
+
+#topNameLink a:visited {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: underline;
+}
+#topNameLink a:link {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: underline;
+}
+#topNameLink a:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-style: italic;
+	font-weight: underline;
+	color: #FFFF66;
+}
+#topNameLink a:active {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: underline;
+}
+
+
+/***********************************************/
+/* Menu page style                             */
+/***********************************************/
+#menupage a:visited {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+#menupage a:link {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+#menupage a:hover {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #0066FF;
+	text-decoration: underline;
+}
+#menupage a:active {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #0099CC;
+	text-decoration: underline;
+}
+
+/***********************************************/
+/* Main page style                             */
+/***********************************************/
+.navigationArrow {
+	color: #FF6600;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bolder;
+}
+
+#mainpage body {
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+}
+
+#mainpage a:visited {
+	text-decoration: none;
+	color: #FF6600;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bolder;
+}
+#mainpage a:link {
+	color: #FF6600;
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bolder;
+}
+#mainpage a:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-decoration: underline;
+	font-style: italic;
+	font-weight: bolder;
+	color: #0000CC;
+}
+
+
+#mainpage a:active {
+	font-weight: bolder;
+	color: #0000CC;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	text-decoration: underline;
+}
+
+.listTitle {
+	text-decoration: underline;
+	color: #000000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bolder;
+}
+
+#mainpageList a:visited {
+	text-decoration: underline;
+	color: #990099;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bolder;
+}
+#mainpageList a:link {
+	color: #FF6600;
+	text-decoration: underline;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bolder;
+}
+#mainpageList a:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-decoration: underline;
+	font-style: normal;
+	font-weight: bolder;
+	color: #FFC000;
+}
+
+#mainpageList a:active {
+	font-weight: bolder;
+	color: #0000CC;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	text-decoration: underline;
+}
+
+#mainpage td {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+}
+
+#mainpage th {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+}
+
+
+
+#listblock {
+	 border:2 solid #000000;
+}
+
+.tdList1 {
+     background-color: #CCCCCC;
+}
+
+.tdList2 {
+}
+
+.tdLabel {
+     background-color: #CCCCCC;
+	 text-align: right;
+}
+.tdInput {
+	width: 300
+}
+.tdViewLabel1 {
+     background-color: #CCCCCC;
+	 text-align: right;
+}
+.tdViewInput1 {
+     background-color: #CCCCCC;
+	 width: 300
+}
+.tdViewLabel2 {
+	 text-align: right;
+}
+.tdViewInput2 {
+	width: 300
+}
+
+
+/***********************************************/
+/* Bottom page style                           */
+/***********************************************/
+

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<rss version="2.0" 
+xmlns:dc="http://purl.org/dc/elements/1.1/"
+xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+xmlns:admin="http://webns.net/mvcb/"
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+  <title>Jeff Xiong's Weblog</title>
+  <link>http://www.jroller.com/page/gigix</link>
+  <description>Jeff Xiong's Weblog</description>
+  <language>en-us</language>
+  <copyright>Copyright 2003</copyright>
+  <lastBuildDate>Thu, 21 Aug 2003 22:41:40 -0500</lastBuildDate>
+  <generator>Roller Weblogger 0.9.8.2-dev</generator>
+  <managingEditor>xiongj@hzjbbis.com.cn</managingEditor>
+  <webMaster>xiongj@hzjbbis.com.cn</webMaster> 
+      <item>
+    <title>How an IoC container acts</title>        
+    <description>         &lt;p&gt;=== from HiveMind's homepage ===&lt;p&gt;
+
+... there's no way an Avalon component can &quot;look up&quot; another component; in Avalon you explicitly connect services together. &lt;p&gt;
+
+That's the basic concept of Inversion of Control; you don't create your objects, you describe how they should be created. You don't directly connect your components and services together in code, you describe which services are needed by which components, and the container is responsible for hooking it all together. The container creates all the objects, wires them together by setting the necessary properties, and determines when methods are invoked. &lt;p&gt;
+
+======&lt;p&gt;
+
+Yup, that's it. Component can't find any other components. It only knows the interfaces. &lt;p&gt;
+
+Now there's a question: why, when and howto use an IoC container? I should find some examples on it.&lt;p&gt;   
+   </description>       
+    <category>Java</category>
+    <guid ispermalink="true">http://www.jroller.com/page/gigix/20030821#title_how_an_ioc_container</guid>    
+    <content:encoded><![CDATA[         <p>=== from HiveMind's homepage ===<p>
+
+... there's no way an Avalon component can "look up" another component; in Avalon you explicitly connect services together. <p>
+
+That's the basic concept of Inversion of Control; you don't create your objects, you describe how they should be created. You don't directly connect your components and services together in code, you describe which services are needed by which components, and the container is responsible for hooking it all together. The container creates all the objects, wires them together by setting the necessary properties, and determines when methods are invoked. <p>
+
+======<p>
+
+Yup, that's it. Component can't find any other components. It only knows the interfaces. <p>
+
+Now there's a question: why, when and howto use an IoC container? I should find some examples on it.<p>
+              <p>
+       <a href="http://www.jroller.com/page/gigix?anchor=title_how_an_ioc_container">Add a Comment</a>
+       </p>   
+    ]]>
+    </content:encoded>    
+           <comments>http://www.jroller.com/page/gigix?anchor=title_how_an_ioc_container</comments>    
+        <pubDate>Thu, 21 Aug 2003 22:41:40 -0500</pubDate>    
+  </item>
+    <item>
+    <title>FIRST POST!</title>        
+    <description>         This is my first post   
+   </description>       
+    <category>General</category>
+    <guid ispermalink="true">http://www.jroller.com/page/gigix/20030709#first_post</guid>    
+    <content:encoded><![CDATA[         This is my first post
+              <p>
+       <a href="http://www.jroller.com/page/gigix?anchor=first_post">Add a Comment</a>
+       </p>   
+    ]]>
+    </content:encoded>    
+           <comments>http://www.jroller.com/page/gigix?anchor=first_post</comments>    
+        <pubDate>Wed, 9 Jul 2003 04:59:56 -0500</pubDate>    
+  </item>
+  </channel>
+</rss>

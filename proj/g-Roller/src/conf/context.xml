@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+  <bean id="grollerServiceLocator" class="groller.application.service.GrollerServiceLocator">
+  	<property name="configName">
+  		<value>application</value>
+  	</property>
+  	<property name="interceptorNames"><list>
+  		<value>transactionInterceptor</value>
+  		<value>exceptionInterceptor</value>
+  	</list></property>
+  </bean>
+
+  <bean id="beanFactoryWrapper" class="groller.framework.common.BeanFactoryWrapper">
+  	<property name="configName">
+  		<value>application</value>
+  	</property>
+  </bean>
+
+</beans> 

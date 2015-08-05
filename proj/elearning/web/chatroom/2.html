@@ -1,0 +1,22 @@
+<html>
+<title>input</title>
+<head>
+<script>
+i = 0;
+function writetop(){
+	parent.writeTop("test" + i + "<br>");
+	i += 1;
+//	setTimeout('writetop()',1000);
+}
+function cleartest()
+{
+	parent.clearChatContent();
+}
+</script>
+</head>
+<body>
+<script>
+	parent.writeTop("»¶Ó­À´µ½ÁÄÌìÊÒ£¡<br>");
+</script>
+<input type=button onclick=javascript:writetop() value="test"><input type=button onclick=javascript:cleartest() value="clear"></body>
+</html>

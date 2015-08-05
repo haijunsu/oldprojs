@@ -1,0 +1,5 @@
+export CATALINA_HOME=@CANALINE_HOME@
+export JAVA_HOME=@JAVA_HOME@
+export CATALINA_BASE=`pwd`
+export PATH=$JAVA_HOME/bin:$PATH
+$CATALINA_HOME/bin/shutdown.sh

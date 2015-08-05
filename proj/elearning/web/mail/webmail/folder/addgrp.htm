@@ -1,0 +1,294 @@
+
+<HTML><HEAD><TITLE></TITLE>
+<STYLE type=text/css>A:link {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: black; TEXT-DECORATION: none
+}
+TD {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+TH {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+INPUT {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+SELECT {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+.menuStyle {
+	FONT-FAMILY: Arial,Geneva,Verdana,Helvetica; FONT-SIZE: 9pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.form1 {
+	BACKGROUND-COLOR: #ffffff; BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid;FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;
+}
+.form2 {
+	BACKGROUND-COLOR: #E3E3E3; BORDER-BOTTOM: #ffffff 2px solid; BORDER-LEFT: #ffffff 2px solid; BORDER-RIGHT: #ffffff 2px solid; BORDER-TOP: #ffffff 2px solid;FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;height:80pt;
+		}
+.form3 {
+	BACKGROUND-COLOR: #E3E3E3; BORDER-BOTTOM: #007777 2px solid; BORDER-LEFT: #007777 2px solid; BORDER-RIGHT: #007777 2px solid; BORDER-TOP: #007777 2px solid; FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;height:16px
+}
+.form4 {
+	BACKGROUND-COLOR: #cccccc; BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid;FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;
+}
+</STYLE>
+
+<META content=zh-cn http-equiv=Content-Language>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR>
+<META content=FrontPage.Editor.Document name=ProgId>
+<script language="javascript">
+<!--
+
+function del()
+	{		
+		var count=false,sum=0,str;
+		for (i=0;i<form1.r.length;i++)
+			{
+				if (form1.r[i].checked) 
+				{
+					count=true;
+					sum=sum+1;
+				}
+			}
+		alert(sum);
+		if(sum>1)
+			{
+				str="你确定要删除这些文件夹吗?";
+			}
+		else
+			{
+				str="你确定要删除该文件夹吗?";
+			}
+		if (count)
+			{
+				if (confirm(str))					
+				{
+					document.form1.action.value=2;
+					document.form1.submit();
+				}
+				return true;
+			}
+		else 
+			alert("请选择文件夹!");
+		return false;
+	}
+//设置位置
+function place2() {
+    parent.parent.parent.top1.form1.textfield2.value="电子邮件\-\>邮件夹\-\>地址本\-\>添加组";
+}
+function re3()
+	{
+	window.confirm("你真要删除吗?")
+	}
+var scrtxt="您可以在这里添加你所要的组!";
+  var lentxt=scrtxt.length;
+  var width=100;
+  var pos=1-width;
+  
+  function scroll() {
+  pos++;
+  
+  var scroller="";
+  if (pos==lentxt) {
+    pos=1-width;
+  }
+  if (pos<0) {
+    for (var i=1; i<=Math.abs(pos); i++) {
+      scroller=scroller+" ";}
+    scroller=scroller+scrtxt.substring(0,width-i+1);
+  }
+  else {
+    scroller=scroller+scrtxt.substring(pos,width+pos);
+  }
+  window.status = scroller;
+  setTimeout("scroll()",150);
+  }
+function re()
+	{
+		var name=form1.textfield.value;
+		if (name=="")
+			{
+				alert("名字不能为空!");
+				return(false);
+			}
+		else
+			{
+				window.location.href='address.htm'
+				return(true)
+			}
+	}
+//-->
+</script>
+</HEAD>
+<BODY leftMargin=0 topmarging="0" onload="place2();scroll();"
+style="BORDER-BOTTOM: 0px outset; BORDER-LEFT: 0px outset; BORDER-RIGHT: 0px outset; BORDER-TOP: 0px outset" 
+topMargin=0 bgcolor="#F6f6f6">
+<table bgcolor=#ECEAE6 border=1 bordercolordark=#808080 
+      bordercolorlight=#ffffff cellpadding=0 cellspacing=0 width="100%" height="20">
+  <tbody> 
+  <tr bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6> 
+    <td noWrap width="5"> 
+      <table border=0 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22>
+        <tbody> 
+        <tr> 
+          <td align=middle bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><img height=22 
+                  src="../../image/toolbar1.gif" width=5></td>
+        </tr>
+        </tbody> 
+      </table>
+    </td>
+    <td align=center noWrap width="150"> 
+      <table border=1 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22 width="100%">
+        <tbody> 
+        <tr> 
+          <td align=center bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center>添　　　加　　　组</td>
+        </tr>
+        </tbody> 
+      </table>
+    </td>
+    <td noWrap width="3"> 
+      <table border=0 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22>
+        <tbody> 
+        <tr> 
+          <td align=middle bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><img height=22 
+                  src="../../image/toolbar1.gif" width=5></td>
+        </tr>
+        </tbody> 
+      </table>
+    </td>
+    <td align=absmiddle noWrap>&nbsp; </td>
+  </tr>
+  </tbody> 
+</table>
+<table width="100%" border="0" cellspacing="2" cellpadding="0" bgcolor="#e6e6e6" height="25" align="center">
+  <tr>
+    <td height="22" style="padding-left:58px">为你的组键入一个名字，然后添加成员．创建完组后，您可以随时添加和删除成员．</td>
+  </tr>
+  <tr> 
+    <td height="22" style="padding-left:58px"> 
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <form name="form1" method="post" action="">
+	<tr> 
+          <td><b>组名</b></td>
+          <td> 
+            <input type="text" name="textfield" class="form1" onchange="javascript:re()">
+          </td>
+          <td>你有0个成员</td>
+        </tr>
+	</form>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f6f6f6">
+        <tr> 
+          <td colspan="2" style="padding-left:58px" height="23"><b>组员</b></td>
+        </tr>
+        <tr> 
+          <td valign="middle" > 
+            <table width="96%" border="0" cellspacing="1" cellpadding="0" bgcolor="#E9F3F3">
+              <form name="form1">
+                <tr onmouseout='this.style.backgroundColor="#ffffff"' 
+  onmouseover='this.style.backgroundColor="#EFEFEF"' style="CURSOR: hand" bgcolor="#FFFFFF"> 
+                  <td width="40" align="right" height="23"> 
+                    <input type="checkbox" name="checkbox" value="checkbox">
+                </td>
+                  <td width="40" align="center" height="23"><img src="../../image/personal.gif"></td>
+                  <td style="padding-left:20px">汤海京</td>
+              </tr>
+                <tr onmouseout='this.style.backgroundColor="#ffffff"' 
+  onmouseover='this.style.backgroundColor="#EFEFEF"' style="CURSOR: hand" bgcolor="#FFFFFF"> 
+                  <td width="40" align="right" height="24"> 
+                    <input type="checkbox" name="checkbox2" value="checkbox">
+                </td>
+                  <td width="40" align="center" height="24"><img src="../../image/personal.gif"></td>
+                  <td style="padding-left:20px" height="24">曹宜</td>
+              </tr>
+                <tr onmouseout='this.style.backgroundColor="#ffffff"' 
+  onmouseover='this.style.backgroundColor="#EFEFEF"' style="CURSOR: hand" bgcolor="#FFFFFF"> 
+                  <td width="40" align="right" height="23"> 
+                    <input type="checkbox" name="checkbox3" value="checkbox">
+                </td>
+                  <td width="40" align="center" height="23"><img src="../../image/personal.gif"></td>
+                  <td style="padding-left:20px">卢亮</td>
+              </tr>
+                <tr onmouseout='this.style.backgroundColor="#ffffff"' 
+  onmouseover='this.style.backgroundColor="#EFEFEF"' style="CURSOR: hand" bgcolor="#FFFFFF"> 
+                  <td width="40" align="right" height="23"> 
+                    <input type="checkbox" name="checkbox4" value="checkbox">
+                </td>
+                  <td width="40" align="center" height="23"><img src="../../image/personal.gif"></td>
+                  <td style="padding-left:20px">王柏东</td>
+              </tr>
+                <tr onmouseout='this.style.backgroundColor="#ffffff"' 
+  onmouseover='this.style.backgroundColor="#EFEFEF"' style="CURSOR: hand" bgcolor="#FFFFFF"> 
+                  <td width="40" align="right" height="23"> 
+                    <input type="checkbox" name="checkbox5" value="checkbox">
+                </td>
+                  <td width="40" align="center" height="23"><img src="../../image/personal.gif"></td>
+                  <td style="padding-left:20px">刘宁</td>
+              </tr>
+                <tr onmouseout='this.style.backgroundColor="#ffffff"' 
+  onmouseover='this.style.backgroundColor="#EFEFEF"' style="CURSOR: hand" bgcolor="#FFFFFF"> 
+                  <td width="40" align="right" height="23"> 
+                    <input type="checkbox" name="checkbox6" value="checkbox">
+                </td>
+                  <td width="40" align="center" height="23"><img src="../../image/personal.gif"></td>
+                  <td style="padding-left:20px">石京海</td>
+              </tr>
+			  </form>
+            </table>
+          </td>
+          <td align="center" > 
+            <table width="80%" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td height="20" align="center" style="padding-top:4px"> 
+                  <input type="submit" name="Submit1" value=" 选择成员 " width="160px" class="form4" onClick="window.location.href='select_member.htm'">
+                </td>
+              </tr>
+              <tr> 
+                <td height="20" align="center" style="padding-top:4px"> 
+                  <input type="submit" name="Submit2" value=" 新建成员 " width="160px" class="form4" onClick="window.location.href='personrcd_e.htm'">
+                </td>
+              </tr>
+              <tr> 
+                <td height="20" align="center" style="padding-top:4px"> 
+                  <input type="submit" name="Submit3" value=" 属性信息 " width="160px" class="form4" onClick="window.location.href='personrcd_c.htm'">
+                </td>
+              </tr>
+              <tr> 
+                <td height="20" align="center" style="padding-top:4px"> 
+                  <input type="submit" name="Submit6" value=" 删    除 " class="form4" onclick="del();">
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td height="22" bgcolor="#e6e6e6" align="center"> 
+      <input type="submit" name="Submit62" value=" 确  定 " class="form4" onClick="re()">
+      　　　　　　　　　　
+      <input type="submit" name="Submit63" value=" 取  消 " class="form4" onClick="window.location.href='address.htm'">
+    </td>
+  </tr>
+</table>
+</BODY></HTML>

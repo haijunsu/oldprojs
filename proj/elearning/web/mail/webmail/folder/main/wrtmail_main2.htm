@@ -1,0 +1,192 @@
+<HTML><HEAD><TITLE></TITLE>
+<STYLE type=text/css>A:link {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: black; TEXT-DECORATION: none
+}
+TD {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+TH {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+INPUT {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+SELECT {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+.menuStyle {
+	FONT-FAMILY: Arial,Geneva,Verdana,Helvetica; FONT-SIZE: 9pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.form1 {
+	BACKGROUND-COLOR: #E6E6E6; BORDER-BOTTOM: #ffffff 2px solid; BORDER-LEFT: #ffffff 2px solid; BORDER-RIGHT: #ffffff 2px solid; BORDER-TOP: #ffffff 2px solid;FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;
+}
+.form2 {
+	BACKGROUND-COLOR: #E3E3E3; BORDER-BOTTOM: #ffffff 2px solid; BORDER-LEFT: #ffffff 2px solid; BORDER-RIGHT: #ffffff 2px solid; BORDER-TOP: #ffffff 2px solid;FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;height:420pt;width=450
+		}
+.form3 {
+	BACKGROUND-COLOR: #E3E3E3; BORDER-BOTTOM: #007777 2px solid; BORDER-LEFT: #007777 2px solid; BORDER-RIGHT: #007777 2px solid; BORDER-TOP: #007777 2px solid; FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;height:16px
+}
+.form4 {
+	BACKGROUND-COLOR: #cccccc; BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid;FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;
+}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+  var scrtxt="您可以在这里编辑您自己要发送的邮件！";
+  var lentxt=scrtxt.length;
+  var width=100;
+  var pos=1-width;
+  
+  function scroll() {
+  pos++;
+  
+  var scroller="";
+  if (pos==lentxt) {
+    pos=1-width;
+  }
+  if (pos<0) {
+    for (var i=1; i<=Math.abs(pos); i++) {
+      scroller=scroller+" ";}
+    scroller=scroller+scrtxt.substring(0,width-i+1);
+  }
+  else {
+    scroller=scroller+scrtxt.substring(pos,width+pos);
+  }
+  window.status = scroller;
+  setTimeout("scroll()",150);
+  }
+function re()
+{
+		var receiver=form1.textfield1.value;
+		var maintext=form1.textfield5.value;
+		//alert(maintext);
+		if (receiver=="")
+		{
+			window.alert("收件人为空，不能发送！");
+			return(false);
+		}
+		else
+		{
+			if (maintext=="")
+			{
+				window.alert("正文为空，不能发送！");
+				return(false);
+			}
+			else
+			{
+				window.location.href="../sendchek.htm";
+				return(true);
+			}
+		}
+}	
+//-->
+</SCRIPT>
+
+<META content=zh-cn http-equiv=Content-Language>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR>
+<META content=FrontPage.Editor.Document name=ProgId></HEAD>
+<BODY bgColor=#F6F6F6 leftMargin=0 topmarging="0" onload="scroll();return true"
+style="BORDER-BOTTOM: 0px outset; BORDER-LEFT: 0px outset; BORDER-RIGHT: 0px outset; BORDER-TOP: 0px outset" 
+topMargin=0>
+<form name="form1" method="post" action="">
+  <table border=0 cellpadding=0 cellspacing=2>
+    <tbody> 
+    <tr> 
+      <td> 
+        <table bgcolor=#efefef border=1 bordercolordark=#efefef 
+      bordercolorlight=#efefef cellpadding=0 cellspacing=0 height="100%" 
+      width="100%">
+          <tbody> 
+          <tr> 
+            <td bordercolordark=#efefef bordercolorlight=#efefef noWrap>&nbsp;To 
+              :&nbsp;</td>
+          </tr>
+          </tbody> 
+        </table>
+      </td>
+      <td> 
+        <input name=TO onFocus=javascript:oAddressTarget=this size=107 class="form1">
+      </td>
+      <script language=JavaScript>
+<!--
+function MoveFocus() {
+  document.writeform.TO.focus();
+  return;
+}
+//-->
+</script>
+    </tr>
+    <tr> 
+      <td> 
+        <table bgcolor=#efefef border=1 bordercolordark=#efefef 
+      bordercolorlight=#efefef cellpadding=0 cellspacing=0 height="100%" 
+      width="100%">
+          <tbody> 
+          <tr> 
+            <td bordercolordark=#efefef bordercolorlight=#efefef noWrap>&nbsp;Cc 
+              :&nbsp;</td>
+          </tr>
+          </tbody> 
+        </table>
+      </td>
+      <td> 
+        <input name=CC onFocus=javascript:oAddressTarget=this size=107 class="form1">
+      </td>
+    </tr>
+    <tr> 
+      <td> 
+        <table bgcolor=#efefef border=1 bordercolordark=#efefef 
+      bordercolorlight=#efefef cellpadding=0 cellspacing=0 height="100%" 
+      width="100%">
+          <tbody> 
+          <tr> 
+            <td bordercolordark=#efefef bordercolorlight=#efefef 
+            noWrap>&nbsp;Bcc :&nbsp;</td>
+          </tr>
+          </tbody> 
+        </table>
+      </td>
+      <td> 
+        <input name=BCC onFocus=javascript:oAddressTarget=this size=107>
+      </td>
+    </tr>
+    <tr> 
+      <td> 
+        <table bgcolor=#efefef border=1 bordercolordark=#efefef 
+      bordercolorlight=#efefef cellpadding=0 cellspacing=0 height="100%" 
+      width="100%">
+          <tbody> 
+          <tr> 
+            <td bordercolordark=#efefef bordercolorlight=#efefef 
+            noWrap>&nbsp;Subject :&nbsp;</td>
+          </tr>
+          </tbody> 
+        </table>
+      </td>
+      <td> 
+        <input name=SUBJECT size=107>
+      </td>
+    </tr>
+    <tr> 
+      <td colspan=2 noWrap valign=center> 
+        <textarea cols=100 name=BODY rows=20 wrap=hard></textarea>
+      </td>
+    </tr>
+    <script language=javascript>
+fileprinted=true;
+</script>
+    </tbody> 
+  </table>
+</form>
+<p>&nbsp;</p>
+</BODY></HTML>

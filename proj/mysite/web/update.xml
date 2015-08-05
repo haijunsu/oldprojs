@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+	<update>
+		<item>
+			<date>2005-08-29</date>
+			<topic>english</topic>
+			<catalog>other</catalog>
+			<file>24SolarTerms.xml</file>
+			<name>二十四节气 The 24 Solar Terms</name>
+			<keywords>二十四节气 The 24 Solar Terms</keywords>
+			<description>二十四节气 The 24 Solar Terms</description>
+		</item>
+		<item>
+			<date>2005-08-29</date>
+			<topic>english</topic>
+			<catalog>other</catalog>
+			<file>EnglishCountryLiveIdiom.xml</file>
+			<name>英语国家生存英语精选</name>
+			<keywords>英语国家生存英语精选</keywords>
+			<description>英语国家生存英语精选</description>
+		</item>
+		<item>
+			<date>2005-08-29</date>
+			<topic>english</topic>
+			<catalog>other</catalog>
+			<file>ChineseFeastDay.xml</file>
+			<name>中国传统节日</name>
+			<keywords>中国传统节日</keywords>
+			<description>中国传统节日</description>
+		</item>
+		<item>
+			<date>2005-08-23</date>
+			<topic>java</topic>
+			<catalog>tips</catalog>
+			<file>MavenRepository.xml</file>
+			<name>Maven Repository</name>
+			<keywords>Maven Repository</keywords>
+			<description>Maven Repository</description>
+		</item>
+		<item>
+			<date>2005-08-05</date>
+			<topic>java</topic>
+			<catalog>tips</catalog>
+			<file>lucene1.xml</file>
+			<name>lucene建立搜索</name>
+			<keywords>lucene建立搜索</keywords>
+			<description>lucene建立搜索</description>
+		</item>
+		<item>
+			<date>2005-08-02</date>
+			<topic>os</topic>
+			<catalog>linux</catalog>
+			<file>SetupEnv.xml</file>
+			<name>定制Linux系统环境变量</name>
+			<keywords>定制Linux系统环境变量</keywords>
+			<description>定制Linux系统环境变量</description>
+		</item>
+		<item>
+			<date>2005-07-27</date>
+			<topic>english</topic>
+			<catalog>other</catalog>
+			<file>closeConnectionCall.xml</file>
+			<name>打电话 - 结束通话</name>
+			<keywords>打电话 - 结束通话</keywords>
+			<description>打电话 - 结束通话</description>
+		</item>
+		<item>
+			<date>2005-07-27</date>
+			<topic>english</topic>
+			<catalog>other</catalog>
+			<file>lineProblemCall.xml</file>
+			<name>打电话 - 线路故障</name>
+			<keywords>打电话 - 线路故障</keywords>
+			<description>打电话 - 线路故障</description>
+		</item>
+		<item>
+			<date>2005-07-27</date>
+			<topic>english</topic>
+			<catalog>other</catalog>
+			<file>lineBusyCall.xml</file>
+			<name>打电话 - 分机、占线</name>
+			<keywords>打电话 - 分机、占线</keywords>
+			<description>打电话 - 分机、占线</description>
+		</item>
+		<item>
+			<date>2005-07-27</date>
+			<topic>english</topic>
+			<catalog>other</catalog>
+			<file>wrongNumberCall.xml</file>
+			<name>打电话 - 打错电话</name>
+			<keywords>打电话 - 打错电话</keywords>
+			<description>打电话 - 打错电话</description>
+		</item>
+		<item>
+			<date>2005-07-27</date>
+			<topic>english</topic>
+			<catalog>other</catalog>
+			<file>longDistanceCall.xml</file>
+			<name>打电话 - 长途电话</name>
+			<keywords>打电话 - 长途电话</keywords>
+			<description>打电话 - 长途电话</description>
+		</item>
+		<item>
+			<date>2005-07-27</date>
+			<topic>english</topic>
+			<catalog>other</catalog>
+			<file>forwardMessageCall.xml</file>
+			<name>打电话 - 转告消息</name>
+			<keywords>打电话 - 转告消息</keywords>
+			<description>打电话 - 转告消息</description>
+		</item>
+		<item>
+			<date>2005-07-27</date>
+			<topic>english</topic>
+			<catalog>other</catalog>
+			<file>leavingMessageCall.xml</file>
+			<name>打电话 - 留言</name>
+			<keywords>打电话 - 留言</keywords>
+			<description>打电话 - 留言</description>
+		</item>
+		<item>
+			<date>2005-07-27</date>
+			<topic>english</topic>
+			<catalog>other</catalog>
+			<file>waitOrCallBack.xml</file>
+			<name>打电话 - 等候与回电</name>
+			<keywords>打电话 - 等候与回电</keywords>
+			<description>打电话 - 等候与回电</description>
+		</item>
+		<item>
+			<date>2005-07-27</date>
+			<topic>english</topic>
+			<catalog>other</catalog>
+			<file>notFoundPeopleCall.xml</file>
+			<name>打电话 - 没有找到人</name>
+			<keywords>打电话 - 没有找到人</keywords>
+			<description>打电话 - 没有找到人</description>
+		</item>
+		<item>
+			<date>2005-07-27</date>
+			<topic>english</topic>
+			<catalog>other</catalog>
+			<file>receivedCall.xml</file>
+			<name>打电话 - 接电话</name>
+			<keywords>打电话 - 接电话</keywords>
+			<description>打电话 - 接电话</description>
+		</item>
+		<item>
+			<date>2005-07-27</date>
+			<topic>english</topic>
+			<catalog>other</catalog>
+			<file>leavingMessage.xml</file>
+			<name>打电话 - Leaving a Message</name>
+			<keywords>打电话 - Leaving a Message</keywords>
+			<description>打电话 - Leaving a Message</description>
+		</item>
+		<item>
+			<date>2005-07-27</date>
+			<topic>english</topic>
+			<catalog>other</catalog>
+			<file>receivedCallDiction.xml</file>
+			<name>接到英语电话时要说的话</name>
+			<keywords>接到英语电话时要说的话</keywords>
+			<description>接到英语电话时要说的话</description>
+		</item>
+		<item>
+			<date>2005-07-27</date>
+			<topic>english</topic>
+			<catalog>other</catalog>
+			<file>pinchHitterCall.xml</file>
+			<name>替人接通电话时的用语</name>
+			<keywords>替人接通电话时的用语</keywords>
+			<description>替人接通电话时的用语</description>
+		</item>
+		<item>
+			<date>2005-07-27</date>
+			<topic>english</topic>
+			<catalog>other</catalog>
+			<file>officeTelEnglish.xml</file>
+			<name>外企Office电话英语</name>
+			<keywords>外企Office电话英语</keywords>
+			<description>外企Office电话英语</description>
+		</item>
+		<item>
+			<date>2005-07-26</date>
+			<topic>english</topic>
+			<catalog>tv</catalog>
+			<file>BBC.xml</file>
+			<name>BBC</name>
+			<keywords>BBC</keywords>
+			<description>BBC</description>
+		</item>
+		<item>
+			<date>2005-07-26</date>
+			<topic>english</topic>
+			<catalog>tv</catalog>
+			<file>VOANewsNow.xml</file>
+			<name>VOA News Now</name>
+			<keywords>VOA News Now</keywords>
+			<description>VOA News Now</description>
+		</item>
+		<item>
+			<date>2005-07-26</date>
+			<topic>english</topic>
+			<catalog>tv</catalog>
+			<file>CNNRadio.xml</file>
+			<name>美国有线新闻网 CNN Radio</name>
+			<keywords>美国有线新闻网 CNN Radio</keywords>
+			<description>美国有线新闻网 CNN Radio</description>
+		</item>
+		<item>
+			<date>2005-07-26</date>
+			<topic>english</topic>
+			<catalog>tv</catalog>
+			<file>AmericanNetworkRealtimeMTV.xml</file>
+			<name>美国网络直播MTV</name>
+			<keywords>美国网络直播MTV</keywords>
+			<description>美国网络直播MTV</description>
+		</item>
+		<item>
+			<date>2005-07-26</date>
+			<topic>english</topic>
+			<catalog>tv</catalog>
+			<file>cctv9.xml</file>
+			<name>CCTV 9</name>
+			<keywords>CCTV</keywords>
+			<description>CCTV</description>
+		</item>
+		<item>
+			<date>2005-07-21</date>
+			<topic>english</topic>
+			<catalog>writing</catalog>
+			<file>businessLetterBegin.xml</file>
+			<name>商业英文写作基本句子 - 商业书信常用开头语</name>
+			<keywords>English bussiness letter begin start </keywords>
+			<description>商业书信常用开头语</description>
+		</item>
+		<item>
+			<date>2005-04-06</date>
+			<topic>design</topic>
+			<catalog>source</catalog>
+			<file>cvsQuickInstall.xml</file>
+			<name>CVSNT 快速安装</name>
+			<keywords>cvsnt </keywords>
+			<description>CVSNT 快速安装</description>
+		</item>
+		<item>
+			<date>2005-01-03</date>
+			<topic>db</topic>
+			<catalog>mysql</catalog>
+			<file>commonUseMysql.xml</file>
+			<name>MySQL常用管理命令</name>
+			<keywords>MySQL command 管理 命令</keywords>
+			<description>MySQL常用管理命令</description>
+		</item>
+		<item>
+			<date>2005-01-03</date>
+			<topic>design</topic>
+			<catalog>source</catalog>
+			<file>usecvstags.xml</file>
+			<name>如何在项目开发中使用CVS TAGS</name>
+			<keywords>cvs tags</keywords>
+			<description>如何在项目开发中使用CVS TAGS</description>
+		</item>
+		<item>
+			<date>2004-09-07</date>
+			<topic>design</topic>
+			<catalog>patterns</catalog>
+			<file>interpreter.xml</file>
+			<name>解释器模式</name>
+			<keywords>解释器 模式 interpreter</keywords>
+			<description>设计模式：解释器模式</description>
+		</item>
+		<item>
+			<date>2004-09-02</date>
+			<topic>design</topic>
+			<catalog>patterns</catalog>
+			<file>mediator.xml</file>
+			<name>调停者模式</name>
+			<keywords>调停者 模式 mediator</keywords>
+			<description>设计模式：调停者模式</description>
+		</item>
+		<item>
+			<date>2004-08-20</date>
+			<topic>os</topic>
+			<catalog>windows</catalog>
+			<file>xpcmd.xml</file>
+			<name>Windows xp 常用 Dos 命令</name>
+			<keywords>Windows xp Dos 命令 command</keywords>
+			<description>Windows xp 常用 Dos 命令</description>
+		</item>
+		<item>
+			<date>2004-06-15</date>
+			<topic>java</topic>
+			<catalog>tips</catalog>
+			<file>commonsLogging.xml</file>
+			<name>使用commons-logging来统一Java日志记录</name>
+			<keywords>commons log 日志 log4j</keywords>
+			<description>commons log 日志 log4j</description>
+		</item>
+		<item>
+			<date>2004-06-15</date>
+			<topic>design</topic>
+			<catalog>source</catalog>
+			<file>cvsFirstProj.xml</file>
+			<name>CVS 建立模块基本步骤</name>
+			<keywords>CVS 模块 步骤</keywords>
+			<description>CVS 模块 步骤</description>
+		</item>
+		<item>
+			<date>2004-05-27</date>
+			<topic>java</topic>
+			<catalog>tips</catalog>
+			<file>regex_jdk14.xml</file>
+			<name>正则表达式应用 － java.util.regex</name>
+			<keywords>正则 表达式 应用 regex</keywords>
+			<description>正则表达式应用 － java.util.regex</description>
+		</item>
+		<item>
+			<date>2004-05-27</date>
+			<topic>java</topic>
+			<catalog>tips</catalog>
+			<file>antFtp.xml</file>
+			<name>在ant中使用FTP任务</name>
+			<keywords>ant　FTP　task</keywords>
+			<description>在ant中使用FTP任务</description>
+		</item>
+		<item>
+			<date>2004-05-26</date>
+			<topic>db</topic>
+			<catalog>db2</catalog>
+			<file>dbclone.xml</file>
+			<name>DB2 工具在异种平台间克隆数据库</name>
+			<keywords>DB2 克隆 数据库</keywords>
+			<description>DB2 工具在异种平台间克隆数据库</description>
+		</item>
+		<item>
+			<date>2004-05-26</date>
+			<topic>db</topic>
+			<catalog>db2</catalog>
+			<file>dbcloneredirect.xml</file>
+			<name>使用重定向恢复克隆 DB2 数据库</name>
+			<keywords>重定向 恢复 克隆 DB2 数据库</keywords>
+			<description>使用重定向恢复克隆 DB2 数据库</description>
+		</item>
+		<item>
+			<date>2004-05-26</date>
+			<topic>java</topic>
+			<catalog>tips</catalog>
+			<file>RegexOfJDK14.xml</file>
+			<name>JDK 1.4 正则表达式语法规则</name>
+			<keywords>JDK 正则 表达式 语法</keywords>
+			<description>JDK 1.4 正则表达式语法规则</description>
+		</item>
+		<item>
+			<date>2004-05-25</date>
+			<topic>os</topic>
+			<catalog>windows</catalog>
+			<file>protectpc.xml</file>
+			<name>手工修复被恶意网站修改的注册表</name>
+			<keywords>修复 注册表</keywords>
+			<description>手工修复被恶意网站修改的注册表</description>
+		</item>
+		<item>
+			<date>2004-05-20</date>
+			<topic>java</topic>
+			<catalog>tips</catalog>
+			<file>regex.xml</file>
+			<name>正则表达式参考</name>
+			<keywords>正则 表达式 参考</keywords>
+			<description>正则表达式参考</description>
+		</item>
+		<item>
+			<date>2004-05-20</date>
+			<topic>java</topic>
+			<catalog>tips</catalog>
+			<file>googletag.xml</file>
+			<name>Google API Taglib详解</name>
+			<keywords>Google API Taglib</keywords>
+			<description>Google API Taglib说解</description>
+		</item>
+		<item>
+			<date>2004-05-19</date>
+			<topic>java</topic>
+			<catalog>tips</catalog>
+			<file>googleapi.xml</file>
+			<name>使用Google API来构建搜索引擎</name>
+			<keywords>Google API 搜索</keywords>
+			<description>使用Google API来构建搜索引擎</description>
+		</item>
+		<item>
+			<date>2004-05-18</date>
+			<topic>java</topic>
+			<catalog>tips</catalog>
+			<file>regex_oro.xml</file>
+			<name>正则表达式应用 － Jakarta-ORO</name>
+			<keywords>正则表达式 Jakarta-ORO</keywords>
+			<description>正则表达式应用 － Jakarta-ORO</description>
+		</item>
+		<item>
+			<date>2004-05-18</date>
+			<topic>db</topic>
+			<catalog>mysql</catalog>
+			<file>install.xml</file>
+			<name>在Windows下快速安装/卸载MySQL</name>
+			<keywords>安装 卸载 MySQL</keywords>
+			<description>在Windows下快速安装/卸载MySQL</description>
+		</item>
+		<item>
+			<date>2004-05-17</date>
+			<topic>design</topic>
+			<catalog>source</catalog>
+			<file>cvsres.xml</file>
+			<name>CVS 参考文档</name>
+			<keywords>CVS reference 参考</keywords>
+			<description>CVS 参考文档</description>
+		</item>
+		<item>
+			<date>2004-05-14</date>
+			<topic>design</topic>
+			<catalog>source</catalog>
+			<file>cvsCommand.xml</file>
+			<name>CVS 命令</name>
+			<keywords>CVS 命令 command</keywords>
+			<description>CVS 命令</description>
+		</item>
+		<item>
+			<date>2004-05-14</date>
+			<topic>design</topic>
+			<catalog>source</catalog>
+			<file>cvsntInstallTips.xml</file>
+			<name>CVSNT 安装技巧</name>
+			<keywords>CVSNT 安装 技巧 install</keywords>
+			<description>CVSNT 安装技巧</description>
+		</item>
+		<item>
+			<date>2004-05-14</date>
+			<topic>db</topic>
+			<catalog>db2</catalog>
+			<file>dbCommand.xml</file>
+			<name>db2的一些常用命令</name>
+			<keywords>db2 命令 command</keywords>
+			<description>db2的一些常用命令</description>
+		</item>
+		<item>
+			<date>2004-05-14</date>
+			<topic>os</topic>
+			<catalog>windows</catalog>
+			<file>NoShare.xml</file>
+			<name>禁止win2000和winxp的默认硬盘共享</name>
+			<keywords>Win2000 winxp 共享</keywords>
+			<description>禁止win2000和winxp的默认硬盘共享</description>
+		</item>
+		<item>
+			<date>2004-05-14</date>
+			<topic>java</topic>
+			<catalog>ejb</catalog>
+			<file>EjbDefine.xml</file>
+			<name>EJB的一些基本概念</name>
+			<keywords>EJB</keywords>
+			<description>EJB的一些基本概念</description>
+		</item>
+		<item>
+			<date>2004-05-14</date>
+			<topic>java</topic>
+			<catalog>ejb</catalog>
+			<file>EjbAndTrans.xml</file>
+			<name>事务与EJB</name>
+			<keywords>事务 EJB</keywords>
+			<description>事务与EJB</description>
+		</item>
+		<item>
+			<date>2004-05-13</date>
+			<topic>java</topic>
+			<catalog>j2ee</catalog>
+			<file>cssGrammar.xml</file>
+			<name>CSS 的一些基本语法</name>
+			<keywords>CSS Style 语法</keywords>
+			<description>CSS 的一些基本语法</description>
+		</item>
+		<item>
+			<date>2004-05-13</date>
+			<topic>java</topic>
+			<catalog>j2ee</catalog>
+			<file>cssFont.xml</file>
+			<name>CSS 中设置字体</name>
+			<keywords>CSS Style</keywords>
+			<description>CSS 中设置字体</description>
+		</item>
+		<item>
+			<date>2004-05-13</date>
+			<topic>appsvr</topic>
+			<catalog>websphere</catalog>
+			<file>ReferFromIbm.xml</file>
+			<name>IBM WebSphere Application Server 推荐的文档列表</name>
+			<keywords>IBM WebSphere</keywords>
+			<description>IBM WebSphere Application Server 推荐的文档列表</description>
+		</item>
+		<item>
+			<date>2004-05-13</date>
+			<topic>os</topic>
+			<catalog>as400</catalog>
+			<file>AS400Command.xml</file>
+			<name>AS400 的一些常用命令</name>
+			<keywords>AS400 命令</keywords>
+			<description>AS400 的一些常用命令</description>
+		</item>
+		<item>
+			<date>2004-05-13</date>
+			<topic>appsvr</topic>
+			<catalog>websphere</catalog>
+			<file>ConfigSSL.xml</file>
+			<name>设置IBM HTTP Server(IHS) For Windows/UNIX服务器支持SSL协议</name>
+			<keywords>IBM HTTP Server Windows Unix 配置</keywords>
+			<description>设置IBM HTTP Server(IHS) For Windows/UNIX服务器支持SSL协议</description>
+		</item>
+		<item>
+			<date>2004-05-12</date>
+			<topic>appsvr</topic>
+			<catalog>websphere</catalog>
+			<file>prepare400.xml</file>
+			<name>配置 iSeries for WebSphere</name>
+			<keywords>WebSphere AS400 配置</keywords>
+			<description>配置 iSeries for WebSphere</description>
+		</item>
+		<item>
+			<date>2004-05-11</date>
+			<topic>appsvr</topic>
+			<catalog>websphere</catalog>
+			<file>ConfigIn400.xml</file>
+			<name>WebSphere for iSeries基本设置</name>
+			<keywords>WebSphere AS400 配置</keywords>
+			<description>WebSphere for As400 基本配置</description>
+		</item>
+	</update>
+</doc>
+

@@ -1,0 +1,18 @@
+.link1 {
+	FONT-SIZE: 12px; COLOR: #ffffff; TEXT-DECORATION: none
+}
+A:hover {
+	FONT-WEIGHT: normal; FONT-SIZE: 12px; COLOR: #ff3300; TEXT-DECORATION: underline
+}
+A:active {
+	COLOR: #ff3300; TEXT-DECORATION: underline
+}
+.ok {
+	FONT-SIZE: 12px; COLOR: #ff0000
+}
+.black {
+	FONT-WEIGHT: normal; FONT-SIZE: 12px; COLOR: #333333; TEXT-DECORATION: none
+}
+.en {
+	FONT-SIZE: 12px; COLOR: #333333
+}

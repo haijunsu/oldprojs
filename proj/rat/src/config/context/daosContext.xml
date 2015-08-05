@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="generalDao"
+		class="com.navy.framework.dao.impl.GeneralDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="appSessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="userDao" class="com.navy.framework.dao.impl.UserDaoImpl"
+		parent="generalDao" />
+
+	<bean id="roleDao" class="com.navy.framework.dao.impl.RoleDaoImpl"
+		parent="generalDao" />
+
+	<bean id="companyDao"
+		class="com.navy.framework.dao.impl.CompanyDaoImpl" parent="generalDao" />
+
+	<bean id="productDao"
+		class="com.navy.app.rat.dao.impl.ProductDaoImpl" parent="generalDao" />
+
+	<bean id="categoryDao"
+		class="com.navy.app.rat.dao.impl.CategoryDaoImpl" parent="generalDao" />
+
+	<bean id="laptopDao" class="com.navy.app.rat.dao.impl.LaptopDaoImpl"
+		parent="generalDao" />
+</beans>

@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+	<!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+	<isindexall>false</isindexall>
+	<indexfile>indexall.xml</indexfile>
+
+	<!-- 定义文档位置 -->
+	<topic>design</topic>
+	<catalog>patterns</catalog>
+
+	<!-- 文档显示内容 -->
+    <title>设计模式：调停者模式</title>
+    <pagename>调停者（Mediator）模式</pagename>
+	<content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+在调停者模式中，所有对象都可以协调工作，但又不直接相互管理。
+这些对象都与一个处于中心地位的调停者对象发生关系，由这个调停者对象进行协调工作
+这个协调者对象叫做调停者（Mediator），而调停者所协调的成员对象称做同事（Colleague）对象。
+<br>
+调停者模式包括以下几各角色：
+
+<ul>
+	<li>抽象调停者角色</li>
+	<li>具体调停者角色</li>
+	<li>抽象同事类角色</li>
+	<li>具体同事类角色</li>
+</ul>
+
+<div align="center">
+<img src="mediator/uml01.jpg"/><br>
+调停者模式UML类图<br>
+<br>
+<img src="mediator/uml02.jpg"/><br>
+调停者模式UML时序图
+</div>
+
+ 
+优点：
+<ul>
+	<li>适当作用调停者模式可以较少使用静态的继承关系，使得具体同事类可以更加容易地被复用</li>
+	<li>适当作用调停者模式可以避免同事对象之间的过度耦合，使得调停类与同事类可以相对独立地演化</li>
+	<li>调停者模式将多对多的相互作用转化为一对多的相互作用，使得对象之间的关系更加易于维护和理解</li>
+	<li>调停者模式将对象的行为和协作抽象化，把对象在小尺度的行为上与其他对象的相互作用分开处理</li>
+</ul>
+缺点：
+<ul>
+	<li>调停者模式降低了同事对象的复杂性，低价是增加了调停者类的复杂性</li>
+	<li>调停者类经常充满了各个具体同事类的关系协调代码，这各代码常常是不能复用的，因此，具体同事类
+	的复用是以调停者类不可复用为代价的</li>
+</ul>
+<h3>代码</h3>
+Colleague.java
+<div id="codeblock">
+<pre>
+package navy.pattern.behavioral.mediator;
+
+/**
+ * 抽象同事类角色
+ */
+public abstract class Colleague {
+
+	/**
+	 * 调停者对象，只提供get方法
+	 */
+	private Mediator mediator;
+
+	/**
+	 * 构造子，作为参量接收调停者对象
+	 * 
+	 * @param m
+	 *            具体调停者对象
+	 * @roseuid 413680DF009C
+	 */
+	public Colleague(Mediator m) {
+		mediator = m;
+	}
+
+	/**
+	 * Access method for the mediator property.
+	 * 
+	 * @return the current value of the mediator property
+	 */
+	public Mediator getMediator() {
+		return mediator;
+	}
+
+	/**
+	 * 行动方法，由子类实现
+	 * 
+	 * @roseuid 413680F20196
+	 */
+	public abstract void action();
+
+	/**
+	 * 示意性商业方法，调用此方法可以改变对象的内部状态
+	 * 
+	 * @roseuid 41368107033C
+	 */
+	public void change() {
+		mediator.colleagueChanged(this);
+	}
+}
+</pre>
+</div>
+Colleague1.java
+<div id="codeblock">
+<pre>
+package navy.pattern.behavioral.mediator;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+/**
+ * 具体同事类角色1
+ */
+public class Colleague1 extends Colleague {
+	/**
+	 * Commons Logger for this class
+	 */
+	private static final Log logger = LogFactory.getLog(Colleague1.class);
+
+	/**
+	 * 构造子，作为参量接收调停者对象
+	 * 
+	 * @param m
+	 * @roseuid 413682E2030D
+	 */
+	public Colleague1(Mediator m) {
+		super(m);
+	}
+
+	/**
+	 * 行动方法的具体实现
+	 * 
+	 * @roseuid 413682F2038A
+	 */
+	public void action() {
+		if (logger.isDebugEnabled()) {
+			logger.debug("action() - start");
+		}
+		
+		logger.info("action() - This is an action from Colleague1");
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("action() - end");
+		}
+	}
+}
+</pre>
+</div>
+Colleague2.java
+<div id="codeblock">
+<pre>
+package navy.pattern.behavioral.mediator;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+
+/**
+ * 具体同事类角色2
+ */
+public class Colleague2 extends Colleague 
+{
+	/**
+	 * Commons Logger for this class
+	 */
+	private static final Log logger = LogFactory.getLog(Colleague2.class);
+   
+   /**
+    * 构造子，作为参量接收调停者对象
+    * @param m
+    * @roseuid 4136834C03C8
+    */
+   public Colleague2(Mediator m) 
+   {
+	super(m);    
+   }
+   
+   /**
+    * 行动方法的具体实现
+    * @roseuid 4136835F0399
+    */
+   public void action() 
+   {
+	if (logger.isDebugEnabled()) {
+		logger.debug("action() - start");
+	}
+	logger.info("action() - This is an action from Colleague2");
+	if (logger.isDebugEnabled()) {
+		logger.debug("action() - end");
+	}
+   }
+}
+</pre>
+</div>
+Mediator.java
+<div id="codeblock">
+<pre>
+package navy.pattern.behavioral.mediator;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+/**
+ * 抽象调停者角色
+ */
+public abstract class Mediator {
+	/**
+	 * Commons Logger for this class
+	 */
+	private static final Log logger = LogFactory.getLog(Mediator.class);
+
+	/**
+	 * 事件方法，由子类实现
+	 * 
+	 * @param c
+	 * @roseuid 413683C8031C
+	 */
+	public abstract void colleagueChanged(Colleague c);
+
+	/**
+	 * 运行程序
+	 * 
+	 * @param args
+	 * @roseuid 413683DF02CE
+	 */
+	public static void main(String[] args) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("main(String[]) - start");
+		}
+		
+		ConcreteMediator mediator = new ConcreteMediator();
+		mediator.createConcreteMediator();
+		Colleague c1 = new Colleague1(mediator);
+		Colleague c2 = new Colleague2(mediator);
+		mediator.colleagueChanged(c1);
+		mediator.colleagueChanged(c2);
+		
+		if (logger.isDebugEnabled()) {
+			logger.debug("main(String[]) - end");
+		}
+	}
+}
+</pre>
+</div>
+ConcreteMediator.java
+<div id="codeblock">
+<pre>
+package navy.pattern.behavioral.mediator;
+
+/**
+ * 具体调停者角色
+ */
+public class ConcreteMediator extends Mediator {
+
+	/**
+	 * 具体同事类1，只提供get方法
+	 */
+	private Colleague1 colleague1;
+
+	/**
+	 * 具体同事类2，只提供get方法
+	 */
+	private Colleague2 colleague2;
+
+	/**
+	 * Access method for the colleague1 property.
+	 * 
+	 * @return the current value of the colleague1 property
+	 */
+	public Colleague1 getColleague1() {
+		return colleague1;
+	}
+
+	/**
+	 * Access method for the colleague2 property.
+	 * 
+	 * @return the current value of the colleague2 property
+	 */
+	public Colleague2 getColleague2() {
+		return colleague2;
+	}
+
+	/**
+	 * 事件方法的具体实现
+	 * 
+	 * @param c
+	 * @roseuid 4136852C006D
+	 */
+	public void colleagueChanged(Colleague c) {
+		colleague1.action();
+		colleague2.action();
+	}
+
+	/**
+	 * 工厂方法，创建同事对象
+	 * 
+	 * @roseuid 413685430290
+	 */
+	public void createConcreteMediator() {
+		colleague1 = new Colleague1(this);
+		colleague2 = new Colleague2(this);
+	}
+}
+</pre>
+</div>
+
+    ]]> </content>
+
+</doc>
+

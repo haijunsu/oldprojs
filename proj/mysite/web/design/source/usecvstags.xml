@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+	<!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+	<isindexall>false</isindexall>
+	<indexfile>indexall.xml</indexfile>
+
+	<!-- 定义文档位置 -->
+	<topic>design</topic>
+	<catalog>source</catalog>
+
+	<!-- 文档显示内容 -->
+    <title>如何在项目开发中使用CVS TAGS</title>
+    <pagename>如何在项目开发中使用CVS TAGS</pagename>
+	<content><![CDATA[
+<P>如果在源代码文件中加入 CVS TAGS，那么当CHECK OUT文件时，CVS 能够自动将 TAGS 置换为相应的信息。</P>
+<P>比如 &nbsp;$Header: /navysu/MySite/web/design/source/usecvstags.xml,v 1.1 2005/01/03 04:53:29 navy Exp $&nbsp;将被置换为 $Header: /navysu/MySite/web/design/source/usecvstags.xml,v 1.1 2005/01/03 04:53:29 navy Exp $
+<BR>利用这一功能，可以简化很多麻烦事儿，比如利用CVS自动在源代码中保存所有修改日志。</P>
+<P>CVS TAGS有很多种，下面对每一种都做一下简单解释：</P>
+<UL>
+<LI>$Author: navy $ - 最后一次提交修改的提交者名字: <PRE>$Author: navy $</PRE>
+<LI>$Date: 2005/01/03 04:53:29 $ - 最后一次修改时间(GMT): <PRE>$Date: 2005/01/03 04:53:29 $ </PRE>
+<LI>$Header: /navysu/MySite/web/design/source/usecvstags.xml,v 1.1 2005/01/03 04:53:29 navy Exp $ - 依次是带路径的文件名、版本号、修改时间、最后提交者、状态（对CVS来说，都是Exp）: 
+<PRE><FONT size=+0>$Header: /navysu/MySite/web/design/source/usecvstags.xml,v 1.1 2005/01/03 04:53:29 navy Exp $</FONT></PRE>
+<LI>$Id: usecvstags.xml,v 1.1 2005/01/03 04:53:29 navy Exp $ - 类似 $Header: /navysu/MySite/web/design/source/usecvstags.xml,v 1.1 2005/01/03 04:53:29 navy Exp $，不过文件名不带路径: 
+<PRE><FONT size=+0>$Id: usecvstags.xml,v 1.1 2005/01/03 04:53:29 navy Exp $</FONT></PRE>
+<LI>$Log: usecvstags.xml,v $
+<LI>Revision 1.1  2005/01/03 04:53:29  navy
+<LI>create cvs tags usage
+<LI> - 日志信息，包括文件名、版本号、修改日期、修改者，以及每次修改时记录的修改信息。与其它所有TAGS不一样的是，$Log: usecvstags.xml,v $
+<LI>$Log$ - 日志信息，包括文件名、版本号、修改日期、修改者，以及每次修改时记录的修改信息。与其它所有TAGS不一样的是，Revision 1.1  2005/01/03 04:53:29  navy
+<LI>$Log$ - 日志信息，包括文件名、版本号、修改日期、修改者，以及每次修改时记录的修改信息。与其它所有TAGS不一样的是，create cvs tags usage
+<LI>$Log$ - 日志信息，包括文件名、版本号、修改日期、修改者，以及每次修改时记录的修改信息。与其它所有TAGS不一样的是，不是更新旧的日志，而是不断的把新的日志添加在旧的前面。示例： 
+<PRE>  $Log: usecvstags.xml,v $
+<PRE>  Revision 1.1  2005/01/03 04:53:29  navy
+<PRE>  create cvs tags usage
+<PRE>
+<BR>&nbsp; Revision 1.1&nbsp; 2005/01/03 07:31:45&nbsp; su_haijun
+<BR>&nbsp; test template.
+<BR>
+<BR>当提交了新的版本，那么，源文件中的内容将会是：
+<BR>  $Log: usecvstags.xml,v $
+<BR>  Revision 1.1  2005/01/03 04:53:29  navy
+<BR>  create cvs tags usage
+<BR><BR>&nbsp; Revision 1.2&nbsp; 2005/01/03 07:32:39&nbsp; su_haijun
+<BR>&nbsp; test little change.<BR> 
+<BR>  Revision 1.1&nbsp; 2005/01/03 07:31:45&nbsp; su_haijun
+<BR>&nbsp; test template.<BR>
+<BR> 
+<BR>这样就能够利用CVS自动在源代码中保存所有修改日志（前提条件是提交CVS文件修改时要写清楚注释）。<BR></PRE>
+<LI><PRE>$Name:  $ - 附着的CVS标签名字:
+<BR>$Name:  $<BR></PRE></LI></UL>
+<UL>
+<LI>$RCSfile: usecvstags.xml,v $ - 文件名: <PRE>$RCSfile: usecvstags.xml,v $
+</PRE>
+<LI>$Revision: 1.1 $ - 文件版本号: <PRE>$Revision: 1.1 $
+</PRE>
+<LI>$Source: D:/softcvs/repo/navysu/MySite/web/design/source/usecvstags.xml,v $ - 带完整路径的文件名: <PRE>$Source: D:/softcvs/repo/navysu/MySite/web/design/source/usecvstags.xml,v $
+</PRE>
+<LI>$State: Exp $ - 版本状态: <PRE>$State: Exp $
+</PRE></LI></UL>
+<P>以下是一个JAVA模板：</P>
+<div id=codeblock>
+<pre>
+ 0: <span style='color:#696969; '>/*</span>
+ 1: <span style='color:#696969; '> * @(#)NewTest.java  2005-1-3</span>
+ 2: <span style='color:#696969; '> * </span>
+ 3: <span style='color:#696969; '> * Copyright (c) 2005. All rights reserved. </span>
+ 4: <span style='color:#696969; '> * </span>
+ 5: <span style='color:#696969; '> * </span><span style='color:#004a43; '>$Header: /navysu/MySite/web/design/source/usecvstags.xml,v 1.1 2005/01/03 04:53:29 navy Exp $</span><span style='color:#696969; '></span>
+ 6: <span style='color:#696969; '> * </span><span style='color:#004a43; '>$Log: usecvstags.xml,v $
+ 6: <span style='color:#696969; '> * </span><span style='color:#004a43; '>Revision 1.1  2005/01/03 04:53:29  navy
+ 6: <span style='color:#696969; '> * </span><span style='color:#004a43; '>create cvs tags usage
+ 6: <span style='color:#696969; '> * </span><span style='color:#004a43; '></span><span style='color:#696969; '></span>
+ 7: <span style='color:#696969; '> */</span>
+ 8: <span style='color:#800000; font-weight:bold; '>package</span><span style='color:#004a43; '> navy</span><span style='color:#808030; '>.</span><span style='color:#004a43; '>exec</span><span style='color:#800080; '>;</span>
+ 9: 
+10: <span style='color:#3f5fbf; '>/**</span>
+11: <span style='color:#3f5fbf; '> </span><span style='color:#7f9fbf; font-weight:bold; '>*</span><span style='color:#3f5fbf; '> </span><span style='color:#7f9fbf; font-weight:bold; '>&lt;p></span><span style='color:#7f9fbf; font-weight:bold; '>&lt;b></span><span style='color:#3f5fbf; '>Description</span><span style='color:#7f9fbf; font-weight:bold; '>&lt;/b></span><span style='color:#7f9fbf; font-weight:bold; '>&lt;/p></span><span style='color:#3f5fbf; '></span>
+12: <span style='color:#3f5fbf; '> </span><span style='color:#7f9fbf; font-weight:bold; '>*</span><span style='color:#3f5fbf; '> </span><span style='color:#7f9fbf; font-weight:bold; '>&lt;p></span><span style='color:#7f9fbf; font-weight:bold; '>&lt;/p></span><span style='color:#3f5fbf; '></span>
+13: <span style='color:#3f5fbf; '> </span><span style='color:#7f9fbf; font-weight:bold; '>*</span><span style='color:#3f5fbf; '> </span>
+14: <span style='color:#3f5fbf; '> </span><span style='color:#7f9fbf; font-weight:bold; '>*</span><span style='color:#3f5fbf; '> $Revision: 1.1 $</span>
+15: <span style='color:#3f5fbf; '> </span><span style='color:#7f9fbf; font-weight:bold; '>*</span><span style='color:#3f5fbf; '> </span><span style='color:#7f9fbf; font-weight:bold; '>@author</span><span style='color:#3f5fbf; '> </span><span style='color:#7f9fbf; font-weight:bold; '>su_haijun  &lt;a href=mailto:su_hj@126.com>su_hj@126.com&lt;/a></span><span style='color:#3f5fbf; '></span>
+16: <span style='color:#3f5fbf; '> */</span>
+17: <span style='color:#800000; font-weight:bold; '>public</span> <span style='color:#800000; font-weight:bold; '>class</span> NewTest <span style='color:#800080; '>{</span>
+18: 
+19: <span style='color:#800080; '>}</span>
+</pre>
+</div>
+    ]]> </content>
+
+</doc>
+

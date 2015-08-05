@@ -1,0 +1,5 @@
+    <global-exceptions>
+        <exception type="java.lang.Exception"
+            key="system.internal.err"
+            handler="com.navy.framework.web.handler.ActionExceptionHandler"/>
+    </global-exceptions>

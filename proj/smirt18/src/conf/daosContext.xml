@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<!-- user dao -->
+	<bean id="userDaoTarget" class="application.dao.impl.UserDaoImpl">
+		<property name="entityType">
+			<ref bean="entityUser"/>
+		</property>
+		<property name="sessionFactory">
+			<ref bean="smirtSessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="userDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<value>application.dao.UserDao</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>smirtHibernateInterceptor</value>
+				<value>userDaoTarget</value>
+			</list>
+		</property>
+	</bean>
+	<!-- menu dao -->
+	<bean id="menuDaoTarget" class="application.dao.impl.MenuDaoImpl">
+		<property name="entityType">
+			<ref bean="entityMenu"/>
+		</property>
+		<property name="sessionFactory">
+			<ref bean="smirtSessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="menuDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<value>application.dao.MenuDao</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>smirtHibernateInterceptor</value>
+				<value>menuDaoTarget</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- querys dao -->
+	<bean id="querysDaoTarget" class="application.dao.impl.MyQuerysDaoImpl">
+		<property name="entityType">
+			<ref bean="entityQuerys"/>
+		</property>
+		<property name="sessionFactory">
+			<ref bean="smirtSessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="querysDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<value>application.dao.MyQuerysDao</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>smirtHibernateInterceptor</value>
+				<value>querysDaoTarget</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- gruop dao -->
+	<bean id="groupDaoTarget" class="application.dao.impl.GroupDaoImpl">
+		<property name="entityType">
+			<ref bean="entityGroup"/>
+		</property>
+		<property name="sessionFactory">
+			<ref bean="smirtSessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="groupDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<value>application.dao.GroupDao</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>smirtHibernateInterceptor</value>
+				<value>groupDaoTarget</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- genkey.RetrieveMaxKeyFromDB -->
+	<bean id="retrieveMaxKeyFromDB"
+		class="application.dao.genkey.RetrieveMaxKeyFromDB">
+		<property name="dataSource">
+			<ref bean="smirtDataSource"/>
+		</property>
+	</bean>
+
+	<!-- T_Accommodation Dao -->
+	<bean id="accommodationDao"
+		class="application.dao.impl.AccommodationDaoImpl">
+		<property name="dataSource">
+			<ref bean="smirtDataSource"/>
+		</property>
+		<property name="tableName">
+			<value>T_Accommodation</value>
+		</property>
+		<property name="tableSchema">
+			<value>dbo</value>
+		</property>
+		<property name="withoutKeyColumns">
+			<value>false</value>
+		</property>
+	</bean>
+
+	<!-- T_AccompanyPerson Dao -->
+	<bean id="accompanyPersonDao"
+		class="application.dao.impl.AccompanyPersonDaoImpl">
+		<property name="dataSource">
+			<ref bean="smirtDataSource"/>
+		</property>
+		<property name="tableName">
+			<value>T_AccompanyPerson</value>
+		</property>
+		<property name="tableSchema">
+			<value>dbo</value>
+		</property>
+		<property name="withoutKeyColumns">
+			<value>false</value>
+		</property>
+	</bean>
+
+	<!-- T_AffiliationType Dao -->
+	<bean id="affiliationTypeDao"
+		class="application.dao.impl.AffiliationTypeDaoImpl">
+		<property name="dataSource">
+			<ref bean="smirtDataSource"/>
+		</property>
+		<property name="tableName">
+			<value>T_AffiliationType</value>
+		</property>
+		<property name="tableSchema">
+			<value>dbo</value>
+		</property>
+		<property name="withoutKeyColumns">
+			<value>false</value>
+		</property>
+	</bean>
+
+	<!-- T_Coauthor Dao -->
+	<bean id="coauthorDao"
+		class="application.dao.impl.CoauthorDaoImpl">
+		<property name="dataSource">
+			<ref bean="smirtDataSource"/>
+		</property>
+		<property name="tableName">
+			<value>T_Coauthor</value>
+		</property>
+		<property name="tableSchema">
+			<value>dbo</value>
+		</property>
+		<property name="withoutKeyColumns">
+			<value>true</value>
+		</property>
+	</bean>
+
+
+	<!-- T_Country Dao -->
+	<bean id="countryDao"
+		class="application.dao.impl.CountryDaoImpl">
+		<property name="dataSource">
+			<ref bean="smirtDataSource"/>
+		</property>
+		<property name="tableName">
+			<value>T_Country</value>
+		</property>
+		<property name="tableSchema">
+			<value>dbo</value>
+		</property>
+		<property name="withoutKeyColumns">
+			<value>false</value>
+		</property>
+	</bean>
+
+	<!-- T_Division Dao -->
+	<bean id="divisionDao"
+		class="application.dao.impl.DivisionDaoImpl">
+		<property name="dataSource">
+			<ref bean="smirtDataSource"/>
+		</property>
+		<property name="tableName">
+			<value>T_Division</value>
+		</property>
+		<property name="tableSchema">
+			<value>dbo</value>
+		</property>
+		<property name="withoutKeyColumns">
+			<value>false</value>
+		</property>
+	</bean>
+
+	<!-- T_Equipments Dao -->
+	<bean id="equipmentsDao"
+		class="application.dao.impl.EquipmentsDaoImpl">
+		<property name="dataSource">
+			<ref bean="smirtDataSource"/>
+		</property>
+		<property name="tableName">
+			<value>T_Equipments</value>
+		</property>
+		<property name="tableSchema">
+			<value>dbo</value>
+		</property>
+		<property name="withoutKeyColumns">
+			<value>false</value>
+		</property>
+	</bean>
+
+	<!-- T_Paper Dao -->
+	<bean id="paperDao"
+		class="application.dao.impl.PaperDaoImpl">
+		<property name="dataSource">
+			<ref bean="smirtDataSource"/>
+		</property>
+		<property name="tableName">
+			<value>T_Paper</value>
+		</property>
+		<property name="tableSchema">
+			<value>dbo</value>
+		</property>
+		<property name="withoutKeyColumns">
+			<value>false</value>
+		</property>
+	</bean>
+
+	<!-- T_PaperPresented Dao -->
+	<bean id="paperPresentedDao"
+		class="application.dao.impl.PaperPresentedDaoImpl">
+		<property name="dataSource">
+			<ref bean="smirtDataSource"/>
+		</property>
+		<property name="tableName">
+			<value>T_PaperPresented</value>
+		</property>
+		<property name="tableSchema">
+			<value>dbo</value>
+		</property>
+		<property name="withoutKeyColumns">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<!-- T_PaperRegistration Dao -->
+	<bean id="paperRegistrationDao"
+		class="application.dao.impl.PaperRegistrationDaoImpl">
+		<property name="dataSource">
+			<ref bean="smirtDataSource"/>
+		</property>
+		<property name="tableName">
+			<value>T_PaperRegistation</value>
+		</property>
+		<property name="tableSchema">
+			<value>dbo</value>
+		</property>
+		<property name="withoutKeyColumns">
+			<value>false</value>
+		</property>
+	</bean>
+
+	<!-- T_PaperReviewResult Dao -->
+	<bean id="paperReviewResultDao"
+		class="application.dao.impl.PaperReviewResultDaoImpl">
+		<property name="dataSource">
+			<ref bean="smirtDataSource"/>
+		</property>
+		<property name="tableName">
+			<value>T_PaperReviewResult</value>
+		</property>
+		<property name="tableSchema">
+			<value>dbo</value>
+		</property>
+		<property name="withoutKeyColumns">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<!-- T_Participant Dao -->
+	<bean id="participantDao"
+		class="application.dao.impl.ParticipantDaoImpl">
+		<property name="dataSource">
+			<ref bean="smirtDataSource"/>
+		</property>
+		<property name="tableName">
+			<value>T_Participant</value>
+		</property>
+		<property name="tableSchema">
+			<value>dbo</value>
+		</property>
+		<property name="withoutKeyColumns">
+			<value>false</value>
+		</property>
+	</bean>
+
+	<!-- T_PaymentMethod Dao -->
+	<bean id="paymentMethodDao"
+		class="application.dao.impl.PaymentMethodDaoImpl">
+		<property name="dataSource">
+			<ref bean="smirtDataSource"/>
+		</property>
+		<property name="tableName">
+			<value>T_PaymentMethod</value>
+		</property>
+		<property name="tableSchema">
+			<value>dbo</value>
+		</property>
+		<property name="withoutKeyColumns">
+			<value>false</value>
+		</property>
+	</bean>
+
+	<!-- T_RegistrationFee Dao -->
+	<bean id="registrationFeeDao"
+		class="application.dao.impl.RegistrationFeeDaoImpl">
+		<property name="dataSource">
+			<ref bean="smirtDataSource"/>
+		</property>
+		<property name="tableName">
+			<value>T_RegistrationFee</value>
+		</property>
+		<property name="tableSchema">
+			<value>dbo</value>
+		</property>
+		<property name="withoutKeyColumns">
+			<value>false</value>
+		</property>
+	</bean>
+
+	<!-- T_RelationBetweenParticipantAndPaper Dao -->
+	<bean id="relationBetweenParticipantAndPaperDao"
+		class="application.dao.impl.RelationBetweenParticipantAndPaperDaoImpl">
+		<property name="dataSource">
+			<ref bean="smirtDataSource"/>
+		</property>
+		<property name="tableName">
+			<value>T_RelationBetweenParticipantAndPaper</value>
+		</property>
+		<property name="tableSchema">
+			<value>dbo</value>
+		</property>
+		<property name="withoutKeyColumns">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<!-- T_RelationBetweenParticipantAndPaper Dao -->
+	<bean id="relationBetweenAuthorAndPaperDao"
+		class="application.dao.impl.RelationBetweenAuthorAndPaperDaoImpl">
+		<property name="dataSource">
+			<ref bean="smirtDataSource"/>
+		</property>
+		<property name="tableName">
+			<value>T_RelationBetweenAuthorAndPaper</value>
+		</property>
+		<property name="tableSchema">
+			<value>dbo</value>
+		</property>
+		<property name="withoutKeyColumns">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<!-- T_UserAccount Dao -->
+	<bean id="userAccountDao"
+		class="application.dao.impl.UserAccountDaoImpl">
+		<property name="dataSource">
+			<ref bean="smirtDataSource"/>
+		</property>
+		<property name="tableName">
+			<value>T_UserAccount</value>
+		</property>
+		<property name="tableSchema">
+			<value>dbo</value>
+		</property>
+		<property name="withoutKeyColumns">
+			<value>false</value>
+		</property>
+	</bean>
+
+	<!-- T_UserAccount Dao -->
+	<bean id="authorDao"
+		class="application.dao.impl.AuthorDaoImpl">
+		<property name="dataSource">
+			<ref bean="smirtDataSource"/>
+		</property>
+		<property name="tableName">
+			<value>T_Author</value>
+		</property>
+		<property name="tableSchema">
+			<value>dbo</value>
+		</property>
+		<property name="withoutKeyColumns">
+			<value>false</value>
+		</property>
+	</bean>
+
+	<!-- T_UserType Dao -->
+	<bean id="userTypeDao"
+		class="application.dao.impl.UserTypeDaoImpl">
+		<property name="dataSource">
+			<ref bean="smirtDataSource"/>
+		</property>
+		<property name="tableName">
+			<value>T_UserType</value>
+		</property>
+		<property name="tableSchema">
+			<value>dbo</value>
+		</property>
+		<property name="withoutKeyColumns">
+			<value>false</value>
+		</property>
+	</bean>
+
+	<!-- T_Visa Dao -->
+	<bean id="visaDao"
+		class="application.dao.impl.VisaDaoImpl">
+		<property name="dataSource">
+			<ref bean="smirtDataSource"/>
+		</property>
+		<property name="tableName">
+			<value>T_Visa</value>
+		</property>
+		<property name="tableSchema">
+			<value>dbo</value>
+		</property>
+		<property name="withoutKeyColumns">
+			<value>false</value>
+		</property>
+	</bean>
+
+</beans>

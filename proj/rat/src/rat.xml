@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context path="/rat"
+	docBase="E:/work/dev/rat/build/webroot">
+	<Resource name="jdbc/rat" auth="Container"
+		type="javax.sql.DataSource" />
+	<ResourceParams name="jdbc/rat">
+		<parameter>
+			<name>factory</name>
+			<value>
+				org.apache.commons.dbcp.BasicDataSourceFactory
+			</value>
+		</parameter>
+
+		<parameter>
+			<name>maxActive</name>
+			<value>100</value>
+		</parameter>
+
+		<parameter>
+			<name>maxIdle</name>
+			<value>30</value>
+		</parameter>
+
+		<parameter>
+			<name>maxWait</name>
+			<value>10000</value>
+		</parameter>
+
+		<parameter>
+			<name>username</name>
+			<value>ratadmin</value>
+		</parameter>
+		<parameter>
+			<name>password</name>
+			<value>ratadmin</value>
+		</parameter>
+
+		<parameter>
+			<name>driverClassName</name>
+			<value>com.mysql.jdbc.Driver</value>
+		</parameter>
+
+		<parameter>
+			<name>url</name>
+			<value>
+				jdbc:mysql://localhost/proj?useUnicode=true&amp;characterEncoding=utf8
+			</value>
+		</parameter>
+	</ResourceParams>
+
+</Context>

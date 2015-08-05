@@ -1,0 +1,247 @@
+<HTML><HEAD><TITLE></TITLE>
+<STYLE type=text/css>A:link {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: black; TEXT-DECORATION: none
+}
+TD {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+TH {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+INPUT {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+SELECT {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+.menuStyle {
+	FONT-FAMILY: Arial,Geneva,Verdana,Helvetica; FONT-SIZE: 9pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+</STYLE>
+
+<META content=zh-cn http-equiv=Content-Language>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR>
+<META content=FrontPage.Editor.Document name=ProgId>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+//设置位置
+function place2() {
+    var temp=parent.parent.parent.top1.form1.textfield2.value;
+    var i=temp.lastIndexOf("\-\>转发邮件");
+    //alert(i);
+    if(i<=1)
+    {
+    temp=temp+"\-\>转发邮件";
+    //alert(temp);
+    parent.parent.parent.top1.form1.textfield2.value=temp;
+    //parent.parent.top1.form1.textfield2.value="电子邮件\-\>邮件设置\-\>备份邮件";
+    }
+} var scrtxt="请你填写你要转发的地址！";
+  var lentxt=scrtxt.length;
+  var width=100;
+  var pos=1-width;
+  
+  function scroll() {
+  pos++;
+  
+  var scroller="";
+  if (pos==lentxt) {
+    pos=1-width;
+  }
+  if (pos<0) {
+    for (var i=1; i<=Math.abs(pos); i++) {
+      scroller=scroller+" ";}
+    scroller=scroller+scrtxt.substring(0,width-i+1);
+  }
+  else {
+    scroller=scroller+scrtxt.substring(pos,width+pos);
+  }
+  window.status = scroller;
+  setTimeout("scroll()",150);
+  }
+ 
+//-->
+</SCRIPT>
+</HEAD>
+<BODY leftMargin=0 topmarging="0" onload="place2();scroll();return true;"
+style="BORDER-BOTTOM: 0px outset; BORDER-LEFT: 0px outset; BORDER-RIGHT: 0px outset; BORDER-TOP: 0px outset" 
+topMargin=0>
+<table border=0 cellpadding=0 width="100%" cellspacing="0">
+  <tbody> 
+  <tr> 
+    <td align=left noWrap valign=center colspan="2" height="12"> 
+      <table bgcolor=#ECEAE6 border=1 bordercolordark=#808080 
+      bordercolorlight=#ffffff cellpadding=0 cellspacing=0 width="100%" height="20">
+        <tbody> 
+        <tr bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6> 
+          <td noWrap width="5"> 
+            <table border=0 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22>
+              <tbody> 
+              <tr> 
+                <td align=middle bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><img height=22 
+                  src="../../../image/toolbar1.gif" width=5></td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td align=center noWrap width="50"> 
+            <table border=1 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22 
+            onMouseDown="javascript:this.borderColorDark='#ffffff';this.borderColorLight='#808080'" 
+            onMouseOut="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6';" 
+            onMouseOver="javascript:this.borderColorDark='#808080';this.borderColorLight='#ffffff';" 
+            onMouseUp="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6'" 
+            style="CURSOR: hand" width="100%">
+              <tbody> 
+              <tr> 
+                <td align=center bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><a href="../sendchek.htm" target="_parent">发送</a></td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td noWrap width="3"> 
+            <table border=0 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22>
+              <tbody> 
+              <tr> 
+                <td align=middle bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><img height=22 
+                  src="../../../image/toolbar2.gif" width=4></td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td align=absmiddle noWrap width="80"> 
+            <table border=1 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22 
+            onMouseDown="javascript:this.borderColorDark='#ffffff';this.borderColorLight='#808080'" 
+            onMouseOut="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6';" 
+            onMouseOver="javascript:this.borderColorDark='#808080';this.borderColorLight='#ffffff';" 
+            onMouseUp="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6'" 
+            style="CURSOR: hand" width="100%">
+              <tbody> 
+              <tr> 
+                <td align=center bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><a href="../sendsv.htm" target="_parent">发送并归档</a></td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td noWrap width="4"> 
+            <table border=0 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22>
+              <tbody> 
+              <tr> 
+                <td align=middle bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><img height=22 
+                  src="../../../image/toolbar2.gif" width=4></td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td align=absmiddle noWrap width="70"> 
+            <table border=1 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22 
+           onMouseDown="javascript:this.borderColorDark='#ffffff';this.borderColorLight='#808080'" 
+            onMouseOut="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6';" 
+            onMouseOver="javascript:this.borderColorDark='#808080';this.borderColorLight='#ffffff';" 
+            onMouseUp="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6'" 
+            style="CURSOR: hand" width="100%">
+              <tbody> 
+              <tr> 
+                <td align=center bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center>存为草稿</td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td noWrap width="5"> 
+            <table border=0 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22>
+              <tbody> 
+              <tr> 
+                <td align=middle bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><img height=22 
+                  src="../../../image/toolbar2.gif" width=4></td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td align=absmiddle noWrap width="50"> 
+            <table border=1 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22 
+            onMouseDown="javascript:this.borderColorDark='#ffffff';this.borderColorLight='#808080'" 
+            onMouseOut="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6';" 
+            onMouseOver="javascript:this.borderColorDark='#808080';this.borderColorLight='#ffffff';" 
+            onMouseUp="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6'" 
+            style="CURSOR: hand" width="100%">
+              <tbody> 
+              <tr> 
+                <td align=center bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><a href="../slctaddr.htm" target="_parent">地址</a></td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td noWrap width="5"> 
+            <table border=0 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22>
+              <tbody> 
+              <tr> 
+                <td align=middle bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><img height=22 
+                  src="../../../image/toolbar2.gif" width=4></td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td align=absmiddle noWrap width="50"> 
+            <table border=1 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22 
+            onMouseDown="javascript:this.borderColorDark='#ffffff';this.borderColorLight='#808080'" 
+            onMouseOut="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6';" 
+            onMouseOver="javascript:this.borderColorDark='#808080';this.borderColorLight='#ffffff';" 
+            onMouseUp="javascript:this.borderColorDark='#ECEAE6';this.borderColorLight='#ECEAE6'" 
+            style="CURSOR: hand" width="100%">
+              <tbody> 
+              <tr> 
+                <td align=center bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><a href="../attach.htm" target="_parent">附件</a></td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td noWrap width="4"> 
+            <table border=0 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22>
+              <tbody> 
+              <tr> 
+                <td align=middle bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><img height=22 
+                  src="../../../image/toolbar1.gif" width=5></td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td align=absmiddle noWrap>&nbsp; </td>
+        </tr>
+        </tbody> 
+      </table>
+    </td>
+  </tr>
+  </tbody> 
+</table>
+</BODY></HTML>

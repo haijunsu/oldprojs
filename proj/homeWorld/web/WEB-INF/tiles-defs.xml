@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+
+<!--
+     This is a blank Tiles definition file with a commented example.
+-->
+<tiles-definitions>
+    
+    <definition name="index" path="/layouts/defaultLayout.jsp">
+        <put name="mainMenu" value="/menus/stdMenu.jsp" />
+        <put name="logonPage"   value="/logon.jsp" />
+        <put name="body" value="/main.jsp" />
+        <put name="copyright" value="/copyright.jsp" />
+    </definition>
+
+    <definition name="HomeWorld" />
+    
+</tiles-definitions>
+

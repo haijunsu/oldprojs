@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+	<!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+	<isindexall>false</isindexall>
+	<indexfile>indexall.xml</indexfile>
+
+	<!-- 定义文档位置 -->
+	<topic>db</topic>
+	<catalog>db2</catalog>
+
+	<!-- 文档显示内容 -->
+    <title>使用重定向恢复克隆 DB2 数据库</title>
+    <pagename>使用重定向恢复克隆 DB2 数据库</pagename>
+	<content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+重定向恢复操作包括两步数据库恢复过程，并且中间有一个表空间容器定义步骤：<br>
+<ul>
+<li>带 REDIRECT 选项发出 RESTORE DATABASE 命令。 </li>
+<li>使用 SET TABLESPACE CONTAINERS 命令来定义被恢复的数据库的表空间容器（DB2 需要知道您想要让表空间驻留在目标系统上的什么位置）。 </li>
+<li>再次发出 RESTORE DATABASE 命令，这次指定 CONTINUE 选项。</li>
+</ul>
+整个重定向恢复操作必须在同一个会话中调用；否则，将返回 SQL0900N，恢复操作将会失败。确保不会发生这种情况的一个方法是创建并运行一个
+脚本，该脚本包含重定向恢复过程中的所有三个部分。<br>
+以下示例展示了如何成功地对 Windows 操作系统或基于 UNIX 的系统执行重定向恢复操作。<br>
+对于 Windows 示例，源实例名为 PROD。目标实例名为 MYINST。将要在 MYINST 上恢复（创建）的 PROD 上的现有数据库名为 MOVIES。
+MOVIES 数据库在 D 盘上。<br>
+对于 UNIX 示例，源实例名为 prod。目标实例名为 myinst。<br>
+
+<h3>创建 MOVIES 数据库的完整数据库备份映像</h3>
+在发出 BACKUP DATABASE 命令之前，确保当前实例是 PROD： 
+<div id="codeblock"><code>
+set DB2INSTANCE=PROD<br>
+db2start<br>
+db2 backup db movies<br>
+</code></div>
+这个映像的时间戳记是 20030909143225。<br>
+在 Windows 上，该映像的位置是 D:\\MOVIES.0\\PROD\\NODE0000\\CATN0000\\20030909。<br>
+DB2 在发出 <b>BACKUP DATABASE</b> 命令的目录中创建这个子目录树。<br><br>
+
+在 UNIX 示例中，映像的位置是 /home/prod。<br>
+<br>
+在 Windows 上，子目录名称表示以下含义： 
+<div id="codeblock"><code>
+&lt;database_alias.backup_type&gt;\\&lt;instance_name&gt;\\&lt;node_number&gt;\\<br>
+&lt;catalog_node_number&gt;\\&lt;date&gt;<br>
+</code></div>
+在这个子目录树中，将会有一个表示实际备份映像的文件（143225.0）。文件名表示获取备份的时间。<br><br>
+
+<i><b>注意：</b>如果要将备份映像放到另一台机器上，那么就在目标机器上创建上述路径（用适当目标实例名替换 PROD ），
+并将备份映像（在这里就是 143225.0）复制到那个目录下。在维护目录树时，为了便于传输也可以使用压缩工具将备份映像打包。</i>
+<br><br>
+在 UNIX 示例中，实际备份映像命名如下：
+<div id="codeblock"><code>
+MOVIES.0.prod.NODE0000.CATN0000.20030909143225.001
+</code></div>
+该名称的各个部分代表以下含义：
+<div id="codeblock"><code>
+&lt;database_alias&gt;.&lt;backup_type&gt;.&lt;instance_name&gt;.&lt;node_number&gt;.<br>
+&lt;catalog_node_number&gt;.&lt;timestamp&gt;.&lt;sequence_number&gt;<br>
+</code></div>
+<h3>启动 MYINST，然后调用重定向恢复操作的第一步</h3>
+<b>Windows</b>
+<div id="codeblock"><code>
+set DB2INSTANCE=MYINST<br>
+db2start<br>
+db2 restore db movies from d taken at 20030909143225 redirect<br>
+</code></div>
+
+如果从不包含备份映像的目录中调用 DATABASE RESTORE 命令，则必须指定 FROM 参数。<br><br>
+<b>UNIX</b>
+<br>以 myinst 登录时，发出以下命令：
+<div id="codeblock"><code>
+db2 restore db movies from /home/prod taken at 20030909143225 redirect
+</code></div>
+<h3>定义新的表空间容器</h3>
+<b>Windows</b>
+<div id="codeblock"><code>
+db2 set tablespace containers for 0 using (path 'd:\\tsc_movies\\ts0con1')<br>
+db2 set tablespace containers for 1 using (path 'd:\\tsc_movies\\ts1con1')<br>
+db2 set tablespace containers for 2 using (path 'd:\\tsc_movies\\ts2con1')<br>
+</code></div>
+
+<b>UNIX</b>
+<div id="codeblock"><code>
+db2 "set tablespace containers for 0 using (path 'ts0con1')"<br>
+db2 "set tablespace containers for 1 using (path 'ts1con1')"<br>
+db2 "set tablespace containers for 2 using (path 'ts2con1')"<br>
+</code></div>
+
+可以使用 LIST TABLESPACES SHOW DETAIL 命令来获取关于源数据库中所有表空间的信息。 
+
+<h3>完成重定向恢复操作</h3>
+<div id="codeblock"><code>
+db2 restore db movies continue<br>
+</code></div>
+<h3>验证</h3> 
+<div id="codeblock"><code>
+db2 list db directory<br>
+db2 connect to movies<br>
+db2 list tablespace containers for 0<br>
+db2 list tablespace containers for 1<br>
+db2 list tablespace containers for 2<br>
+db2 connect reset<br>
+db2 terminate<br>
+db2stop<br>
+</code></div>
+<p>
+       ]]> </content>
+
+</doc>
+

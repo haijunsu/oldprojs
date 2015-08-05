@@ -1,0 +1,18 @@
+a:link {
+	font-family: "ËÎÌו";
+	font-size: 9pt;
+	color: <%=ust.getLinkcolor()%>;
+	text-decoration: none;
+}
+a:hover {
+	font-family: "ËÎÌו";
+	font-size: 9pt;
+	color: <%=ust.getOnmousecolor()%>;
+	text-decoration: underline;
+}
+a:visited {
+	font-family: "ËÎÌו";
+	font-size: 9pt;
+	color: <%=ust.getLinkstyle()%>;
+	text-decoration: none;
+}

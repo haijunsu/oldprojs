@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<!-- user service -->
+	<bean id="userServiceTarget" class="application.service.impl.UserServiceImpl">
+		<property name="userDao">
+			<ref bean="userDao" />
+		</property>
+	</bean>
+
+	<bean id="userService"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="smirtTransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="userServiceTarget" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="registerNewUser">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- menu service -->
+	<bean id="menuServiceTarget" class="application.service.impl.MenuServiceImpl">
+		<property name="menuDao">
+			<ref bean="menuDao" />
+		</property>
+	</bean>
+
+	<bean id="menuService"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="smirtTransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="menuServiceTarget" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="createNewMenu">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- auto reply mail service -->
+	<bean id="autoReplyMail"
+		class="application.mail.impl.AutoReplyMailImpl">
+		<property name="mailSender">
+			<ref bean="mailSender" />
+		</property>
+		<property name="message">
+			<ref bean="mailMessage" />
+		</property>
+	</bean>
+
+	<!-- execute sql Service -->
+	<bean id="sqlHelperTarget"
+		class="framework.jdbc.impl.SQLHelperImpl">
+		<property name="dataSource">
+			<ref bean="smirtDataSource"/>
+		</property>
+	</bean>
+	<bean id="sqlHelper"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="smirtTransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="sqlHelperTarget" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="execute*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans>

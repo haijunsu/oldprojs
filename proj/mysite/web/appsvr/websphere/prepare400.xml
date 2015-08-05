@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+   <!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+   <isindexall>false</isindexall>
+   <indexfile>indexall.xml</indexfile>
+
+   <!-- 定义文档位置 -->
+   <topic>appsvr</topic>
+   <catalog>websphere</catalog>
+
+   <!-- 文档显示内容 -->
+    <title>配置 iSeries for WebSphere</title>
+    <pagename>配置 iSeries for WebSphere</pagename>
+   <content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+<div id="refer">参阅红皮书&nbsp;sg246588</div>
+<h3>配置数据库服务器的&nbsp;MAXJOBS</h3>
+IBM&nbsp;Developer&nbsp;Kit&nbsp;for&nbsp;Java&nbsp;(Native&nbsp;JDBC&nbsp;Driver)<br>
+<div id="codeblock"><code>CHGPJE SBSD(QSYSWRK) PGM(QSQSRVR) MAXJOBS(*NOMAX)</code></div>
+IBM&nbsp;Toolbox&nbsp;for&nbsp;Java&nbsp;(5722-JC1)&nbsp;includes&nbsp;JDBC&nbsp;Driver<br>
+&nbsp;主机没有配置SSL：<br>
+<div id="codeblock"><code>CHGPJE SBSD(QUSRWRK) <em><b>PGM(QZDASOINIT)</b></em> MAXJOBS(*NOMAX)</code></div>
+&nbsp;主机配置了SSL：<br>
+<div id="codeblock"><code>CHGPJE SBSD(QUSRWRK) <em><b>PGM(QZDASSINIT)</b></em> MAXJOBS(*NOMAX)</code></div>
+<h3>配置数据库服务器CHGPJE的其它参数</h3>
+&nbsp;&nbsp;&nbsp;&nbsp;<em>STRJOBS:</em>&nbsp;是否随子系统启动,建议值为*YES，随子系统一起启动<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<em>INLJOBS:</em>&nbsp;主机启动时预启动的Job的个数<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<em>THRESHOLD</em>&nbsp;当主机启动附加的Job时最小时间<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<em>ADLJOBS&nbsp</em>;系统启动附加JOB的个数<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<em>MAXUSE</em>&nbsp;最大的连接数<br>
+<h3>检查&nbsp;active&nbsp;prestart&nbsp;jobs。</h3>
+&nbsp;&nbsp;-&nbsp;Toolbox&nbsp;JDBC:<br>
+<div id="codeblock"><code>DSPACTPJ SBS(QUSRWRK) PGM(QSYS/QZDASOINIT)</code></div>
+&nbsp;&nbsp;-&nbsp;Toolbox&nbsp;JDBC&nbsp;with&nbsp;SSL:<br>
+<div id="codeblock"><code>DSPACTPJ SBS(QUSRWRK) PGM(QSYS/QZDASSINIT)</code></div>
+&nbsp;&nbsp;-&nbsp;Native&nbsp;JDBC:<br>
+<div id="codeblock"><code>DSPACTPJ SBS(QSYSWRK) PGM(QSYS/QSQSRVR)</code></div>
+<h3>启动WebSphere</h3>
+<div id="codeblock"><code>STRSBS QEJBAS5/QEJBAS5</code></div>
+<h3>使WebSphere自启动</h3>
+<div id="codeblock"><code>ADDAJE SBSD (QSYSWRK) JOB(QEJBSTART) JOBD(QEJBAS5/QEJBSTART)
+</code></div>
+<h3>禁止WebSphere自动启动Server1实例</h3>
+<div id="codeblock"><code>RMVAJE SBSD(QEJBAS5/QEJBAS5) JOB(SERVER1)</code></div>
+<h3>创建新的WAS实例（实例名最好别超过10个字符）</h3>
+<div id="codeblock"><code>
+STRQSH<br>
+CD /QIBM/ProdData/WebAs5/Base/bin
+</code></div>
+a、创建一个不带JMS的实例&nbsp;(portblock参数应每次指定，共使用12个端口)<br>
+<div id="codeblock"><code>crtwasinst -instance webface -portblock 10400 -noembeddedjms
+</code></div>
+b、创建一个External&nbsp;HTTP端口为10400、Internal&nbsp;HTTP端口为10401、admin端口为10402且portblock从10405开始的实例<br>
+<div id="codeblock"><code>crtwasinst -instance jmsmdb -exthttp 10400 -inthttp 10401 -admin 10402 -protblock 10405</code></div>
+c、创建时指定servername，并不创建默认程序(HitCount、snoop、hello)<br>
+<div id="codeblock"><code>
+crtwasinst -instance myteam -server temaserver -portblock 10505 -exthttp 10500 -inthttp 10501 -admin 10502 -nodefaultapps
+</code></div>
+<h3>启动指定的服务器</h3>
+运行startServer脚本，用户应有&nbsp;*ALLOBJ&nbsp;权限<br>
+<div id="codeblock"><code>
+STRQSH<br>
+CD /QIBM/ProdData/WebAs5/Base/bin<br>
+startServer -instance instance server
+</code></div>
+例如运行myServer服务器中的myInstance实例：<br>
+<div id="codeblock"><code>startServer -instance myInstance myServer</code></div>
+启动默认的服务器<br>
+<div id="codeblock"><code>startServer server1</code></div>
+启动webface实例<br>
+<div id="codeblock"><code>startServer -instance webface</code></div>
+启动jmsmdb实例<br>
+<div id="codeblock"><code>startServer -instance jmsmdb jmsmdb</code></div>
+<h3>自动启动指定WAS实例和服务器</h3>
+创建JOB描述，并将JOB添加到自动启动条目
+<div id="codeblock"><code>
+CRTJOBD JOBD(QEJBAS5/STRWEBFACE) JOBQ(QEJBAS5/QEJBJOBQ) TEXT('JOBD FOR START WAS SERVER WEBFACE') USER(QEJBSVR) RQSDTA('QSYS/CALL PGM(QEJBAS5/QEJBSTRSVR) PARM('-instance''/QIBM/UserData/WebAS5/Base/webface' '-server' 'webface')') LOG(4 0 *SECLVL)<br>
+ADDAJE SBSD(QEJBAS5/QEJBASE5) JOB(WEBFACE) JOBD(QEJBAS5/STRWEBFACE)
+</code></div>
+<h3>校验实例是否启动成功</h3>
+<div id="codeblock"><code>
+STRQSH<br>
+CD /QIBM/ProdData/WebAs5/Base/bin<br>
+ivt -instance webface
+</code></div>
+<h3>停止服务器实例</h3>
+a、Qshell停止<br>
+<div id="codeblock"><code>
+STRQSH<br>
+CD /QIBM/ProdData/WebAs5/Base/bin<br>
+stopServer servername -instance instance_name
+</code></div>
+如：<br>
+<div id="codeblock"><code>
+stopServer server1<br>
+stopServer webface -instance webface 
+</code></div>
+b、OS400命令<br>
+<div id="codeblock"><code>WRKACTJOB SBS(QEJBAS5)
+4<br>
+F4<br>
+How to end *Immed<br>
+</code></div>
+<em>注：如果启动了相关的JMS&nbsp;listener,&nbsp;QEJBMQLSR不会停止!!!</em>
+<br>
+c、停止WebSphere环境<br>
+<div id="codeblock"><code>
+ENDSBS SBS(QEJBAS5) OPTION(*CNTRLD) DELAY(600)<br>
+<em>or</em><br>
+ENDSBS SBS(QEJBAS5) OPTION(*IMMED)
+</code></div>
+<h3>
+更改WAS配置</h3>
+<div id="codeblock"><code>
+STRQSH<br>
+CD /QIBM/ProdData/WebAs5/Base/bin
+</code></div>
+更改默认服务器server1启用JMS<br>
+<div id="codeblock"><code>chgwassvr -server server1 -instance default -embeddedjms yes
+</code></div>
+更改webface的HTTP端口<br>
+<div id="codeblock"><code>chgwassvr -server webface -instance webface -inthttp 10420
+</code></div>
+<h3>显示&nbsp;WAS&nbsp;实例</h3>
+<div id="codeblock"><code>
+STRQSH<br>
+CD /QIBM/ProdData/WebAs5/Base/bin<br>
+dspwasinst -instance webface
+</code></div>
+
+<h3>删除WebSphere实例</h3>
+<div id="codeblock"><code>
+STRQSH<br>
+CD /QIBM/ProdData/WebAs5/Base/bin<br>
+dltwasinst -instance instance 
+</code></div>
+例：<br>
+<div id="codeblock"><code>
+dltwasinst -instance webface
+</code></div>
+<br>
+<h3>配置HTTP&nbsp;Server实例</h3>
+启动HTTP&nbsp;ADMIN实例<br>
+<div id="codeblock"><code>STRTCPSVR SERVER(*HTTP) HTTPSVR(*ADMIN)</code></div>
+校验<br>
+<div id="codeblock"><code>WRKACTJOB SBS(QHTTPSVR)</code></div>
+配置V5R1<br>
+启动ADMIN主页<br>
+<div id="codeblock"><code>http://&lt;server name&gt;:2001/</code></div>
+选择IBM&nbsp;HTTP&nbsp;SERVER&nbsp;for&nbsp;AS/400<br>
+单击&nbsp;Configuration&nbsp;and&nbsp;Administration<br>
+单击&nbsp;Create&nbsp;HTTP&nbsp;Server<br>
+选择&nbsp;HTTP&nbsp;server&nbsp;(Powered&nbsp;by&nbsp;Apache)然后点Next<br>
+输入HTTP&nbsp;Server名字（这个名字在QHTTPSVR子系统中显示）然后点NEXT<br>
+选择NO，创建一个新的HTTP&nbsp;SERVER<br>
+输入服务器的根目录，这个目录如果不存在，则会自动创建<br>
+输入文档根目录<br>
+选择IP地址和端口（端口应该与创建WAS实例时指定的exthttp端口一致，默认为80）<br>
+选择&nbsp;Combined&nbsp;log&nbsp;file&nbsp;日志格式<br>
+完成<br>
+点击&nbsp;Configure&nbsp;按钮<br>
+选择&nbsp;WebSphere&nbsp;Application&nbsp;Server<br>
+显示已经存在的支持的WebSphere的版本<br>
+选择WebSphere&nbsp;version&nbsp;5<br>
+配置V5R2<br>
+启动ADMIN主页<br>
+<div id="codeblock"><code>http://&lt;server&nbsp;name&gt;:2001/</code></div>
+选择IBM&nbsp;HTTP&nbsp;SERVER&nbsp;for&nbsp;iSeries<br>
+展开&nbsp;Task&nbsp;and&nbsp;Wizards<br>
+单击&nbsp;Create&nbsp;HTTP&nbsp;Server<br>
+选择&nbsp;HTTP&nbsp;server&nbsp;(Powered&nbsp;by&nbsp;Apache)然后点Next<br>
+输入HTTP&nbsp;Server名字（这个名字在QHTTPSVR子系统中显示）然后点NEXT<br>
+选择NO，创建一个新的HTTP&nbsp;SERVER<br>
+输入服务器的根目录，这个目录如果不存在，则会自动创建<br>
+输入文档根目录<br>
+选择IP地址和端口（端口应该与创建WAS实例时指定的exthttp端口一致，默认为80）<br>
+选择&nbsp;Yes&nbsp;记录日志到/&lt;server_root&gt;/logs<br>
+完成<br>
+选择&nbsp;Manage&nbsp;newly&nbsp;created&nbsp;server<br>
+展开&nbsp;Server&nbsp;Properties<br>
+单击&nbsp;WebSphere&nbsp;Application&nbsp;Server<br>
+选择&nbsp;WebSphere&nbsp;version&nbsp;5&nbsp;并指定显示的WAS实例<br>
+HTTP&nbsp;Server配置文件会被更改如下：<br>
+<div id="codeblock"><code>&lt;Directory&nbsp;/QIBM/ProdData/WebAS5/Base/Wssamples/&gt;<br>
+Allow&nbsp;from&nbsp;all<br>
+Order&nbsp;allow,deny<br>
+AllowOverride&nbsp;None<br>
+Options&nbsp;None<br>
+&lt;/Directory&gt;<br>
+Alias&nbsp;/Wssamples/&nbsp;/QIBM/ProdData/WebAS5/Base/Wssamples/<br>
+LoadModule&nbsp;ibm_app_server_http_module&nbsp;/QSYS.LIB/QEJBAS5.LIB/QSVTIHSAH.SRVPGM<br>
+WebSpherePluginConfig&nbsp;/QIBM/UserData/WebAS5/Base/default/config/cells/plugin-cfg.xml<br>
+</code></div>
+<h3>启动和停止IBM&nbsp;HTTP&nbsp;SERVER</h3>
+启动：<br>
+<div id="codeblock"><code>STRTCPSVR&nbsp;SERVER(*HTTP)&nbsp;HTTPSVR(&lt;myinst&gt;)</code></div>
+例：<br>
+<div id="codeblock"><code>STRTCPSVR&nbsp;SERVER(*HTTP)&nbsp;HTTPSVR(webface)</code></div>
+停止：<br>
+<div id="codeblock"><code>ENDTCPSVR&nbsp;SERVER(*HTTP)&nbsp;HTTPSVR(&lt;myinst&gt;)</code></div>
+例：<br>
+<div id="codeblock"><code>ENDTCPSVR&nbsp;SERVER(*HTTP)&nbsp;HTTPSVR(webface)</code></div>
+<h3>
+创建&nbsp;Local&nbsp;Certificate&nbsp;Authority</h3>
+1.&nbsp;http://&lt;your &nbsp;iSeries&nbsp;server&gt;:2001<br>
+2.&nbsp;使用有*ALLOBJ和*SECADM权限的用户登录<br>
+3.&nbsp;Digital&nbsp;Certificate&nbsp;Manager<br>
+4.&nbsp;Create&nbsp;a&nbsp;Certificate&nbsp;Authority&nbsp;(CA)<br>
+5.&nbsp;填表后按&nbsp;continue&nbsp;生成密钥：<br>
+/QIBM/UserData/ICSS/Cert/CertAuth目录：<br>
+-&nbsp;CA.TXT Base64加密CA证书<br>
+-&nbsp;DEFAULT.KDB 私钥和CA证书<br>
+-&nbsp;DEFAULT.POL CA&nbsp;Policy&nbsp;文件<br>
+-&nbsp;DEFAULT.RDB CA&nbsp;数据库<br>
+6.&nbsp;安装证书（本地）<br>
+7.&nbsp;Allow&nbsp;Creation&nbsp;of&nbsp;user&nbsp;certificates<br>
+8.&nbsp;continue&nbsp;来创建&nbsp;server&nbsp;certificate<br>
+/QIBM/UserData/ICSS/Cert/Server:<br>
+-&nbsp;DEFAULT.KDB&nbsp; 服务器和客户端私钥<br>
+-&nbsp;DEFAULT.RDB&nbsp; CA数据库<br>
+9.&nbsp;Continue&nbsp;来生成&nbsp;Object&nbsp;Signing&nbsp;Store&nbsp;Creation<br>
+10.&nbsp;输入证书RSA长度、存储口令、标签、证书主题信息<br>
+11.&nbsp;Continue&nbsp;生成<br>
+12.&nbsp;选所有应用程序信任新证书<br>
+<h3>
+设置默认certificate&nbsp;label</h3>
+1.&nbsp;在导航PDM面板上，单击Select&nbsp;a&nbsp;Certificate&nbsp;Store<br>
+2.&nbsp;选择&nbsp;*System&nbsp;并输入口令<br>
+3.&nbsp;Fast&nbsp;Path<br>
+4.&nbsp;Work&nbsp;with&nbsp;Server&nbsp;and&nbsp;Client&nbsp;Certificates<br>
+5.&nbsp;Create&nbsp;--&gt;&nbsp;Local&nbsp;Certificate&nbsp;Authorty&nbsp;(CA)<br>
+6.&nbsp;完成输入后点Continue<br>
+7.&nbsp;不要选择任何程序，点击cancel完成<br>
+<h3>
+HTTP&nbsp;Server&nbsp;启用&nbsp;SSL</h3>
+1.&nbsp;http://&lt;your &nbsp;iSeries&nbsp;server&gt;:2001<br>
+2.&nbsp;Manage&nbsp;Tab<br>
+3.&nbsp;General&nbsp;Server&nbsp;Configuration<br>
+4.&nbsp;General&nbsp;Settings<br>
+5.&nbsp;add,&nbsp;443端口，Apply<br>
+6.&nbsp;Task&nbsp;bar&nbsp;--&gt;&nbsp;Virtual&nbsp;Hosts&nbsp;--&gt;&nbsp;IP&nbsp;Based&nbsp;--&gt;&nbsp;Apply<br>
+7.&nbsp;在顶上菜单选择亲建的Virtual&nbsp;Hosts<br>
+8.&nbsp;Security&nbsp;Taskbar<br>
+9.&nbsp;Enable&nbsp;SSL<br>
+10.&nbsp;WebSphere&nbsp;管理控制台<br>
+11.&nbsp;Environment&nbsp;--&gt;&nbsp;virtual&nbsp;--&gt;&nbsp;Host&nbsp;aliases<br>
+12.&nbsp;添加443端口<br>
+13.&nbsp;重新启动&nbsp;WebSphere&nbsp;和&nbsp;HTTP&nbsp;Server<br>
+<h3>
+给HTTP服务器指定一个证书</h3>
+1.&nbsp;http://&lt;your &nbsp;iSeries&nbsp;server&gt;:2001<br>
+2.&nbsp;Digital&nbsp;Certificate&nbsp;Manager<br>
+3.&nbsp;Select&nbsp;a&nbsp;Certificate&nbsp;Store<br>
+4.&nbsp;*System<br>
+5.&nbsp;Work&nbsp;with&nbsp;server&nbsp;applications<br>
+6.&nbsp;QIBM_HTTP_SERVER_SECURY(YOUR&nbsp;HTTP&nbsp;实例)<br>
+7.&nbsp;Work&nbsp;with&nbsp;application<br>
+8.&nbsp;Update&nbsp;Certificate&nbsp;Assignment<br>
+9.&nbsp;Assign&nbsp;New&nbsp;Certificate<br>
+10.&nbsp;Cancel&nbsp;退出<br>
+
+       ]]> </content>
+
+</doc>
+

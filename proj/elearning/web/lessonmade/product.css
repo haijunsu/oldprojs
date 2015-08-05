@@ -1,0 +1,84 @@
+/* 菜单上鼠标的变化*/
+.LeftNavOff {
+	BACKGROUND-COLOR: #3378FF; BORDER-BOTTOM: #3378FF 1px solid; BORDER-LEFT: #3378FF 1px solid; BORDER-RIGHT: #3378FF 1px solid; BORDER-TOP: #3378FF 1px solid; CURSOR: hand; TEXT-DECORATION: none;width:65px;color:#FFFFFF
+}
+.LeftNavUp {
+	BACKGROUND-COLOR: #0A51DC; BORDER-BOTTOM: #0A51DC 1px solid; BORDER-LEFT: #0A51DC 1px solid; BORDER-RIGHT: #0A51DC 1px solid; BORDER-TOP: #0A51DC 1px solid; CURSOR: hand;TEXT-DECORATION: none;width:65px;color:#FFFFFF
+}
+.LeftNavDown {
+	BACKGROUND-COLOR: #0A51DC; BORDER-BOTTOM: #0A51DC 1px solid; BORDER-LEFT: #0A51DC 1px solid; BORDER-RIGHT: #0A51DC 1px solid; BORDER-TOP: #0A51DC 1px solid; CURSOR: hand;TEXT-DECORATION: none;width:65px;color:#FFFFFF
+}
+.LeftNavOn {
+	BACKGROUND-COLOR: #3378FF; BORDER-BOTTOM: #0A51DC 1px solid; BORDER-LEFT: #0A51DC 1px solid; BORDER-RIGHT: #0A51DC 1px solid; BORDER-TOP: #0A51DC 1px solid;TEXT-DECORATION: none;width:65px;color:#FFFFFF
+}
+.LeftNavChosen {
+	BACKGROUND-COLOR: #0A51DC; BORDER-BOTTOM: #3378FF 1px solid; BORDER-LEFT: #3378FF 1px solid; BORDER-RIGHT: #3378FF 1px solid; BORDER-TOP: #3378FF 1px solid;CURSOR: hand; TEXT-DECORATION: none;width:65px;color:#FFFFFF
+}
+.LeftNavChosenUp {
+	BACKGROUND-COLOR: #0A51DC; BORDER-BOTTOM: #0A51DC 1px solid; BORDER-LEFT: #0A51DC 1px solid; BORDER-RIGHT: #0A51DC 1px solid; BORDER-TOP: #0A51DC 1px solid;CURSOR: hand;TEXT-DECORATION: none;width:65px;color:#FFFFFF
+}
+.LeftNavChosenDown {
+	BACKGROUND-COLOR: #0A51DC; BORDER-BOTTOM: #0A51DC 1px solid; BORDER-LEFT: #0A51DC 1px solid; BORDER-RIGHT: #0A51DC 1px solid; BORDER-TOP: #0A51DC 1px solid; CURSOR: hand; TEXT-DECORATION: none;width:65px;color:#FFFFFF
+}
+.LeftNavSubOff {
+	BACKGROUND-COLOR: #3378FF; BORDER-BOTTOM: #3378FF 1px solid; BORDER-LEFT: #3378FF 1px solid; BORDER-RIGHT: #3378FF 1px solid; BORDER-TOP: #3378FF 1px solid; CURSOR: hand; TEXT-DECORATION: none;width:65px;color:#FFFFFF 
+}
+.LeftNavSubUp {
+	BACKGROUND-COLOR: #3378FF; BORDER-BOTTOM: #0A51DC 1px solid; BORDER-LEFT: #0A51DC 1px solid; BORDER-RIGHT: #0A51DC 1px solid; BORDER-TOP: #0A51DC 1px solid; CURSOR: hand; TEXT-DECORATION: none;width:65px;color:#FFFFFF
+}
+.LeftNavSubDown {
+	BACKGROUND-COLOR: #3378FF; BORDER-BOTTOM: #0A51DC 1px solid; BORDER-LEFT: #0A51DC 1px solid; BORDER-RIGHT: #0A51DC 1px solid; BORDER-TOP: #0A51DC 1px solid; CURSOR: hand; TEXT-DECORATION: none;width:65px;color:#FFFFFF 
+}
+.LeftNavSubChosen {
+	BACKGROUND-COLOR: #3378FF; BORDER-BOTTOM: #3378FF 1px solid; BORDER-LEFT: #3378FF 1px solid; BORDER-RIGHT: #3378FF 1px solid; BORDER-TOP: #3378FF 1px solid; CURSOR: hand; TEXT-DECORATION: none;width:65px;color:#FFFFFF
+}
+.LeftNavSubChosenUp {
+	BACKGROUND-COLOR: #3378FF; BORDER-BOTTOM: #0A51DC 1px solid; BORDER-LEFT: #0A51DC 1px solid; BORDER-RIGHT: #0A51DC 1px solid; BORDER-TOP: #0A51DC 1px solid; CURSOR: hand;TEXT-DECORATION: none;width:65px;color:#FFFFFF
+}
+.LeftNavSubChosenDown {
+	BACKGROUND-COLOR: #3378FF; BORDER-BOTTOM: #0A51DC 1px solid; BORDER-LEFT: #0A51DC 1px solid; BORDER-RIGHT: #0A51DC 1px solid; BORDER-TOP: #0A51DC 1px solid; CURSOR: hand;TEXT-DECORATION: none;width:65px;color:#FFFFFF
+}
+
+/* 下拉菜单的样式表单 */
+a.menu:link{font-size:12px;text-decoration:none;color:#FFFFFF}
+a.menu:visited{font-size:12px;text-decoration:none;color:#FFFFFF}
+a.menu:hover{font-size:12px;text-decoration:none;color:#FFF04C}
+/* 下拉菜单的样式表单结束 */
+
+/* 页面的文字类的样式 */
+td{font-size:12px;font-family:宋体;color:#040404;}
+p,div {font-size:12px;font-family:宋体;color:#040404;}
+
+/* 最普遍的连接的颜色 */
+a:link{font-size:12px;text-decoration:none;color:#0851dc}
+a:visited{font-size:12px;text-decoration:none;color:#0851dc}
+a:hover{font-size:12px;text-decoration:underline;color:#ff3300}
+
+/* 需要加重的部分的颜色 */
+.xing{font-size:12px;color:#000000;}
+
+/* 图片背景不重复*/
+.bg {  background-repeat: no-repeat}
+
+/* 图片背景只是沿 y 轴重复*/
+.topbg {  background-repeat: repeat-y}
+
+/* 需要加大的标题 */
+.title{font-size:14px;font-family:宋体;color:#040404;}
+
+/* 日历通知的白色标题 */
+.title1{font-size:12px;font-family:宋体;color:#FFFFFF;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

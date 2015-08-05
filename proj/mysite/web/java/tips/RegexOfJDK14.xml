@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+	<!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+	<isindexall>false</isindexall>
+	<indexfile>indexall.xml</indexfile>
+
+	<!-- 定义文档位置 -->
+	<topic>java</topic>
+	<catalog>tips</catalog>
+
+	<!-- 文档显示内容 -->
+    <title>JDK 1.4 正则表达式语法规则</title>
+    <pagename>JDK 1.4 正则表达式语法规则</pagename>
+	<content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+<div id="refer">参考文档：<a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Pattern.html">java.util.regex.Pattern</a></div>
+<h3>字符(Characters)</h3>
+  <div id="tableblock">
+	  <table cellSpacing="0" id="table2">
+		  <tr>
+			  <th width="20%">表达式</th>
+			  <th width="40%">中 文 描 述</th>
+			  <th width="40%">英 文 描 述</th>
+		  </tr>
+		  <tr>
+			  <td><i>x</i></td>
+			  <td>字符 <i>x</i>　</td>
+			  <td>The character <i>x</i></td>
+		  </tr>
+		  <tr>
+			  <td><tt>\\</tt></td>
+			  <td>反斜线</td>
+			  <td>The backslash character</td>
+		  </tr>
+		  <tr>
+			  <td><tt>\0</tt><i>n</i></td>
+			  <td>八进制字符(0&nbsp;<tt>&lt;=</tt>&nbsp;<i>n</i>&nbsp;<tt>&lt;=</tt>&nbsp;7)</td>
+			  <td>The character with octal value <tt>0</tt><i>n</i> 
+			  (0&nbsp;<tt>&lt;=</tt>&nbsp;<i>n</i>&nbsp;<tt>&lt;=</tt>&nbsp;7)</td>
+		  </tr>
+		  <tr>
+			  <td><tt>\0</tt><i>nn</i></td>
+			  <td>八进制字符(0&nbsp;<tt>&lt;=</tt>&nbsp;<i>n</i>&nbsp;<tt>&lt;=</tt>&nbsp;7)</td>
+			  <td>The character with octal value <tt>0</tt><i>nn</i> 
+			  (0&nbsp;<tt>&lt;=</tt>&nbsp;<i>n</i>&nbsp;<tt>&lt;=</tt>&nbsp;7)</td>
+		  </tr>
+		  <tr>
+			  <td><tt>\0</tt><i>mnn</i></td>
+			  <td>八进制字符(0&nbsp;<tt>&lt;=</tt>&nbsp;<i>m</i>&nbsp;<tt>&lt;=</tt>&nbsp;3, 0&nbsp;<tt>&lt;=</tt>&nbsp;<i>n</i>&nbsp;<tt>&lt;=</tt>&nbsp;7)</td>
+			  <td>The character with octal value <tt>0</tt><i>mnn</i> 
+			  (0&nbsp;<tt>&lt;=</tt>&nbsp;<i>m</i>&nbsp;<tt>&lt;=</tt>&nbsp;3, 0&nbsp;<tt>&lt;=</tt>&nbsp;<i>n</i>&nbsp;<tt>&lt;=</tt>&nbsp;7)</td>
+		  </tr>
+		  <tr>
+			  <td><tt>\x</tt><i>hh</i></td>
+			  <td>十六进制字符</td>
+			  <td>The character with hexadecimal&nbsp;value&nbsp;<tt>0x</tt><i>hh</i></td>
+		  </tr>
+		  <tr>
+			  <td><tt>\u</tt><i>hhhh</i></td>
+			  <td>十六进制字符</td>
+			  <td>The character with hexadecimal&nbsp;value&nbsp;<tt>0x</tt><i>hhhh</i></td>
+		  </tr>
+		  <tr>
+			  <td vAlign="top"><tt>\t</tt></td>
+			  <td>Tab制表符(<tt>'\u0009'</tt>)</td>
+			  <td>The tab character (<tt>'\u0009'</tt>)</td>
+		  </tr>
+		  <tr>
+			  <td><tt>\n</tt></td>
+			  <td>换行符(<tt>'\u000A'</tt>)</td>
+			  <td>The newline (line feed) character (<tt>'\u000A'</tt>)</td>
+		  </tr>
+		  <tr>
+			  <td><tt>\r</tt></td>
+			  <td>回车符(<tt>'\u000D'</tt>)</td>
+			  <td>The carriage-return character (<tt>'\u000D'</tt>)</td>
+		  </tr>
+		  <tr>
+			  <td><tt>\f</tt></td>
+			  <td>换页符(<tt>'\u000C'</tt>)</td>
+			  <td>The form-feed character (<tt>'\u000C'</tt>)</td>
+		  </tr>
+		  <tr>
+			  <td><tt>\a</tt></td>
+			  <td>蜂鸣符(<tt>'\u0007'</tt>)</td>
+			  <td>The alert (bell) character (<tt>'\u0007'</tt>)</td>
+		  </tr>
+		  <tr>
+			  <td><tt>\e</tt></td>
+			  <td>逃逸符(<tt>'\u001B'</tt>)</td>
+			  <td>The escape character (<tt>'\u001B'</tt>)</td>
+		  </tr>
+		  <tr>
+			  <td><tt>\c</tt><i>x</i></td>
+			  <td>控制符与字符组合（Ctrl + x）</td>
+			  <td>The control character corresponding to <i>x</i></td>
+		  </tr>
+	  </table>
+  </div>
+  <h3>字符类(Character classes)</h3>
+  <div id="tableblock">
+	  <table cellSpacing="0" id="table3">
+		  <tr>
+			  <th width="20%">表达式</th>
+			  <th width="40%">中 文 描 述</th>
+			  <th width="40%">英 文 描 述</th>
+		  </tr>
+		  <tr>
+			  <td vAlign="top" headers="construct classes"><tt>[abc]</tt></td>
+			  <td>匹配字符a、b或c</td>
+			  <td><tt>a</tt>, <tt>b</tt>, or <tt>c</tt> (simple class)</td>
+		  </tr>
+		  <tr>
+			  <td vAlign="top" headers="construct classes"><tt>[^abc]</tt></td>
+			  <td>匹配除字符a、b或c以外的其他字符</td>
+			  <td>Any character except <tt>a</tt>, <tt>b</tt>, or <tt>
+			  c</tt> (negation)</td>
+		  </tr>
+		  <tr>
+			  <td vAlign="top" headers="construct classes"><tt>[a-zA-Z]</tt></td>
+			  <td>匹配a-z和A-Z之间的字符</td>
+			  <td><tt>a</tt> through <tt>z</tt> or <tt>A</tt> through
+			  <tt>Z</tt>, inclusive (range)</td>
+		  </tr>
+		  <tr>
+			  <td vAlign="top" headers="construct classes"><tt>[a-d[m-p]]</tt></td>
+			  <td>匹配a-d和m-p之间的字符与[a-dm-p]相同</td>
+			  <td><tt>a</tt> through <tt>d</tt>, or <tt>m</tt> through
+			  <tt>p</tt>: <tt>[a-dm-p]</tt> (union)</td>
+		  </tr>
+		  <tr>
+			  <td><tt>[a-z&amp;&amp;[def]]</tt></td>
+			  <td>d，e或f（交集）</td>
+			  <td><tt>d</tt>, <tt>e</tt>, or <tt>f</tt> (intersection)</td>
+		  </tr>
+		  <tr>
+			  <td><tt>[a-z&amp;&amp;[^bc]]</tt></td>
+			  <td>除了b,c以外的a-z之间的字符，同[ad-z]</td>
+			  <td><tt>a</tt> through <tt>z</tt>, except for <tt>b</tt> 
+			  and <tt>c</tt>: <tt>[ad-z]</tt> (subtraction)</td>
+		  </tr>
+		  <tr>
+			  <td><tt>[a-z&amp;&amp;[^m-p]]</tt></td>
+			  <td>除了m-p以外的a-z之间的字符，同[a-lq-z]</td>
+			  <td><tt>a</tt> through <tt>z</tt>, and not <tt>m</tt> 
+			  through <tt>p</tt>: <tt>[a-lq-z]</tt>(subtraction)</td>
+		  </tr>
+	  </table>
+  </div>
+  <h3>预定义字符类(Predefined character classes)</h3>
+  <div id="tableblock">
+	  <table cellSpacing="0" id="table4">
+		  <tr>
+			  <th width="20%">表达式</th>
+			  <th width="40%">中 文 描 述</th>
+			  <th width="40%">英 文 描 述</th>
+		  </tr>
+		  <tr>
+			  <td><tt>.</tt></td>
+			  <td>任意字符，除了<a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Pattern.html#lt">行结束符</a></td>
+			  <td>Any character (may or may not match
+			  <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Pattern.html#lt">
+			  line terminators</a>)</td>
+		  </tr>
+		  <tr>
+			  <td><tt>\d</tt></td>
+			  <td>数字[0-9]</td>
+			  <td>A digit: <tt>[0-9]</tt></td>
+		  </tr>
+		  <tr>
+			  <td><tt>\D</tt></td>
+			  <td>非数字[^0-9]</td>
+			  <td>A non-digit: <tt>[^0-9]</tt></td>
+		  </tr>
+		  <tr>
+			  <td><tt>\s</tt></td>
+			  <td>空白符号<tt>[ \t\n\x0B\f\r]</tt></td>
+			  <td>A whitespace character: <tt>[ \t\n\x0B\f\r]</tt></td>
+		  </tr>
+		  <tr>
+			  <td><tt>\S</tt></td>
+			  <td>非空符号[^\s]</td>
+			  <td>A non-whitespace character: <tt>[^\s]</tt></td>
+		  </tr>
+		  <tr>
+			  <td><tt>\w</tt></td>
+			  <td>字符<tt>[a-zA-Z_0-9]</tt></td>
+			  <td>A word character: <tt>[a-zA-Z_0-9]</tt></td>
+		  </tr>
+		  <tr>
+			  <td><tt>\W</tt></td>
+			  <td>非字符<tt>[^a-zA-Z_0-9]</tt></td>
+			  <td>A non-word character: <tt>[^\w]</tt></td>
+		  </tr>
+	  </table>
+  </div>
+  <h3>断定（POSIX）字符类 (US-ASCII only)</h3>
+  <div id="tableblock">
+	  <table cellSpacing="0" id="table5">
+		  <tr>
+			  <th width="20%">表达式</th>
+			  <th width="40%">中 文 描 述</th>
+			  <th width="40%">英 文 描 述</th>
+		  </tr>
+		  <tr>
+			  <td><tt>\p{Lower}</tt></td>
+			  <td>小写字母<tt>[a-z]</tt></td>
+			  <td>A lower-case alphabetic character: <tt>[a-z]</tt></td>
+		  </tr>
+		  <tr>
+			  <td><tt>\p{Upper}</tt></td>
+			  <td>大写字母<tt>[A-Z]</tt></td>
+			  <td>An upper-case alphabetic character:<tt>[A-Z]</tt></td>
+		  </tr>
+		  <tr>
+			  <td><tt>\p{ASCII}</tt></td>
+			  <td>所有的ASCII字符<tt>[\x00-\x7F]</tt></td>
+			  <td>All ASCII:<tt>[\x00-\x7F]</tt></td>
+		  </tr>
+		  <tr>
+			  <td><tt>\p{Alpha}</tt></td>
+			  <td>字母<tt>[\p{Lower}\p{Upper}]</tt></td>
+			  <td>An alphabetic character:<tt>[\p{Lower}\p{Upper}]</tt></td>
+		  </tr>
+		  <tr>
+			  <td><tt>\p{Digit}</tt></td>
+			  <td>数字<tt>[0-9]</tt></td>
+			  <td>A decimal digit: <tt>[0-9]</tt></td>
+		  </tr>
+		  <tr>
+			  <td><tt>\p{Alnum}</tt></td>
+			  <td>字母与数字组成的字符<tt>[\p{Alpha}\p{Digit}]</tt></td>
+			  <td>An alphanumeric character:<tt>[\p{Alpha}\p{Digit}]</tt></td>
+		  </tr>
+		  <tr>
+			  <td><tt>\p{Punct}</tt></td>
+			  <td>标点符号（<tt>!&quot;#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</tt>）</td>
+			  <td>Punctuation: One of <tt>
+			  !&quot;#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</tt></td>
+		  </tr>
+		  <!-- <tt>[\!"#\$%&'\(\)\*\+,\-\./:;\<=\>\?@\[\\\]\^_`\{\|\}~]</tt>
+<tt>[\X21-\X2F\X31-\X40\X5B-\X60\X7B-\X7E]</tt> -->
+		  <tr>
+			  <td><tt>\p{Graph}</tt></td>
+			  <td>可见字符<tt>[\p{Alnum}\p{Punct}]</tt></td>
+			  <td>A visible character: <tt>[\p{Alnum}\p{Punct}]</tt></td>
+		  </tr>
+		  <tr>
+			  <td><tt>\p{Print}</tt></td>
+			  <td>可打印字符<tt>[\p{Graph}]</tt></td>
+			  <td>A printable character: <tt>[\p{Graph}]</tt></td>
+		  </tr>
+		  <tr>
+			  <td><tt>\p{Blank}</tt></td>
+			  <td>空格或制表符<tt>[ \t]</tt></td>
+			  <td>A space or a tab: <tt>[ \t]</tt></td>
+		  </tr>
+		  <tr>
+			  <td><tt>\p{Cntrl}</tt></td>
+			  <td>控制字符 <tt>[\x00-\x1F\x7F]</tt></td>
+			  <td>A control character: <tt>[\x00-\x1F\x7F]</tt></td>
+		  </tr>
+		  <tr>
+			  <td><tt>\p{XDigit}</tt></td>
+			  <td>十六进制数字<tt>[0-9a-fA-F]</tt></td>
+			  <td>A hexadecimal digit: <tt>[0-9a-fA-F]</tt></td>
+		  </tr>
+		  <tr>
+			  <td><tt>\p{Space}</tt></td>
+			  <td>空白符号<tt>[ \t\n\x0B\f\r]</tt></td>
+			  <td>A whitespace character: <tt>[ \t\n\x0B\f\r]</tt></td>
+		  </tr>
+	  </table>
+  </div>
+  <h3>Unicode块和分类（Classes for Unicode blocks and categories）</h3>
+  <div id="tableblock">
+	  <table cellSpacing="0" id="table6">
+		  <tr>
+			  <th width="20%">表达式</th>
+			  <th width="40%">中 文 描 述</th>
+			  <th width="40%">英 文 描 述</th>
+		  </tr>
+		  <tr>
+			  <td><tt>\p{InGreek}</tt></td>
+			  <td>Greek语言块内的字符</td>
+			  <td>A character in the Greek&nbsp;block (simple
+			  <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Pattern.html#ubc">
+			  block</a>)</td>
+		  </tr>
+		  <tr>
+			  <td><tt>\p{Lu}</tt></td>
+			  <td>大写字符</td>
+			  <td>An uppercase letter (simple
+			  <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Pattern.html#ubc">
+			  category</a>)</td>
+		  </tr>
+		  <tr>
+			  <td><tt>\p{Sc}</tt></td>
+			  <td>货币符号</td>
+			  <td>A currency symbol</td>
+		  </tr>
+		  <tr>
+			  <td><tt>\P{InGreek}</tt></td>
+			  <td>？</td>
+			  <td>Any character except one in the Greek block 
+			  (negation)</td>
+		  </tr>
+		  <tr>
+			  <td><tt>[\p{L}&amp;&amp;[^\p{Lu}]]&nbsp;</tt></td>
+			  <td>？</td>
+			  <td>Any letter except an uppercase letter (subtraction)</td>
+		  </tr>
+	  </table>
+  </div>
+  <h3>边界字符(Boundary matchers)</h3>
+  <div id="tableblock">
+	  <table cellSpacing="0" id="table7">
+		  <tr>
+			  <th width="20%">表达式</th>
+			  <th width="40%">中 文 描 述</th>
+			  <th width="40%">英 文 描 述</th>
+		  </tr>
+		  <tr>
+			  <td><tt>^</tt></td>
+			  <td>行起始位置</td>
+			  <td>The beginning of a line</td>
+		  </tr>
+		  <tr>
+			  <td><tt>$</tt></td>
+			  <td>行结束位置</td>
+			  <td>The end of a line</td>
+		  </tr>
+		  <tr>
+			  <td><tt>\b</tt></td>
+			  <td>单词边界</td>
+			  <td>A word boundary</td>
+		  </tr>
+		  <tr>
+			  <td><tt>\B</tt></td>
+			  <td>非单词边界</td>
+			  <td>A non-word boundary</td>
+		  </tr>
+		  <tr>
+			  <td><tt>\A</tt></td>
+			  <td>输入起始位置</td>
+			  <td>The beginning of the input</td>
+		  </tr>
+		  <tr>
+			  <td><tt>\G</tt></td>
+			  <td>上一次匹配结束位置</td>
+			  <td>The end of the previous match</td>
+		  </tr>
+		  <tr>
+			  <td><tt>\Z</tt></td>
+			  <td>？</td>
+			  <td>The end of the input but for the final
+			  <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Pattern.html#lt">
+			  terminator</a>, if&nbsp;any</td>
+		  </tr>
+		  <tr>
+			  <td><tt>\z</tt></td>
+			  <td>输入结束位置</td>
+			  <td>The end of the input</td>
+		  </tr>
+	  </table>
+  </div>
+  <h3>贪婪量词(Greedy quantifiers))</h3>
+  <div id="tableblock">
+	  <table cellSpacing="0" id="table8">
+		  <tr>
+			  <th width="20%">表达式</th>
+			  <th width="40%">中 文 描 述</th>
+			  <th width="40%">英 文 描 述</th>
+		  </tr>
+		  <tr>
+			  <td><i>X</i><tt>?</tt></td>
+			  <td>X，出现0次或1次</td>
+			  <td><i>X</i>, once or not at all</td>
+		  </tr>
+		  <tr>
+			  <td><i>X</i><tt>*</tt></td>
+			  <td>X，出现0次或多次</td>
+			  <td><i>X</i>, zero or more times</td>
+		  </tr>
+		  <tr>
+			  <td><i>X</i><tt>+</tt></td>
+			  <td>X，出现1次或多次</td>
+			  <td><i>X</i>, one or more times</td>
+		  </tr>
+		  <tr>
+			  <td><i>X</i><tt>{</tt><i>n</i><tt>}</tt></td>
+			  <td>X，精确出现<i> n </i>次</td>
+			  <td><i>X</i>, exactly <i>n</i> times</td>
+		  </tr>
+		  <tr>
+			  <td><i>X</i><tt>{</tt><i>n</i><tt>,}</tt></td>
+			  <td>X，至少出现<i> n </i>次</td>
+			  <td><i>X</i>, at least <i>n</i> times</td>
+		  </tr>
+		  <tr>
+			  <td><i>X</i><tt>{</tt><i>n</i><tt>,</tt><i>m</i><tt>}</tt></td>
+			  <td>X，至少出现<i> n </i>次，但少于<i> m </i>次</td>
+			  <td><i>X</i>, at least <i>n</i> but not more than <i>m</i> 
+			  times</td>
+		  </tr>
+	  </table>
+  </div>
+  <h3>限制量词(Reluctant quantifiers)</h3>
+  <div id="tableblock">
+	  <table cellSpacing="0" id="table9">
+		  <tr>
+			  <th width="20%">表达式</th>
+			  <th width="40%">中 文 描 述</th>
+			  <th width="40%">英 文 描 述</th>
+		  </tr>
+		  <tr>
+			  <td><i>X</i><tt>??</tt></td>
+			  <td>X，出现0次或1次</td>
+			  <td><i>X</i>, once or not at all</td>
+		  </tr>
+		  <tr>
+			  <td><i>X</i><tt>*?</tt></td>
+			  <td>X，出现0次或多次</td>
+			  <td><i>X</i>, zero or more times</td>
+		  </tr>
+		  <tr>
+			  <td><i>X</i><tt>+?</tt></td>
+			  <td>X，出现1次或多次</td>
+			  <td><i>X</i>, one or more times</td>
+		  </tr>
+		  <tr>
+			  <td><i>X</i><tt>{</tt><i>n</i><tt>}?</tt></td>
+			  <td>X，精确出现<i> n </i>次</td>
+			  <td><i>X</i>, exactly <i>n</i> times</td>
+		  </tr>
+		  <tr>
+			  <td><i>X</i><tt>{</tt><i>n</i><tt>,}?</tt></td>
+			  <td>X，至少出现<i> n </i>次</td>
+			  <td><i>X</i>, at least <i>n</i> times</td>
+		  </tr>
+		  <tr>
+			  <td><i>X</i><tt>{</tt><i>n</i><tt>,</tt><i>m</i><tt>}?</tt></td>
+			  <td>X，至少出现<i> n </i>次，但少于<i> m </i>次</td>
+			  <td><i>X</i>, at least <i>n</i> but not more than <i>m</i> 
+			  times</td>
+		  </tr>
+	  </table>
+  </div>
+  <h3>物主量词(Possessive quantifiers)</h3>
+  <div id="tableblock">
+	  <table cellSpacing="0" id="table10">
+		  <tr>
+			  <th width="20%">表达式</th>
+			  <th width="40%">中 文 描 述</th>
+			  <th width="40%">英 文 描 述</th>
+		  </tr>
+		  <tr>
+			  <td><i>X</i><tt>?+</tt></td>
+			  <td>X，出现0次或1次</td>
+			  <td><i>X</i>, once or not at all</td>
+		  </tr>
+		  <tr>
+			  <td><i>X</i><tt>*+</tt></td>
+			  <td>X，出现0次或多次</td>
+			  <td><i>X</i>, zero or more times</td>
+		  </tr>
+		  <tr>
+			  <td><i>X</i><tt>++</tt></td>
+			  <td>X，出现1次或多次</td>
+			  <td><i>X</i>, one or more times</td>
+		  </tr>
+		  <tr>
+			  <td><i>X</i><tt>{</tt><i>n</i><tt>}+</tt></td>
+			  <td>X，精确出现<i> n </i>次</td>
+			  <td><i>X</i>, exactly <i>n</i> times</td>
+		  </tr>
+		  <tr>
+			  <td><i>X</i><tt>{</tt><i>n</i><tt>,}+</tt></td>
+			  <td>X，至少出现<i> n </i>次</td>
+			  <td><i>X</i>, at least <i>n</i> times</td>
+		  </tr>
+		  <tr>
+			  <td><i>X</i><tt>{</tt><i>n</i><tt>,</tt><i>m</i><tt>}+</tt></td>
+			  <td>X，至少出现<i> n </i>次，但少于<i> m </i>次</td>
+			  <td><i>X</i>, at least <i>n</i> but not more than <i>m</i> 
+			  times</td>
+		  </tr>
+	  </table>
+  </div>
+  <h3>逻辑操作(Logical operators)</h3>
+  <div id="tableblock">
+	  <table cellSpacing="0" id="table11">
+		  <tr>
+			  <th width="20%">表达式</th>
+			  <th width="40%">中 文 描 述</th>
+			  <th width="40%">英 文 描 述</th>
+		  </tr>
+		  <tr>
+			  <td><i>XY</i></td>
+			  <td><i>Y </i>在<i> X </i>后面</td>
+			  <td><i>X</i> followed by <i>Y</i></td>
+		  </tr>
+		  <tr>
+			  <td><i>X</i><tt>|</tt><i>Y</i></td>
+			  <td><i>X </i>或<i> Y</i></td>
+			  <td>Either <i>X</i> or <i>Y</i></td>
+		  </tr>
+		  <tr>
+			  <td><tt>(</tt><i>X</i><tt>)</tt></td>
+			  <td><i>X </i>为一匹配组</td>
+			  <td>X, as a
+			  <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Pattern.html#cg">
+			  capturing group</a></td>
+		  </tr>
+	  </table>
+  </div>
+  <h3>向后引用(Back references)</h3>
+  <div id="tableblock">
+	  <table cellSpacing="0" id="table12">
+		  <tr>
+			  <th width="20%">表达式</th>
+			  <th width="40%">中 文 描 述</th>
+			  <th width="40%">英 文 描 述</th>
+		  </tr>
+		  <tr>
+			  <td><tt>\</tt><i>n</i></td>
+			  <td>多次匹配组</td>
+			  <td>Whatever the <i>n</i><sup>th</sup>
+			  <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Pattern.html#cg">
+			  capturing group</a> matched</td>
+		  </tr>
+	  </table>
+  </div>
+  <h3>引用(Quotation)</h3>
+  <div id="tableblock">
+	  <table cellSpacing="0" id="table13">
+		  <tr>
+			  <th width="20%">表达式</th>
+			  <th width="40%">中 文 描 述</th>
+			  <th width="40%">英 文 描 述</th>
+		  </tr>
+		  <tr>
+			  <td><tt>\</tt></td>
+			  <td>引用后面的字符</td>
+			  <td>Nothing, but quotes the following character</td>
+		  </tr>
+		  <tr>
+			  <td><tt>\Q</tt></td>
+			  <td>引用所有字符，碰到<i> \E </i>终止</td>
+			  <td>Nothing, but quotes all characters until <tt>\E</tt></td>
+		  </tr>
+		  <tr>
+			  <td><tt>\E</tt></td>
+			  <td><i>\Q</i> 的终止符</td>
+			  <td>Nothing, but ends quoting started by <tt>\Q</tt></td>
+		  </tr>
+	  </table>
+  </div>
+  <h3>特殊结构(Special constructs (non-capturing))</h3>
+  <div id="tableblock">
+	  <table cellSpacing="0" id="table14">
+		  <tr>
+			  <th width="20%">表达式</th>
+			  <th width="40%">中 文 描 述</th>
+			  <th width="40%">英 文 描 述</th>
+		  </tr>
+		  <tr>
+			  <td><tt>(?:</tt><i>X</i><tt>)</tt></td>
+			  <td>　</td>
+			  <td><i>X</i>, as a non-capturing group</td>
+		  </tr>
+		  <tr>
+			  <td><tt>(?idmsux-idmsux)&nbsp;</tt></td>
+			  <td>　</td>
+			  <td>Nothing, but turns match flags on - off</td>
+		  </tr>
+		  <tr>
+			  <td><tt>(?idmsux-idmsux:</tt><i>X</i><tt>)</tt>&nbsp;&nbsp;</td>
+			  <td>　</td>
+			  <td><i>X</i>, as a
+			  <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Pattern.html#cg">
+			  non-capturing group</a> with the given flags on - off</td>
+		  </tr>
+		  <tr>
+			  <td><tt>(?=</tt><i>X</i><tt>)</tt></td>
+			  <td>　</td>
+			  <td><i>X</i>, via zero-width positive lookahead</td>
+		  </tr>
+		  <tr>
+			  <td><tt>(?!</tt><i>X</i><tt>)</tt></td>
+			  <td>　</td>
+			  <td><i>X</i>, via zero-width negative lookahead</td>
+		  </tr>
+		  <tr>
+			  <td><tt>(?&lt;=</tt><i>X</i><tt>)</tt></td>
+			  <td>　</td>
+			  <td><i>X</i>, via zero-width positive lookbehind</td>
+		  </tr>
+		  <tr>
+			  <td><tt>(?&lt;!</tt><i>X</i><tt>)</tt></td>
+			  <td>　</td>
+			  <td><i>X</i>, via zero-width negative lookbehind</td>
+		  </tr>
+		  <tr>
+			  <td><tt>(?&gt;</tt><i>X</i><tt>)</tt></td>
+			  <td>　</td>
+			  <td><i>X</i>, as an independent, non-capturing group</td>
+		  </tr>
+	  </table>
+  </div>
+
+
+<p>
+
+       ]]> </content>
+
+</doc>
+

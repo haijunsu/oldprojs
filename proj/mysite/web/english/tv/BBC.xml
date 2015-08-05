@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+   <!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+   <isindexall>false</isindexall>
+   <indexfile>indexall.xml</indexfile>
+
+   <!-- 定义文档位置 -->
+   <topic>english</topic>
+   <catalog>tv</catalog>
+
+   <!-- 文档显示内容 -->
+    <title>VOA News Now</title>
+    <pagename>VOA News Now</pagename>
+   <content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+<object id="raocx" classid="clsid:CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA" width="336" height="88">
+<param name="src" value="http://www.bbc.co.uk/worldservice/ram/live_news.ram">
+<param name="controls" value="all">
+<param name="console" value="_master">
+<param name="autostart" value="true">
+</object>
+       ]]> </content>
+
+</doc>
+

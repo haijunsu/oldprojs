@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+	<!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+	<isindexall>false</isindexall>
+	<indexfile>indexall.xml</indexfile>
+
+	<!-- 定义文档位置 -->
+	<topic>design</topic>
+	<catalog>source</catalog>
+
+	<!-- 文档显示内容 -->
+    <title>CVS 建立模块基本步骤</title>
+    <pagename>CVS 建立模块基本步骤</pagename>
+	<content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+首先检出CVSROOT模块，修改cvswrappers文件。
+<div id="codeblock">
+<code>
+cvs co CVSROOT <br>
+cd CVSROOT 
+</code>
+</div>
+打开 cvswrappers 文件，输入下面的内容，保证以下文件默认按二进制操作
+<div id="codeblock">
+<pre>
+*.cab -k 'b'
+*.class -k 'b'
+*.doc -k 'b'
+*.dll -k 'b'
+*.exe -k 'b'
+*.exp -k 'b'
+*.gif -k 'b'
+*.gz -k 'b'
+*.jar -k 'b'
+*.jpg -k 'b'
+*.jpeg -k 'b'
+*.lib -k 'b'
+*.msi -k 'b'
+*.mso -k 'b'
+*.pfw -k 'b'
+*.png -k 'b'
+*.ppt -k 'b'
+*.sit -k 'b'
+*.tar -k 'b'
+*.tlb -k 'b'
+*.vsd -k 'b'
+*.xls -k 'b'
+*.wmz -k 'b'
+*.zip -k 'b'
+*.rar -k 'b'
+</pre>
+</div>
+检入文件
+<div id="codeblock">
+<code>
+cvs commit -m 修改项目二进制文件列表 cvswrappers
+</code>
+</div>
+释放CVSROOT模块
+<div id="codeblock">
+<code>
+cvs release -d CVSROOT
+</code>
+</div>
+建立访问用户
+<div id="codeblock">
+<code>
+cvs passwd -a -r "system admin" "new user"
+</code>
+</div>
+导入模块
+<div id="codeblock">
+<code>
+cvs import -m 加入说明 &lt;module name&gt; &lt;vender tag&gt; &lt;release tag&gt;
+</code>
+</div>
+模块建立完成
+<p>
+
+    ]]> </content>
+
+</doc>
+

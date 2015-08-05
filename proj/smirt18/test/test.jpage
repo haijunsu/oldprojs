@@ -1,0 +1,11 @@
+String[] _array = new String[]{"d", "b", "c", "d", "a"};
+java.util.List _list = java.util.Arrays.asList(_array);
+System.out.println("list: " + _list);
+java.util.Set _set = new java.util.LinkedHashSet(_list);
+_set.add(_array[2]);
+System.out.println("set: " + _set);
+String[] _array2 = new String[]{"d", "b", "c", "d", "a", "h"};
+java.util.List _list2 = java.util.Arrays.asList(_array2);
+java.util.Set _set2 = new java.util.LinkedHashSet(_list);
+_set2.addAll(_list2);
+System.out.println("set2: " + _set2);

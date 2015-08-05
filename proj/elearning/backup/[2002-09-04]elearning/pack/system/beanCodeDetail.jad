@@ -1,0 +1,82 @@
+// Decompiled by DJ v2.9.9.60 Copyright 2000 Atanas Neshkov  Date: 2002-7-1 10:07:03
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   beanCodeDetail.java
+
+package system;
+
+
+public class beanCodeDetail
+{
+
+    public beanCodeDetail()
+    {
+        codeId = "";
+        codeValue = "";
+        codeNamec = "";
+        codeNamee = "";
+    }
+
+    public beanCodeDetail(String s, String s1, String s2, String s3)
+    {
+        codeId = s;
+        codeValue = s1;
+        codeNamec = s2;
+        codeNamee = s3;
+    }
+
+    public void setCodeId(String s)
+    {
+        codeId = s;
+    }
+
+    public void setCodeValue(String s)
+    {
+        codeValue = s;
+    }
+
+    public void setCodeNamec(String s)
+    {
+        codeNamec = s;
+    }
+
+    public void setCodeNamee(String s)
+    {
+        codeNamee = s;
+    }
+
+    public String getCodeId()
+    {
+        return codeId;
+    }
+
+    public String getCodeValue()
+    {
+        return codeValue;
+    }
+
+    public String getCodeNamec()
+    {
+        return codeNamec;
+    }
+
+    public String getCodeNamee()
+    {
+        return codeNamee;
+    }
+
+    public String toString()
+    {
+        String s = null;
+        s = "codeId = " + codeId + "\n";
+        s = s + "codeValue = " + codeValue + "\n";
+        s = s + "codeNamec = " + codeNamec + "\n";
+        s = s + "codeNamee = " + codeNamee + "\n";
+        return s;
+    }
+
+    private String codeId;
+    private String codeValue;
+    private String codeNamec;
+    private String codeNamee;
+}

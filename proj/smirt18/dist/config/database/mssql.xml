@@ -1,0 +1,17 @@
+   <!-- =================================================================== -->
+   <!-- ant properties/targets for MS SQL Server                            -->
+   <!-- note: this is not a proper xml file (there is no root element)      -->
+   <!--       it is intended to be imported from a *real* xml file          -->
+   <!-- =================================================================== -->
+
+   <property name="database.script.file"           value=""/>
+   <property name="database.driver.file"           value="${lib.dir}/mssqlserver.jar"/>
+   <property name="database.driver"                value="com.microsoft.jdbc.sqlserver.SQLServerDriver"/>
+   <property name="database.url"                   value="jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=s_smirt"/>
+   <property name="database.userid"                value="sa"/>
+   <property name="database.password"              value="12345"/>
+   <property name="database.schema"                value="dbo"/>
+   <property name="database.catalog"               value="S_SMiRT"/>
+
+   <property name="jboss.datasource.mapping"       value="MS SQLSERVER"/>
+   <!--property name="jboss.datasource.mapping"       value="MS SQLSERVER2000"/-->

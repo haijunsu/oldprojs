@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+	<!-- Form Bean Definitions -->
+
+	<form-beans>
+		<!--
+			<form-bean name="sysCfgForm"
+			type="com.truetel.svc.chs.ui.action.admin.SysCfgForm" />
+		-->
+	</form-beans>
+
+	<!-- Action Mapping Definitions -->
+
+	<action-mappings>
+		<action path="/login" name="loginForm"
+			type="com.navy.app.rat.web.action.LoginAction" scope="request">
+			<forward name="login" path="loginDef"></forward>
+			<forward name="welcome" path="welcomeDef"></forward>
+		</action>
+	</action-mappings>
+
+</struts-config>
+

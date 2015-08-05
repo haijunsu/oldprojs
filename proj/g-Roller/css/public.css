@@ -1,0 +1,194 @@
+/**public.css
+ * Created on 2003-11-30
+ * @author KunMao
+ * 	catflame@msn.com
+ */
+
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+
+	BORDER-LEFT: #000000 solid 1px;
+	font-size: 12px;
+	background-color: #E7E7E8;
+
+/*	background-attachment: fixed;*/
+/*	background-image: url("pub_bg.gif"); */
+/*	background-repeat: no-repeat;*/
+/*	background-position: right bottom;*/
+	scrollbar-base-color: #C1C1C1;
+	scrollbar-track-color: #F4F4F4;/*轨道色*/
+	scrollbar-face-color: #C1C1C1;/*面板色*/
+	scrollbar-highlight-color: #F4F4F4;/*立体部分内边框颜色(上/左)*/
+/*	scrollbar-shadow-color: #003366;/*立体部分内边框颜色(下/右)*/
+/*	scrollbar-3dlight-color: #003366;/*立体部分外边框颜色(上/左)*/
+	scrollbar-darkshadow-color: #F4F4F4;/*立体部分外边框颜色(下/右)*/
+	scrollbar-arrow-color: #EBEBEB;/*箭头颜色*/
+}
+a:link {
+	font-size: 9pt;
+	color: #003366;
+	text-decoration: none;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: dotted;
+	border-left-style: none;
+	border-bottom-color: #666666;
+	border-bottom-width: 1px;
+}
+a:hover {
+	font-size: 9pt;
+	color: #0066cc;
+	text-decoration: none;
+	background-color: #EAEAEA;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: dotted;
+	border-left-style: none;
+	border-bottom-color: #666666;
+	border-bottom-width: 1px;
+}
+a:visited {
+	font-size: 9pt;
+	color: #003366;
+	text-decoration: none;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: dotted;
+	border-left-style: none;
+	border-bottom-color: #666666;
+	border-bottom-width: 1px;
+}
+
+/* --================== 链接颜色显示红色 ==================-- */
+
+a.red:link {
+	font-size: 9pt;
+	color: #990000;
+	text-decoration: none;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: dotted;
+	border-left-style: none;
+	border-bottom-color: #666666;
+	border-bottom-width: 1px;
+}
+a.red:hover {
+	font-size: 9pt;
+	color: #990000;
+	text-decoration: none;
+	background-color: #EAEAEA;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: dotted;
+	border-left-style: none;
+	border-bottom-color: #666666;
+	border-bottom-width: 1px;
+}
+a.red:visited {
+	font-size: 9pt;
+	color: #990000;
+	text-decoration: none;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: dotted;
+	border-left-style: none;
+	border-bottom-color: #666666;
+	border-bottom-width: 1px;
+}
+
+
+
+H1,H2,H3,H4,H5,H6 {
+	color: #38497F;
+}
+
+H1 {
+	font-size: 24px;
+	text-align: center;
+}
+
+TD {
+	font-size: 12px;
+}
+
+/* --================== template表格 ==================-- */
+
+table.template {
+	background-color: #ABABAB;
+	width:100%;
+}
+
+Td.top {
+	background-color:#C1C1C1;
+	text-align:right;
+	padding-right: 20px;
+	padding-left: 20px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+TD.header {
+	background-color:#EBEBEB;
+	padding-right: 20px;
+	padding-left: 20px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+TD.menu{
+	background-color:#F4F4F4;
+	width:190px;
+	vertical-align:top;
+}
+
+TD.content{
+	background-color:#FFFFFF;
+	width:100%;
+	text-align:center;
+	vertical-align:top;
+}
+
+TD.footer{
+	background-color:#C1C1C1;
+	text-align:center;
+	padding-right: 20px;
+	padding-left: 20px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+/* --================== 用户列表的表格 ==================-- */
+
+table.listUser {
+	width:95%;
+}
+
+
+TH.listUser {
+	background-color:#F4F4F4;
+	text-align:left;
+}
+
+TD.listUser {
+	text-align:left;
+}
+
+/* --================== 登陆BLOG的表格 ==================-- */
+
+table.logon {
+	background-color:#E7E7E8;
+}
+
+TH.logon {
+	background-color:#E7E7E8;
+	color:#FFFFFF;
+	text-align:center;
+}
+
+TD.logon {
+	background-color:#FFFFFF;
+	text-align:left;
+}

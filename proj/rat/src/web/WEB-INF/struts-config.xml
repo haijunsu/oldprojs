@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+	<!-- Form Bean Definitions -->
+
+	<form-beans>
+		<form-bean name="loginForm"
+			type="org.apache.struts.action.DynaActionForm">
+			<form-property name="userid" type="java.lang.String" />
+			<form-property name="password" type="java.lang.String" />
+			<form-property name="actionType" type="java.lang.String" />
+		</form-bean>
+
+	</form-beans>
+
+	<global-forwards>
+		<forward name="error" path="errorDef" />
+		<forward name="warn" path="warnDef" />
+		<forward name="success" path="successDef" />
+		<forward name="login" path="loginDef" />
+
+	</global-forwards>
+
+
+	<!-- Action Mapping Definitions -->
+
+	<!-- Controller Configuration -->
+	<controller
+		processorClass="org.apache.struts.tiles.TilesRequestProcessor"
+		maxFileSize="12M" />
+
+	<!-- Message Resources Definitions -->
+
+	<message-resources parameter="properties.Messages" null="false" />
+	<!--
+		<message-resources parameter="resources.MenusResources"  null="false" key="menus"/>
+	-->
+
+	<!-- Plug Ins Configuration -->
+
+	<plug-in className="org.apache.struts.tiles.TilesPlugin">
+
+		<set-property property="definitions-config"
+			value="/WEB-INF/tiles-defs.xml" />
+		<set-property property="moduleAware" value="true" />
+	</plug-in>
+
+	<!-- Validator plugin
+		<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames"
+		value="/WEB-INF/validator-rules.xml, /WEB-INF/validation.xml" />
+		</plug-in>
+	-->
+</struts-config>
+

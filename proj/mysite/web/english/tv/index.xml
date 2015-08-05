@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+	<!-- 定义页面属性 -->
+    <isindexpage>true</isindexpage>
+	<isindexall>false</isindexall>
+	<indexfile>indexall.xml</indexfile>
+
+	<!-- 定义文档位置 -->
+	<topic>english</topic>
+	<catalog>tv</catalog>
+
+	<!-- 文档显示内容 -->
+    <title>在线视听</title>
+    <pagename>更新列表</pagename>
+	<content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+
+       ]]> </content>
+
+</doc>
+

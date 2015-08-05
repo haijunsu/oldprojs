@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+   <!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+   <isindexall>false</isindexall>
+   <indexfile>indexall.xml</indexfile>
+
+   <!-- 定义文档位置 -->
+   <topic>appsvr</topic>
+   <catalog>websphere</catalog>
+
+   <!-- 文档显示内容 -->
+    <title>IBM WebSphere Application Server 推荐的文档列表</title>
+    <pagename>IBM WebSphere Application Server 推荐的文档列表</pagename>
+   <content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+<a href="http://www-900.ibm.com/developerworks/cn/wsdd/library/techarticles/0305_issw/recommendedreading.shtml">请参阅IBM 2003年12月推荐的文档</a>
+
+       ]]> </content>
+
+</doc>
+

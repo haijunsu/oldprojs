@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>申请课程的搜索</title>
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" align="center" bordercolorlight="#6699cc" bordercolordark="#FFFFFF" class="xbz">
+  <tr bgcolor="#F0F4FB" align="right"> 
+    <td height="20" colspan="9">[查询到<%=rs.recordcount%>条记录][ 每页<%=rs.pagesize%>条记录] 
+      <a href="javascript:search(1)">第一页</a> 
+      <%if page>1 then%>
+      <a href="javascript:search(<%=page-1%>)"> 上一页 
+      <%end if
+	 if page<pagecount then%>
+      <%end if%>
+      </a><a href="javascript:search(<%=page+1%>)"> 下一页</a> <a href="javascript:search(<%=pagecount%>)"> 
+      尾页</a></td>
+  </tr>
+  <tr bgcolor="#FFFFFF"> 
+    <td height="20">主题</td>
+    <td height="20">作者</td>
+    <td height="20">类别</td>
+    <td height="20">回复</td>
+    <td height="20">阅读</td>
+    <td height="20" colspan="3">时间</td>
+  </tr>
+  <tr bgcolor="#FFFFFF"> 
+    <%rs.absolutepage=cint(page)
+      for i = 1 to rs.PageSize 
+	 if not rs.eof then%>
+    <td height="20"><a href="open.asp?id=<%=rs("sb_id")%>"><%=rs("sb_title")%></a></td>
+    <td height="20"><%=rs("sb_name")%></td>
+    <td height="20"><%=rs("sb_cat")%></td>
+    <td height="20"><%=rs("sb_re")%></td>
+    <td height="20"><%=rs("sb_hits")%></td>
+    <td height="20" colspan="3"><%=rs("sb_date")%></td>
+  </tr>
+  <%rs.movenext
+  end if
+  next
+  end if
+  %>
+</table>
+</body>
+</html>

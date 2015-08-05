@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context path="/Smirt18" docBase="M:/developer/workspace/Smirt18/build">
+  <Resource name="jdbc/smirt" auth="Container" type="javax.sql.DataSource"/>
+  <ResourceParams name="jdbc/smirt">
+    <parameter>
+      <name>factory</name>
+      <value>org.apache.commons.dbcp.BasicDataSourceFactory</value>
+    </parameter>
+
+     <parameter>
+      <name>maxActive</name>
+      <value>100</value>
+    </parameter>
+
+    <parameter>
+      <name>maxIdle</name>
+      <value>30</value>
+    </parameter>
+
+    <parameter>
+      <name>maxWait</name>
+      <value>10000</value>
+    </parameter>
+
+    <parameter>
+     <name>username</name>
+     <value>sa</value>
+    </parameter>
+    <parameter>
+     <name>password</name>
+     <value>12345</value>
+    </parameter>
+
+    <parameter>
+       <name>driverClassName</name>
+       <value>com.microsoft.jdbc.sqlserver.SQLServerDriver</value>
+    </parameter>
+
+    <parameter>
+      <name>url</name>
+      <value>jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=s_smirt</value>
+    </parameter>
+  </ResourceParams>
+
+	<Realm className="org.apache.catalina.realm.DataSourceRealm" debug="99"
+	   dataSourceName="jdbc/smirt"
+	   localDataSource="true"
+	   userTable="SMIRT18.T_USERS" userNameCol="userid" userCredCol="pass"
+	   userRoleTable="SMIRT18.T_GROUPS" roleNameCol="groupname"/>
+
+</Context>

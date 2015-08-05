@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<!-- setup entities properties -->
+	<bean id="entityUser" class="application.entity.User" />
+	<bean id="entityGroup" class="application.entity.Group" />
+	<bean id="entityMenu" class="application.entity.Menu" />
+	<bean id="entityQuerys" class="application.entity.MyQuerys" />
+	<bean id="entityTaccommodation" class="application.entities.Taccommodation"
+		/>
+	<bean id="entityTaccompanyPerson"
+		class="application.entities.TaccompanyPerson" />
+	<bean id="entityTaffiliationType"
+		class="application.entities.TaffiliationType" />
+	<bean id="entityTcoauthor" class="application.entities.Tcoauthor" />
+	<bean id="entityTcountry" class="application.entities.Tcountry" />
+	<bean id="entityTdivision" class="application.entities.Tdivision" />
+	<bean id="entityTequipments" class="application.entities.Tequipments" />
+	<bean id="entityTpaper" class="application.entities.Tpaper" />
+	<bean id="entityTpaperPresented"
+		class="application.entities.TpaperPresented" />
+	<bean id="entityTpaperRegistration"
+		class="application.entities.TpaperRegistation" />
+	<bean id="entityTpaperReviewResult"
+		class="application.entities.TpaperReviewResult" />
+	<bean id="entityTparticipant" class="application.entities.Tparticipant" />
+	<bean id="entityTpaymentMethod" class="application.entities.TpaymentMethod"
+		/>
+	<bean id="entityTpresentedPapers"
+		class="application.entities.TpresentedPapers" />
+	<bean id="entityTregistrationFee"
+		class="application.entities.TregistrationFee" />
+	<bean id="entityTrelationBetweenParticipantAndPaper"
+		class="application.entities.TrelationBetweenParticipantAndPaper" />
+	<bean id="entityTrelationBetweenAuthorAndPaper"
+		class="application.entities.TrelationBetweenAuthorAndPaper" />
+	<bean id="entityTuserAccount" class="application.entities.TuserAccount" />
+	<bean id="entityTauthor" class="application.entities.Tauthor" />
+	<bean id="entityTuserType" class="application.entities.TuserType" />
+	<bean id="entityTvisa" class="application.entities.Tvisa" />
+</beans>

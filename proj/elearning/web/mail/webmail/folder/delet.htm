@@ -1,0 +1,52 @@
+ 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0034)http://mail.qingniao.net/main1.asp -->
+<HTML>
+<script language="javascript">
+<!-- Begin validation script
+
+  var scrtxt="您可以在这里备份您自己的的邮件！";
+  var lentxt=scrtxt.length;
+  var width=100;
+  var pos=1-width;
+  
+  function scroll() {
+  pos++;
+  
+  var scroller="";
+  if (pos==lentxt) {
+    pos=1-width;
+  }
+  if (pos<0) {
+    for (var i=1; i<=Math.abs(pos); i++) {
+      scroller=scroller+" ";}
+    scroller=scroller+scrtxt.substring(0,width-i+1);
+  }
+  else {
+    scroller=scroller+scrtxt.substring(pos,width+pos);
+  }
+  window.status = scroller;
+  setTimeout("scroll()",150);
+  }
+</script>
+<HEAD>
+<TITLE>New Page 1</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR>
+<META content=FrontPage.Editor.Document name=ProgId>
+</HEAD>
+<FRAMESET 
+rows=28,36%,* border="1" framespacing="1" cols="*"> 
+  <FRAME name=top1 noResize scrolling=no 
+src="main/title.html">
+  <FRAME name=middle scrolling=no 
+src="main/mail_list2.htm" target="bottom1">
+  <FRAME name=bottom1 scrolling=no 
+src="main/main2.html" 
+target="_self">
+  <NOFRAMES> 
+  <body onload="scroll();return true;">
+  <p>此网页使用了框架，但您的浏览器不支持框架。</p>
+  </body>
+  </NOFRAMES></FRAMESET>
+</HTML>

@@ -1,0 +1,4 @@
+apache1,URL,http://www.apache.org/licenses/LICENSE-1.0.txt
+apache2,URL,http://www.apache.org/licenses/LICENSE-2.0.txt
+bsd,FILE,src/main/resources/license-files/bsd.txt
+demo,INLINE,We grant free license to all source and binary distribution.

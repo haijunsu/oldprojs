@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+   <!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+   <isindexall>false</isindexall>
+   <indexfile>indexall.xml</indexfile>
+
+   <!-- 定义文档位置 -->
+   <topic>os</topic>
+   <catalog>windows</catalog>
+
+   <!-- 文档显示内容 -->
+    <title>手工修复被恶意网站修改的注册表</title>
+    <pagename>手工修复被恶意网站修改的注册表</pagename>
+   <content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+<h3>解除禁止修改注册表和主页的方法</h3>
+创建一个unlock.reg文件，并写入下面的内容，完成后双击unlock.reg。
+<div id="codeblock"><code>
+REGEDIT4 <br>
+<br>
+[HKEY_CURRENT_USER\software\Microsoft\Windows\CurrentVersion\policies\system] <br>
+"DisableRegistryTools"=dword:0 <br>
+<br>
+[HKEY_CURRENT_USER\Software\Policies\Microsoft\Internet Explorer\Control Panel] <br>
+HomePage=dword:00000000 <br>
+</code></div>
+如果在NT/2000/XP提示“注册编辑被管理员禁用”的错误，可以通过下面两种方式来启用注册表
+<ul>
+	1、开始--->运行--->gpedit.msc--->用户配置--->管理模板--->系统--->阻止访问注册表编辑器--->禁用。<br>
+	2、创建一个unlock.inf文件，文件内容如下：
+	<div id="codeblock"><code>
+	[Version] <br>
+Signature="$Chicago$" <br>
+<br>
+[DefaultInstall] <br>
+DelReg=DeleteMe <br>
+<br>
+[DeleteMe] <br>
+HKCU,"Software\Microsoft\Windows\CurrentVersion\Policies\System","DisableRegistryTools" <br>
+	
+	</code></div>
+在该文件上点右键，选择“安装”，即可。	
+</ul>
+<h3>修复每次启动都会打开恶意网站</h3>
+如果机器每次启动或打开IE都会导航到某个恶意网站，甚至IE的标题也被篡改，无论怎么修改IE 属性
+都不生效，或重新启动就又变成恶意网站，你需要检查注册表里面的几个内容：
+<div id="codeblock"><code>
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Main
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunOnce
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
+HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main
+</code></div>
+检查这里面有没有不认识的程序和不喜欢看到的网址，如果有，可以毫不犹豫将他们删除，同时要检查
+c:\windows\win.ini和c:\windows\system.ini文件，看里面有没有加载可疑的程序，比如<i>load=,run=</i>
+的属性要多加留意。<br>
+最后别忘了再检查一下启动项里面有没有不认识的程序。如果存在c:\autoexec.bat文件，检查其内容是不是
+存在不认识的程序或命令，如regedit /s &lt;文件名&gt;
+
+<h3>未能找到的项目</h3>
+经过了第二步的修改仍然没有解决一定时间会自动弹出到某网站连接的画面，估计是恶意程序，可以通过
+“任务管理器”来检查有没有可疑进程，通过资源管理器搜索包含恶意网址的文件，在注册表里查找恶意网
+站的字，将包含恶意网站的程序和注册表键值都删除掉即可解决。
+       ]]> </content>
+
+</doc>
+

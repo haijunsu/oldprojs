@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+	<!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+	<isindexall>false</isindexall>
+	<indexfile>indexall.xml</indexfile>
+
+	<!-- 定义文档位置 -->
+	<topic>java</topic>
+	<catalog>tips</catalog>
+
+	<!-- 文档显示内容 -->
+    <title>正则表达式应用 － Jakarta-ORO</title>
+    <pagename>正则表达式应用 － Jakarta-ORO</pagename>
+	<content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+<a href="http://jakarta.apache.org/oro">Jakarta-ORO 开源项目联接地址</a>，Jakarta-ORO正则表达式库支持Perl5兼容的正则表达式语法。
+<h3>创建PatternCompiler对象</h3>
+在使用Jakarta-ORO API包时，首先要创建一个Perl5Compiler类的实例，并把它赋值给PatternCompiler接口对象。Perl5Compiler是PatternCompiler接口的一个实现，允许把正则表达式编译成用来匹配的Pattern对象。
+<div id="codeblock">
+<pre>
+PatternCompiler compiler=new Perl5Compiler();
+</pre>
+</div>
+<h3>创建Pattern对象</h3>
+要把所对应的正则表达式编译成Pattern对象，需要调用compiler对象的compile()方法，并在调用参数中指定正则表达式。
+<div id="codeblock">
+<pre>
+Pattern pattern=null;
+try {
+     pattern=compiler.compile("s[ahkl]y ");
+} catch (MalformedPatternException e) {
+     e.printStackTrace();
+}
+</pre>
+</div>
+在默认的情况下，编译器会创建一个对大小写敏感的模式（pattern）。因此，上面代码编译得到的模式只匹配"say"、"shy"、 "sky"和"sly"，但不匹配"Say"和"skY"。要创建一个大小写不敏感的模式，你应该在调用编译器的时候指定一个额外的参数:
+<div id="codeblock">
+<pre>
+pattern=compiler.compile("s[ahkl]y",Perl5Compiler.CASE_INSENSITIVE_MASK);
+</pre>
+</div>
+<h3>创建PatternMatcher对象</h3>
+PatternMatcher对象依据Pattern对象和字符串展开匹配检查。需要实例化一个Perl5Matcher类并把结果赋值给PatternMatcher接口。Perl5Matcher类是PatternMatcher接口的一个实现，它根据Perl 5正则表达式语法进行模式匹配。
+<div id="codeblock">
+<pre>
+PatternMatcher matcher=new Perl5Matcher();
+</pre>
+</div>
+PatternMatcher对象提供了多个方法进行匹配操作，这些方法的第一个参数都是需要根据正则表达式进行匹配的字符串：
+<ul>
+<li>
+	boolean matches(String input, Pattern pattern)：当要求输入的字符串input和正则表达式pattern精确匹配时使用该方法。也就是说当正则表达式完整地描述输入字符串时返回真值。 
+</li>
+<li>
+	boolean matchesPrefix(String input, Pattern pattern)：要求正则表达式匹配输入字符串起始部分时使用该方法。也就是说当输入字符串的起始部分与正则表达式匹配时返回真值。 
+
+</li>
+<li>
+	boolean contains(String input, Pattern pattern)：当正则表达式要匹配输入字符串的一部分时使用该方法。当正则表达式为输入字符串的子串时返回真值。 
+</li>
+</ul>
+但以上三种方法只会查找输入字符串中匹配正则表达式的第一个对象，如果当字符串可能有多个子串匹配给定的正则表达式时，就可以在调用上面三个方法时用PatternMatcherInput对象作为参数替代String对象，这样就可以从字符串中最后一次匹配的位置开始继续进行匹配。
+<br />
+用PatternMatcherInput对象作为参数替代String时，上述三个方法的语法如下：
+<ul>
+<li>
+	boolean matches(PatternMatcherInput input, Pattern pattern) 
+</li>
+<li>
+	boolean matchesPrefix(PatternMatcherInput input, Pattern pattern) 
+</li>
+<li>
+	boolean contains(PatternMatcherInput input, Pattern pattern) 
+</li>
+</ul>
+<h3>使用Util.substitute()方法</h3>
+Util.substitute()方法语法如下：
+<div id="codeblock">
+<pre>
+public static String substitute(PatternMatcher matcher,
+       Pattern pattern,Substitution sub,String input,
+       int numSubs)
+</pre>
+</div>
+前两个参数分别为PatternMatcher和Pattern对象。而第三个参数是个Substiution对象，由它来决定替换操作如何进行。第四个参数是要进行替换操作的目标字符串，最后一个参数用来指定是否替换模式的所有匹配子串（Util.SUBSTITUTE_ALL），或只进行指定次数的替换。
+<br>
+<b>Substiution:</b><br>
+Substiution是一个接口类，它为你提供了在使用Util.substitute()方法时控制替换方式的手段，它有两个标准的实现类：StringSubstitution与Perl5Substitution。当然，同时也可以生成自己的实现类来定制你所需要的特殊替换动作。
+<br>
+<br>
+<b>StringSubstitution：</b><br>
+StringSubstitution 实现的是简单的纯文字替换手段，它有两个构造方法：
+<br>
+<i>StringSubstitution()</i> -> 缺省的构造方法，初始化一个包含零长度字符串的替换对象。
+<br>
+<i>StringSubstitution(java.lang.String substitution)</i>->初始化一个给定字符串的替换对象。
+<br>
+<br>
+<b>Perl5Substitution：</b><br>
+Perl5Substitution 是StringSubstitution的子类，它在实现纯文字替换手段的同时也允许进行针对MATH类里各匹配组的PERL5变量的替换，所以其替换手段比其直接父类StringSubstitution更为多元化。
+<br>
+它有三个构造器：
+<br>
+<i>Perl5Substitution()</i><br>
+<i>Perl5Substitution(java.lang.String substitution)</i><br>
+<i>Perl5Substitution(java.lang.String substitution, int numInterpolations)</i><br>
+<br>
+前两种构造方法与StringSubstitution一样，而第三种构造方法下面将会介绍到。
+<br>
+在Perl5Substitution的替换字符串中可以包含用来替代在正则表达式里由小扩号围起来的匹配组的变量，这些变量是由$1, $2,$3等形式来标识。我们可以用一个例子来解释怎样使用替换变量来进行替换：
+<br><br>
+假设我们有正则表达式模式为b\d+:（也就是b[0-9]+:），而我们想把所有匹配的字符串中的"b"都改为"a",而"："则改为"-"，而其余部分则不作修改，如我们输入字符串为"EXAMPLE b123:"，经过替换后就应该变成"EXAMPLE a123-"。要做到这点，我们就首先要把不做替换的部分用分组符号小括号包起来，这样正则表达式就变为"b(\d+):"，而构造Perl5Substitution对象时其替换字符串就应该是"a$1-"，也就是构造式为Perl5Substitution（"a$1-"），表示在使用Util.substitute()方法时只要在目标字符串里找到和正则表达式" b(\d+): "相匹配的子串都用替换字符串来替换，而变量$1表示如果和正则表达式里第一个组相匹配的内容则照般原文插到$1所在的为置，如在"EXAMPLE b123："中和正则表达式相匹配的部分是"b123："，而其中和第一分组"(\d+)"相匹配的部分则是"123"，所以最后替换结果为"EXAMPLE a123-"。
+<br><br>
+有一点需要清楚的是，如果你把构造器Perl5Substitution(java.lang.String substitution,int numInterpolations)
+中的numInterpolations参数设为INTERPOLATE_ALL，那么当每次找到一个匹配字串时，
+替换变量（$1，$2等）所指向的内容都根据目前匹配字串来更新，
+但是如果numInterpolations参数设为一个正整数N时，
+那么在替换时就只会在前N次匹配发生时替换变量会跟随匹配对象来调整所代表的内容，
+但N次之后就以一致以第N次替换变量所代表内容来做为以后替换结果。
+<br>
+<br>
+例如：
+<br>
+假如沿用以上例子中的正则表达式模式以及替换内容来进行替换工作，
+设目标字符串为"<b>Tank b123: 85 Tank b256: 32 Tank b78: 22</b>"，
+并且设numInterpolations参数为INTERPOLATE_ALL，
+而Util.substitute()方法中的numSub变量设为SUBSTITUTE_ALL（请
+参考上文Util.substitute()方法内容），那么你获得的替换结果将会是：<br>
+<i>Tank a123- 85 Tank a256- 32 Tank a78- 22</i><br>
+<br>
+但是如果你把numInterpolations设为2，并且numSubs依然设为SUBSTITUTE_ALL，
+那么这时你获得的结果则会是：<br>
+<i>Tank a123- 85 Tank a256- 32 Tank <b>a256-</b> 22</i>
+<br><br>
+你要注意到最后一个替换所用变量$1所代表的内容与第二个$1一样为"256"，而不是预期的"78"，
+因为在替换进行中，替换变量$1只根据匹配内容进行了两次更新，
+最后一次就使第二次匹配时所更新的结果，那么我们可以由此知道，
+如果numInterpolations设为1，那么结果将是：<br>
+<i>Tank a123- 85 Tank <b>a123-</b> 32 Tank <b>a123-</b> 22</i><br>
+<h3>示例</h3>
+某英文字典中单词解释的内容格式如下：<br>
+<em>[音标] [词性] （解释）{(例句一/例句解释/例句中该词的词性: 单词在句中的意思) (例句二/例句解释/例句中该词的词性: 单词在句中的意思)}</em>
+<br>
+<br>
+如对应单词<b>Kevin</b>解释的内容如下：<br>
+<em>['kevin] [名词]（人名凯文）{(Kevin loves comic./凯文爱漫画/名词: 凯文)( Kevin is living in ZhuHai now./凯文现住在珠海/名词: 凯文)}</em>
+<br>
+<br>
+<b>查找单个匹配</b><br>
+<div id="codeblock">
+<pre>
+/*
+ * @(#)TestRegexORO.java  2004-5-18
+ * 
+ * Copyright (c) 技术日志 2004 
+ * All rights reserved. 
+ */
+package test;
+
+import org.apache.oro.text.regex.MalformedPatternException;
+import org.apache.oro.text.regex.MatchResult;
+import org.apache.oro.text.regex.Pattern;
+import org.apache.oro.text.regex.PatternCompiler;
+import org.apache.oro.text.regex.PatternMatcher;
+import org.apache.oro.text.regex.Perl5Compiler;
+import org.apache.oro.text.regex.Perl5Matcher;
+
+/**
+ * &lt;P&gt;利用Jakarta-ORO进行文字处理&lt;/P&gt;
+ * 
+ * @version 0.1
+ * @author navy
+ */
+public class TestRegexORO {
+
+	private final String MATCH_CONTENT =
+		"['kevin] [名词] （人名凯文）" +
+		"{(Kevin loves comic./凯文爱漫画/名词: 凯文)" +
+		"( Kevin is living in ZhuHai now./凯文现住在珠海/名词: 凯文)} ";
+
+	/**
+	 * 构造函数
+	 */
+	public TestRegexORO() {
+	}
+
+	/**
+	 * 查找解释内容的音标
+	 */
+	void matchSymbol() {
+		try {
+			//相应的正则表达式：\[[^]]+\] 
+			String rsstring = "\\[[^]]+\\]";
+			//为使用Jakarta-ORO库而创建相应的对象
+			PatternCompiler orocom = new Perl5Compiler();
+			Pattern pattern = orocom.compile(rsstring);
+			PatternMatcher matcher = new Perl5Matcher();
+			if (matcher.contains(MATCH_CONTENT, pattern)) {
+				MatchResult result = matcher.getMatch();
+				System.out.println("音标为：" + result.toString());
+			}
+		} catch (MalformedPatternException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args) {
+		TestRegexORO troro = new TestRegexORO();
+		troro.matchSymbol();
+	}
+}
+</pre>
+</div>
+输出结果为：<em>音标为：['kevin]</em>
+<br>
+<br>
+如果正则表达式里是用了分组符号（圆括号），那么就可以用group(int gid)的方法来取得相应各组匹配的结果，如正则表达式改为"(\[[^]]+\])"，那么就可以用以下方法来取得结果：pure=result.group(0);
+<br>
+<br>
+将正则表过式改为“(\\[[^]]+\\]) (\\[[^]]+\\])”：
+<div id="codeblock">
+<pre>
+String rsstring = "(\\[[^]]+\\]) (\\[[^]]+\\])";
+</pre>
+</div>
+输出语句为如下语句进行分组输出：
+<div id="codeblock">
+<pre>
+System.out.println("音标和词性为：" + result.group(0));
+System.out.println("音标为：" + result.group(1));
+System.out.println("词性为：" + result.group(2));
+</pre>
+</div>
+则输出结果为：
+<pre>
+<em>
+	音标和词性为：['kevin] [名词]
+	音标为：['kevin]
+	词性为：[名词]
+</em>
+</pre>
+<h3>查找多个匹配</h3>
+用PatternMatcherInput对象作为参数替代String对象可以从字符串中最后一次匹配的位置开始继续进行匹配，实现的程序片段如下：
+<div id="codeblock">
+<pre>
+pattern = orocom.compile("\\[[^]]+\\]");
+PatternMatcherInput input = new PatternMatcherInput(MATCH_CONTENT);
+while (matcher.contains(input, pattern)) {
+	MatchResult result = matcher.getMatch();
+	System.out.println(result.group(0));
+}
+</pre>
+</div>
+输出结果为：
+<pre>
+<em>
+	['kevin]
+	[名词]
+</em>
+</pre>
+<b>分离内容代码：</b>
+<div id="codeblock">
+<pre>
+//大括号里面的内容
+String ps1 = "\\{.+\\}";
+//小括号里的内容
+String ps2 = "\\([^)]+\\)";
+//分组分离
+String ps3 = "([^(]+)/(.+)/(.+):([^)]+)";
+String sentence;
+orocom = new Perl5Compiler();
+Pattern pattern1 = orocom.compile(ps1);
+Pattern pattern2 = orocom.compile(ps2);
+Pattern pattern3 = orocom.compile(ps3);
+matcher = new Perl5Matcher();
+//	 先找出整个例句部分
+if (matcher.contains(MATCH_CONTENT, pattern1)) {
+	MatchResult result = matcher.getMatch();
+	String example = result.toString();
+	PatternMatcherInput pinput = new PatternMatcherInput(example);
+	//分别找出例句一和例句二
+	while (matcher.contains(pinput, pattern2)) {
+		result = matcher.getMatch();
+		sentence = result.toString();
+		//把每个例句里的各项用分组的办法分隔出来
+		if (matcher.contains(sentence, pattern3)) {
+			result = matcher.getMatch();
+			System.out.println("英文句: " + result.group(1));
+			System.out.println("句子中文翻译: " + result.group(2));
+			System.out.println("词性: " + result.group(3));
+			System.out.println("意思: " + result.group(4));
+		}
+	}
+}
+}
+</pre>
+</div>
+输出结果为：
+<pre>
+<em>
+	英文句: Kevin loves comic.
+	句子中文翻译: 凯文爱漫画
+	词性: 名词
+	意思:  凯文
+	英文句:  Kevin is living in ZhuHai now.
+	句子中文翻译: 凯文现住在珠海
+	词性: 名词
+	意思:  凯文</em>
+</pre>
+
+<h3>查找替换</h3>
+把<br><i>
+['kevin] [名词]（人名凯文）{(Kevin loves comic./凯文爱漫画/名词: 凯文)( Kevin is living in ZhuHai now. /凯文现住在珠海/名词: 凯文)}
+</i><br>
+替换为：<br><i>
+['kevin] [名词]（人名凯文）{(Kevin loves comic./凯文爱漫画/名词: 凯文)( Kevin has seen《LEON》seveal times,because it is a good film./ 凯文已经看过《这个杀手不太冷》几次了，因为它是一部好电影。/名词:凯文。)}
+</i><br><br>
+要先找到其中的整个例句部分，也就是由大括号包起来的字串，并且把两个例句分别分组，所以正则表达式为："\{(\([^)]+\))(\([^)]+\))\}"，如果用替换变量来代替分组，那么上面的表达式可以看为"\{$1$2\}",这样就可以更容易看出替换变量与分组间的关系。
+<br><br>
+根据上面的正则表达式Perl5Substitution类可以这样构造：<br>
+<div id="codeblock">
+<pre>
+Perl5Substitution("{$1( Kevin has seen《LEON》seveal times, "
+	+ "because it is a good film./ 凯文已经看过《这个杀手不太冷》"
+	+ "几次了，因为它是一部好电影。/名词:凯文。)}");
+</pre>
+</div>
+再根据这个Perl5Substitution对象来使用Util.substitute()方法便可以完成替换了，实现的代码片段如下：
+<div id="codeblock">
+<pre>
+ps1 = "\\{(\\([^)]+\\))(\\([^)]+\\))\\}";
+String pure;
+orocom = new Perl5Compiler();
+pattern1 = orocom.compile(ps1);
+matcher = new Perl5Matcher();
+String result =
+	Util.substitute(
+		matcher,
+		pattern1,
+		new Perl5Substitution(
+			"{$1( Kevin has seen《LEON》seveal times,"
+				+ "because it is a good film./ 凯文已经看过"
+				+ "《这个杀手不太冷》几次了，因为它是一部好电影。/名词:凯文。)}",
+			1),
+		MATCH_CONTENT,
+		Util.SUBSTITUTE_ALL);
+System.out.println(result);
+</pre>
+</div>
+输出结果是正确的，为：<br>
+<em>['kevin] [名词] （人名凯文）{(Kevin loves comic./凯文爱漫画/名词: 凯文)( Kevin has seen《LEON》seveal times,because it is a good film./ 凯文已经看过《这个杀手不太冷》几次了，因为它是一部好电影。/名词:凯文。)} </em>
+
+<h3>完整代码</h3>
+<div id="codeblock">
+<pre>
+/*
+ * @(#)TestRegexORO.java  2004-5-18
+ * 
+ * Copyright (c) 技术日志 2004 
+ * All rights reserved. 
+ */
+package test;
+
+import org.apache.oro.text.regex.MalformedPatternException;
+import org.apache.oro.text.regex.MatchResult;
+import org.apache.oro.text.regex.Pattern;
+import org.apache.oro.text.regex.PatternCompiler;
+import org.apache.oro.text.regex.PatternMatcher;
+import org.apache.oro.text.regex.PatternMatcherInput;
+import org.apache.oro.text.regex.Perl5Compiler;
+import org.apache.oro.text.regex.Perl5Matcher;
+import org.apache.oro.text.regex.Perl5Substitution;
+import org.apache.oro.text.regex.Util;
+
+/**
+ * &lt;P&gt;利用Jakarta-ORO进行文字处理&lt;/P&gt;
+ * 
+ * @version 0.1
+ * @author navy
+ */
+public class TestRegexORO {
+
+	private final String MATCH_CONTENT =
+		"['kevin] [名词] （人名凯文）"
+			+ "{(Kevin loves comic./凯文爱漫画/名词: 凯文)"
+			+ "( Kevin is living in ZhuHai now./凯文现住在珠海/名词: 凯文)} ";
+	/**
+	 * 构造函数
+	 */
+	public TestRegexORO() {
+	}
+
+	/**
+	 * 查找解释内容的音标
+	 */
+	void matchSymbol() {
+		try {
+			//相应的正则表达式：\[[^]]+\] 
+			String rsstring = "\\[[^]]+\\]";
+			//为使用Jakarta-ORO库而创建相应的对象
+			PatternCompiler orocom = new Perl5Compiler();
+			Pattern pattern = orocom.compile(rsstring);
+			PatternMatcher matcher = new Perl5Matcher();
+			if (matcher.contains(MATCH_CONTENT, pattern)) {
+				MatchResult result = matcher.getMatch();
+				System.out.println("音标：" + result.toString());
+			}
+			//分组匹配
+			rsstring = "(\\[[^]]+\\]) (\\[[^]]+\\])";
+			orocom = new Perl5Compiler();
+			pattern = orocom.compile(rsstring);
+			matcher = new Perl5Matcher();
+			if (matcher.contains(MATCH_CONTENT, pattern)) {
+				MatchResult result = matcher.getMatch();
+				System.out.println("音标和词性为：" + result.group(0));
+				System.out.println("音标为：" + result.group(1));
+				System.out.println("词性为：" + result.group(2));
+			}
+			//多个匹配
+			rsstring = "\\[[^]]+\\]";
+			pattern = orocom.compile(rsstring);
+			PatternMatcherInput input = new PatternMatcherInput(MATCH_CONTENT);
+			while (matcher.contains(input, pattern)) {
+				MatchResult result = matcher.getMatch();
+				System.out.println(result.group(0));
+			}
+
+			//大括号里面的内容
+			String ps1 = "\\{.+\\}";
+			//小括号里的内容
+			String ps2 = "\\([^)]+\\)";
+			//分组分离
+			String ps3 = "([^(]+)/(.+)/(.+):([^)]+)";
+			String sentence;
+			orocom = new Perl5Compiler();
+			Pattern pattern1 = orocom.compile(ps1);
+			Pattern pattern2 = orocom.compile(ps2);
+			Pattern pattern3 = orocom.compile(ps3);
+			matcher = new Perl5Matcher();
+			//	 先找出整个例句部分
+			if (matcher.contains(MATCH_CONTENT, pattern1)) {
+				MatchResult result = matcher.getMatch();
+				String example = result.toString();
+				PatternMatcherInput pinput = new PatternMatcherInput(example);
+				//分别找出例句一和例句二
+				while (matcher.contains(pinput, pattern2)) {
+					result = matcher.getMatch();
+					sentence = result.toString();
+					//把每个例句里的各项用分组的办法分隔出来
+					if (matcher.contains(sentence, pattern3)) {
+						result = matcher.getMatch();
+						System.out.println("英文句: " + result.group(1));
+						System.out.println("句子中文翻译: " + result.group(2));
+						System.out.println("词性: " + result.group(3));
+						System.out.println("意思: " + result.group(4));
+					}
+				}
+			}
+			//查找替换
+			ps1 = "\\{(\\([^)]+\\))(\\([^)]+\\))\\}";
+			String pure;
+			orocom = new Perl5Compiler();
+			pattern1 = orocom.compile(ps1);
+			matcher = new Perl5Matcher();
+			String result =
+				Util.substitute(
+					matcher,
+					pattern1,
+					new Perl5Substitution(
+						"{$1( Kevin has seen《LEON》seveal times,"
+							+ "because it is a good film./ 凯文已经看过"
+							+ "《这个杀手不太冷》几次了，因为它是一部好电影。/名词:凯文。)}",
+						1),
+					MATCH_CONTENT,
+					Util.SUBSTITUTE_ALL);
+			System.out.println(result);
+
+		} catch (MalformedPatternException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args) {
+		TestRegexORO troro = new TestRegexORO();
+		troro.matchSymbol();
+	}
+}
+
+</pre>
+</div>
+       ]]> </content>
+
+</doc>
+

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<!-- user dao -->
+	<bean id="userDaoTarget" class="application.dao.impl.UserDaoImpl">
+		<property name="entityType">
+			<ref bean="entityUser"/>
+		</property>
+		<property name="sessionFactory">
+			<ref bean="smirtSessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="userDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<value>application.dao.UserDao</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>smirtHibernateInterceptor</value>
+				<value>userDaoTarget</value>
+			</list>
+		</property>
+	</bean>
+	<!-- menu dao -->
+	<bean id="menuDaoTarget" class="application.dao.impl.MenuDaoImpl">
+		<property name="entityType">
+			<ref bean="entityMenu"/>
+		</property>
+		<property name="sessionFactory">
+			<ref bean="smirtSessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="menuDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<value>application.dao.MenuDao</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>smirtHibernateInterceptor</value>
+				<value>menuDaoTarget</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- gruop dao -->
+	<bean id="groupDaoTarget" class="application.dao.impl.GroupDaoImpl">
+		<property name="entityType">
+			<ref bean="entityGroup"/>
+		</property>
+		<property name="sessionFactory">
+			<ref bean="smirtSessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="groupDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<value>application.dao.GroupDao</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>smirtHibernateInterceptor</value>
+				<value>groupDaoTarget</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>

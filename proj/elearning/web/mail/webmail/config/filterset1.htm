@@ -1,0 +1,270 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<STYLE type=text/css>A:link {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: black; TEXT-DECORATION: none
+}
+TD {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+TH {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+INPUT {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+SELECT {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+.menuStyle {
+	FONT-FAMILY: Arial,Geneva,Verdana,Helvetica; FONT-SIZE: 9pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.form1 {
+	BACKGROUND-COLOR: #FFFFFF; BORDER-BOTTOM:#000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid;FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;
+}
+.form2 {
+	BACKGROUND-COLOR: #FFFFFF; BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-RIGHT:#000000 1px solid; BORDER-TOP: #000000 1px solid;FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;height:80pt;
+		}
+.form3 {
+	BACKGROUND-COLOR: #E3E3E3; BORDER-BOTTOM: #007777 2px solid; BORDER-LEFT: #007777 2px solid; BORDER-RIGHT: #007777 2px solid; BORDER-TOP: #007777 2px solid; FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;height:16px
+}
+.form4 {
+	BACKGROUND-COLOR: #e6e6e6; BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid;FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;
+}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+//设置位置
+function place2() {
+    parent.parent.top1.form1.textfield2.value="电子邮件\-\>邮件设置\-\>过滤器\-\>修改邮件过滤规则";
+}
+
+//跑马灯的函数；
+
+  var scrtxt="您可以在这里修改您自己的邮件过滤规则！";
+  var lentxt=scrtxt.length;
+  var width=100;
+  var pos=1-width;
+  
+  function scroll() {
+  pos++;
+  
+  var scroller="";
+  if (pos==lentxt) {
+    pos=1-width;
+  }
+  if (pos<0) {
+    for (var i=1; i<=Math.abs(pos); i++) {
+      scroller=scroller+" ";}
+    scroller=scroller+scrtxt.substring(0,width-i+1);
+  }
+  else {
+    scroller=scroller+scrtxt.substring(pos,width+pos);
+  }
+  window.status = scroller;
+  setTimeout("scroll()",150);
+  }
+
+
+function re()
+{
+	//window.alert("hello！");
+	var keytext=form1.textarea.value;
+	
+	//var t1=form1.select2.value;
+	//window.alert(t1);
+	if (form1.select2.value=="yes")
+	{
+		if (keytext=="")
+		{
+			window.alert("条件框为空，不能新建过滤规则！");
+			return(false);
+		}
+		else
+		{
+			return(true);
+		}
+	}
+	else
+	{
+		return(true);
+	}
+}
+
+//-->
+</SCRIPT>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" onLoad="place2();scroll();return true;" leftmargin="0" topmargin="0">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="25">
+  <form name="form1" method="post" action="">
+    <tr> 
+      <td> 
+        <table border=0 cellpadding=0 width="100%" cellspacing="0">
+          <tbody> 
+          <tr> 
+            <td align=left noWrap valign=center colspan="2" height="12"> 
+              <table bgcolor=#ECEAE6 border=1 bordercolordark=#808080 
+      bordercolorlight=#ffffff cellpadding=0 cellspacing=0 width="100%" height="20">
+                <tbody> 
+                <tr bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6> 
+                  <td noWrap width="5"> 
+                    <table border=0 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22>
+                      <tbody> 
+                      <tr> 
+                        <td align=middle bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><img height=22 
+                  src="../../image/toolbar1.gif" width=5></td>
+                      </tr>
+                      </tbody> 
+                    </table>
+                  </td>
+                  <td align=center noWrap width="60"> 
+                    <table border=1 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22 width="100%">
+                      <tbody> 
+                      <tr> 
+                        <td align=center bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center>修改邮件过滤规则 ：</td>
+                      </tr>
+                      </tbody> 
+                    </table>
+                  </td>
+                  <td noWrap width="3"> 
+                    <table border=0 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22>
+                      <tbody> 
+                      <tr> 
+                        <td align=middle bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><img height=22 
+                  src="../../image/toolbar1.gif" width=5></td>
+                      </tr>
+                      </tbody> 
+                    </table>
+                  </td>
+                  <td align=absmiddle noWrap>&nbsp; </td>
+                </tr>
+                </tbody> 
+              </table>
+            </td>
+          </tr>
+          </tbody> 
+        </table>
+      </td>
+    </tr>
+    <tr> 
+      <td height="23" style="padding-left:80px;padding-top:6px" bgcolor="#e6e6e6">规则 
+        <select name="select2" class="form3">
+          <option value="yes" >生效</option>
+          <option value="false" >禁用</option>
+        </select>
+      </td>
+    </tr>
+    <tr> 
+      <td height="1" bgcolor="#d6d6d6" > 
+    </tr>
+    <tr>
+      <td height="22" style="padding-left:80px;padding-top:10px">已有的过滤规则列表：</td>
+    </tr>
+    <tr> 
+      <td height="1" bgcolor="#e6e6e6" >
+    </tr>
+    <tr> 
+      <td height="75" align="center" > 
+        <table width="85%" border="0" cellspacing="5" align="center" height="244">
+          <tr> 
+            <td colspan="13" >创建条件：</td>
+          </tr>
+          <tr> 
+            <td colspan="13" style="padding-left:20px"> 
+              <select name="select3" class="form3">
+                <option>与</option>
+                <option>或</option>
+              </select>
+              <select name="select" class="form3">
+                <option>发件人</option>
+                <option>发件人地址</option>
+                <option>邮件主题</option>
+                <option>邮件正文</option>
+              </select>
+              <select name="select" class="form3">
+                <option>包含</option>
+                <option>不包含</option>
+                <option>等于</option>
+                <option>不等于</option>
+              </select>
+              <input type="text" name="textfield32" class="form1">
+            </td>
+          </tr>
+          <tr> 
+            <td>当满足一下条件的邮件到达时：</td>
+          </tr>
+          <tr> 
+            <td height="76"> 
+              <table width="100%" border="0" cellspacing="0">
+                <tr> 
+                  <td rowspan="3" style="padding-left:20px"> 
+                    <textarea name="textarea" cols="60" class="form2"></textarea>
+                  </td>
+                  <td width="21%"> 
+                    <input type="button" name="Button2" value="  添加  " class="form4" >
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="21%"> 
+                    <input type="submit" name="Submit222" value="  删除  " class="form4" >
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="21%" height="43"> 
+                    <input type="submit" name="Submit322" value="全部删除" class="form4" >
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr> 
+            <td bgcolor="#f6f6f6">进行 
+              <select name="select" class="form3">
+                <option>移入</option>
+                <option>复制</option>
+              </select>
+              <select name="select" class="form3">
+                <option>发件箱</option>
+                <option>草稿箱</option>
+                <option>垃圾箱</option>
+                <option>已发送邮件</option>
+              </select>
+              中的操作</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr> 
+      <td style="padding-left:20px">&nbsp;</td>
+    </tr>
+    <tr> 
+      <td valign="middle" align="center"> 
+        <input type="submit" name="Submit5" value="  确定  " onClick="re()" class="form4" >
+        　　　　　　　 
+        <input type="button" class="form4"  name="button2" value="  取消  " onClick="window.location.href='./filterlist.htm'" >
+      </td>
+    </tr>
+  </form>
+</table>
+
+<pre>&nbsp;	</pre>
+</body>
+</html>

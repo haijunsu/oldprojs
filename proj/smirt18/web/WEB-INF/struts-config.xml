@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+<!-- ================================================ Form Bean Definitions -->
+
+	<form-beans>
+		<form-bean type="org.apache.struts.action.DynaActionForm" 
+			name="searchForm">
+			<form-property type="java.lang.String" name="searchKey" />
+			<form-property type="java.lang.String" name="action" />
+		</form-bean>
+		<form-bean type="org.apache.struts.action.DynaActionForm" 
+			name="sqlForm">
+			<form-property type="java.lang.String" name="sqls" />
+			<form-property type="java.lang.String" name="action" />
+		</form-bean>
+		<form-bean type="application.action.register.RegisterForm" name="registerForm" />
+		<form-bean type="application.action.register.AccompanyForm" name="accompanyForm" />
+		<form-bean type="application.action.register.VisaForm" name="visaForm" />
+		<form-bean type="application.action.register.AccommodationForm" name="hotelForm" />
+		<form-bean type="application.action.register.RegistrationFeeForm" name="registrationFeeForm" />
+		<form-bean type="application.action.paper.PaperPresentedForm" name="presentedForm" />
+		<form-bean type="application.action.paper.PaperFeeForm" name="paperFeeForm" />
+		<form-bean type="application.action.user.UserForm" name="userForm" />
+	</form-beans>
+
+
+<!-- ========================================= Global Exception Definitions -->
+
+    <global-exceptions>
+        <exception
+            key="errors.code.97"
+            type="java.lang.Exception"
+			handler="application.handler.StrutsExceptionHandler"
+            scope="request" />
+    </global-exceptions>
+
+
+<!-- =========================================== Global Forward Definitions -->
+
+    <global-forwards>
+        <forward
+            name="error"
+			path="errorDef"/>
+        <forward
+            name="success"
+			path="successDef"/>
+        <forward
+            name="home"
+			path="welcomeDef"/>
+    </global-forwards>
+
+
+<!-- =========================================== Action Mapping Definitions -->
+
+    <action-mappings>
+		
+		<action path="/welcome" forward="welcomeDef" />
+		<action path="/modify" forward="modifyDef" />
+		<action path="/newAccompany" forward="accompanyInputDef" />
+		<action path="/newRegister" forward="registerInputDef" />
+		<action path="/changepassword" forward="changePassDef"/>
+		<action path="/newUser" forward="smirtUserModifyDef"/>
+		
+        <action
+            path="/menu"
+            type="application.action.menu.MenuAction"
+			parameter="action">
+			<forward path="/common/left.jsp" name="left" />
+			<forward path="/common/top.jsp" name="top" />
+		</action>
+
+		<action 
+			path="/search"
+			type="application.action.search.SearchAction"
+			name="searchForm"
+			parameter="action"
+			scope="request">
+			<forward path="userListDef" name="userList"/>
+			<forward path="paperListDef" name="paperList"/>
+			<forward path="paperViewListDef" name="paperViewList"/>
+			<forward path="registerListDef" name="registerList"/>
+		</action>
+
+		<action 
+			path="/register"
+			type="application.action.register.RegisterAction"
+			name="registerForm"
+			parameter="action"
+			scope="request"
+			input="registerInputDef">
+			<forward path="registerInputDef" name="register"/>
+		</action>
+
+		<action 
+			path="/accompany"
+			type="application.action.register.AccompanyAction"
+			name="accompanyForm"
+			parameter="action"
+			scope="request"
+			input="accompanyInputDef">
+			<forward path="accompanyInputDef" name="accompany"/>
+		</action>
+
+		<action 
+			path="/visa"
+			type="application.action.register.VisaAction"
+			name="visaForm"
+			parameter="action"
+			scope="request"
+			input="visaInputDef">
+			<forward path="visaInputDef" name="visaInput"/>
+			<forward path="visaListDef" name="visaList"/>
+		</action>
+
+		<action 
+			path="/hotel"
+			type="application.action.register.AccommodationAction"
+			name="hotelForm"
+			parameter="action"
+			scope="request"
+			input="hotelInputDef">
+			<forward path="hotelInputDef" name="hotelInput"/>
+			<forward path="hotelListDef" name="hotelList"/>
+		</action>
+
+		<action 
+			path="/registerFee"
+			type="application.action.register.RegistrationFeeAction"
+			name="registrationFeeForm"
+			parameter="action"
+			scope="request"
+			input="registrationFeeDef">
+			<forward path="registrationFeeDef" name="registrationFeeInput"/>
+			<forward path="listPresentedDef" name="listPresented"/>
+		</action>
+
+		<action 
+			path="/presented"
+			type="application.action.paper.PaperPresentedAction"
+			name="presentedForm"
+			parameter="action"
+			validate="true"
+			scope="request"
+			input="presentedDef">
+			<forward path="presentedDef" name="presentedInput"/>
+			<forward path="presenterListDef" name="userList"/>
+		</action>
+
+		<action 
+			path="/paperFee"
+			type="application.action.paper.PaperFeeAction"
+			name="paperFeeForm"
+			parameter="action"
+			scope="request"
+			input="paperFeeDef">
+			<forward path="paperFeeDef" name="paperFeeInput"/>
+		</action>
+
+		<action 
+			path="/updatePaperReceivedDetail"
+			type="application.action.paper.PaperReceivedDetailAction"
+			parameter="action"
+			scope="request">
+		</action>
+		
+		<action 
+			path="/executeSql"
+			type="application.action.jdbc.ExecuteSqlAction"
+			parameter="action"
+			name = "sqlForm"
+			scope="request"
+			>
+			<forward path="executeDef" name="executePage"/>
+		</action>
+		<action 
+			path="/querys"
+			type="application.action.jdbc.ExecuteSqlAction"
+			parameter="action"
+			name = "sqlForm"
+			scope="request"
+			>
+			<forward path="resultsDef" name="resultsPage"/>
+		</action>
+		<action 
+			path="/adminUser"
+			type="application.action.user.UserManager"
+			parameter="action"
+			name = "userForm"
+			scope="request"
+			>
+			<forward path="smirtUserListDef" name="listPage"/>
+			<forward path="smirtUserModifyDef" name="updatePage"/>
+		</action>
+		<action 
+			path="/changePass"
+			type="application.action.user.UserManager"
+			parameter="action"
+			name = "userForm"
+			scope="request"
+			>
+			<forward path="changePassDef" name="changePass"/>
+		</action>
+    <!-- sample input and input submit actions
+
+        <action
+            path="/Input"
+            type="org.apache.struts.actions.ForwardAction"
+            parameter="/pages/Input.jsp"/>
+
+        <action
+            path="/InputSubmit"
+            type="app.InputAction"
+            name="inputForm"
+            scope="request"
+            validate="true"
+            input="/pages/Input.jsp"/>
+
+            <action
+                path="/edit*"
+                type="app.Edit{1}Action"
+                name="inputForm"
+                scope="request"
+                validate="true"
+                input="/pages/Edit{1}.jsp"/>
+
+    end samples -->
+    </action-mappings>
+
+
+<!-- ============================================= Controller Configuration -->
+
+    <controller
+       processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
+
+
+<!-- ======================================== Message Resources Definitions -->
+
+    <message-resources parameter="resources.MessageResources" null="false"/>
+    <message-resources parameter="resources.FormsResources"  null="false" key="forms"/>
+    <message-resources parameter="resources.MenusResources"  null="false" key="menus"/>
+
+
+<!-- =============================================== Plug Ins Configuration -->
+
+    <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+
+      <!-- Path to XML definition file -->
+      <set-property property="definitions-config"
+                       value="/WEB-INF/tiles-defs.xml" />
+      <!-- Set Module-awareness to true -->
+      <set-property property="moduleAware" value="true" />
+    </plug-in>
+
+
+  <!-- =================================================== Validator plugin -->
+
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property
+        property="pathnames"
+        value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/>
+  </plug-in>
+
+</struts-config>
+

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+	<!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+	<isindexall>false</isindexall>
+	<indexfile>indexall.xml</indexfile>
+
+	<!-- 定义文档位置 -->
+	<topic>db</topic>
+	<catalog>mysql</catalog>
+
+	<!-- 文档显示内容 -->
+    <title>MySQL常用管理命令</title>
+    <pagename>MySQL常用管理命令</pagename>
+	<content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+1、连接数据库：
+<div id=codeblock>
+<pre>
+mysql -u dbuser -p [dbname]
+</pre>
+</div>
+2、更改root口令：
+<div id=codeblock>
+<pre>
+mysql> use mysql;
+mysql> update user set password = password('password') where user = 'root';
+mysql> flush privileges;
+</pre>
+</div>
+
+3、给用户授权
+<div id=codeblock>
+<pre>
+mysql> grant select, insert, update, delete on &lt;dbname|*&gt;.* 
+       to &lt;dbuser&gt;@&lt;localhost|'%'&gt; identified by 'password';
+</pre>
+</div>
+
+4、取消用户权限
+<div id=codeblock>
+<pre>
+mysql> revoke delete on &lt;dbname|*&gt;.* from &lt;dbuser>@&lt;localhost|'%'&gt;;
+mysql> revoke all privileges on &lt;dbname|*&gt;.* from &lt;dbuser&gt;@&lt;localhost|'%'&gt;;
+</pre>
+</div>
+
+5、使用mysqladmin
+<div id=codeblock>
+<pre>
+mysqladmin --help 来查看mysqladmin帮助信息
+mysqladmin -u root -p create dbtest 创建dbtest数据库
+mysqladmin -u root -p drop dbtest 删除dbtest数据库
+mysqladmin -u &lt;user&gt; -p password newpass 更改用户口令
+mysqladmin -u root -p shutdown 停止mysql服务
+</pre>
+</div>
+
+
+       ]]> </content>
+
+</doc>
+

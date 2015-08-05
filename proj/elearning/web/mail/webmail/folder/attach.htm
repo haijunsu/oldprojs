@@ -1,0 +1,230 @@
+<HTML><HEAD><TITLE></TITLE>
+<STYLE type=text/css>A:link {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: black; TEXT-DECORATION: none
+}
+TD {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+TH {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+INPUT {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+SELECT {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+.menuStyle {
+	FONT-FAMILY: Arial,Geneva,Verdana,Helvetica; FONT-SIZE: 9pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.form1 {
+	BACKGROUND-COLOR: #ffffff; BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid;FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;
+}
+.form2 {
+	BACKGROUND-COLOR: #E3E3E3; BORDER-BOTTOM: #ffffff 2px solid; BORDER-LEFT: #ffffff 2px solid; BORDER-RIGHT: #ffffff 2px solid; BORDER-TOP: #ffffff 2px solid;FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;height:80pt;
+		}
+.form3 {
+	BACKGROUND-COLOR: #E3E3E3; BORDER-BOTTOM: #007777 2px solid; BORDER-LEFT: #007777 2px solid; BORDER-RIGHT: #007777 2px solid; BORDER-TOP: #007777 2px solid; FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;height:16px
+}
+.form4 {
+	BACKGROUND-COLOR: #cccccc; BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid;FONT-FAMILY: "宋体"; 
+}
+</STYLE>
+
+<META content=zh-cn http-equiv=Content-Language>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR>
+<META content=FrontPage.Editor.Document name=ProgId>
+<script language="javascript">
+<!-- Begin validation script
+//设置位置
+function place2() {
+    var temp=parent.parent.top1.form1.textfield2.value;
+    temp=temp+"\-\>附件";
+    //alert(temp);
+    parent.parent.top1.form1.textfield2.value=temp;
+    //parent.parent.top1.form1.textfield2.value="电子邮件\-\>邮件设置\-\>备份邮件";
+}
+  var scrtxt="您可以在这里备份您自己的的邮件！";
+  var lentxt=scrtxt.length;
+  var width=100;
+  var pos=1-width;
+  
+  function scroll() {
+  pos++;
+  
+  var scroller="";
+  if (pos==lentxt) {
+    pos=1-width;
+  }
+  if (pos<0) {
+    for (var i=1; i<=Math.abs(pos); i++) {
+      scroller=scroller+" ";}
+    scroller=scroller+scrtxt.substring(0,width-i+1);
+  }
+  else {
+    scroller=scroller+scrtxt.substring(pos,width+pos);
+  }
+  window.status = scroller;
+  setTimeout("scroll()",150);
+  }
+
+function del()
+	{		
+		var count=false,sum=0,str;
+		for (i=0;i<form1.r.length;i++)
+			{
+				if (form1.r[i].checked) 
+				{
+					count=true;
+					sum=sum+1;
+				}
+			}
+		
+		if(sum>1)
+			{
+				str="你确定要删除这"+sum+"个附件吗?";
+			}
+		else
+			{
+				str="你确定要删除该附件吗?";
+			}
+		if (count)
+			{
+				if (confirm(str))					
+				{
+					document.form1.action.value=2;
+					document.form1.submit();
+				}
+				return true;
+			}
+		else 
+			alert("请选择附件!");
+		return false;
+	}
+
+//----------------------------------------
+// End of validation script -->
+
+</script></HEAD>
+<BODY leftMargin=0 topmarging="0" onload="place2();scroll();return true;"
+style="BORDER-BOTTOM: 0px outset; BORDER-LEFT: 0px outset; BORDER-RIGHT: 0px outset; BORDER-TOP: 0px outset" 
+topMargin=0 bgcolor="#f6f6f6">
+<table bgcolor=#ECEAE6 border=1 bordercolordark=#808080 
+      bordercolorlight=#ffffff cellpadding=0 cellspacing=0 width="100%" height="20">
+  <tbody> 
+  <tr bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6> 
+    <td noWrap width="5"> 
+      <table border=0 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22>
+        <tbody> 
+        <tr> 
+          <td align=middle bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><img height=22 
+                  src="../../image/toolbar1.gif" width=5></td>
+        </tr>
+        </tbody> 
+      </table>
+    </td>
+    <td align=center noWrap width="150"> 
+      <table border=1 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22 width="100%">
+        <tbody> 
+        <tr> 
+          <td align=center bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center>选 择 附 件……</td>
+        </tr>
+        </tbody> 
+      </table>
+    </td>
+    <td noWrap width="3"> 
+      <table border=0 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22>
+        <tbody> 
+        <tr> 
+          <td align=middle bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><img height=22 
+                  src="../../image/toolbar1.gif" width=5></td>
+        </tr>
+        </tbody> 
+      </table>
+    </td>
+    <td align=absmiddle noWrap>&nbsp; </td>
+  </tr>
+  </tbody> 
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f6f6f6">
+  <tr> 
+    <td colspan="2" style="padding-left:30px" height="23" bgcolor="#e6e6e6">请你选择您要发送的附件:</td>
+  </tr>
+  <tr> 
+    <td width="130" align="right" style="padding-right:8px" height="40">&nbsp; </td>
+    <td> 
+      <input type="file" name="file" size="25" class="form1">
+    </td>
+  </tr>
+  <tr> 
+    <td align="right" style="padding-right:8px" height="40" width="130">&nbsp; </td>
+    <td> 
+      <input type="submit" name="Submit4" value="添加进附件列表" class="form4" >
+    </td>
+  </tr>
+  <tr> 
+    <td align="right" style="padding-right:8px;padding-left:30px" width="130" height="40">请你选择您删除的附件:</td>
+    <td> 
+      <input type="submit" name="Submit5" value="删   除" class="form4" onClick="del()">
+    </td>
+  </tr>
+  <tr> 
+    <td align="right" style="padding-right:8px" width="130" height="40">当前附件列表</td>
+    <td>&nbsp; </td>
+  </tr>
+  <tr align="center"> 
+    <td style="padding-right:8px" colspan="2" height="25"> 
+      <table width="80%" border="0" cellspacing="1" cellpadding="0" bgcolor="#666666">
+	  <form name="form1" method="post" action="">
+        <tr align="center"> 
+          <td width="30" bgcolor="#e6e6e6">&nbsp;</td>
+          <td width="40" bgcolor="#e6e6e6">序号</td>
+          <td bgcolor="#e6e6e6">文件名</td>
+          <td width="100" bgcolor="#e6e6e6">大小</td>
+        </tr>
+        <tr bgcolor="#FFFFFF"> 
+          <td width="30" align="center"> 
+              <input type="checkbox" name="r" value="checkbox">
+          </td>
+          <td align="center" width="40">1</td>
+          <td align="center">c:\kosin\works\weboa2.0\oa.exe</td>
+          <td align="center" width="100">670KB</td>
+        </tr>
+        <tr bgcolor="#FFFFFF"> 
+          <td width="30" align="center"> 
+              <input type="checkbox" name="r" value="checkbox">
+          </td>
+          <td align="center" width="40">2</td>
+          <td align="center">c:\kosin\works\weboa2.0\oa.exe</td>
+          <td align="center" width="100">670KB</td>
+        </tr> </form>
+      </table>
+     
+     
+    </td>
+  </tr>
+  <tr bgcolor="#f6f6f6" valign="middle"> 
+    <td height="30" style="padding-top:18px;padding-bottom:10px" colspan="2" align="center"> 
+      <input type="submit" name="Submit" value="确  定" class="form4" onClick="window.location.href='wrtmail.htm'">
+      　　　　　　　　　　　　　　　 
+      <input type="submit" name="Submit2" value="取　消" class="form4" onClick="window.location.href='wrtmail.htm'">
+    </td>
+  </tr>
+</table>
+</BODY></HTML>

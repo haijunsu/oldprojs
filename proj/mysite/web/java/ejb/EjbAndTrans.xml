@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+   <!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+   <isindexall>false</isindexall>
+   <indexfile>indexall.xml</indexfile>
+
+   <!-- 定义文档位置 -->
+   <topic>java</topic>
+   <catalog>ejb</catalog>
+
+   <!-- 文档显示内容 -->
+    <title>事务与EJB</title>
+    <pagename>事务与EJB</pagename>
+   <content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+事务模型主要分为：平面事务、嵌套事务、链接事务、长串事务和其他事务模型。<br>
+<b>J2EE规范只要求支持平面事务。<br>
+EJB不支持嵌套事务<br>
+</b>
+<h3>Enterprise JavaBeans 支持的七种事务属性：</h3>
+<div id="tableblock">
+<table cellspacing="0">
+<tr>
+<th>
+事务属性</th><th>客户服务</th><th>组件方法事务</th><th>说明</th></tr><tr><td rowspan="2">
+Required</td><td>无</td><td>T2</td><td>如果事务不存在，则服务器生成事务</td></tr><tr><td>
+T1</td><td>T1</td><td>如果事务存在，则服务器使用事务</td></tr><tr><td rowspan="2">
+RequiresNew</td><td>无</td><td>T2</td><td>如果事务不存在，则服务器生成事务</td></tr><tr><td>
+T1</td><td>T2</td><td>如果事务存在，则服务器生成新事务</td></tr><tr><td rowspan="2">
+Mandatory</td><td>无</td><td>错误</td><td>如果事务不存在，则抛出异常</td></tr><tr><td>
+T1</td><td>T1</td><td>如果事务存在，则服务器使用事务</td></tr><tr><td rowspan="2">
+Not Supported</td><td>无</td><td>无</td><td>服务器不提供事务支持</td></tr><tr><td>
+T1</td><td>无</td><td>服务器不提供事务支持</td></tr><tr><td rowspan="2">
+Supports</td><td>无</td><td>无</td><td>如果事务不存在，则服务器不提供事务支持</td></tr><tr><td>
+T1</td><td>T1</td><td>如果事务存在，则服务器使用事务</td></tr><tr><td rowspan="2">
+Never</td><td>无</td><td>无</td><td>服务器不提供事务支持</td></tr><tr><td>
+T1</td><td>错误</td><td>如果事务存在，则抛出异常</td></tr>
+</table>
+</div>
+
+<h3>事务属性使用的一般准则</h3>
+<ul>
+   <li>代码需要改变一些数据的值时，使用Required属性。
+  </li><li>代码需要从数据源中读取数据时，使用Supports属性。
+  </li><li>如果与不支持事务处理的资源通信，则要使用NotSupported属性。
+  <li>使用消息驱动的Bean时，要对Bean的onMessage()方法指定事务属性。消息驱动的Bean只支持Required与NotSupported事务属性，不支持RequiresNew或Supports，因为它们不能在现有事务情境中调用。另外它们不支持Mandatory与Never，因为消息驱动的Bean只能由容器调用，因此，不能支持客户方事务。</li>
+</ul>
+<h3>J2EE支持四种隔离级</h3>
+<ul>
+  <li>TRANSACTION_READ_UNCOMMITTED
+  </li><li>TRANSACTION_READ_COMMITTED
+  </li><li>TRANSACTION_REPEATABLE_READ
+  </li><li>TRANSACTION_SERIALIZABLE</li>
+</ul>
+ 解决了三种并发性问题：脏读、不可重复读、幻影读
+
+
+
+       ]]> </content>
+
+</doc>
+

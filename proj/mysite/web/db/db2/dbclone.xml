@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+	<!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+	<isindexall>false</isindexall>
+	<indexfile>indexall.xml</indexfile>
+
+	<!-- 定义文档位置 -->
+	<topic>db</topic>
+	<catalog>db2</catalog>
+
+	<!-- 文档显示内容 -->
+    <title>DB2 工具在异种平台间克隆数据库</title>
+    <pagename>DB2 工具在异种平台间克隆数据库</pagename>
+	<content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+<h3>数据库移动工具 （db2move）</h3>
+<b>&nbsp;&nbsp;&nbsp; db2move</b>工具可以从系统目录中检索出数据库中的所有用户表，
+然后将这些表导出为 PC/IXF 格式的文件，
+这是一种经过改编的集成交换格式（IXF）的数据交换架构。<br>
+&nbsp;&nbsp;&nbsp;
+这些 PC/IXF 文件可以被导入或装载到同种系统上的其他本地 DB2 数据库中，
+也可以被传递到其他工作站平台上，并导入或装载到这种平台上的 DB2 数据库中。
+<b>db2move</b>工具在导出操作中所生成的文件可以用作后来这些导入或装载操作的输入文件。
+如果 <b>db2move</b>操作想要成功执行，所使用的用户 ID 必须具有底层 DB2 数据移动工具所需要的适当授权。
+在调用 <b>db2move</b> 命令之前，并不需要数据库连接，该工具会为您建立数据库连接。<br>
+<br>
+db2move 命令的基本语法：
+<div id="codeblock">
+<code>
+db2move &lt;database-name&gt; &lt;action&gt; [&lt;option&gt; &lt;value&gt;]<br>
+</code>
+</div>
+action包括export、import和load，其他选项参见下表：
+<div id="tableblock">
+<table cellspacing="0">
+<tr>
+	<th width="20%">选项</th>
+	<th width="80%">描      述</th>
+</tr>
+<tr>
+	<td>-tn <i>table-name</i></td>
+	<td>将一个操作限制在特定的表范围内，只对export有效</td>
+</tr>
+<tr>
+	<td nowrap>-ts <i>table-space-name</i></td>
+	<td>将一个操作限制在特定的表空间范围内，只对export有效</td>
+</tr>
+<tr>
+	<td nowrap>-tc <i>creator-name</i></td>
+	<td>将一个操作限制在特定的表创建者范围内，只对export有效</td>
+</tr>
+<tr>
+	<td nowrap>-sn <i>scheme-name</i></td>
+	<td>将一个操作限制在特定的模式名范围内，只对export有效</td>
+</tr>
+<tr>
+	<td nowrap>-tf <i>table-name-filelist</i></td>
+	<td>使用一个文件名作为参数，其中列出了要导出的表名；在该文件中，每行只能列出一个完整的表名</td>
+</tr>
+<tr>
+	<td>-io <i>import-option</i></td>
+	<td>指定 DB2 的 import 工具可以运行的一种模式。
+	有效的选项有： CREATE、 INSERT、 INSERT_UPDATE、 REPLACE 和 REPLACE_CREATE。
+	缺省值为 REPLACE_CREATE。</td>
+</tr>
+<tr>
+	<td>-lo <i>load-option</i></td>
+	<td>指定 DB2 的 load 工具可以运行的一种模式。有效的选项有：INSERT 和 REPLACE。缺省值为 INSERT。</td>
+</tr>
+<tr>
+	<td>-l <i>lobpaths</i></td>
+	<td>指定要创建或查找的 LOB 文件的位置。必须指定一个或多个绝对路径名。
+	如果指定了多个绝对路径，就必须使用逗号将其分隔开；值之间不允许有空格。缺省值是当前目录。</td>
+</tr>
+<tr>
+	<td>-u <i>userid </i></td>
+	<td>指定一个用户 ID，该工具可以使用这个用户 ID 登录到远程系统上。</td>
+</tr>
+<tr>
+	<td>-p <i>password </i></td>
+	<td>指定对该用户进行认证的密码；该工具需要使用一个有效的用户 ID 和密码登录到远程系统上。</td>
+</tr>
+</table>
+</div>
+db2move 工具管理的在 export、import 和 load 操作过程中需要或生成的文件
+<div id="tableblock">
+<table cellspacing="0">
+	<tr>
+		<th colSpan="2">EXPORT</th>
+		<th colSpan="2">IMPORT</th>
+		<th colSpan="2">LOAD</th>
+		<th rowspan="2" valign="middle">文件描述</th>
+	</tr>
+	<tr>
+		<th>输入</th>
+		<th>输出</th>
+		<th>输入</th>
+		<th>输出</th>
+		<th>输入</th>
+		<th>输出</th>
+	</tr>
+	<tr>
+		<td>　</td>
+		<td>EXPORT.out</td>
+		<td>　</td>
+		<td>IMPORT.out</td>
+		<td>　</td>
+		<td>LOAD.out</td>
+		<td>包含一个对全部操作的摘要（ASCII 格式）</td>
+	</tr>
+	<tr>
+		<td>　</td>
+		<td>db2move.lst</td>
+		<td>db2move.lst</td>
+		<td>　</td>
+		<td>db2move.lst</td>
+		<td>　</td>
+		<td>包含一个源数据库中原表名的列表，对应的 PC/IXF 文件名和消息文件名（ASCII 格式）</td>
+	</tr>
+	<tr>
+		<td>　</td>
+		<td>tab<i>n</i>.ixf</td>
+		<td>tab<i>n</i>.ixf</td>
+		<td>　</td>
+		<td>tab<i>n</i>.ixf</td>
+		<td>　</td>
+		<td>包含从一个用户表中导出的数据，使用 n 标识（二进制格式）</td>
+	</tr>
+	<tr>
+		<td>　</td>
+		<td>tab<i>n</i>.msg</td>
+		<td>　</td>
+		<td>tab<i>n</i>.msg</td>
+		<td>　</td>
+		<td>tab<i>n</i>.msg</td>
+		<td>包含对用户表所请求操作的消息，使用 n 标识（ASCII 格式）</td>
+	</tr>
+	<tr>
+		<td>　</td>
+		<td>tab<i>na.nnn</i></td>
+		<td>tab<i>na.nnn</i></td>
+		<td>　</td>
+		<td>tab<i>na.nnn</i></td>
+		<td>　</td>
+		<td>包含对用户表所导出的大对象（LOB）数据，使用 n 标识。该文件的扩展名是一个数字，范围从 001 到 999；其中 a 
+		是一个字符。这些 LOB 文件只有在被导出的表中包含 LOB 数据时才会创建，保存的位置在 LOB 路径目录中（二进制格式）</td>
+	</tr>
+	<tr>
+		<td>　</td>
+		<td>system.msg</td>
+		<td>　</td>
+		<td>　</td>
+		<td>　</td>
+		<td>　</td>
+		<td>包含系统消息、只有在执行 export 操作并且已经指定好 LOB 路径时才会被创建（ASCII 格式）</td>
+	</tr>
+</table>
+</div>
+<h3>DB2 统计信息和 DDL 提取工具 （db2look）</h3>
+<b>db2look</b> 工具提取了 DDL 语句，在其他系统上重建数据库对象时需要使用这些 DDL 语句。
+在调用 <b>db2look</b> 命令之前，不需要提前建立数据库连接，这个工具会为您建立数据库连接。<br>
+db2look 命令的基本语法如下所示：
+<div id="codeblock"><code>
+db2look -d &lt;database-name&gt; [&lt;option1&gt; &lt;option2&gt ... &lt;option<i>n</i>&gt;]<br>
+</code></div>
+选项列表：
+<div id="tableblock">
+<table cellspacing="0">
+<tr>
+	<th width="20%">选项</th>
+	<th width="80%">描      述</th>
+</tr>
+<tr><td>
+-e
+</td><td>
+提取数据库对象的 DDL 语句，例如表、视图、自动摘要表、索引、触发器、序列、主键、引用、检查约束、用户定义函数和过程。 
+</td></tr>
+<tr><td>
+-a 
+</td><td>
+提取用户创建的所有对象的 DDL 语句。例如，如果这个选项与 -e 选项一起指定，那么就要对数据库中的所有对象都进行处理。 
+</td></tr>
+<tr><td>
+-z <i>schema-name</i> 
+</td><td>
+将输出限制为具有指定模式名的对象。 
+</td></tr>
+<tr><td>
+-t <i>table-name</i>
+</td><td>
+将输出限制在一个或多个（最多 30 个）指定的表中。表名必须使用空格字符分隔开。 
+</td></tr>
+<tr><td>
+-m 
+</td><td>
+生成需要的 UPDATE 语句，对表、列和索引的统计信息进行复制。 
+</td></tr>
+<tr><td>
+-l 
+</td><td>
+为用户定义的表空间、数据库分区组和缓冲池生成 DDL 语句。 
+</td></tr>
+<tr><td>
+-x 
+</td><td>
+生成对数据库对象进行授权或回收权限的 DDL 语句。 
+</td></tr>
+<tr><td>
+-td <i>delimiter</i> 
+</td><td>
+指定 db2look 工具使用的分隔符；缺省值为分号（;）。 
+</td></tr>
+<tr><td>
+-o <i>file-name</i> 
+</td><td>
+将输出结果写入一个文件。如果没有指定该选项，就将输出结果写入标准输出设备。 
+</td></tr>
+<tr><td>
+-i <i>userid</i> 
+</td><td>
+指定用户 ID，该工具需要使用它登录到远程系统上。 
+</td></tr>
+<tr><td>
+-w <i>password</i> 
+</td><td>
+指定对该用户进行认证的密码；该工具需要使用一个有效的用户 ID 和密码登录到远程系统上。
+</td></tr>
+</table>
+</div>
+<h3>示例</h3>
+&nbsp;&nbsp;&nbsp;
+在一个正运行 DB2 UDB Version 8.1.2 数据库的 AIX&reg; Version 5 的系统上有一个 MYMOVIES 数据库。
+MYMOVIES 有 5 个表，每个表中都包含数据： MOVIE、 ACTOR、 APPEARS_IN、 DIRECTOR 和 DIRECTS。
+其中有些表上定义了主键，ACTOR 表上定义了一个检查约束： ACTOR_AGE 约束要求 ACT_YR_OF_BIRTH 列的值都必须在 2004 年之前。
+<br>
+&nbsp;&nbsp;&nbsp;
+我们想将 MYMOVIES 数据库复制到一个 Windows 2000 Version 5.0 (SP4) 的系统上，
+这上面同样也在运行 DB2 UDB Version 8.1.2。我们采取的策略是首先使用 db2move 将所有表的数据导出为 PC/IXF 文件，
+然后使用 db2look 为现有的数据库对象捕获 DDL 语句，包括 ACTOR_AGE 检查约束，它不会包含在 PC/IXF 文件中。
+接下来使用 ftp 将从这些工具中得到的输出文件传递到 Windows 系统上，在 Windows 系统上重新创建数据库及其中的对象，
+最后运行 db2move 工具来装载 PC/IXF 文件中所包含的数据。<br><br>
+
+<b>步骤 1：</b> 在 AIX 上，运行 <b>db2move</b>，导出 MYMOVIES 数据库中所有用户表中的数据：
+<div id="codeblock"><code>
+db2move mymovies export
+</code></div>
+
+<b>步骤 2：</b> 在 AIX 上，运行 <b>db2look</b> ，为 MYMOVIES 数据库中的所有对象捕获 DDL 
+语句，并将输出结果写入一个名为 <i>db2look.sql</i> 的文件中
+<div id="codeblock"><code>
+db2look -d mymovies -e -a -o db2look.sql
+</code></div>
+
+<b>步骤 3：</b> 在 Windows 上，使用 <b>ftp</b> 登录到 AIX 系统上，并下载最后的 <b>db2move</b> 
+操作所需要的输入文件。请确保使用二进制模式传输 PC/IXF 文件，使用 ASCII 模式传输 <i>db2move.lst</i> 文件和 
+<i>db2look.sql</i> 文件。<br><br>
+<b>步骤 4：</b> 在 Windows 上，创建 MYMOVIES 数据库，然后运行 <b>db2look</b> 
+工具所生成的脚本创建数据库对象，包括用户表和检查约束 ACTOR_AGE。运行 <b>db2move</b>，将数据从 PC/IXF 文件装载到 
+MYMOVIES 数据库中的所有用户表中。
+<div id="codeblock"><code>
+db2 create db mymovies<br>
+db2 -tvf db2look.sql<br>
+db2move mymovies load<br>
+</code></div>
+
+<b>步骤 5：</b> 在 Windows 上，验证所克隆的 MYMOVIES 数据库完好无损， ACTOR_AGE 检查约束也可以正常工作。
+<div id="codeblock"><code>
+db2 connect to mymovies<br>
+db2 select * from movie fetch first 5 rows only<br><br>
+--- ACTOR 表最初处于一种检查挂起状态（由于检查约束的原因），
+下面的这条命令会失败。<br>
+db2 select * from actor fetch first 5 rows only<br>
+--- 执行 SET INTEGRITY 语句将 ACTOR 转换成正常状态。<br>
+db2 set integrity for actor immediate checked<br><br>
+
+--- 因为年份值违反了检查约束，下面这条命令会失败<br>
+db2 insert into actor values ('58825','Naomi Watts',2968)<br><br>
+
+--- 正确插入数据SQL<br>
+db2 insert into actor values ('58825','Naomi Watts',1968)
+<br><br>
+db2 "select * from actor where act_yr_of_birth > 1960"
+</code></div>
+<p>       ]]> </content>
+
+</doc>
+

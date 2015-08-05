@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+   <!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+   <isindexall>false</isindexall>
+   <indexfile>indexall.xml</indexfile>
+
+   <!-- 定义文档位置 -->
+   <topic>os</topic>
+   <catalog>windows</catalog>
+
+   <!-- 文档显示内容 -->
+    <title>禁止win2000和winxp的默认硬盘共享</title>
+    <pagename>禁止win2000和winxp的默认硬盘共享</pagename>
+   <content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+专业版：
+<div id="codeblock"><code>
+Windows Registry Editor Version 5.00<br>
+<br>
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\lanmanserver\parameters]<br>
+"autosharewks"=dword:00000000<br>
+</code></div>
+
+服务器版：
+<div id="codeblock"><code>
+Windows Registry Editor Version 5.00<br>
+<br>
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\lanmanserver\parameters]<br>
+"AutoShareServer"=dword:00000000<br>
+</code></div>
+
+       ]]> </content>
+
+</doc>
+

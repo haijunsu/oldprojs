@@ -1,0 +1,114 @@
+<PUBLIC:COMPONENT>
+
+<PUBLIC:PROPERTY NAME="src" />
+<PUBLIC:PROPERTY NAME="pic" PUT="pPic" GET="gPic" />
+<PUBLIC:PROPERTY NAME="open" PUT="pOpen" GET="gOpen" />
+<PUBLIC:PROPERTY NAME="text" PUT="pText" GET="gText" />
+<PUBLIC:PROPERTY NAME="href" PUT="pHref" GET="gHref" />
+<PUBLIC:PROPERTY NAME="target" PUT="pTarget" GET="gTarget" />
+
+<PUBLIC:METHOD NAME="load" />
+<PUBLIC:METHOD NAME="srcLoad" />
+<PUBLIC:METHOD NAME="fold" />
+
+<SCRIPT TYPE="text/javascript">
+
+function pPic(v) { if(noc) fop.src=v;} function gPic() { return fop.src;}
+function pOpen(v) {
+	v=(v!=null||v!="false"&&v!=false); if(v&&!lod&&src!=null) v=!v;
+	if(v!=ope) if(lod) fold(); else if(style.display=="block") { exch(); lod=true;} 
+	ope=v;} function gOpen() { return ope;}
+function pText(v) { txt.innerText=v;} function gText() { return txt.innerText;}
+function pHref(v) { hre.href=v;} function gHref() { return hre.href;}
+function pTarget(v) { hre.target=v;} function gTarget() { return hre.target;}
+
+function down(t) { tmp[0].outerHTML=t;}
+function srcLoad() {
+	removeChild(tmp[1]);
+	for(i=0;i<childNodes.length;i++) if(childNodes[i].nodeName=="tree") {
+		childNodes[i].style.display=style.display;
+		if(childNodes[i].open) childNodes[i].fold();
+	}
+}
+
+function exch() {
+	if(fop.src.match("folopen.gif")) {
+		if(las) nod.src=f+"plnode.gif"; else nod.src=f+"pnode.gif";
+		fop.src=f+"folclose.gif";
+	} else {
+		if(las) nod.src=f+"mlnode.gif"; else nod.src=f+"mnode.gif";
+		fop.src=f+"folopen.gif";
+	} ope=!ope;
+}
+function fold() {
+	if(!lod) { lod=true; exch();
+		for(i=0;i<childNodes.length;i++) if(childNodes[i].nodeName=="tree") {
+			childNodes[i].style.display=style.display; childNodes[i].load();
+			if(childNodes[i].open) childNodes[i].fold();
+		}
+		if(src!=null) {
+			var dow=document.createElement("span");
+			dow.style.behavior="url(#default#download)";
+			dow.startDownload(src, down);
+		}
+	} else { exch();
+		for(i=0;i<childNodes.length;i++) if(childNodes[i].nodeName=="tree")
+			childNodes[i].style.display=childNodes[i].style.display!="none"?"none":"block";
+	}
+}
+function load() {
+	if(obj.nodeName=="tree"&&(obj.lastChild==element||
+		obj.lastChild.previousSibling==element&&obj.src!=null)) las=true;
+	if(!noc) {
+		nod.src=f+"pnode.gif"; fop.src=f+"folclose.gif";
+		if(obj.nodeName!="tree") fop.src=f+"folopen.gif";
+		nod.onclick=fold; fop.ondblclick=fold;
+		insertBefore(hea, childNodes[0]); hea.appendChild(lin);
+		if(obj.nodeName=="tree") {
+			lin.innerHTML=obj.lin.innerHTML+((obj.parentNode.nodeName=="tree")?
+				"<img style='vertical-align:bottom;' width=16 height=22 src='"+
+				((obj.parentNode.lastChild==obj)?f+"bl.gif":f+"vl.gif")+"'>":"");
+			if(las) nod.src=f+"plnode.gif"; hea.appendChild(nod);
+		}
+		hea.appendChild(fop); hre.appendChild(txt); hea.appendChild(hre);
+	} else {
+		nod.src=f+"node.gif"; if(!fop.src) fop.src=f+"link.gif";
+		appendChild(hea); hea.appendChild(lin);
+		if(obj.parentNode.nodeName=="tree") {
+			lin.innerHTML=obj.lin.innerHTML+"<img style='vertical-align:bottom;' width=16 height=22 src='"+
+				((obj.parentNode.lastChild==obj)?f+"bl.gif":f+"vl.gif")+"'>";
+		}
+		if(las) nod.src=f+"lnode.gif";
+		hea.appendChild(nod); hre.appendChild(fop); hre.appendChild(txt); hea.appendChild(hre);
+	}
+	if(obj.lastChild.previousSibling==element&&obj.src!=null) obj.srcLoad();
+}
+
+var hea, lin, nod, fop, hre, txt;
+var chi, blo, obj=parentNode, tmp;
+var las=false, lod=false, noc, ope=false;
+var f="";
+
+hea=document.createElement("span");
+nod=document.createElement("img"); nod.style.verticalAlign="bottom"; nod.width=16; nod.height=22;
+fop=document.createElement("img"); fop.style.verticalAlign="bottom"; fop.border=0; fop.width=24; fop.height=22; 
+lin=document.createElement("span");
+hre=document.createElement("a"); hre.style.fontSize="9pt";
+txt=document.createElement("span");
+
+if(src!=null) {
+	innerHTML="<span style='display:none;'></span><plow:tree text='环天帮助中心' />";
+	tmp=[childNodes[0], childNodes[1]];
+}
+
+if(obj.nodeName=="tree") hre.target=obj.target; else hre.target=null;
+style.display="none"; noc=!hasChildNodes();
+
+if(obj.nodeName!="tree") { lod=ope=true; style.display="block"; load();}
+if(obj.open&&obj.src==null) if(obj.style.display=="block") { style.display="block"; load();}
+if(obj.src!=null) load();
+
+blo=lin.lastChild; element.lin=lin;
+
+</SCRIPT>
+</PUBLIC:COMPONENT>

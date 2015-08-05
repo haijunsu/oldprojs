@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+   <!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+   <isindexall>false</isindexall>
+   <indexfile>indexall.xml</indexfile>
+
+   <!-- 定义文档位置 -->
+   <topic>os</topic>
+   <catalog>linux</catalog>
+
+   <!-- 文档显示内容 -->
+    <title>定制Linux系统环境变量</title>
+    <pagename>定制Linux系统环境变量</pagename>
+   <content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+
+Linux是一个多用户的操作系统。每个用户登录系统后，都会有一个专用的运行环境。通常每个用户默认的环境都是相同的，这个默认环境实际上就是一组环境变量的定义。用户可以对自己的运行环境进行定制，其方法就是修改相应的系统环境变量。
+<br>
+<h3>
+常见的环境变量
+</h3>
+对于PATH和HOME等环境变量大家都不陌生。除此之外，还有下面一些常见环境变量。
+<br>
+◆ HISTSIZE是指保存历史命令记录的条数。
+<br>
+◆ LOGNAME是指当前用户的登录名。
+<br>
+◆ HOSTNAME是指主机的名称，许多应用程序如果要用到主机名的话，通常是从这个环境变量中来取得的。
+<br>
+◆ SHELL是指当前用户用的是哪种Shell。
+<br>
+◆ LANG/LANGUGE是和语言相关的环境变量，使用多种语言的用户可以修改此环境变量。
+<br>
+◆ MAIL是指当前用户的邮件存放目录。
+<br>
+◆ PS1是基本提示符，对于root用户是#，对于普通用户是$。PS2是附属提示符，默认是“>”。可以通过修改此环境变量来修改当前的命令符，比如下列命令会将提示符修改成字符串“Hello,My NewPrompt :) ”。
+<div id=codeblock>
+<code>
+# PS1=" Hello,My NewPrompt :) "<br>
+Hello,My NewPrompt :)
+</code>
+</div>
+<br>
+除了这些常见的环境变量，许多应用程序在安装时也会增加一些环境变量，比如使用Java就要设置JAVA_HOME和CLASSPATH等，而安装五笔输入法会增加环境变量"XMODIFIERS=@im=fcitx"等。
+<br><h3>
+定制环境变量
+</h3>
+环境变量是和Shell紧密相关的，用户登录系统后就启动了一个Shell。对于Linux来说一般是bash，但也可以重新设定或切换到其它的Shell。环境变量是通过Shell命令来设置的，设置好的环境变量又可以被所有当前用户所运行的程序所使用。对于bash这个Shell程序来说，可以通过变量名来访问相应的环境变量，通过export来设置环境变量。下面通过几个实例来说明。
+<br>
+1. 显示环境变量HOME
+<div id=codeblock>
+<code>
+$ echo $HOME<br>
+/home/terry
+</code>
+</div>
+2. 设置一个新的环境变量WELCOME
+<div id=codeblock>
+<code>
+$ export WELCOME="Hello!"<br>
+$ echo $WELCOME<br>
+Hello!
+</code>
+</div>
+3. 使用env命令显示所有的环境变量
+<div id=codeblock>
+<code>
+$ env<br>
+HOSTNAME=terry.mykms.org<br>
+PVM_RSH=/usr/bin/rsh<br>
+SHELL=/bin/bash<br>
+TERM=xterm<br>
+HISTSIZE=1000<br>
+...
+</code>
+</div>
+4. 使用set命令显示所有本地定义的Shell变量
+<div id=codeblock>
+<code>
+$ set<br>
+BASH=/bin/bash
+BASH_VERSINFO=([0]="2" [1]="05b" [2]="0" [3]="1" [4]="release" [5]="i386-redhat-linux-gnu")<br>
+BASH_VERSION='2.05b.0(1)-release'<br>
+COLORS=/etc/DIR_COLORS.xterm<br>
+COLUMNS=80<br>
+DIRSTACK=()<br>
+DISPLAY=:0.0<br>
+...
+</code>
+</div>
+5. 使用unset命令来清除环境变量
+<br>
+set可以设置某个环境变量的值。清除环境变量的值用unset命令。如果未指定值，则该变量值将被设为NULL。示例如下：
+<div id=codeblock>
+<code>
+$ export TEST="Test..."     #增加一个环境变量TEST<br>
+$ env|grep TEST             #此命令有输入，证明环境变量TEST已经存在了<br>
+TEST=Test...<br>
+$ unset $TEST               #删除环境变量TEST<br>
+$ env|grep TEST  #此命令没有输出，证明环境变量TEST已经存在了
+</code>
+</div>
+6. 使用readonly命令设置只读变量
+<br>
+如果使用了readonly命令的话，变量就不可以被修改或清除了。示例如下：
+<div id=codeblock>
+<code>
+$ export TEST="Test..."  #增加一个环境变量TEST<br>
+$ readonly TEST  #将环境变量TEST设为只读<br>
+$ unset TEST  #会发现此变量不能被删除<br>
+-bash: unset: TEST: cannot unset: readonly variable<br>
+$ TEST="New"  #会发现此也变量不能被修改<br>
+-bash: TEST: readonly variable
+</code>
+</div>
+7. 用C程序来访问和设置环境变量
+<br>
+对于C程序的用户来说，可以使用下列三个函数来设置或访问一个环境变量。
+<br>
+◆ getenv()访问一个环境变量。输入参数是需要访问的变量名字，返回值是一个字符串。如果所访问的环境变量不存在，则会返回NULL。
+<br>
+◆ setenv()在程序里面设置某个环境变量的函数。
+<br>
+◆ unsetenv()清除某个特定的环境变量的函数。
+<br>
+另外，还有一个指针变量environ，它指向的是包含所有的环境变量的一个列表。下面的程序可以打印出当前运行环境里面的所有环境变量：
+<div id=codeblock>
+<code>
+#include <stdio.h><br>
+extern char**environ;<br>
+int main ()<br>
+{<br>
+char**var;<br>
+for (var =environ;*var !=NULL;++var)<br>
+printf ("%s  ",*var);<br>
+return 0;<br>
+}
+</code>
+</div>
+还可以通过修改一些相关的环境定义文件来修改环境变量，比如对于Red Hat等Linux发行版本，与环境相关的文件有/etc/profile和~/.bashrc等。修改完毕后重新登录一次就生效了。
+
+       ]]> </content>
+
+</doc>
+

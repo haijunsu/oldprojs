@@ -1,0 +1,296 @@
+<HTML><HEAD><TITLE></TITLE>
+<STYLE type=text/css>A:link {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: black; TEXT-DECORATION: none
+}
+TD {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+TH {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+INPUT {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+SELECT {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+.menuStyle {
+	FONT-FAMILY: Arial,Geneva,Verdana,Helvetica; FONT-SIZE: 9pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.form1 {
+	BACKGROUND-COLOR: #cccccc; BORDER-BOTTOM: #ffffff 2px solid; BORDER-LEFT: #ffffff 2px solid; BORDER-RIGHT: #ffffff 2px solid; BORDER-TOP: #ffffff 2px solid;FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;
+}
+.form2 {
+	BACKGROUND-COLOR: #E3E3E3; BORDER-BOTTOM: #ffffff 2px solid; BORDER-LEFT: #ffffff 2px solid; BORDER-RIGHT: #ffffff 2px solid; BORDER-TOP: #ffffff 2px solid;FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;height:80pt;
+		}
+.form3 {
+	BACKGROUND-COLOR: #E3E3E3; BORDER-BOTTOM: #007777 2px solid; BORDER-LEFT: #007777 2px solid; BORDER-RIGHT: #007777 2px solid; BORDER-TOP: #007777 2px solid; FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;height:16px
+}
+.form4 {
+	BACKGROUND-COLOR: #cccccc; BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid;FONT-FAMILY: "宋体"; 
+}
+</STYLE>
+
+<META content=zh-cn http-equiv=Content-Language>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR>
+<META content=FrontPage.Editor.Document name=ProgId>
+<script>
+<!--
+function selc()
+	{		
+		var count=false,sum=0,str;
+		for (i=0;i<form1.r.length;i++)
+			{
+				if (form1.r[i].checked) 
+				{
+					count=true;
+					sum=sum+1;
+				}
+			}
+		
+		if(sum>1)
+			{
+				str="你确定要选择这"+sum+"个成员吗?";
+			}
+		else
+			{
+				str="你确定要选择该成员吗?";
+			}
+		if (count)
+			{
+				if (confirm(str))					
+				{
+					document.form1.action.value=2;
+					document.form1.submit();
+				}
+				return true;
+			}
+		else 
+			alert("请选择成员!");
+		return false;
+	}
+//设置位置
+function place2() {
+    parent.parent.parent.top1.form1.textfield2.value="电子邮件\-\>邮件夹\-\>地址本\-\>添加组\-\>选择成员";
+}
+var scrtxt="您可以在这里选择你所要的成员!";
+  var lentxt=scrtxt.length;
+  var width=100;
+  var pos=1-width;
+  
+  function scroll() {
+  pos++;
+  
+  var scroller="";
+  if (pos==lentxt) {
+    pos=1-width;
+  }
+  if (pos<0) {
+    for (var i=1; i<=Math.abs(pos); i++) {
+      scroller=scroller+" ";}
+    scroller=scroller+scrtxt.substring(0,width-i+1);
+  }
+  else {
+    scroller=scroller+scrtxt.substring(pos,width+pos);
+  }
+  window.status = scroller;
+  setTimeout("scroll()",150);
+  }
+//-->
+</script>
+</HEAD>
+<BODY leftMargin=0 topmarging="0" onload="place2();scroll();"
+style="BORDER-BOTTOM: 0px outset; BORDER-LEFT: 0px outset; BORDER-RIGHT: 0px outset; BORDER-TOP: 0px outset" 
+topMargin=0>
+<table bgcolor=#ECEAE6 border=1 bordercolordark=#808080 
+      bordercolorlight=#ffffff cellpadding=0 cellspacing=0 width="100%" height="20">
+  <tbody> 
+  <tr bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6> 
+    <td noWrap width="5"> 
+      <table border=0 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22>
+        <tbody> 
+        <tr> 
+          <td align=middle bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><img height=22 
+                  src="../../image/toolbar1.gif" width=5></td>
+        </tr>
+        </tbody> 
+      </table>
+    </td>
+    <td align=center noWrap width="150"> 
+      <table border=1 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22 width="100%">
+        <tbody> 
+        <tr> 
+          <td align=center bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center>选 择 成 员</td>
+        </tr>
+        </tbody> 
+      </table>
+    </td>
+    <td noWrap width="3"> 
+      <table border=0 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22>
+        <tbody> 
+        <tr> 
+          <td align=middle bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><img height=22 
+                  src="../../image/toolbar1.gif" width=5></td>
+        </tr>
+        </tbody> 
+      </table>
+    </td>
+    <td align=absmiddle noWrap>&nbsp; </td>
+  </tr>
+  </tbody> 
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f6f6f6" height="25" align="center">
+  <tr> 
+    <td> 
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr bgcolor="#e6e6e6">
+          <td colspan="3" style="padding-left:58px" height="23"><b>组员</b></td>
+        </tr>
+        <tr bgcolor="#e6e6e6"> 
+          <td colspan="3" bgcolor=#a6a6a6 height="1">
+        </tr>
+        <tr> 
+          <td valign="middle"  width="300" align="center" bgcolor="#e6e6e6"> 
+            <table width="96%" border="0" cellspacing="1" cellpadding="0">
+               <form name="form1" method="post" action="">
+			   <tr bgcolor="#e6e6e6"> 
+                <td colspan="3" align="center" height="23">纪录列表</td>
+              </tr>
+              <tr bgcolor="#ffffff">
+                <td width="30" align="center" height="23">&nbsp; </td>
+                <td width="100" align="center" height="23">姓名</td>
+                <td style="padding-left:20px">邮件</td>
+              </tr>
+              <tr onmouseout='this.style.backgroundColor="#ffffff"' 
+  onmouseover='this.style.backgroundColor="#EFEFEF"' style="CURSOR: hand">
+                <td align="center" height="23">
+                    <input type="checkbox" name="r" value="checkbox">
+                </td>
+                <td align="center" height="23">汤海京</td>
+                <td style="padding-left:20px">tanghj</td>
+              </tr>
+              <tr onmouseout='this.style.backgroundColor="#ffffff"' 
+  onmouseover='this.style.backgroundColor="#EFEFEF"' style="CURSOR: hand">
+                <td align="center" height="23">
+                    <input type="checkbox" name="r" value="checkbox">
+                </td>
+                <td align="center" height="23">曹宜</td>
+                <td style="padding-left:20px">&nbsp;</td>
+              </tr>
+              <tr onmouseout='this.style.backgroundColor="#ffffff"' 
+  onmouseover='this.style.backgroundColor="#EFEFEF"' style="CURSOR: hand">
+                <td align="center" height="23">
+                    <input type="checkbox" name="r" value="checkbox">
+                </td>
+                <td align="center" height="23">卢亮</td>
+                <td style="padding-left:20px">&nbsp;</td>
+              </tr>
+              <tr onmouseout='this.style.backgroundColor="#ffffff"' 
+  onmouseover='this.style.backgroundColor="#EFEFEF"' style="CURSOR: hand">
+                <td align="center" height="23">
+                    <input type="checkbox" name="r" value="checkbox">
+                </td>
+                <td align="center" height="23">王柏东</td>
+                <td style="padding-left:20px">&nbsp;</td>
+              </tr>
+              <tr onmouseout='this.style.backgroundColor="#ffffff"' 
+  onmouseover='this.style.backgroundColor="#EFEFEF"' style="CURSOR: hand">
+                <td align="center" height="23">
+                    <input type="checkbox" name="r" value="checkbox">
+                </td>
+                <td align="center" height="23">刘宁</td>
+                <td style="padding-left:20px">&nbsp;</td>
+              </tr>
+              <tr onmouseout='this.style.backgroundColor="#ffffff"' 
+  onmouseover='this.style.backgroundColor="#EFEFEF"' style="CURSOR: hand">
+                <td align="center" height="23">
+                    <input type="checkbox" name="r" value="checkbox">
+                </td>
+                <td align="center" height="23">石京海</td>
+                <td style="padding-left:20px">&nbsp;</td>
+              </tr></form>
+            </table>
+           
+            
+          </td>
+          <td align="center" width="105" > 
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td style="padding-bottom:6px"> 
+                  <input type="submit" name="Submit622" value=" 选  择 -&gt; " class="form4" onclick="selc()" >
+                </td>
+              </tr>
+              <tr> 
+                <td style="padding-bottom:6px">&nbsp; </td>
+              </tr>
+              <tr> 
+                <td style="padding-top:6px"> 
+                  <input type="submit" name="Submit623" value=" 属   性 -&gt;" class="form4" onClick="window.location.href='personrcd_d.htm'">
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td align="center" width="386" bgcolor="#e6e6e6" > 
+            <table width="96%" border="0" cellspacing="1" cellpadding="0">
+              <tr bgcolor="#e6e6e6"> 
+                <td colspan="2" align="center" height="23">成员</td>
+              </tr>
+              <tr bgcolor="#ffffff"> 
+                <td width="100" align="center" height="23">姓名</td>
+                <td style="padding-left:20px">邮件</td>
+              </tr>
+              <tr bgcolor="#ffffff"> 
+                <td align="center" height="23">汤海京</td>
+                <td style="padding-left:20px">tanghj</td>
+              </tr>
+              <tr bgcolor="#ffffff"> 
+                <td align="center" height="23">&nbsp;</td>
+                <td style="padding-left:20px">&nbsp;</td>
+              </tr>
+              <tr bgcolor="#ffffff"> 
+                <td align="center" height="23">&nbsp;</td>
+                <td style="padding-left:20px">&nbsp;</td>
+              </tr>
+              <tr bgcolor="#ffffff"> 
+                <td align="center" height="23">&nbsp;</td>
+                <td style="padding-left:20px">&nbsp;</td>
+              </tr>
+              <tr bgcolor="#ffffff"> 
+                <td align="center" height="23">&nbsp;</td>
+                <td style="padding-left:20px">&nbsp;</td>
+              </tr>
+              <tr bgcolor="#ffffff"> 
+                <td align="center" height="23">&nbsp;</td>
+                <td style="padding-left:20px">&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td height="22" bgcolor="#e6e6e6" align="center" style="padding-top:4px;padding-bottom:4px"> 
+      <input type="submit" name="Submit62" value=" 确  定 " class="form4" onClick="window.location.href='addgrp.htm'">
+      　　　　　　　　　　 
+      <input type="submit" name="Submit63" value=" 取  消 " class="form4" onClick="window.location.href='addgrp.htm'">
+    </td>
+  </tr>
+</table>
+</BODY></HTML>

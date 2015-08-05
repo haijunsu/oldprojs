@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+   <!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+   <isindexall>false</isindexall>
+   <indexfile>indexall.xml</indexfile>
+
+   <!-- 定义文档位置 -->
+   <topic>appsvr</topic>
+   <catalog>websphere</catalog>
+
+   <!-- 文档显示内容 -->
+    <title>WebSphere for iSeries基本设置</title>
+    <pagename>WebSphere for iSeries基本设置</pagename>
+   <content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+<p>1、启动和停止WebSphere<br>
+&nbsp;&nbsp; 启动： STRSBS QEJBAS5/QEJBAS5<br>
+&nbsp;&nbsp; 停止： ENDSBS SBS(QEJBAS5) OPTION(*IMMED)</p>
+<p>&nbsp;&nbsp; 注：如果设置了服务器安全性，上述命令可能不能停止服务器实例，请在QSHELL里运行下面的命令<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CD /QIBM/ProdData/WebAs5/Base/bin<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; stopServer server1 -username &lt;name&gt; 
+-password &lt;password&gt;&nbsp; </p>
+<p>2、控制台使用</p>
+<p>&nbsp;&nbsp; a、进入控制台：<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 在IE地址栏里输入：http://&lt;ipaddress&gt;:9090/admin，输入具有管理员权限的用户名和口令进入控制台。<br>
+&nbsp;&nbsp; <br>
+&nbsp;&nbsp; b、设置控制台用户：<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 在左侧导航栏里选择“系统管理”－&gt;“控制台用户”，如下图所示：<br>
+<img border="0" src="ConfigIn400/new_pa1.jpg"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+图1 控制台用户列表</p>
+<p>&nbsp;&nbsp;&nbsp; 点击“添加”按钮，显示如下：<br>
+<img border="0" src="ConfigIn400/new_pa2.gif"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+图2 控制台用户添加画面<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 在“用户”输入框里输入操作系统已经存在的用户名称，并指定其角色，角色权限如下：<br>
+　</p>
+<div>
+	<dl>
+		<dd>
+		<ul>
+			<li><strong>监视器</strong> － 最低特权，允许用户对 WebSphere 配置和当前状态的基本查看 </li>
+			<li><strong>配置程序</strong> － 监视器特权，加上更改 WebSphere 配置的能力 
+			</li>
+			<li><strong>操作程序</strong> － 监视器特权，加上更改运行时状态的能力，例如启动或停止服务 
+			</li>
+			<li><strong>管理员</strong> － 操作程序特权，加上配置程序特权</li>
+		</ul>
+		</dd>
+	</dl>
+</div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 如果要修改用户，可直接点击用户名上的超链接来调出上面的画面来修改。<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 删除用户只在选中要删除前面的选择框，点“除去”按钮即可删除。<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 注：在控制台做任何一项修改后，在每页都会出现保存提示如下<br>
+<img border="0" src="ConfigIn400/new_pa5.gif"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 图3&nbsp; 
+控制台保存提示</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 可直接点击“保存”超链接调出保存画面随时保存修改的内容。<br>
+<img border="0" src="ConfigIn400/new_pa6.gif"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 图4&nbsp; 控制台保存页面</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#FF0000">要使控制台用户修改生效，必须重新启动服务器实例</font>。</p>
+<p>&nbsp;&nbsp;&nbsp; c、配置数据源<br>
+&nbsp;&nbsp;&nbsp;&nbsp; a) Java 2 连接器认证数据条目设置<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; “安全性” -&gt; “JAAS 配置” -&gt; “J2C 认证数据条目”</p>
+<p><img border="0" src="ConfigIn400/new_pa7.gif"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 图5&nbsp; J2C 认证数据条目</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 如果已经存在连接数据源的用户，可以直接进入“b)”步骤<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 点击“新建”来创建连接数据源的用户<br>
+&nbsp;&nbsp;&nbsp;&nbsp; <img border="0" src="ConfigIn400/new_pa8.gif"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+图6 新建J2C认证条目<br>
+&nbsp;&nbsp;&nbsp;&nbsp; <b>注: </b>删除认证数据条目时要小心。如果删除的认证数据由其它配置使用，则初始化资源进程失败。<br>
+&nbsp;&nbsp;&nbsp;&nbsp; <font color="#FF0000">要使J2C 认证数据条目修改生效，必须重新启动服务器实例</font>。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; b) 配置数据源<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; “资源”－&gt;“JDBC提供程序”－&gt;点击已经设置的JDBC提供程序进入JDBC提供程序属性画面。<br>
+<img border="0" src="ConfigIn400/new_pa13.gif"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+图7 JDBC 提供程序画面</p>
+<p><img border="0" src="ConfigIn400/new_pa14.gif"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 图8 JDBC提供程序属性画面</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 点击“数据源”超链接来进入数据源列表<br>
+<img border="0" src="ConfigIn400/new_pa15.gif"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 图9&nbsp; 
+数据源列表<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 点击“新建”按钮来创建数据源，点击指定的名称来配置数据源</p>
+<p><img border="0" src="ConfigIn400/new_pa16.gif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+图9 数据源配置画面</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 其中，组件受管认证别和容器受管认证别名均是从“J2C认证数据条目”中选择，在定制属性里设置“serverName”和“libraries”变量。<font color="#FF0000">要使
+数据源修改生效，必须重新启动服务器实例</font>。</p>
+<p>&nbsp;&nbsp;&nbsp; d、启动和停止企业应用程序</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; “应用程序”-&gt;“企业应用程序”</p>
+<p><img border="0" src="ConfigIn400/new_pa17.jpg"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+图10&nbsp; 管理企业应用程序</p>
+<p>&nbsp;&nbsp;&nbsp; 选择要启动或停止的应用程序，点“启动”或“停止”按钮即可。</p>
+       ]]> </content>
+
+</doc>
+

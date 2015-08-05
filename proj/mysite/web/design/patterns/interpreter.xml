@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+	<!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+	<isindexall>false</isindexall>
+	<indexfile>indexall.xml</indexfile>
+
+	<!-- 定义文档位置 -->
+	<topic>design</topic>
+	<catalog>patterns</catalog>
+
+	<!-- 文档显示内容 -->
+    <title>设计模式：解释器（Interpreter）模式</title>
+    <pagename>解释器（Interpreter）模式</pagename>
+	<content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+解释器模式包括以下几各角色：
+
+<ul>
+	<li>抽象表达式（Expression）角色：声明一个所有具体表达式角色都需要实现的抽象接口，
+	这个接口主要是一个interpret()方法，称做解释操作</li>
+	<li>终结表达式（Terminal Expression）角色：
+		<ul>
+			<li>实现了抽象表达式角色所要求的接口，主要是一个interpret()方法</li>
+			<li>方法中的每一个终结符都有一个具体终结表达式与之相对应</li>
+		</ul>
+	</li>
+	<li>非终结表达式（Nonterminal Expression）角色：
+		<ul>
+			<li>文法中的每一条规则 R=R1R2...Rn 都需要一个具体的非终结符表达式类</li>
+			<li>对每一个 R1R2...Rn 中的符号都持有一个静态类型为Expression的实例变量</li>
+			<li>实现解释操作，即 interpret() 方法。解释操作以递归方式调用上面所提到的代表 
+			R1R2...Rn 中的各个符号的实例变量</li>
+		</ul>
+	</li>
+	<li>客户端（Client）角色：代表模式的客户端，它有以下功能：</li>
+		<ul>
+			<li>建造一个抽象语法树（AST或者Abstract Syntax Tree）</li>
+			<li>调用解释操作 interpret()</li>
+		</ul>
+	<li>环境（Context）角色：提供解释器之外的一些全局信息，如变量的真实量值等</li>
+</ul>
+
+<div align="center">
+<img src="interpreter/uml01.jpg"/><br>
+解释器模式UML类图
+</div>
+ 
+适用范围：
+<ul>
+	<li>系统有一个简单的语言可供解释</li>
+	<li>一些重复发生的问题可以用这种简单的语言表达</li>
+	<li>效率不是主要的考虑</li>
+</ul>
+<h3>代码</h3>
+Expression.java
+<div id="codeblock">
+<pre>
+package navy.pattern.behavioral.interpreter;
+
+/**
+ * 这个抽象类代表终结类和非终结类的抽象化， 其中终结类和非终结类来自下面的文法
+ * 
+ *  
+ *  Expression :: = 
+ *               Expression AND Expression
+ *             | Expression OR Expression
+ *             | NOT Expression
+ *             | Variable
+ *             | Constant
+ *  Variable :: = ... //可以打印出的非空白字符串
+ *  Contant :: = &quot;true&quot;|&quot;false&quot;
+ *  
+ */
+public abstract class Expression {
+
+	/**
+	 * 以环境类为准，本方法解释给定的任何一个表达式
+	 * 
+	 * @param ctx
+	 * @return boolean
+	 * @roseuid 4136E92F031C
+	 */
+	public abstract boolean interpret(Context ctx);
+
+	/**
+	 * 检验两个表达式在结构上是否相同
+	 * 
+	 * @param o
+	 * @return boolean
+	 * @roseuid 4136E9530232
+	 */
+	public abstract boolean equals(Object o);
+
+	/**
+	 * 返回表达式的hash code
+	 * 
+	 * @return int
+	 * @roseuid 4136E9F9009C
+	 */
+	public abstract int hashCode();
+
+	/**
+	 * 将表达式转换成字符串
+	 * 
+	 * @return String
+	 * @roseuid 4136EA0A0213
+	 */
+	public abstract String toString();
+}
+</pre>
+</div>
+Constant.java
+<div id="codeblock">
+<pre>
+package navy.pattern.behavioral.interpreter;
+
+/**
+ * 一个Constant对象代表一个布尔常量，在调用时，通过向构造子传入一个布尔常量，得到一 个包装了这个布尔常量的对象 new Constant(true)
+ */
+public class Constant extends Expression {
+	private boolean value;
+
+	/**
+	 * 构造子
+	 * 
+	 * @param value
+	 * @roseuid 4136EB01035B
+	 */
+	public Constant(boolean value) {
+		this.value = value;
+	}
+
+	/**
+	 * 解释操作
+	 * 
+	 * @param ctx
+	 * @return boolean
+	 * @roseuid 4136EB10033C
+	 */
+	public boolean interpret(Context ctx) {
+		return value;
+	}
+
+	/**
+	 * 检验两个表达式在结构上是否相同
+	 * 
+	 * @param o
+	 * @return boolean
+	 * @roseuid 4136EB250261
+	 */
+	public boolean equals(Object o) {
+		if (o != null && o instanceof Constant) {
+			return this.value == ((Constant) o).value;
+		}
+		return false;
+	}
+
+	/**
+	 * 返回表达式的 hash code
+	 * 
+	 * @return int
+	 * @roseuid 4136EB3803C8
+	 */
+	public int hashCode() {
+		return (this.toString()).hashCode();
+	}
+
+	/**
+	 * 将表达式转换成字符串
+	 * 
+	 * @return String
+	 * @roseuid 4136EB4902EE
+	 */
+	public String toString() {
+		return new Boolean(value).toString();
+	}
+}
+</pre>
+</div>
+Variable.java
+<div id="codeblock">
+<pre>
+package navy.pattern.behavioral.interpreter;
+
+/**
+ * 一个Variable对象代表一个有名变量，在使用Variable类时，需要将变量名传入构造子中， 例如：new
+ * Variable("x")，就声明了一个名字为x的变量。
+ */
+public class Variable extends Expression {
+	private String name;
+
+	/**
+	 * 构造子
+	 * 
+	 * @param name
+	 * @roseuid 4136ECAB000F
+	 */
+	public Variable(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * 解释操作
+	 * 
+	 * @param ctx
+	 * @return boolean
+	 * @roseuid 4136ECC300DA
+	 */
+	public boolean interpret(Context ctx) {
+		return ctx.lookup(this);
+	}
+
+	/**
+	 * 检验两个表达式在结构上是否相同
+	 * 
+	 * @param o
+	 * @return boolean
+	 * @roseuid 4136ECD20186
+	 */
+	public boolean equals(Object o) {
+		if (o!=null && o instanceof Variable) {
+			return this.name.equals(((Variable)o).name);
+		}
+		return false;
+	}
+
+	/**
+	 * 返回表达式的hash code
+	 * 
+	 * @return int
+	 * @roseuid 4136ECEB0242
+	 */
+	public int hashCode() {
+		return (this.toString()).hashCode();
+	}
+
+	/**
+	 * 将表达式转换成字符串
+	 * 
+	 * @return String
+	 * @roseuid 4136ED0A000F
+	 */
+	public String toString() {
+		return name;
+	}
+}
+</pre>
+</div>
+And.java
+<div id="codeblock">
+<pre>
+package navy.pattern.behavioral.interpreter;
+
+/**
+ * 逻辑与操作的And类，表示由两个布尔表达式通过逻辑与操作给出一个新的布尔表达式的操? 。在使用时，new And(x, y)代表x And y
+ */
+public class And extends Expression {
+	private Expression left;
+
+	private Expression right;
+
+	/**
+	 * 构造子
+	 * 
+	 * @param left
+	 * @param right
+	 * @roseuid 413C06160177
+	 */
+	public And(Expression left, Expression right) {
+		this.left = left;
+		this.right = right;
+	}
+
+	/**
+	 * 解释操作
+	 * 
+	 * @param ctx
+	 * @return boolean
+	 * @roseuid 413C066D00DA
+	 */
+	public boolean interpret(Context ctx) {
+		return left.interpret(ctx) && right.interpret(ctx);
+	}
+
+	/**
+	 * 检验两个表达式在结构上是否相同
+	 * 
+	 * @param o
+	 * @return boolean
+	 * @roseuid 413C0683000F
+	 */
+	public boolean equals(Object o) {
+		if (o != null && o instanceof And) {
+			return this.left.equals(((And) o).left)
+					&& this.right.equals(((And) o).right);
+		}
+		return false;
+	}
+
+	/**
+	 * 返回表达式的 hash code
+	 * 
+	 * @return int
+	 * @roseuid 413C068B02DE
+	 */
+	public int hashCode() {
+		return (this.toString()).hashCode();
+	}
+
+	/**
+	 * 将表达式转换成字符串
+	 * 
+	 * @return String
+	 * @roseuid 413C06BF004E
+	 */
+	public String toString() {
+		return "(" + left.toString() + " AND " + right.toString() + ")";
+	}
+}
+</pre>
+</div>
+Or.java
+<div id="codeblock">
+<pre>
+package navy.pattern.behavioral.interpreter;
+
+/**
+ * 逻辑或操作的Or类，表示由两个布尔表达式通过逻辑与操作给出一个新的布尔表达式的操作 。在使用时，new Or(x, y)代表x Or y
+ */
+public class Or extends Expression {
+	private Expression left;
+
+	private Expression right;
+
+	/**
+	 * 构造子
+	 * 
+	 * @param left
+	 * @param right
+	 * @roseuid 413C08D90222
+	 */
+	public Or(Expression left, Expression right) {
+		this.left = left;
+		this.right = right;
+	}
+
+	/**
+	 * 解释操作
+	 * 
+	 * @param ctx
+	 * @return boolean
+	 * @roseuid 413C08F103D8
+	 */
+	public boolean interpret(Context ctx) {
+		return left.interpret(ctx) || right.interpret(ctx);
+	}
+
+	/**
+	 * 检验两个表达式在结构上是否相同
+	 * 
+	 * @param o
+	 * @return boolean
+	 * @roseuid 413C090E035B
+	 */
+	public boolean equals(Object o) {
+		if (o != null && o instanceof Or) {
+			return this.left.equals(((Or) o).left)
+					&& this.right.equals(((Or) o).right);
+		}
+		return false;
+	}
+
+	/**
+	 * 返回表达式的 hash code
+	 * 
+	 * @return int
+	 * @roseuid 413C09200148
+	 */
+	public int hashCode() {
+		return (this.toString()).hashCode();
+	}
+
+	/**
+	 * 将表达式转换成字符串
+	 * 
+	 * @return String
+	 * @roseuid 413C092C01E4
+	 */
+	public String toString() {
+		return "(" + left.toString() + " OR " + right.toString() + ")";
+	}
+}
+</pre>
+</div>
+Not.java
+<div id="codeblock">
+<pre>
+package navy.pattern.behavioral.interpreter;
+
+/**
+ * 逻辑非操作的Not类，表示由两个布尔表达式通过逻辑与操作给出一个新的布尔表达式的操? 。在使用时，new Not(x)代表Not x
+ */
+public class Not extends Expression {
+	private Expression exp;
+
+
+	/**
+	 * 构造子
+	 * 
+	 * @param exp
+	 * @roseuid 413C09CD029F
+	 */
+	public Not(Expression exp) {
+		this.exp = exp;
+	}
+
+	/**
+	 * 解释操作
+	 * 
+	 * @param ctx
+	 * @return boolean
+	 * @roseuid 413C09E602FD
+	 */
+	public boolean interpret(Context ctx) {
+		return !exp.interpret(ctx);
+	}
+
+	/**
+	 * 检验两个表达式在结构上是否相同
+	 * 
+	 * @param o
+	 * @return boolean
+	 * @roseuid 413C09F5004E
+	 */
+	public boolean equals(Object o) {
+		if (o!= null  && o instanceof Not) {
+			return this.exp.equals(((Not)o).exp);
+		}
+		return false;
+	}
+
+	/**
+	 * 返回表达式的 hash code
+	 * 
+	 * @return int
+	 * @roseuid 413C0A0E0186
+	 */
+	public int hashCode() {
+		return (this.toString()).hashCode();
+	}
+
+	/**
+	 * 将表达式转换成字符串
+	 * 
+	 * @return String
+	 * @roseuid 413C0A1B01B5
+	 */
+	public String toString() {
+		return "(Not " + exp.toString() + ")";
+	}
+}
+</pre>
+</div>
+Context.java
+<div id="codeblock">
+<pre>
+package navy.pattern.behavioral.interpreter;
+
+import java.util.HashMap;
+
+/**
+ * 环境类定义出从变量到布尔值（也就是true和false)的一个映射
+ */
+public class Context {
+	private HashMap map = new HashMap();
+
+	/**
+	 * @param var
+	 * @param value
+	 * @roseuid 413C0B1A037A
+	 */
+	public void assign(Variable var, boolean value) {
+		map.put(var, new Boolean(value));
+	}
+
+	/**
+	 * @param var
+	 * @return boolean
+	 * @roseuid 413C0B4702CE
+	 */
+	public boolean lookup(Variable var) throws IllegalArgumentException {
+		Boolean value = (Boolean) map.get(var);
+		if (value == null) {
+			throw new IllegalArgumentException();
+		}
+		return value.booleanValue();
+	}
+}
+</pre>
+</div>
+Client.java
+<div id="codeblock">
+<pre>
+package navy.pattern.behavioral.interpreter;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+/**
+ * 客户端
+ */
+public class Client {
+	/**
+	 * Commons Logger for this class
+	 */
+	private static final Log logger = LogFactory.getLog(Client.class);
+
+	private static Context ctx;
+
+	private static Expression exp;
+
+	/**
+	 * @param args
+	 * @roseuid 413C0BF902CE
+	 */
+	public static void main(String[] args) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("main(String[]) - start");
+		}
+
+		ctx = new Context();
+		Variable x = new Variable("x");
+		Variable y = new Variable("y");
+		Constant c = new Constant(true);
+		ctx.assign(x, false);
+		ctx.assign(y, true);
+		exp = new Or(new And(c, x), new And(y, new Not(x)));
+
+		logger.info("main() - x = " + x.interpret(ctx));
+		logger.info("main() - y = " + y.interpret(ctx));
+		logger.info("main() - " + exp.toString() + " = " + exp.interpret(ctx));
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("main(String[]) - end");
+		}
+	}
+}
+</pre>
+</div>
+
+    ]]> </content>
+
+</doc>
+

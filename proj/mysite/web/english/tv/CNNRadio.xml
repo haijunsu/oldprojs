@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+   <!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+   <isindexall>false</isindexall>
+   <indexfile>indexall.xml</indexfile>
+
+   <!-- 定义文档位置 -->
+   <topic>english</topic>
+   <catalog>tv</catalog>
+
+   <!-- 文档显示内容 -->
+    <title>CNN Radio</title>
+    <pagename>美国有线新闻网 CNN Radio</pagename>
+   <content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+<object id="wmp" classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" width="336" height="140">
+<param name="filename" value="http://www.cnn.com/audio/radio/liveaudio.asx">
+<param name="PlayCount" value="1">
+<param name="AutoStart" value="1">
+<param name="ClickToPlay" value="1">
+<param name="DisplaySize" value="0">
+<param name="EnableFullScreen Controls" value="1">
+<param name="ShowAudio Controls" value="1">
+<param name="ShowStatusBar" value="1">
+<param name="ShowDisplay" value="1">
+<param name="AutoSize" value="1">
+<param name="EnableContext Menu" value="1">
+</object>
+       ]]> </content>
+
+</doc>
+

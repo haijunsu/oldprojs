@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+ <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+       "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+
+
+<tiles-definitions>
+
+    <definition name=".mainLayout" path="/common/layouts/defaultLayout.jsp">
+        <put name="left" value="/menu.do?action=leftMenuList" />
+        <put name="top" value="/common/top.jsp" />
+		<put name="search" value="about:blank" />
+		<put name="body" value="about:blank" />
+        <put name="copyright" value="/common/copyright.jsp" />
+    </definition>
+	
+	<definition name=".registerSearch" extends=".mainLayout">
+        <put name="search" value="/registration/search/search.jsp" />
+    </definition>
+	
+	<definition name=".modifySearch" extends=".mainLayout">
+        <put name="search" value="/registration/search/searchRegister.jsp" />
+    </definition>
+
+    <definition name="successDef" extends=".mainLayout">
+        <put name="body" value="/common/success/success.jsp" />
+    </definition>
+
+    <definition name="errorDef" extends=".mainLayout">
+        <put name="body" value="/common/errors/error.jsp" />
+    </definition>
+	
+    <definition name="welcomeDef" extends=".registerSearch" />
+	
+	<definition name="searchDef" extends=".registerSearch" />
+	
+	<definition name="userListDef" extends=".registerSearch">
+        <put name="body" value="/registration/search/userList.jsp" />
+    </definition>
+
+	<definition name="paperListDef" extends=".registerSearch">
+        <put name="body" value="/registration/search/paperList.jsp" />
+    </definition>
+	
+	<definition name="paperViewListDef" extends=".registerSearch">
+        <put name="body" value="/registration/search/paperViewList.jsp" />
+    </definition>
+	
+	<definition name="modifyDef" extends=".modifySearch">
+        <put name="search" value="/registration/search/searchRegister.jsp" />
+    </definition>
+
+	<definition name="registerListDef" extends=".modifySearch">
+        <put name="body" value="/registration/search/userList.jsp" />
+    </definition>
+	
+	<definition name="registerInputDef" extends=".registerSearch">
+        <put name="body" value="/registration/register/register.jsp" />
+    </definition>
+	
+	<definition name="accompanyInputDef" extends=".registerSearch">
+        <put name="body" value="/registration/register/accompany.jsp" />
+    </definition>
+
+	<definition name="visaInputDef" extends=".registerSearch">
+        <put name="body" value="/registration/register/visa.jsp" />
+    </definition>
+
+	<definition name="visaListDef" extends=".registerSearch">
+        <put name="body" value="/registration/register/visaList.jsp" />
+    </definition>
+
+	<definition name="hotelInputDef" extends=".registerSearch">
+        <put name="body" value="/registration/register/hotel.jsp" />
+    </definition>
+
+	<definition name="hotelListDef" extends=".registerSearch">
+        <put name="body" value="/registration/register/hotelList.jsp" />
+    </definition>
+
+	<definition name="registrationFeeDef" extends=".registerSearch">
+        <put name="body" value="/registration/register/registrationFee.jsp" />
+    </definition>
+
+	<definition name="listPresentedDef" extends=".registerSearch">
+        <put name="body" value="/registration/register/reportPaperList.jsp" />
+    </definition>
+
+	<definition name="presentedDef" extends=".registerSearch">
+        <put name="body" value="/registration/paper/presented.jsp" />
+    </definition>
+	<definition name="presenterListDef" extends=".registerSearch">
+        <put name="body" value="/registration/paper/presenterList.jsp" />
+    </definition>
+
+	<definition name="paperFeeDef" extends=".registerSearch">
+        <put name="body" value="/registration/paper/paperFee.jsp" />
+    </definition>
+
+	<definition name="executeDef" extends=".mainLayout">
+        <put name="search" value="/registration/jdbc/executeSql.jsp" />
+        <put name="body" value="/registration/jdbc/result.jsp" />
+    </definition>
+
+	<definition name="resultsDef" extends=".mainLayout">
+        <put name="body" value="/registration/jdbc/result.jsp" />
+    </definition>
+
+	<definition name="smirtUserListDef" extends=".mainLayout">
+        <put name="body" value="/user/list.jsp" />
+    </definition>
+
+	<definition name="smirtUserModifyDef" extends=".mainLayout">
+        <put name="body" value="/user/modify.jsp" />
+    </definition>
+
+	<definition name="changePassDef" extends=".mainLayout">
+        <put name="body" value="/user/changePass.jsp" />
+    </definition>
+	
+</tiles-definitions>

@@ -1,0 +1,1553 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+	<!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+	<isindexall>false</isindexall>
+	<indexfile>indexall.xml</indexfile>
+
+	<!-- 定义文档位置 -->
+	<topic>design</topic>
+	<catalog>source</catalog>
+
+	<!-- 文档显示内容 -->
+    <title>CVS 命令</title>
+    <pagename>CVS 命令</pagename>
+	<content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+<div id="refer">
+	<a href="http://www.cvsnt.org/wiki/CvsCommand">原始英文文档</a>
+</div>
+<h3>命令列表</h>
+<div id="tableblock">
+<table cellspacing="0">	<tr>
+		<th>命 令</th>
+		<th>同 名 命 令</th>
+		<th>中 文 描 述</th>
+		<th>英 文 描 述</th>
+	</tr>
+	<tr>
+		<td><a href="#add">add</a></td>
+		<td>ad,new</td>
+		<td>添加文件或目录到资源库</td>
+		<td>Add a new file/directory to the repository.</td>
+	</tr>
+	<tr>
+		<td><a href="#admin">admin</a></td>
+		<td>adm,rcs</td>
+		<td>管理资源库</td>
+		<td>Administration front end for rcs.</td>
+	</tr>
+	<tr>
+		<td><a href="#annotate">annotate</a></td>
+		<td>ann</td>
+		<td>显示最后一次修订所编辑的行</td>
+		<td>Show last revision where each line was modified.</td>
+	</tr>
+	<tr>
+		<td><a href="#authserver">authserver</a></td>
+		<td>　</td>
+		<td>认证服务器模式</td>
+		<td>Authentication server mode.</td>
+	</tr>
+	<tr>
+		<td><a href="#chacl">chacl</a></td>
+		<td>setacl,setperm</td>
+		<td>改变目录的访问控制列表</td>
+		<td>Change the Access Control List for a directory.</td>
+	</tr>
+	<tr>
+		<td><a href="#checkout">checkout</a></td>
+		<td>co,get</td>
+		<td>检出源文件</td>
+		<td>Checkout sources for editing.</td>
+	</tr>
+	<tr>
+		<td><a href="#chown">chown</a></td>
+		<td>setowner</td>
+		<td>改变目录的所有者</td>
+		<td>Change the owner of a directory.</td>
+	</tr>
+	<tr>
+		<td><a href="#commit">commit</a></td>
+		<td>ci,com</td>
+		<td>检入文件到资源库，提交修改内容</td>
+		<td>Check files into the repository.</td>
+	</tr>
+	<tr>
+		<td><a href="#diff">diff</a></td>
+		<td>di,dif</td>
+		<td>显示不同修订版本之间的不同之处</td>
+		<td>Show differences between revisions.</td>
+	</tr>
+	<tr>
+		<td><a href="#edit">edit</a></td>
+		<td>　</td>
+		<td>准备修改一个被监控（watch）的文件</td>
+		<td>Get ready to edit a watched file.</td>
+	</tr>
+	<tr>
+		<td><a href="#editors">editors</a></td>
+		<td>　</td>
+		<td>显示谁正在修改一个被监控（watch）的文件</td>
+		<td>See who is editing a watched file.</td>
+	</tr>
+	<tr>
+		<td><a href="#export">export</a></td>
+		<td>exp,ex</td>
+		<td>从CVS导出源文件，与<em><b>checkout</b></em>命令相同</td>
+		<td>Export sources from CVS, similar to checkout.</td>
+	</tr>
+	<tr>
+		<td><a href="#history">history</a></td>
+		<td>hi,his</td>
+		<td>显示资源库的访问历史</td>
+		<td>Show repository access history.</td>
+	</tr>
+	<tr>
+		<td><a href="#import">import</a></td>
+		<td>im,imp</td>
+		<td>使用vendor分枝，导入源文件到CVS</td>
+		<td>Import sources into CVS, using vendor branches.</td>
+	</tr>
+	<tr>
+		<td><a href="#init">init</a></td>
+		<td>　</td>
+		<td>如果CVS资源库不存在，则创建一个</td>
+		<td>Create a CVS repository if it doesn't exist.</td>
+	</tr>
+	<tr>
+		<td><a href="#info">info</a></td>
+		<td>　</td>
+		<td>显示所支持的协议信息</td>
+		<td>Display information about all supported protocols.</td>
+	</tr>
+	<tr>
+		<td><a href="#log">log</a></td>
+		<td>lo</td>
+		<td>列印文件的历史信息</td>
+		<td>Print out history information for files.</td>
+	</tr>
+	<tr>
+		<td><a href="#login">login</a></td>
+		<td>logon,lgn</td>
+		<td>登录到认证服务器，提示输入口令</td>
+		<td>Prompt for password for authenticating server.</td>
+	</tr>
+	<tr>
+		<td><a href="#logout">logout</a></td>
+		<td>　</td>
+		<td>注销，除去口令缓存中访问远程资源库的条目</td>
+		<td>Removes entry in password cache for remote repository.</td>
+	</tr>
+	<tr>
+		<td><a href="#ls">ls</a></td>
+		<td>dir,list</td>
+		<td>列出服务器上的资源目录列表</td>
+		<td>List directories on the server.</td>
+	</tr>
+	<tr>
+		<td><a href="#lsacl">lsacl</a></td>
+		<td>lsattr,listperm</td>
+		<td>列出目录访问控制列表</td>
+		<td>List the directories' Access Control List.</td>
+	</tr>
+	<tr>
+		<td><a href="#passwd">passwd</a></td>
+		<td>password,setpass</td>
+		<td>设置口令并管理用户</td>
+		<td>Set password and administer users.</td>
+	</tr>
+	<tr>
+		<td><a href="#rannotate">rannotate</a></td>
+		<td>rann,ra</td>
+		<td>显示最后一次修订所编辑的模块中的每一行</td>
+		<td>Show last revision where each line of module was modified.</td>
+	</tr>
+	<tr>
+		<td><a href="#rdiff">rdiff</a></td>
+		<td>patch,pa</td>
+		<td>在不同的版本之间创建补丁（patch）</td>
+		<td>Create 'patch' format diffs between releases.</td>
+	</tr>
+	<tr>
+		<td><a href="#release">release</a></td>
+		<td>re,rel</td>
+		<td>指出这个模块不再被使用</td>
+		<td>Indicate that a Module is no longer in use.</td>
+	</tr>
+	<tr>
+		<td><a href="#remove">remove</a></td>
+		<td>rm,delete</td>
+		<td>从资源库删除一个条目</td>
+		<td>Remove an entry from the repository.</td>
+	</tr>
+	<tr>
+		<td><a href="#rlog">rlog</a></td>
+		<td>rl</td>
+		<td>输出模块的历史信息</td>
+		<td>Print out history information for a module.</td>
+	</tr>
+	<tr>
+		<td><a href="#rtag">rtag</a></td>
+		<td>rt,rfreeze</td>
+		<td>给模块增加一个符号标记</td>
+		<td>Add a symbolic tag to a module.</td>
+	</tr>
+	<tr>
+		<td><a href="#server">server</a></td>
+		<td>　</td>
+		<td>服务器模式</td>
+		<td>Server mode.</td>
+	</tr>
+	<tr>
+		<td><a href="#status">status</a></td>
+		<td>st,stat</td>
+		<td>显示检出文件的状态信息</td>
+		<td>Display status information on checked out files.</td>
+	</tr>
+	<tr>
+		<td><a href="#tag">tag</a></td>
+		<td>ta,freeze</td>
+		<td>给文件检出的版本增加一个符号标记</td>
+		<td>Add a symbolic tag to checked out version of files.</td>
+	</tr>
+	<tr>
+		<td><a href="#unedit">unedit</a></td>
+		<td>　</td>
+		<td>放弃编辑命令</td>
+		<td>Undo an edit command.</td>
+	</tr>
+	<tr>
+		<td><a href="#update">update</a></td>
+		<td>up,upd</td>
+		<td>使用工作目录与资源库同步</td>
+		<td>Bring work tree in sync with repository.</td>
+	</tr>
+	<tr>
+		<td><a href="#version">version</a></td>
+		<td>ve,ver</td>
+		<td>显示当前CVS版本</td>
+		<td>Show current CVS version(s).</td>
+	</tr>
+	<tr>
+		<td><a href="#watch">watch</a></td>
+		<td>　</td>
+		<td>设置监控（watch）</td>
+		<td>Set watches.</td>
+	</tr>
+	<tr>
+		<td><a href="#watchers">watchers</a></td>
+		<td>　</td>
+		<td>查看谁正在控制一个监控文件</td>
+		<td>See who is watching a file.</td>
+	</tr>
+</table>
+</div>
+	<h3><a name="add">add</a></h3>
+	<div id="codeblock"><code>cvs add [-k rcs-kflag] [-m message] files...</code></div> </p>
+	<ul>
+		<div>
+			<table id="table1">
+				<tr>
+					<td>-k</td>
+					<td>Use &quot;rcs-kflag&quot; to add the file with the specified kflag</td>
+				</tr>
+				<tr>
+					<td>-m</td>
+					<td>Use &quot;message&quot; for the creation log.</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+	<h3><a name="admin">admin</a></h3>
+	<div id="codeblock"><code>cvs admin [options] files... </code></div><br>
+	<strong>THIS COMMAND BYPASSESS NORMAL CVS OPERATIONS. DO NOT USE THIS 
+	COMMAND UNLESS YOU KNOW THE CONSEQUENCES OF USING IT. </strong></p>
+	<ul>
+		<div>
+			<table id="table2">
+				<tr>
+					<td align="left" colSpan="2">-k</td>
+					<td>Set keyword expansion flags:</td>
+				</tr>
+				<tr>
+					<td align="middle" colSpan="2" nowrap>Valid flags are one of:</td>
+					<td>　</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>t</td>
+					<td>Text file (default).</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>b</td>
+					<td>Binary file (merges not allowed).</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>B</td>
+					<td>Binary file using binary deltas (merges not allowed).</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>u</td>
+					<td>Unicode (UCS-2) file.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>{...}</td>
+					<td>Extended encoding type.</td>
+				</tr>
+				<tr>
+					<td align="middle" colSpan="2">Followed by any of:</td>
+					<td>　</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>k</td>
+					<td>Substitute keyword.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>v</td>
+					<td>Substitute value.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>l</td>
+					<td>Generate lockers name.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>o</td>
+					<td>Checkout literally - don't expand keywords.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>L</td>
+					<td>Generate Unix line endings on checkout.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>z</td>
+					<td>Compress deltas in RCS file.</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-l [rev]</td>
+					<td>Lock revision (latest revision on branch, latest 
+					revision on trunk if omitted). DEPRECATED - USE 'edit -c'</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-m rev:msg</td>
+					<td>Replace revision's log message.</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-o range</td>
+					<td>Physically delete (outdate) specified range of 
+					revisions:</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>rev1:rev2</td>
+					<td>Between rev1 and rev2, including rev1 and rev2.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>rev1::rev2</td>
+					<td>Between rev1 and rev2, excluding rev1 and rev2.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>rev:</td>
+					<td>rev and following revisions on the same branch.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>rev::</td>
+					<td>After rev on the same branch.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>:rev</td>
+					<td>rev and previous revisions on the same branch.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>::rev</td>
+					<td>Before rev on the same branch.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>rev</td>
+					<td>Just rev.</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-q</td>
+					<td>Run quietly.</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-t [file]</td>
+					<td>Get descriptive text from file (stdin if omitted).</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-t-string</td>
+					<td>Set descriptive text.</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-u [rev]</td>
+					<td>Unlock the revision (latest revision on branch, latest 
+					revision on trunk if omitted).</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+	<h3><a name="annotate">annotate</a></h3>
+	<div id="codeblock"><code>cvs annotate [-lRf] [-r rev] [-D date] [files...]</code></div> </p>
+	<ul>
+		<div>
+			<table id="table3">
+				<tr>
+					<td>-l</td>
+					<td>Local directory only, no recursion.</td>
+				</tr>
+				<tr>
+					<td>-R</td>
+					<td>Process directories recursively.</td>
+				</tr>
+				<tr>
+					<td>-f</td>
+					<td>Use head revision if tag/date not found.</td>
+				</tr>
+				<tr>
+					<td>-r rev</td>
+					<td>Annotate file as of specified revision/tag.</td>
+				</tr>
+				<tr>
+					<td>-D date</td>
+					<td>Annotate file as of specified date.</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+	<p>More info at <a class="nonexistent" href="http://www.cvsnt.org/wiki/CvsChapter87">
+	CvsChapter87</a>. </p>
+	<h3><a name="chacl">chacl</a></h3>
+	<div id="codeblock"><code>cvs chacl -R [-r tag] {user|default}:[{[r][w][c]|[n]}] 
+	[directory...]</code></div> 
+	<p>　</p>
+	<ul>
+		<div>
+			<table id="table4">
+				<tr>
+					<td>-R</td>
+					<td>Recursively set permissions</td>
+				</tr>
+				<tr>
+					<td>-r tag</td>
+					<td>Set permissions on specific branch</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+	<h3><a name="checkout">checkout</a></h3>
+	<div id="codeblock"><code>cvs checkout [-ANPRcflnps] [-r rev] [-D date] [-d dir] [-j rev1] 
+	[-j rev2] [-k kopt] modules...</code></div> </p>
+	<ul>
+		<div>
+			<table id="table5">
+				<tr>
+					<td>-A</td>
+					<td>Reset any sticky tags/date/kopts.</td>
+				</tr>
+				<tr>
+					<td>-N</td>
+					<td>Don't shorten module paths if -d specified.</td>
+				</tr>
+				<tr>
+					<td>-P</td>
+					<td>Prune empty directories.</td>
+				</tr>
+				<tr>
+					<td>-R</td>
+					<td>Process directories recursively.</td>
+				</tr>
+				<tr>
+					<td>-c</td>
+					<td>Show the contents of the CVSROOT/modules file.</td>
+				</tr>
+				<tr>
+					<td>-f</td>
+					<td>Force a head revision match if tag/date not found.</td>
+				</tr>
+				<tr>
+					<td>-l</td>
+					<td>Local directory only, not recursive.</td>
+				</tr>
+				<tr>
+					<td>-n</td>
+					<td>Do not run module program (if any).</td>
+				</tr>
+				<tr>
+					<td>-p</td>
+					<td>Check out files to standard output (avoids stickiness).</td>
+				</tr>
+				<tr>
+					<td>-s</td>
+					<td>Like -c, but include module status.</td>
+				</tr>
+				<tr>
+					<td>-r rev</td>
+					<td>Check out revision or tag. (implies -P) (is sticky)</td>
+				</tr>
+				<tr>
+					<td>-D date</td>
+					<td>Check out revisions as of date. (implies -P) (is sticky)</td>
+				</tr>
+				<tr>
+					<td>-d dir</td>
+					<td>Check out into dir instead of module name.</td>
+				</tr>
+				<tr>
+					<td>-k kopt</td>
+					<td>Use RCS kopt -k option on checkout. (is sticky)</td>
+				</tr>
+				<tr>
+					<td>-j rev</td>
+					<td>Merge in changes made between current revision and rev.</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+	<h3><a name="chown">chown</a></h3>
+	<div id="codeblock"><code>cvs chown user directory...</code></div> </p>
+	<h3><a name="commit">commit</a></h3>
+	<div id="codeblock"><code>cvs commit [-nRlf] [-m msg | -F logfile] [-r rev] files...</code></div>
+	</p>
+	<ul>
+		<div>
+			<table id="table6">
+				<tr>
+					<td>-D</td>
+					<td>Assume all files are touched &amp; send to the server for 
+					checking</td>
+				</tr>
+				<tr>
+					<td>-n</td>
+					<td>Do not run the module program (if any).</td>
+				</tr>
+				<tr>
+					<td>-R</td>
+					<td>Process directories recursively.</td>
+				</tr>
+				<tr>
+					<td>-l</td>
+					<td>Local directory only (not recursive).</td>
+				</tr>
+				<tr>
+					<td>-f</td>
+					<td>Force the file to be committed; disables recursion.</td>
+				</tr>
+				<tr>
+					<td>-F logfile</td>
+					<td>Read the log message from file.</td>
+				</tr>
+				<tr>
+					<td>-r rev</td>
+					<td>Commit to this branch or trunk revision.</td>
+				</tr>
+				<tr>
+					<td>-c</td>
+					<td>Check for valid edits before committing.</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+	<h3><a name="diff">diff</a></h3>
+	<div id="codeblock"><code>cvs diff [-lNR] [rcsdiff-options] [[-r rev1 | -D date1] [-r rev2 
+	| -D date2]] [files...]</code></div> </p>
+	<ul>
+		<div>
+			<table id="table7">
+				<tr>
+					<td>-l</td>
+					<td>Local directory only, not recursive.</td>
+				</tr>
+				<tr>
+					<td>-R</td>
+					<td>Process directories recursively.</td>
+				</tr>
+				<tr>
+					<td>-D d1</td>
+					<td>Diff revision for date against working file.</td>
+				</tr>
+				<tr>
+					<td>-D d2</td>
+					<td>Diff rev1/date1 against date2.</td>
+				</tr>
+				<tr>
+					<td>-N</td>
+					<td>Include diffs for added and removed files.</td>
+				</tr>
+				<tr>
+					<td>-r rev1</td>
+					<td>Diff revision for rev1 against working file.</td>
+				</tr>
+				<tr>
+					<td>-r rev2</td>
+					<td>Diff rev1/date1 against rev2.</td>
+				</tr>
+				<tr>
+					<td>--ifdef=arg</td>
+					<td>Output diffs in ifdef format.</td>
+				</tr>
+				<tr>
+					<td>-c</td>
+					<td>Context diff</td>
+				</tr>
+				<tr>
+					<td>-u</td>
+					<td>Unified diff</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+	<h3><a name="edit">edit</a></h3>
+	<div id="codeblock"><code>cvs edit [-cflR] [files...]</code></div> </p>
+	<ul>
+		<div>
+			<table id="table8">
+				<tr>
+					<td>-c</td>
+					<td>Check that working files are unedited.</td>
+				</tr>
+				<tr>
+					<td>-f</td>
+					<td>Force edit if working files are edited (default).</td>
+				</tr>
+				<tr>
+					<td>-l</td>
+					<td>Local directory only, not recursive.</td>
+				</tr>
+				<tr>
+					<td>-R</td>
+					<td>Process directories recursively (default).</td>
+				</tr>
+				<tr>
+					<td>-a</td>
+					<td>Specify what actions for temporary watch, one of 
+					edit,unedit,commit,all,none</td>
+				</tr>
+				<tr>
+					<td>-z</td>
+					<td>Store base revisions in compressed (.gz) format.</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+	<h3><a name="editors">editors</a></h3>
+	<div id="codeblock"><code>cvs editors [-lR] [files...]</code></div> </p>
+	<ul>
+		<div>
+			<table id="table9">
+				<tr>
+					<td>-l</td>
+					<td>Process this directory only (not recursive).</td>
+				</tr>
+				<tr>
+					<td>-R</td>
+					<td>Process directories recursively.</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+	<h3><a name="export">export</a></h3>
+	<div id="codeblock"><code>cvs export [-NRfln] [-r rev] [-D date] [-d dir] [-k kopt] 
+	module...</code></div> </p>
+	<ul>
+		<div>
+			<table id="table10">
+				<tr>
+					<td>-N</td>
+					<td>Don't shorten module paths if -d specified.</td>
+				</tr>
+				<tr>
+					<td>-f</td>
+					<td>Force a head revision match if tag/date not found.</td>
+				</tr>
+				<tr>
+					<td>-l</td>
+					<td>Local directory only, not recursive.</td>
+				</tr>
+				<tr>
+					<td>-R</td>
+					<td>Process directories recursively (default).</td>
+				</tr>
+				<tr>
+					<td>-n</td>
+					<td>Do not run module program (if any).</td>
+				</tr>
+				<tr>
+					<td>-r rev</td>
+					<td>Export revision or tag.</td>
+				</tr>
+				<tr>
+					<td>-D date</td>
+					<td>Export revisions as of date.</td>
+				</tr>
+				<tr>
+					<td>-d dir</td>
+					<td>Export into dir instead of module name.</td>
+				</tr>
+				<tr>
+					<td>-k kopt</td>
+					<td>Use RCS kopt -k option on checkout.</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+	<h3><a name="history">history</a></h3>
+	<div id="codeblock"><code>cvs history [-report] [-flags] [-options args] [files...]</code></div>
+	</p>
+	<ul>
+		<div>
+			<table id="table11">
+				<tr>
+					<td>Reports:</td>
+				</tr>
+				<tr>
+					<td>-T</td>
+					<td>Produce report on all TAGs.</td>
+				</tr>
+				<tr>
+					<td>-c</td>
+					<td>Committed (Modified) files.</td>
+				</tr>
+				<tr>
+					<td>-o</td>
+					<td>Checked out modules.</td>
+				</tr>
+				<tr>
+					<td>-m module</td>
+					<td>Look for specified module (repeatable)</td>
+				</tr>
+				<tr>
+					<td>-x [type]</td>
+					<td>[TOEFWUCGMAR] Extract by record type .</td>
+				</tr>
+				<tr>
+					<td>-e</td>
+					<td>Everything (same as -x, but all record types).</td>
+				</tr>
+				<tr>
+					<td>Flags:</td>
+				</tr>
+				<tr>
+					<td>-a</td>
+					<td>All users (Default is self).</td>
+				</tr>
+				<tr>
+					<td>-l</td>
+					<td>Last modified (committed or modified report).</td>
+				</tr>
+				<tr>
+					<td>-w</td>
+					<td>Working directory must match.</td>
+				</tr>
+				<tr>
+					<td>Options:</td>
+				</tr>
+				<tr>
+					<td>-D date</td>
+					<td>Since date (Many formats).</td>
+				</tr>
+				<tr>
+					<td>-b str</td>
+					<td>Back to record with str in module/file/repos field.</td>
+				</tr>
+				<tr>
+					<td>-f file</td>
+					<td>Specified file (same as command line) (repeatable).</td>
+				</tr>
+				<tr>
+					<td>-n module</td>
+					<td>In module (repeatable).</td>
+				</tr>
+				<tr>
+					<td>-p repo</td>
+					<td>In repository (repeatable).</td>
+				</tr>
+				<tr>
+					<td>-r rev</td>
+					<td>Since rev or tag (looks inside RCS files!).</td>
+				</tr>
+				<tr>
+					<td>-t tag</td>
+					<td>Since tag record placed in history file (by anyone).</td>
+				</tr>
+				<tr>
+					<td>-u user</td>
+					<td>For user name (repeatable).</td>
+				</tr>
+				<tr>
+					<td>-z timezone</td>
+					<td>Output for time zone &amp;lt;&amp;gt; (e.g. -z -0700).</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+	<h3><a name="import">import</a></h3>
+	<div id="codeblock"><code>cvs import [C] [-d] [-f] [-k subst] [-I ign] [-m msg] [-b branch] 
+	[-W spec] [-n] repository [vendor-tag] [release-tags...]</code></div> </p>
+	<ul>
+		<div>
+			<table id="table12">
+				<tr>
+					<td>-C</td>
+					<td>Create CVS directories while importing.</td>
+				</tr>
+				<tr>
+					<td>-d</td>
+					<td>Use the file's modification time as the time of import.</td>
+				</tr>
+				<tr>
+					<td>-f</td>
+					<td>Overwrite existing release tags.</td>
+				</tr>
+				<tr>
+					<td>-k sub</td>
+					<td>Set default RCS keyword substitution mode.</td>
+				</tr>
+				<tr>
+					<td>-I ign</td>
+					<td>More files to ignore (! to reset).</td>
+				</tr>
+				<tr>
+					<td>-b bra</td>
+					<td>Vendor branch id.</td>
+				</tr>
+				<tr>
+					<td>-m msg</td>
+					<td>Log message.</td>
+				</tr>
+				<tr>
+					<td>-W spec</td>
+					<td>Wrappers specification line.</td>
+				</tr>
+				<tr>
+					<td>-n</td>
+					<td>Don't create vendor tag.</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+	<h3><a name="init">init</a></h3>
+	<div id="codeblock"><code>cvs init</code></div> </p>
+	<h3><a name="info">info</a></h3>
+	<div id="codeblock"><code>cvs info [protocol]</code></div> </p>
+	<h3><a name="log">log</a></h3>
+	<div id="codeblock"><code>cvs log [-lRhtNb] [-r[revisions]] [-d dates] [-s states] 
+	[-w[logins]] [files...]</code></div> </p>
+	<ul>
+		<div>
+			<table id="table13">
+				<tr>
+					<td align="left" colSpan="2">-l</td>
+					<td>Local directory only, no recursion.</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-R</td>
+					<td>Only print name of RCS file.</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-h</td>
+					<td>Only print header.</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-t</td>
+					<td>Only print header and descriptive text.</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-N</td>
+					<td>Do not list tags.</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-b</td>
+					<td>Only list revisions on the default branch.</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-r [revisions]</td>
+					<td>Specify revision(s)s to list:</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>rev1:rev2</td>
+					<td>Between rev1 and rev2, including rev1 and rev2.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>rev1:rev2</td>
+					<td>Between rev1 and rev2, excluding rev1 and rev2.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>rev:</td>
+					<td>rev and following revisions on the same branch.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>rev::</td>
+					<td>After rev on the same branch.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>:rev</td>
+					<td>rev and previous revisions on the same branch.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>::rev</td>
+					<td>Before rev on the same branch.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>rev</td>
+					<td>Just rev.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>branch</td>
+					<td>All revisions on the branch.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>branch.</td>
+					<td>The last revision on the branch.</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-d dates</td>
+					<td>Specify dates (D1&lt;D2 for range, D for latest before).</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-s states</td>
+					<td>Only list revisions with specified states.</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-w [logins]</td>
+					<td>Only list revisions checked in by specified logins.</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-x</td>
+					<td>cvsnt 2.x compatible output (default).</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-X</td>
+					<td>cvs 1.x/RCS 5.7 compatible output.</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+	<h3><a name="login">login</a></h3>
+	<div id="codeblock"><code>cvs login</code></div> </p>
+	<h3><a name="logout">logout</a></h3>
+	<div id="codeblock"><code>cvs logout</code></div> </p>
+	<h3><a name="ls">ls</a></h3>
+	<div id="codeblock"><code>cvs ls [-q] [-e] [-l] [-R] [-r rev] [-D date] [modules...]</code></div>
+	</p>
+	<ul>
+		<div>
+			<table id="table14">
+				<tr>
+					<td>-q</td>
+					<td>Quieter Output.</td>
+				</tr>
+				<tr>
+					<td>-e</td>
+					<td>Display in CVS/Entries format.</td>
+				</tr>
+				<tr>
+					<td>-l</td>
+					<td>Display all details.</td>
+				</tr>
+				<tr>
+					<td>-R</td>
+					<td>List recursively.</td>
+				</tr>
+				<tr>
+					<td>-r rev</td>
+					<td>Show files with revision or tag.</td>
+				</tr>
+				<tr>
+					<td>-D date</td>
+					<td>Show files from date.</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+	<h3><a name="lsacl">lsacl</a></h3>
+	<div id="codeblock"><code>cvs lsacl [directory...]</code></div> </p>
+	<h3><a name="passwd">passwd</a></h3>
+	<div id="codeblock"><code>cvs passwd [-a] [-x] [-X] [-r real_user] [-R] [-D domain] 
+	[username]</code></div> </p>
+	<ul>
+		<div>
+			<table id="table15">
+				<tr>
+					<td>-a</td>
+					<td>Add user.</td>
+				</tr>
+				<tr>
+					<td>-x</td>
+					<td>Disable user.</td>
+				</tr>
+				<tr>
+					<td>-X</td>
+					<td>Delete user.</td>
+				</tr>
+				<tr>
+					<td>-r</td>
+					<td>Alias username to real system user.</td>
+				</tr>
+				<tr>
+					<td>-R</td>
+					<td>Remove alias to real system user.</td>
+				</tr>
+				<tr>
+					<td>-D</td>
+					<td>Use domain password (Win32 only).</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+	<h3><a name="authserver">authserver</a></h3>
+	<div id="codeblock"><code>cvs authserver</code></div> </p>
+	<p>Normally invoked by a cvs client on a remote machine. </p>
+	<h3><a name="rannotate">rannotate</a></h3>
+	<div id="codeblock"><code>cvs rannotate [-lRf] [-r rev] [-D date] [files...]</code></div> </p>
+	<ul>
+		<div>
+			<table id="table16">
+				<tr>
+					<td>-l</td>
+					<td>Local directory only, no recursion.</td>
+				</tr>
+				<tr>
+					<td>-R</td>
+					<td>Process directories recursively.</td>
+				</tr>
+				<tr>
+					<td>-f</td>
+					<td>Use head revision if tag/date not found.</td>
+				</tr>
+				<tr>
+					<td>-r rev</td>
+					<td>Annotate file as of specified revision/tag.</td>
+				</tr>
+				<tr>
+					<td>-D date</td>
+					<td>Annotate file as of specified date.</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+	<h3><a name="rdiff">rdiff</a></h3>
+	<div id="codeblock"><code>cvs rdiff [-flR] [-c|-u] [-s|-t] [-V %d] -r rev|-D date [-r rev2 
+	| -D date2] modules...</code></div> </p>
+	<ul>
+		<div>
+			<table id="table17">
+				<tr>
+					<td>-f</td>
+					<td>Force a head revision match if tag/date not found.</td>
+				</tr>
+				<tr>
+					<td>-l</td>
+					<td>Local directory only, not recursive.</td>
+				</tr>
+				<tr>
+					<td>-R</td>
+					<td>Process directories recursively.</td>
+				</tr>
+				<tr>
+					<td>-c</td>
+					<td>Context diffs (default).</td>
+				</tr>
+				<tr>
+					<td>-u</td>
+					<td>Unidiff format.</td>
+				</tr>
+				<tr>
+					<td>-s</td>
+					<td>Short patch - one line per file.</td>
+				</tr>
+				<tr>
+					<td>-t</td>
+					<td>Top two diffs - last change made to the file.</td>
+				</tr>
+				<tr>
+					<td>-D date</td>
+					<td>Date.</td>
+				</tr>
+				<tr>
+					<td>-r rev</td>
+					<td>Revision - symbolic or numeric.</td>
+				</tr>
+				<tr>
+					<td>-V vers</td>
+					<td>Use RCS Version &quot;vers&quot; for keyword expansion.</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+	<h3><a name="release">release</a></h3>
+	<div id="codeblock"><code>cvs release [-d [-f]] [-e] directories...</code></div> </p>
+	<ul>
+		<div>
+			<table id="table18">
+				<tr>
+					<td>-d</td>
+					<td>Delete the given directory.</td>
+				</tr>
+				<tr>
+					<td>-f</td>
+					<td>Delete the directory even if non-cvs files still exist.</td>
+				</tr>
+				<tr>
+					<td>-e</td>
+					<td>Only delete the administrative (CVS) directories.</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+	<h3><a name="remove">remove</a></h3>
+	<div id="codeblock"><code>cvs remove [-flR] [files...]</code></div> </p>
+	<ul>
+		<div>
+			<table id="table19">
+				<tr>
+					<td>-f</td>
+					<td>Delete the file before removing it.</td>
+				</tr>
+				<tr>
+					<td>-l</td>
+					<td>Process this directory only (not recursive).</td>
+				</tr>
+				<tr>
+					<td>-R</td>
+					<td>Process directories recursively.</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+	<h3><a name="rlog">rlog</a></h3>
+	<div id="codeblock"><code>cvs rlog [-lRhtSNb] [-r[revisions]] [-d dates] [-s states] 
+	[-w[logins]] [files...]</code></div> </p>
+	<ul>
+		<div>
+			<table id="table20">
+				<tr>
+					<td align="left" colSpan="2">-l</td>
+					<td>Local directory only, no recursion.</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-R</td>
+					<td>Only print name of RCS file.</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-h</td>
+					<td>Only print header.</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-t</td>
+					<td>Only print header and descriptive text.</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-N</td>
+					<td>Do not list tags.</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-b</td>
+					<td>Only list revisions on the default branch.</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-r [revisions]</td>
+					<td>Specify revision(s)s to list:</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>rev1:rev2</td>
+					<td>Between rev1 and rev2, including rev1 and rev2.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>rev1:rev2</td>
+					<td>Between rev1 and rev2, excluding rev1 and rev2.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>rev:</td>
+					<td>rev and following revisions on the same branch.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>rev::</td>
+					<td>After rev on the same branch.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>:rev</td>
+					<td>rev and previous revisions on the same branch.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>::rev</td>
+					<td>Before rev on the same branch.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>rev</td>
+					<td>Just rev.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>branch</td>
+					<td>All revisions on the branch.</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>branch.</td>
+					<td>The last revision on the branch.</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-d dates</td>
+					<td>Specify dates (D1&lt;D2 for range, D for latest before).</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-s states</td>
+					<td>Only list revisions with specified states.</td>
+				</tr>
+				<tr>
+					<td align="left" colSpan="2">-w [logins]</td>
+					<td>Only list revisions checked in by specified logins.</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+	<h3><a name="rtag">rtag</a></h3>
+	<div id="codeblock"><code>cvs rtag [-abdFflnR] [-r rev|-D date] tag modules...</code></div> </p>
+	<ul>
+		<div>
+			<table id="table21">
+				<tr>
+					<td>-a</td>
+					<td>Clear tag from removed files that would not otherwise be 
+					tagged.</td>
+				</tr>
+				<tr>
+					<td>-b</td>
+					<td>Make the tag a &quot;branch&quot; tag, allowing concurrent 
+					development.</td>
+				</tr>
+				<tr>
+					<td>-B</td>
+					<td>Allow branch tag to be moved/deleted.</td>
+				</tr>
+				<tr>
+					<td>-d</td>
+					<td>Delete the given tag.</td>
+				</tr>
+				<tr>
+					<td>-F</td>
+					<td>Move tag if it already exists.</td>
+				</tr>
+				<tr>
+					<td>-f</td>
+					<td>Force a head revision match if tag/date not found.</td>
+				</tr>
+				<tr>
+					<td>-l</td>
+					<td>Local directory only, not recursive.</td>
+				</tr>
+				<tr>
+					<td>-m desc</td>
+					<td>Describe tag.</td>
+				</tr>
+				<tr>
+					<td>-M</td>
+					<td>Create 'magic' branch.</td>
+				</tr>
+				<tr>
+					<td>-n</td>
+					<td>No execution of 'tag program'.</td>
+				</tr>
+				<tr>
+					<td>-R</td>
+					<td>Process directories recursively.</td>
+				</tr>
+				<tr>
+					<td>-r rev</td>
+					<td>Existing revision/tag.</td>
+				</tr>
+				<tr>
+					<td>-D date</td>
+					<td>Existing date.</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+	<h3><a name="server">server</a></h3>
+	<div id="codeblock"><code>cvs server</code></div> </p>
+	<h3><a name="status">status</a></h3>
+	<div id="codeblock"><code>cvs status [-vlR] [files...]</code></div> </p>
+	<ul>
+		<div>
+			<table id="table22">
+				<tr>
+					<td>-v</td>
+					<td>Verbose format; includes tag information for the file.</td>
+				</tr>
+				<tr>
+					<td>-l</td>
+					<td>Process this directory only (not recursive).</td>
+				</tr>
+				<tr>
+					<td>-R</td>
+					<td>Process directories recursively.</td>
+				</tr>
+				<tr>
+					<td>-q</td>
+					<td>Display a quick summary of each file (send more for 
+					increased terseness).</td>
+				</tr>
+				<tr>
+					<td>-x</td>
+					<td>cvsnt 2.x compatible output (default).</td>
+				</tr>
+				<tr>
+					<td>-X</td>
+					<td>cvs 1.x compatible output.</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+	<h3><a name="tag">tag</a></h3>
+	<div id="codeblock"><code>cvs tag [-bcdFflR] [-r rev|-D date] tag [files...]</code></div> </p>
+	<ul>
+		<div>
+			<table id="table23">
+				<tr>
+					<td>-b</td>
+					<td>Make the tag a &quot;branch&quot; tag, allowing concurrent 
+					development.</td>
+				</tr>
+				<tr>
+					<td>-B</td>
+					<td>Allow branch tag to be moved/deleted.</td>
+				</tr>
+				<tr>
+					<td>-c</td>
+					<td>Check that working files are unmodified.</td>
+				</tr>
+				<tr>
+					<td>-d</td>
+					<td>Delete the given tag.</td>
+				</tr>
+				<tr>
+					<td>-F</td>
+					<td>Move tag if it already exists.</td>
+				</tr>
+				<tr>
+					<td>-f</td>
+					<td>Force a head revision match if tag/date not found.</td>
+				</tr>
+				<tr>
+					<td>-l</td>
+					<td>Local directory only, not recursive.</td>
+				</tr>
+				<tr>
+					<td>-m</td>
+					<td>Describe tag.</td>
+				</tr>
+				<tr>
+					<td>-M desc</td>
+					<td>Create 'magic' tag.</td>
+				</tr>
+				<tr>
+					<td>-R</td>
+					<td>Process directories recursively.</td>
+				</tr>
+				<tr>
+					<td>-r rev</td>
+					<td>Existing revision/tag.</td>
+				</tr>
+				<tr>
+					<td>-D date</td>
+					<td>Existing date.</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+	<h3><a name="unedit">unedit</a></h3>
+	<div id="codeblock"><code>cvs unedit [-lR] [files...]</code></div> </p>
+	<ul>
+		<div>
+			<table id="table24">
+				<tr>
+					<td>-l</td>
+					<td>Local directory only, not recursive.</td>
+				</tr>
+				<tr>
+					<td>-R</td>
+					<td>Process directories recursively.</td>
+				</tr>
+				<tr>
+					<td>-u user</td>
+					<td>(administrators only) Unedit another user.</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+	<h3><a name="update">update</a></h3>
+	<div id="codeblock"><code>cvs update [-AP<a class="nonexistent" href="file:///wiki/CdflRp">CdflRp</a>] 
+	[-k kopt] [-r rev] [-D date] [-j rev] [-I ign] [-W spec] [files...]</code></div>
+	</p>
+	<ul>
+		<div>
+			<table id="table25">
+				<tr>
+					<td>-A</td>
+					<td>Reset any sticky tags/date/kopts.</td>
+				</tr>
+				<tr>
+					<td>-P</td>
+					<td>Prune empty directories.</td>
+				</tr>
+				<tr>
+					<td>-C</td>
+					<td>Overwrite locally modified files with clean repository 
+					copies.</td>
+				</tr>
+				<tr>
+					<td>-d</td>
+					<td>Build directories, like checkout does.</td>
+				</tr>
+				<tr>
+					<td>-f</td>
+					<td>Force a head revision match if tag/date not found.</td>
+				</tr>
+				<tr>
+					<td>-l</td>
+					<td>Local directory only, no recursion.</td>
+				</tr>
+				<tr>
+					<td>-R</td>
+					<td>Process directories recursively.</td>
+				</tr>
+				<tr>
+					<td>-p</td>
+					<td>Send updates to standard output (avoids stickiness).</td>
+				</tr>
+				<tr>
+					<td>-k kopt</td>
+					<td>Use RCS kopt -k option on checkout. (is sticky)</td>
+				</tr>
+				<tr>
+					<td>-r rev</td>
+					<td>Update using specified revision/tag (is sticky).</td>
+				</tr>
+				<tr>
+					<td>-D date</td>
+					<td>Set date to update from (is sticky).</td>
+				</tr>
+				<tr>
+					<td>-j rev</td>
+					<td>Merge in changes made between current revision and rev.</td>
+				</tr>
+				<tr>
+					<td>-b</td>
+					<td>-j option merges from branch point (old CVS behaviour)</td>
+				</tr>
+				<tr>
+					<td>-m</td>
+					<td>-j option merges from merge point (cvsnt default 
+					behaviour)</td>
+				</tr>
+				<tr>
+					<td>-I ign</td>
+					<td>More files to ignore (! to reset).</td>
+				</tr>
+				<tr>
+					<td>-W spec</td>
+					<td>Wrappers specification line.</td>
+				</tr>
+				<tr>
+					<td>-3</td>
+					<td>Produce 3-way conflict output.</td>
+				</tr>
+				<tr>
+					<td>-S</td>
+					<td>Force case-sensitive update on non case-sensitive 
+					systems.</td>
+				</tr>
+				<tr>
+					<td>-t</td>
+					<td>Update using last checkin time.</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+	<h3><a name="version">version</a></h3>
+	<div id="codeblock"><code>cvs version</code></div> </p>
+	<h3><a name="watch">watch</a></h3>
+	<div id="codeblock"><code>cvs watch [on|off|add|remove] [-lR] [-a action] [files...]</code></div>
+	</p>
+	<ul>
+		<div>
+			<table id="table26">
+				<tr>
+					<td>on/off</td>
+					<td>turn on/off read-only checkouts of files.</td>
+				</tr>
+				<tr>
+					<td>add/remove</td>
+					<td>add or remove notification on actions.</td>
+				</tr>
+				<tr>
+					<td>-l</td>
+					<td>(on/off/add/remove): Local directory only, not 
+					recursive.</td>
+				</tr>
+				<tr>
+					<td>-R</td>
+					<td>(on/off/add/remove): Process directories recursively.</td>
+				</tr>
+				<tr>
+					<td>-a</td>
+					<td>(add/remove): Specify what actions, one 
+					ofedit,unedit,commit,all,none</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+	<h3><a name="watchers">watchers</a></h3>
+	<div id="codeblock"><code>cvs watchers [-lR] [files...]</code></div> </p>
+	<ul>
+		<div>
+			<table id="table27">
+				<tr>
+					<td>-l</td>
+					<td>Process this directory only (not recursive).</td>
+				</tr>
+				<tr>
+					<td>-R</td>
+					<td>Process directories recursively.</td>
+				</tr>
+			</table>
+		</div>
+	</ul>
+
+    ]]> </content>
+
+</doc>
+

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+	<!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+	<isindexall>false</isindexall>
+	<indexfile>indexall.xml</indexfile>
+
+	<!-- 定义文档位置 -->
+	<topic>java</topic>
+	<catalog>tips</catalog>
+
+	<!-- 文档显示内容 -->
+    <title>Google API Taglib详解</title>
+    <pagename>Google API Taglib详解</pagename>
+	<content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+Google API Tablib <a href="http://sourceforge.net/project/showfiles.php?group_id=90444">开源项目网址</a><br>
+这里主要讲的是1.0.1版本的标记。
+<h3>cachedPage</h3>
+显示Google缓存的页面
+<div id="tableblock">
+<table cellspacing="0">
+<tr>
+<th width="25%">属性名</th><th width="25%">是否必须</th><th width="50%">注释</th>
+</tr>
+<tr>
+<td>key</td><td>否</td><td>Goole API的授权码</td>
+</tr>
+</table>
+</div>
+<h3>element</h3>
+显示Google根据搜索属性进行当前搜索到的结果集中的元素，即GoogleSearchResultElement
+<div id="tableblock">
+<table cellspacing="0">
+<tr>
+<th nowrap>属性名</th><th nowrap>是否必须</th><th>注释</th>
+</tr>
+<tr>
+<td>css</td><td>否</td><td>生成HTML标记中的class="css"属性</td>
+</tr>
+<tr>
+<td>name</td><td>是</td><td>元素的名称：
+<ul>
+<li>title-url - 显示带超连接的标题</li>
+<li>url - 搜索到网页的连接</li>
+<li>title - 搜索到网页的标题</li>
+<li>snippet - 显示网页片断</li>
+<li>summary - 搜索的列表在ODP目录建立了一个列表，这个标记显示ODP摘要</li>
+<li>directoryCategoryName - Google 类别名</li>
+<li>staticQuery - 查询到的网页名</li>
+<li>cachedQuery - 缓存查询</li>
+<li>cachedSize - Google 缓存网页的大小</li>
+<li>relatedQuery - 类似网页</li>
+<li>hostName - 如果指定了站点过滤，这里将显示查询的站点</li>
+<li>directoryTitle - 如果存在ODP目录的标题则显示</li>
+<li>directoryCategoryName - 当前ODP分类中的ODP目录名称</li>
+<li>directoryCategoryEncoding - 指定目录信息的编码</li>
+<li>relatedInformationPresent - Boolean indicating that the "related:" query term is supported for this URL. </li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>style</td><td>否</td><td>生成HTML标记中的style="style-define"属性</td>
+</tr>
+</tr>
+<tr>
+<td>target</td><td>否</td><td>生成HTML标记中的target="目录窗口"属性，针对超连接</td>
+</tr>
+</table>
+</div>
+<h3>endIndex</h3>
+显示Google当前搜索中的最后一条记录的编号
+<h3>estimatedTotal</h3>
+显示Google当前搜索中的结果集的大小，即共搜索到多少记录
+<h3>next</h3>
+下一组结果集的导航，如果为最后一页，此项自动隐藏
+<div id="tableblock">
+<table cellspacing="0">
+<tr>
+<th>属性名</th><th>是否必须</th><th>注释</th>
+</tr>
+<tr>
+<td>css</td><td>否</td><td>生成HTML标记中的class="css"属性</td>
+</tr>
+<tr>
+<td>style</td><td>否</td><td>生成HTML标记中的style="style-define"属性</td>
+</tr>
+<tr>
+<td>target</td><td>否</td><td>生成HTML标记中的target="目录窗口"属性，针对超连接</td>
+</tr>
+</table>
+</div>
+
+<h3>next</h3>
+上一组结果集的导航，如果为第一页，此项自动隐藏
+<div id="tableblock">
+<table cellspacing="0">
+<tr>
+<th>属性名</th><th>是否必须</th><th>注释</th>
+</tr>
+<tr>
+<td>css</td><td>否</td><td>生成HTML标记中的class="css"属性</td>
+</tr>
+<tr>
+<td>style</td><td>否</td><td>生成HTML标记中的style="style-define"属性</td>
+</tr>
+<tr>
+<td>target</td><td>否</td><td>生成HTML标记中的target="目录窗口"属性，针对超连接</td>
+</tr>
+</table>
+</div>
+<h3>search</h3>
+执行Google搜索，查询内容可以在标记体内指定，也可以使用Url参数"<i>q</i>"来传递
+<div id="tableblock">
+<table cellspacing="0">
+<tr>
+<th nowrap>属性名</th><th nowrap>是否必须</th><th>注释</th><th>默认值</th>
+</tr>
+<tr>
+<td>cache</td><td>否</td><td>是否缓存Google搜索结果</td><td>true</td>
+</tr>
+<tr>
+<td>filter</td><td>否</td><td>设置去除相关结果</td><td>true</td>
+</tr>
+<tr>
+<td>key</td><td>否</td><td>Goole API的授权码</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td>lr</td><td>否</td><td>查询的语言</td><td>latin1</td>
+</tr>
+<tr>
+<td>maxResults</td><td>否</td><td>每页显示的记录数，最多为10</td><td>10</td>
+</tr>
+<tr>
+<td>restrict</td><td>否</td><td>筛选条件</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td>safeSearch</td><td>否</td><td>去除成人结果</td><td>false</td>
+</tr>
+<tr>
+<td>site</td><td>否</td><td>设置搜索的站点，如果指定则只在此站点内搜索</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td>start</td><td>否</td><td>显示的起始记录的编号</td><td>0</td>
+</tr>
+<tr>
+<td>type</td><td>否</td><td>指定搜索文档类型，如PDF，DOC等，参见<a href="http://www.google.com/help/faq_filetypes.html">Google文档类型</a></td><td>&nbsp;</td>
+</tr>
+</table>
+</div>
+<h3>searchComments</h3>
+显示Google当前搜索说明
+<h3>searchQuery</h3>
+显示Google搜索的字符串
+<div id="tableblock">
+<table cellspacing="0">
+<tr>
+<th>属性名</th><th>是否必须</th><th>注释</th>
+</tr>
+<tr>
+<td>style</td><td>否</td><td>生成HTML标记中的style="style-define"属性</td>
+</tr>
+</table>
+</div>
+<h3>searchResult</h3>
+开始Google搜索结果集的循环
+<h3>searchTime</h3>
+搜索使用的时间
+<h3>searchTips</h3>
+显示Google当前搜索的搜索技巧？（Displays the search tips of the current search.）
+<h3>spelling</h3>
+执行Google的拼写建议查询
+<div id="tableblock">
+<table cellspacing="0">
+<tr>
+<th>属性名</th><th>是否必须</th><th>注释</th>
+</tr>
+<tr>
+<td>key</td><td>否</td><td>Goole API的授权码</td>
+</tr>
+</table>
+</div>
+<h3>startIndex</h3>
+当前页记录的起始位置
+<p>
+
+       ]]> </content>
+
+</doc>
+

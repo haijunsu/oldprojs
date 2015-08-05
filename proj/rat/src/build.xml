@@ -1,0 +1,483 @@
+<?xml version="1.0"?>
+
+<project name="rat" basedir="." default="usage">
+
+	<!-- project name -->
+	<property name="name" value="rat" />
+	<property file="${basedir}/build.properties" />
+    <import file="properties.xml"/>
+
+
+	<!-- ============================================================== -->
+	<!-- config ant task properties                                     -->
+	<!-- ============================================================== -->
+	<!-- java files -->
+	<property name="java.src.dir" value="${basedir}/java" />
+	<!-- test java files -->
+	<property name="test.src.dir" value="${basedir}/test" />
+	<!-- jsp/html files, web.xml and other web config files -->
+	<property name="web.dir" value="${basedir}/web" />
+	<!-- Config folder -->
+	<property name="config.dir" value="${basedir}/config" />
+	<!-- Config folder -->
+	<property name="config.dir" value="${basedir}/config" />
+	<!-- datamodel folder -->
+	<property name="datamodel.dir" value="${config.dir}/datamodel" />
+	<!-- properties folder -->
+	<property name="prop.dir" value="${config.dir}/properties" />
+
+	<!-- deploy path -->
+	<property name="build.dir" value="${basedir}/../build" />
+	<!-- complie output class path -->
+	<property name="classes.dir" value="${build.dir}/classes" />
+	<!-- Generate srouce path -->
+	<property name="gensrc.dir" value="${build.dir}/gensrc" />
+	<!-- web root path -->
+	<property name="deploy.dir" value="${build.dir}/webroot" />
+	<!-- dist war path -->
+	<property name="war.dir" value="${basedir}/../dist" />
+
+	<!-- tomcat properties -->
+	<property name="tomcat.manager.url" value="http://localhost:8080/manager" />
+	<property name="tomcat.manager.username" value="admin" />
+	<property name="tomcat.manager.password" value="admin" />
+
+	<!-- Hibernate properties file -->
+	<property name="hibernate.cfg.file" value="${basedir}/hibernate.properties" />
+
+	<!-- ============================================================== -->
+	<!-- config class path                                              -->
+	<!-- ============================================================== -->
+	<path id="apache-common-classpath">
+		<!-- apache common classpath -->
+		<fileset dir="${3rdparty.apache.common.home}/commons-collections-3.2">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="${3rdparty.apache.common.home}/commons-configuration-1.3">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${3rdparty.apache.common.home}/commons-email-1.0">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${3rdparty.apache.common.home}/commons-httpclient-3.0.1">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${3rdparty.apache.common.home}/commons-lang-2.2">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${3rdparty.apache.common.home}/commons-beanutils-1.7.0">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<path id="tomcat-classpath">
+		<!-- We need the servlet API classes:        -->
+		<!--   for Tomcat 4.1 use servlet.jar        -->
+		<!--   for Tomcat 5.0 use servlet-api.jar    -->
+		<fileset dir="${tomcat.home}/common/lib">
+			<include name="servlet*.jar" />
+		</fileset>
+		<fileset dir="${tomcat.home}/server/lib">
+			<include name="*ant.jar" />
+		</fileset>
+	</path>
+
+	<path id="xDoclet-classpath">
+		<fileset dir="${3rdparty.xdoclet.home}/lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<path id="hibernate-classpath">
+		<pathelement path="${classes.dir}" />
+		<pathelement location="${3rdparty.hibernate.home}/hibernate3.jar" />
+		<pathelement location="${3rdparty.hibernate.home}/lib/commons-logging-1.0.4.jar" />
+		<pathelement location="${3rdparty.hibernate.home}/lib/log4j-1.2.11.jar" />
+		<pathelement location="${3rdparty.hibernate.home}/lib/dom4j-1.6.1.jar" />
+		<pathelement location="${3rdparty.hibernate.home}/lib/commons-collections-2.1.1.jar" />
+
+		<fileset dir="${3rdparty.hibernate.home}/tools">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<path id="struts-classpath">
+		<fileset dir="${3rdparty.struts.home}/lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<path id="spring-classpath">
+		<fileset dir="${3rdparty.spring.home}/dist">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<path id="opencsv-classpath">
+		<pathelement location="${3rdparty.opencsv.home}/deploy/opencsv-1.7.jar" />
+	</path>
+
+	<path id="jdbc-classpath">
+		<pathelement location="${3rdparty.mysql.home}/mysql-connector-java-5.0.4-bin.jar" />
+	</path>
+
+	<path id="master-classpath">
+		<!-- complie output path -->
+		<pathelement path="${classes.dir}" />
+		<path refid="apache-common-classpath" />
+		<path refid="tomcat-classpath" />
+		<path refid="hibernate-classpath" />
+		<path refid="struts-classpath" />
+		<path refid="spring-classpath" />
+		<path refid="opencsv-classpath" />
+		<path refid="xDoclet-classpath" />
+		<path refid="jdbc-classpath" />
+	</path>
+
+
+
+	<!-- ============================================================== -->
+	<!-- usage tasks                                                    -->
+	<!-- ============================================================== -->
+	<target name="usage">
+		<echo message="" />
+		<echo message="${name} build file" />
+		<echo message="-----------------------------------" />
+		<echo message="" />
+		<echo message="Available targets are:" />
+		<echo message="" />
+		<echo message="build          --> Build the application" />
+		<echo message="genhbmxml      --> Generate mapping documents" />
+		<echo message="initdb         --> Initialize database" />
+		<echo message="properties   --> Convert resources file to ascii format" />
+		<echo message="deployjsp      --> Deploy html files to build directory" />
+		<echo message="deploy         --> Deploy application as directory" />
+		<echo message="deploywar      --> Deploy application as a WAR file" />
+		<echo message="install        --> Install application in Tomcat" />
+		<echo message="reload         --> Reload application in Tomcat" />
+		<echo message="start          --> Start Tomcat application" />
+		<echo message="stop           --> Stop Tomcat application" />
+		<echo message="list           --> List Tomcat applications" />
+		<echo message="" />
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Initialise                                                          -->
+	<!-- =================================================================== -->
+	<target name="init" description="initialise base properties">
+		<tstamp>
+			<format property="build.time" pattern="yyyy-MM-dd.HH.mm" />
+		</tstamp>
+		<mkdir dir="${gensrc.dir}" />
+		<mkdir dir="${build.dir}/docs" />
+		<mkdir dir="${build.dir}/ddl" />
+		<mkdir dir="${deploy.dir}" />
+		<mkdir dir="${classes.dir}/properties" />
+		<mkdir dir="${classes.dir}/com/navy/app/rat/enums" />
+		<copy tofile="${classes.dir}/log4j.properties" file="${config.dir}/log4j.properties">
+		</copy>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- convert resources file to ascii format                              -->
+	<!-- =================================================================== -->
+	<target name="properties" description="convert resources file to ascii format">
+		<echo>+-----------------------------------------------+</echo>
+		<echo>| R U N N I N G P R O P E R T I E S             |</echo>
+		<echo>+-----------------------------------------------+</echo>
+		<delete>
+			<fileset dir="${classes.dir}/properties">
+				<include name="*.properties" />
+			</fileset>
+		</delete>
+		<native2ascii src="${prop.dir}" encoding="utf-8" dest="${classes.dir}/properties" />
+		<delete>
+			<fileset dir="${classes.dir}/com/navy/app/rat/enums">
+				<include name="*.properties" />
+			</fileset>
+		</delete>
+		<native2ascii src="${prop.dir}/enums" encoding="utf-8" dest="${classes.dir}/com/navy/app/rat/enums" />
+
+		<copy todir="${classes.dir}">
+			<fileset dir="${config.dir}">
+				<include name="*.properties" />
+				<include name="*.xml" />
+				<include name="context/*.xml" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Hibernate Tasks                                                     -->
+	<!-- =================================================================== -->
+	<target name="codegen-hbm" depends="init" description="Code gen by hibernate cfg files.">
+		<echo>+-----------------------------------------------+</echo>
+		<echo>| C O D E G E N - H B M                         |</echo>
+		<echo>+-----------------------------------------------+</echo>
+		<taskdef name="hibernatetool" classname="org.hibernate.tool.ant.HibernateToolTask" classpathref="hibernate-classpath" />
+		<hibernatetool destdir="${gensrc.dir}">
+			<classpath>
+				<path refid="jdbc-classpath" />
+			</classpath>
+			<configuration propertyfile="${datamodel.dir}/hibernate.properties">
+				<fileset dir="${datamodel.dir}">
+					<include name="**/*.hbm.xml" />
+				</fileset>
+			</configuration>
+			<hbm2java />
+			<hbm2cfgxml destdir="${build.dir}/ddl" />
+		</hibernatetool>
+
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- DOCs Tasks                                                           -->
+	<!-- =================================================================== -->
+	<target name="docs" depends="init" description="Init system database.">
+		<echo>+-----------------------------------------------+</echo>
+		<echo>| D O C   G E N E R A T E                       |</echo>
+		<echo>+-----------------------------------------------+</echo>
+		<mkdir dir="${build.dir}/docs/datamodel" />
+		<mkdir dir="${build.dir}/docs/api" />
+		<taskdef name="hibernatetool" classname="org.hibernate.tool.ant.HibernateToolTask" classpathref="hibernate-classpath" />
+		<hibernatetool destdir="${gensrc.dir}">
+			<classpath>
+				<path refid="jdbc-classpath" />
+			</classpath>
+			<configuration propertyfile="${datamodel.dir}/hibernate.properties">
+				<fileset dir="${datamodel.dir}">
+					<include name="**/*.hbm.xml" />
+				</fileset>
+			</configuration>
+			<hbm2doc destdir="${build.dir}/docs/datamodel" />
+		</hibernatetool>
+		<javadoc access="private" author="false" destdir="${build.dir}/docs/api" doctitle="${name} API" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="${doc.packagenames}" sourcepath="${java.src.dir}" splitindex="false" use="false" version="false">
+			<classpath refid="master-classpath" />
+		</javadoc>
+
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- SQL Tasks                                                           -->
+	<!-- =================================================================== -->
+	<target name="dbinit" depends="init" description="Init system database.">
+		<echo>+-----------------------------------------------+</echo>
+		<echo>| D B I N I T                                   |</echo>
+		<echo>+-----------------------------------------------+</echo>
+		<taskdef name="hibernatetool" classname="org.hibernate.tool.ant.HibernateToolTask" classpathref="hibernate-classpath" />
+		<hibernatetool destdir="${gensrc.dir}">
+			<classpath>
+				<path refid="jdbc-classpath" />
+			</classpath>
+			<configuration propertyfile="${datamodel.dir}/hibernate.properties">
+				<fileset dir="${datamodel.dir}">
+					<include name="**/*.hbm.xml" />
+				</fileset>
+			</configuration>
+			<hbm2ddl export="false" create="false" outputfilename="db.sql" destdir="${build.dir}/ddl" />
+		</hibernatetool>
+		<sql driver="${jdbc.driver.class}" url="${jdbc.url}" userid="${jdbc.user}" password="${jdbc.password}" src="${build.dir}/ddl/db.sql" classpathref="jdbc-classpath" onerror="continue" />
+	</target>
+
+	<!-- ============================================================== -->
+	<!-- complie java source to class                                   -->
+	<!-- ============================================================== -->
+	<target name="build" depends="init, properties, codegen-hbm" description="Compile main source tree java files">
+
+		<echo>+-----------------------------------------------+</echo>
+		<echo>| R U N N I N G J A V A C                       |</echo>
+		<echo>+-----------------------------------------------+</echo>
+
+		<mkdir dir="${classes.dir}" />
+		<javac destdir="${classes.dir}" source="1.4" target="1.4" debug="true" deprecation="false" optimize="false" failonerror="true">
+			<src path="${gensrc.dir}" />
+			<src path="${java.src.dir}" />
+			<classpath refid="master-classpath" />
+		</javac>
+		<copy todir="${classes.dir}/com/navy/app/${name}/entities">
+			<fileset dir="${datamodel.dir}">
+				<include name="**/*.hbm.xml" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- ============================================================== -->
+	<!-- Deploy html and jsp files to build directiory                  -->
+	<!-- ============================================================== -->
+	<target name="copyjsp" description="Deploy html files">
+		<echo>+-----------------------------------------------+</echo>
+		<echo>| C O P Y  J S P                                |</echo>
+		<echo>+-----------------------------------------------+</echo>
+		<copy todir="${deploy.dir}" preservelastmodified="true">
+			<fileset dir="${web.dir}">
+				<include name="**/*.*" />
+				<exclude name="WEB-INF/**/*.*" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- ============================================================== -->
+	<!-- Deploy files to build directiory                               -->
+	<!-- ============================================================== -->
+	<target name="deploy" depends="copyjsp, build, properties" description="Deploy application">
+		<echo>+-----------------------------------------------+</echo>
+		<echo>| R U N N I N G D E P L O Y                     |</echo>
+		<echo>+-----------------------------------------------+</echo>
+		<mkdir dir="${deploy.dir}/WEB-INF/classes" />
+		<copy todir="${deploy.dir}/WEB-INF" preservelastmodified="true">
+			<fileset dir="${web.dir}/WEB-INF">
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+		<copy todir="${deploy.dir}/WEB-INF/classes" preservelastmodified="true">
+			<fileset dir="${classes.dir}">
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+		<mkdir dir="${deploy.dir}/WEB-INF/lib" />
+		<copy todir="${deploy.dir}/WEB-INF/lib" preservelastmodified="true">
+
+			<fileset dir="${3rdparty.spring.home}/dist">
+				<include name="spring.jar" />
+			</fileset>
+			<fileset dir="${3rdparty.spring.home}/lib/hibernate">
+				<include name="hibernate3.jar" />
+			</fileset>
+			<fileset dir="${3rdparty.spring.home}/lib/jakarta-commons">
+				<include name="commons-dbcp.jar" />
+				<include name="commons-lang.jar" />
+				<include name="commons-pool.jar" />
+				<include name="commons-collections.jar" />
+			</fileset>
+			<fileset dir="${3rdparty.spring.home}/lib/asm">
+				<include name="*.jar" />
+			</fileset>
+			<fileset dir="${3rdparty.spring.home}/lib/aopalliance">
+				<include name="aopalliance.jar" />
+			</fileset>
+			<fileset dir="${3rdparty.spring.home}/lib/aspectj">
+				<include name="aspectjrt.jar" />
+				<include name="aspectjweaver.jar" />
+			</fileset>
+			<fileset dir="${3rdparty.spring.home}/lib/ehcache">
+				<include name="*.jar" />
+			</fileset>
+			<fileset dir="${3rdparty.spring.home}/lib/j2ee">
+				<include name="jta.jar" />
+				<include name="mail.jar" />
+				<include name="activation.jar" />
+			</fileset>
+			<fileset dir="${3rdparty.spring.home}/lib/dom4j">
+				<include name="jaxen-1.1-beta-7.jar" />
+				<include name="dom4j-1.6.1.jar" />
+			</fileset>
+			<fileset dir="${3rdparty.spring.home}/lib/cglib">
+				<include name="cglib-nodep-2.1_3.jar" />
+			</fileset>
+			<fileset dir="${3rdparty.spring.home}/lib/log4j">
+				<include name="log4j-1.2.14.jar" />
+			</fileset>
+			<fileset dir="${3rdparty.struts.home}/lib">
+				<include name="*.jar" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- ============================================================== -->
+	<!-- create a deployable war file                                   -->
+	<!-- ============================================================== -->
+	<target name="deploywar" depends="init, deploy" description="Deploy application as a WAR file">
+		<echo>+-----------------------------------------------+</echo>
+		<echo>| R U N N I N G D E P L O Y W A R               |</echo>
+		<echo>+-----------------------------------------------+</echo>
+		<mkdir dir="${war.dir}/${build.time}" />
+		<war destfile="${war.dir}/${build.time}/${name}.war" webxml="${deploy.dir}/WEB-INF/web.xml">
+			<fileset dir="${deploy.dir}">
+				<exclude name="**/web.xml" />
+				<include name="**/*.*" />
+			</fileset>
+		</war>
+		<!-- zip source files -->
+		<zip destfile="${war.dir}/${build.time}/${name}-java-src.zip">
+			<fileset dir="${java.src.dir}">
+				<include name="**/*.*" />
+			</fileset>
+		</zip>
+	</target>
+
+	<!-- ============================================================== -->
+	<!-- clear deploy directory                                         -->
+	<!-- ============================================================== -->
+	<target name="clean" description="clear all deploy files includes class files">
+		<echo>+-----------------------------------------------+</echo>
+		<echo>| R U N N I N G   C L E A N                     |</echo>
+		<echo>+-----------------------------------------------+</echo>
+		<delete dir="${build.dir}/classes" />
+		<delete dir="${build.dir}/ddl" />
+		<delete dir="${build.dir}/docs" />
+		<delete dir="${build.dir}/gensrc" />
+		<delete dir="${deploy.dir}" />
+
+	</target>
+
+	<!-- ============================================================== -->
+	<!-- Tomcat tasks - remove these if you don't have Tomcat installed -->
+	<!-- ============================================================== -->
+
+	<target name="tomcat.deploy" description="Install application in Tomcat">
+		<echo>+-----------------------------------------------+</echo>
+		<echo>| T O M C A T   D E P L O Y                     |</echo>
+		<echo>+-----------------------------------------------+</echo>
+		<taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask" classpathref="tomcat-classpath" />
+		<!--
+		<deploy url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}"
+		            path="/${name}" war="file://${deploy.dir}"/>
+		-->
+		<mkdir dir="${deploy.dir}" />
+		<deploy url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${name}" config="file://${basedir}/${name}.xml" />
+	</target>
+
+	<target name="tomcat.undeploy" description="Remove web application">
+		<echo>+-----------------------------------------------+</echo>
+		<echo>| T O M C A T   U N D E P L O Y                 |</echo>
+		<echo>+-----------------------------------------------+</echo>
+		<taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask" classpathref="tomcat-classpath" />
+		<undeploy url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${name}" />
+	</target>
+
+
+	<target name="tomcat.reload" description="Reload application in Tomcat">
+		<echo>+-----------------------------------------------+</echo>
+		<echo>| T O M C A T   R E L O A D                     |</echo>
+		<echo>+-----------------------------------------------+</echo>
+		<taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask" classpathref="tomcat-classpath" />
+		<reload url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${name}" />
+	</target>
+
+	<target name="tomcat.start" description="Start Tomcat application">
+		<echo>+-----------------------------------------------+</echo>
+		<echo>| T O M C A T   S T A R T                       |</echo>
+		<echo>+-----------------------------------------------+</echo>
+		<taskdef name="start" classname="org.apache.catalina.ant.StartTask" classpathref="tomcat-classpath" />
+		<start url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${name}" />
+	</target>
+
+	<target name="tomcat.stop" description="Stop Tomcat application">
+		<echo>+-----------------------------------------------+</echo>
+		<echo>| T O M C A T   S T O P                         |</echo>
+		<echo>+-----------------------------------------------+</echo>
+		<taskdef name="stop" classname="org.apache.catalina.ant.StopTask" classpathref="tomcat-classpath" />
+		<stop url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${name}" />
+	</target>
+
+	<target name="tomcat.list" description="List Tomcat applications">
+		<echo>+-----------------------------------------------+</echo>
+		<echo>| T O M C A T   L I S T                         |</echo>
+		<echo>+-----------------------------------------------+</echo>
+		<taskdef name="list" classname="org.apache.catalina.ant.ListTask" classpathref="tomcat-classpath" />
+		<list url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" />
+	</target>
+
+	<!-- End Tomcat tasks -->
+
+</project>

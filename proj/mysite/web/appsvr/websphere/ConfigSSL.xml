@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+   <!-- 定义页面属性 -->
+    <isindexpage>false</isindexpage>
+   <isindexall>false</isindexall>
+   <indexfile>indexall.xml</indexfile>
+
+   <!-- 定义文档位置 -->
+   <topic>appsvr</topic>
+   <catalog>websphere</catalog>
+
+   <!-- 文档显示内容 -->
+    <title>设置IBM HTTP Server(IHS) For Windows/UNIX服务器支持SSL协议</title>
+    <pagename>设置IBM HTTP Server(IHS) For Windows/UNIX服务器支持SSL协议</pagename>
+   <content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+<h3>生成自签署密钥</h3>
+1、运行Kye管理工具<br>
+
+<em>UNIX:</em><br>
+<div id="codeblock"><code>export&nbsp;JAVA_HOME=/usr/jdk_base<br>
+cd&nbsp;/&lt;IHS_root&gt;/bin<br>
+./ikeyman</code></div>
+<em>Windows:</em><br>
+Start&nbsp;-&gt;&nbsp;Programs&nbsp;-&gt;&nbsp;IBM&nbsp;HTTP&nbsp;Server&nbsp;1.3.26&nbsp;-&gt;&nbsp;Start&nbsp;Key&nbsp;Management&nbsp;Utilty<br>
+2、Key&nbsp;DataBase&nbsp;File&nbsp;-&gt;&nbsp;New<br>
+3、选择CMS&nbsp;key&nbsp;database&nbsp;file<br>
+4、输入密钥名字，如：IHS1236Certs.kdb<br>
+5、输入密钥存储路径，如：c:\IMBHttpServer\conf\keys<br>
+6、确认<br>
+7、输入口令<br>
+8、选择&nbsp;Stash&nbsp;the&nbsp;password&nbsp;to&nbsp;a&nbsp;file<br>
+9、确认<br>
+10、确信口令已经存储<br>
+11、选择个人证书<br>
+12、生成自签署个人证书后，可以关闭掉ikeyman工具<br>
+<h3>配置IBM&nbsp;HTTP&nbsp;Server</h3>
+<i>a、直接修改conf/httpd.conf文件</i><br>
+1、在AddModule后面加上<br>	
+<div id="codeblock"><code>LoadModule&nbsp;ibm_ssl_module&nbsp;modules/IBMModuleSSL128.dll</code></div>
+2、在文件的最后加上<br>	
+<div id="codeblock"><code>
+Listen&nbsp;443<br>
+&lt;VirtualHost&nbsp;&lt;server_name&gt;:443&gt;<br>
+ServerName&nbsp;&lt;server_name&gt;<br>
+SSLClientAuth&nbsp;optional&nbsp;<br>
+#Keyfile&nbsp;D:/IBMHttpServer/sslkey/test.kdb&nbsp;<br>
+Keyfile&nbsp;&lt;key_file&gt;&nbsp;<br>
+SSLV2Timeout&nbsp;100&nbsp;<br>
+SSLV3Timeout&nbsp;1000&nbsp;<br>
+SSLEnable&nbsp;<br>
+#SSLStashfile&nbsp;D:/IBMHttpServer/sslkey/test.sth&nbsp;<br>
+#口令存储文件<br>
+SSLStashfile&nbsp;&lt;sth_file&gt;&nbsp;<br>
+FileETag&nbsp;none<br>
+DocumentRoot&nbsp;&lt;document_root&gt;<br>
+ServerPath&nbsp;&lt;server_path&gt;<br>
+DirectoryIndex&nbsp;index.html<br>
+&lt;/VirtualHost&gt;&nbsp;</code></div>
+<i>b、通过IBM&nbsp;HTTP&nbsp;Administration来配置</i><br>
+1、在命令行方式进入&lt;IHS_root&gt;目录<br>
+2、检查conf目录中是否存在admin.passwd文件，如果不存在，运行下面命令<br>
+<div id="codeblock"><code>htpasswd&nbsp;-c&nbsp;conf/admin.passwd&nbsp;&lt;admin_user&gt;</code></div>
+其中&lt;admin_user&gt;是你想要创建的管理名字<br>
+3、输入管理员的口令<br>
+4、启动IBM&nbsp;HTTP&nbsp;Server<br>
+<i>Windows:</i><br>&nbsp;&nbsp;从服务里启动IBM&nbsp;HTTP&nbsp;Server&nbsp;1.3.26和IBM&nbsp;HTTP&nbsp;Administration&nbsp;1.3.26或者<br>
+Start&nbsp;-&gt;&nbsp;Programs&nbsp;-&gt;&nbsp;IBM&nbsp;HTTP&nbsp;Server&nbsp;1.3.26&nbsp;-&gt;启动&nbsp;HTTP&nbsp;服务器<br>
+启动&nbsp;Administration&nbsp;Server<br>
+<i>UNIX:</i><br><div id="codeblock"><code>apachect1</code></div>
+http://&lt;server_name&gt;<br>
+&lt;server_name&gt;指IHS所有的服务器名称<br>
+6、选择&nbsp;Configure&nbsp;Server&nbsp;联接<br>
+7、输入管理员名称和口令（用htpasswd创建的用户，这些用户在admin.passwd文件内）<br>
+8、Basic&nbsp;Settings&nbsp;-&gt;&nbsp;Core&nbsp;Settings<br>
+9、输入有效的服务器名称并提交<br>
+10、Basic&nbsp;Settings&nbsp;-&gt;&nbsp;Advanced&nbsp;Properties<br>
+11、在additional&nbsp;ports&nbsp;and&nbsp;IP&nbsp;addreses下面点Add<br>
+12、输入443端口，这是SSL默认的端口<br>
+13、确认<br>
+14、提交<br>
+15、Basic&nbsp;Setting&nbsp;-&gt;&nbsp;Module&nbsp;Sequence<br>
+16、Add<br>
+17、选择ibm_ssl(IBMModuleSSL128.dll)<br>
+18、确认Module动态联接库为：modules/IBMModuleSSL128.dll<br>
+19、确认<br>20、提交<br>
+21、Configuration&nbsp;Structure&nbsp;-&gt;&nbsp;Create&nbsp;Scope
+<br>22、VirtualHost<br>
+23、输入虚拟主机的名字或IP地址（建议与全局中的ServerName相同）<br>
+24、输入443端口<br>25、输入服务器名字（建议与全局中的ServerName相同）<br>
+26、Server&nbsp;path输入&lt;ihs_root&gt;/htdocs<br>
+27、提交<br>
+28、Security&nbsp;-&gt;&nbsp;Server&nbsp;Security<br>
+29、确认作用域为新建的虚拟主机<br>
+30、启用&nbsp;SSL&nbsp;为Yes<br>
+31、输入ikeyman工具生成Key文件路径和名字<br>
+32、SSL&nbsp;version&nbsp;2&nbsp;session&nbsp;ID&nbsp;timeout&nbsp;为&nbsp;100<br>
+33、SSL&nbsp;version&nbsp;3&nbsp;session&nbsp;ID&nbsp;timeout&nbsp;为&nbsp;1000<br>
+34、提交<br>
+35、Security&nbsp;-&gt;&nbsp;Host&nbsp;Authorization<br>
+36、Enable&nbsp;SSL<br>
+37、安全性&nbsp;-&gt;&nbsp;加密加速器<br>
+38、设置“加速器密码所在的文件名的全路径（存储文件）”<br>
+39、提交<br>
+40、Basic&nbsp;Settings&nbsp;-&gt;&nbsp;Core&nbsp;Settings<br>
+42、设置虚拟主机的文档根目录和日志文件，并提交<br>
+43、重新启动IBM&nbsp;HTTP服务器<br>
+<h3>测试SSL配置</h3>
+1、访问http://&lt;server_name&gt; 应显示默认的页面<br>
+2、访问https://&lt;server_name&gt;应提示访问安全页，并显示虚拟主机的默认页面
+<h3>配置完成</h3>
+       ]]> </content>
+
+</doc>
+

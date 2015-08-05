@@ -1,0 +1,23 @@
+<%@page contentType="text/html;charset=GBK"%>
+<%@page session="true"%>
+<%@page language="java" import="com.navy.*"%>
+<jsp:useBean id="ets" scope="request" class="com.navy.bean_ElearnTools"/>
+<jsp:useBean id="sqlbean0" scope="request" class="com.navy.bean_Getdata"/>
+<%
+String userright= (String)session.getAttribute("right");
+if(userright==null||(String)session.getAttribute("userid")==null){%>
+<script language="JavaScript">
+	alert("您还没有登录，或是您已超时，请重新登录！");
+	document.location="login.jsp";
+</script>
+<jsp:forward page="login.jsp" />
+<%}else{
+%>
+<frameset rows="80,*" frameborder="NO" border="0" framespacing="0">
+  <frame src="maintop.htm" name="topFrame" scrolling="NO" noresize >
+  <frame src="1.jsp" name="mainFrame">
+</frameset>
+<noframes><body>
+
+</body></noframes>
+<%}%>

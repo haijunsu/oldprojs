@@ -1,0 +1,5 @@
+set CATALINA_HOME=@CANALINE_HOME@
+set JAVA_HOME=@JAVA_HOME@
+set CATALINA_BASE=%cd%
+set %PATH%=%JAVA_HOME%/bin;%PATH%
+call %CATALINA_HOME%/bin/shutdown.bat

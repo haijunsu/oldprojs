@@ -1,0 +1,213 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<STYLE type=text/css>A:link {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: black; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: black; TEXT-DECORATION: none
+}
+TD {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+TH {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+INPUT {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+SELECT {
+	FONT-FAMILY: Verdana; FONT-SIZE: 9pt
+}
+.menuStyle {
+	FONT-FAMILY: Arial,Geneva,Verdana,Helvetica; FONT-SIZE: 9pt; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.form1 {
+	BACKGROUND-COLOR: #ffffff; BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid;FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;
+}
+.form2 {
+	BACKGROUND-COLOR: #E3E3E3; BORDER-BOTTOM: #ffffff 2px solid; BORDER-LEFT: #ffffff 2px solid; BORDER-RIGHT: #ffffff 2px solid; BORDER-TOP: #ffffff 2px solid;FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;height:80pt;
+		}
+.form3 {
+	BACKGROUND-COLOR: #E3E3E3; BORDER-BOTTOM: #007777 2px solid; BORDER-LEFT: #007777 2px solid; BORDER-RIGHT: #007777 2px solid; BORDER-TOP: #007777 2px solid; FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;height:16px
+}
+.form4 {
+	BACKGROUND-COLOR: #cccccc; BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid;FONT-FAMILY: "宋体"; FONT-SIZE: 9pt;
+}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+<!-- Begin validation script
+
+//设置位置
+function place2() {
+    parent.parent.top1.form1.textfield2.value="电子邮件\-\>邮件设置\-\>屏蔽垃圾邮件\-\>新建邮件规则";
+}
+
+
+//跑马灯的函数；
+
+  var scrtxt="您可以在这里新建您要屏蔽的垃圾邮件规则！";
+  var lentxt=scrtxt.length;
+  var width=100;
+  var pos=1-width;
+  
+  function scroll() {
+  pos++;
+  
+  var scroller="";
+  if (pos==lentxt) {
+    pos=1-width;
+  }
+  if (pos<0) {
+    for (var i=1; i<=Math.abs(pos); i++) {
+      scroller=scroller+" ";}
+    scroller=scroller+scrtxt.substring(0,width-i+1);
+  }
+  else {
+    scroller=scroller+scrtxt.substring(pos,width+pos);
+  }
+  window.status = scroller;
+  setTimeout("scroll()",150);
+  }
+
+function re()
+{
+	//window.alert("hello！");
+	var keytext=form1.textfield.value;
+	
+	var t1=form1.select.value;
+	//window.alert(t1);
+	if (form1.select.value=="yes")
+	{
+		if (keytext=="")
+		{
+			window.alert("没有给出检查的关键字！");
+			return(false);
+		}
+		else
+		{
+			return(true);
+		}
+	}
+	else
+	{
+		return(true);
+	}
+}
+//-->
+</SCRIPT>
+</head>
+
+<body bgcolor="#F0f0f0" text="#000000" onLoad="place2();scroll();return true;" leftmargin="0" topmargin="0">
+<table border=0 cellpadding=0 width="100%" cellspacing="0">
+  <tbody> 
+  <tr> 
+    <td align=left noWrap valign=center colspan="2" height="12"> 
+      <table bgcolor=#ECEAE6 border=1 bordercolordark=#808080 
+      bordercolorlight=#ffffff cellpadding=0 cellspacing=0 width="100%" height="20">
+        <tbody> 
+        <tr bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6> 
+          <td noWrap width="5"> 
+            <table border=0 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22>
+              <tbody> 
+              <tr> 
+                <td align=middle bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><img height=22 
+                  src="../../image/toolbar1.gif" width=5></td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td align=center noWrap width="150"> 
+            <table border=1 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22 width="100%">
+              <tbody> 
+              <tr> 
+                <td align=center bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center>新建垃圾邮件屏蔽规则…</td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td noWrap width="3"> 
+            <table border=0 bordercolordark=#ECEAE6 bordercolorlight=#ECEAE6 
+            cellpadding=0 cellspacing=0 height=22>
+              <tbody> 
+              <tr> 
+                <td align=middle bgcolor=#ECEAE6 bordercolordark=#ECEAE6 
+                bordercolorlight=#ECEAE6 noWrap valign=center><img height=22 
+                  src="../../image/toolbar1.gif" width=5></td>
+              </tr>
+              </tbody> 
+            </table>
+          </td>
+          <td align=absmiddle noWrap>&nbsp; </td>
+        </tr>
+        </tbody> 
+      </table>
+    </td>
+  </tr>
+  </tbody> 
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="25" align="center">
+  <tr> 
+    <td align="center" > 
+      <form name="form1" method="post" action="">
+        <div align="left">规则的状态： 
+          <select name="select" class="form3">
+            <option value="yes" >生效</option>
+            <option value="no" >禁用</option>
+          </select>
+        </div>
+        <div align="left"> 
+          <table width="100%" border="0" cellspacing="0" align="center">
+            <tr> 
+              <td width="100" height="26" align="right">当发件人的</td>
+              <td width="20" height="26"> 
+                <input type="radio" name="radiobutton1" value="radiobutton" checked>
+              </td>
+              <td height="26">电子邮件全地址</td>
+            </tr>
+            <tr> 
+              <td width="100" height="27">&nbsp;</td>
+              <td width="20" height="27"> 
+                <input type="radio" name="radiobutton1" value="radiobutton">
+              </td>
+              <td height="27">电子邮件用户名</td>
+            </tr>
+            <tr> 
+              <td width="100" height="27">&nbsp;</td>
+              <td width="20" height="27"> 
+                <input type="radio" name="radiobutton1" value="radiobutton">
+              </td>
+              <td height="27">电子邮件域名</td>
+            </tr>
+          </table>
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="60">&nbsp;</td>
+              <td>包含 
+                <input type="text" name="textfield" class="form1">
+                时，将邮件丢弃</td>
+            </tr>
+          </table>
+          <p>&nbsp;</p>
+          <pre>               <input type="submit" name="Submit" value="  确定  " class="form4" onClick="re()">     <input type="button" name="Submit2" value="  取消  " onClick="window.location.href='./masklist.htm'" class="form4">   </pre>
+        </div>
+      </form>
+    </td>
+  </tr>
+</table>
+<pre>&nbsp;</pre>
+</body>
+</html>

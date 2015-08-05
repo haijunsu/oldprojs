@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "d:\program\G_Roller\WEB-INF\lib\struts-config_1_1.dtd">
+<!--
+     This is the Struts configuration file for the example application,
+     using the proposed new syntax.
+-->
+<struts-config>
+
+
+	<!-- ========== Global Exception Handlers ======================= -->
+	<global-exceptions>
+	    <exception 
+	      key="some.key"
+	      type="groller.framework.exception.BusinessException" 
+	      handler="groller.application.www.helper.BusinessExceptionHandler" />
+	</global-exceptions>
+
+
+	<!-- ========== Global Forward Definitions ============================== -->
+	<global-forwards>
+		<forward name="INDEX" path="/" />
+		<forward name="LOGON" path="/" />
+		<forward name="FAIL" path="/fail.jsp" />
+	</global-forwards>
+
+
+	<!-- ========== Action Mapping Definitions ============================== -->
+	<action-mappings>
+
+		<action 
+			path="/user"
+			type="groller.application.www.action.UserAction" 
+			parameter="method">
+			<forward name="LIST" path="/listUsers.jsp" />
+		</action>
+
+		<action
+			path="/post"
+			type="groller.application.www.action.PostAction"
+			parameter="method">
+			<forward name="POST" path="/addPost.jsp" />
+			<forward name="LIST" path="/listPosts.jsp" />
+			<forward name="VIEW" path="/viewPost.jsp" />
+			<forward name="PUBLISH_SUCCESS" path="/viewPost.jsp" />
+			<forward name="REPLY_SUCCESS" path="/post.do?method=view" />
+		</action>
+
+		<action path="/rss" type="groller.application.rss.RssFeedAction">
+			<forward name="FEED" path="/rssFeed.jsp" /> 
+		</action>		
+	</action-mappings>
+
+	<message-resources parameter="application"/>
+</struts-config>

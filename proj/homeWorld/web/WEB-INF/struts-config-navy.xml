@@ -1,0 +1,39 @@
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+
+
+<!-- ======================================== Form Bean Definitions -->
+
+    <form-beans>
+	    <form-bean name="printForm" type="printsystem.PrintForm">
+	    </form-bean>
+		<form-bean name="logonForm" type="com.idn.user.LogonForm" />
+    </form-beans>
+
+<!-- =================================== Action Mapping Definitions -->
+
+	<action-mappings>
+		<action path="/test" type="test.DownloadXML" 
+			validate="false">
+		</action>
+		<action attribute="logonForm" input="/welcome/logon.jsp" name="logonForm" 
+			path="/logon" type="com.idn.user.LogonAction" validate="false">
+			<forward name="success" path="/success/logonMsg.jsp" />
+			<forward name="failure" path="/welcome/logon.jsp" />
+		</action>
+
+		<action path="/logoff" type="com.idn.user.LogoffAction" 
+			validate="false">
+			<forward name="success" path="/success/logonMsg.jsp" />
+		</action>
+		
+		<action path="/downloadExcel" type="printsystem.DownloadExcel" validate="false" scope="request">
+	        <forward redirect="false" name="failure" path="/printPages/error.jsp" />
+		</action>
+
+		<action path="/print" type="printsystem.PrintAction" validate="false" scope="request" name="printForm">
+	        <forward redirect="false" name="failure" path="/printPages/error.jsp" />
+		</action>
+	</action-mappings>
+
+</struts-config>

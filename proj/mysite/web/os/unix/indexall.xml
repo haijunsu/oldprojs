@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/index.xsl"?>
+<doc>
+	<!-- 定义页面属性 -->
+    <isindexpage>true</isindexpage>
+	<isindexall>true</isindexall>
+	<indexfile>index.xml</indexfile>
+
+	<!-- 定义文档位置 -->
+	<topic>os</topic>
+	<catalog>unix</catalog>
+
+	<!-- 文档显示内容 -->
+    <title>UNIX</title>
+    <pagename>全部文档列表</pagename>
+	<content><![CDATA[
+      <!-- 在这里写入HTML代码内容 -->
+       ]]> </content>
+
+</doc>

@@ -1,0 +1,144 @@
+======>>>>>>> START of BASE Message Class <<<<<<======
+        Character Type : 1
+             MessageID : 0
+         Release Level : 7.2.0
+          Message Type : 3
+     Origin Queue Name : 
+     Origin Queue Host : software2
+     Origin Queue Port : 0
+      Origin Inet Addr : 192.168.0.9
+Destination Queue Name : 
+Destination Queue Host : software2
+Destination Queue Port : 11002
+            Is Request : 1
+          Reply Needed : 0
+               Command : 0
+           Sub Command : 0
+           Debug Flags : 0
+           Transmit TS : 2002/10/9 13:2:26
+               BV Name : 
+             BE Number : 0
+             VWRC code : 6105
+   VWRC secondary code : 10049
+   VWRC is warning flg : 0
+
+           VWRC Domain : 5
+      VWRC Method Name : VWSocket::Send
+  VWRC Executable Name : "C:\PROGRA~1\SQLLIB\bin\IWH2SERV.EXE"
+   VWRC System Message : 
+          VWRC Comment : 
+        VWRC Host Name : software2
+           Filter Flag: 0
+             SQLStmt1 : 
+             SQLStmt2 : 
+  Data Rows Requested : 0
+   Data Rows Received : 0
+  Number Of DV Columns: 0
+  Number Of DV Result Rows: 0
+           Commit Flag: 0
+  Number Of SAP BO names: 0
+  Number Of SAP Business Objects: 0
+  Number Of WSA Data Imports: 0
+======>>>>>>> END of BASE Message Class <<<<<<======
+======>>>>>> START LOG Message Class <<<<<<======
+      Log Message Type : 14
+         Log Is Update : 0
+              Event ID : 0
+         Event Message : 
+            Build User : 
+          Build Action : 268780860
+      Build Sub Action : 268780860
+     Build Object Type : 268780860
+     Build Object Name : 
+         Build Message : 
+            Job Source : 
+            CL Command : 268780860
+       Tree Leaf Count : 0
+      Tree Level Count : 0
+      Tree Retry Count : 0
+      Tree Retry Delay : 0
+        Source DB Type : 268780860
+        Source DB Name : 
+        Target DB Type : 268780860
+        Target DB Name : 
+        CL Sub Command : 
+   BE Row Count So Far : 0
+  BE Byte Count So Far : 0
+          CL Step Time : 0
+         CL Total Time : 0
+               Exec TS : 2002/10/9 13:2:26
+       Step Group Type : 0
+          Process Name : 
+======>>>>>> END LOG Message Class <<<<<<======
+======>>>>>>> START of BASE Message Class <<<<<<======
+        Character Type : 1
+             MessageID : 0
+         Release Level : 7.2.0
+          Message Type : 3
+     Origin Queue Name : 
+     Origin Queue Host : software2
+     Origin Queue Port : 0
+      Origin Inet Addr : 192.168.0.9
+Destination Queue Name : 
+Destination Queue Host : software2
+Destination Queue Port : 11002
+            Is Request : 1
+          Reply Needed : 0
+               Command : 0
+           Sub Command : 0
+           Debug Flags : 0
+           Transmit TS : 2002/10/9 15:53:44
+               BV Name : 
+             BE Number : 0
+             VWRC code : 6105
+   VWRC secondary code : 10049
+   VWRC is warning flg : 0
+
+           VWRC Domain : 5
+      VWRC Method Name : VWSocket::Send
+  VWRC Executable Name : "C:\PROGRA~1\SQLLIB\bin\IWH2SERV.EXE"
+   VWRC System Message : 
+          VWRC Comment : 
+        VWRC Host Name : software2
+           Filter Flag: 0
+             SQLStmt1 : 
+             SQLStmt2 : 
+  Data Rows Requested : 0
+   Data Rows Received : 0
+  Number Of DV Columns: 0
+  Number Of DV Result Rows: 0
+           Commit Flag: 0
+  Number Of SAP BO names: 0
+  Number Of SAP Business Objects: 0
+  Number Of WSA Data Imports: 0
+======>>>>>>> END of BASE Message Class <<<<<<======
+======>>>>>> START LOG Message Class <<<<<<======
+      Log Message Type : 14
+         Log Is Update : 0
+              Event ID : 0
+         Event Message : 
+            Build User : 
+          Build Action : 268780860
+      Build Sub Action : 268780860
+     Build Object Type : 268780860
+     Build Object Name : 
+         Build Message : 
+            Job Source : 
+            CL Command : 268780860
+       Tree Leaf Count : 0
+      Tree Level Count : 0
+      Tree Retry Count : 0
+      Tree Retry Delay : 0
+        Source DB Type : 268780860
+        Source DB Name : 
+        Target DB Type : 268780860
+        Target DB Name : 
+        CL Sub Command : 
+   BE Row Count So Far : 0
+  BE Byte Count So Far : 0
+          CL Step Time : 0
+         CL Total Time : 0
+               Exec TS : 2002/10/9 15:53:44
+       Step Group Type : 0
+          Process Name : 
+======>>>>>> END LOG Message Class <<<<<<======
